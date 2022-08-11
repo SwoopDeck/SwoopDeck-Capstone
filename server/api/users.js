@@ -86,9 +86,9 @@ router.delete('/:id', async (req, res, next) => {
 //GET api/users/:id/jumps/
 router.get('/:id/jumps/', async (req, res, next) => {
     try {
-      // const user = await User.findOne({
-      //   where: { userId: req.params.id},
-      // });
+      const user = await User.findOne({
+        where: { userId: req.params.id},
+      });
       const jumps = await Jump.findAll({
         where: {userId: req.params.id}
       }
@@ -130,7 +130,7 @@ router.post('/:id/:jumpId/', async (req, res, next) => {
     // const user = await User.findOne({
     //   where: { userId: req.params.id},
     // });
-    await Jump.create(req.body);
+    let jump = await Jump.create(req.body);
     res.status(201).send(jump);
   } catch (e) {
     next(e);
