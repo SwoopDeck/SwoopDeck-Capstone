@@ -127,10 +127,10 @@ router.put("/:id/:jumpId/", async (req, res, next) => {
 router.post('/:id/:jumpId/', async (req, res, next) => {
   try {
     //DO WE NEED TO IDENTIFY THE USER TO ACCESS THEIR TABLE AND THEN CREATE?
-    // const user = await User.findOne({
-    //   where: { userId: req.params.id},
-    // });
-    let jump = await Jump.create(req.body);
+    const user = await User.findOne({
+      where: { userId: req.params.id},
+    });
+    let jump = await Jump.create({...req.body, userId: user.id});
     res.status(201).send(jump);
   } catch (e) {
     next(e);
@@ -140,9 +140,9 @@ router.post('/:id/:jumpId/', async (req, res, next) => {
 router.delete('/:id/:jumpId', async (req, res, next) => {
   try {
     //DO WE NEED TO IDENTIFY THE USER TO ACCESS THEIR TABLE AND THEN CREATE?
-    // const user = await User.findOne({
-    //   where: { userId: req.params.id},
-    // });
+    const user = await User.findOne({
+      where: { userId: req.params.id},
+    });
     const jump = await Jump.findByPk(req.params.jumpId);
     await jump.destroy(req.params.id);
   } catch (err) {
