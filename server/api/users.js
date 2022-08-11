@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {
-  models: { User, Log },
+  models: { User, Jump },
 } = require('../db');
 module.exports = router;
 const jwt = require('jsonwebtoken');
@@ -24,7 +24,7 @@ router.get('/', async (req, res, next) => {
       //   // explicitly select only the id and email fields - even though
       //   // users' passwords are encrypted, it won't help if we just
       //   // send everything to anyone who asks!
-      attributes: ["id", "email", "firstName", "lastName", "role"],
+      attributes: ["id", "email", "firstName", "lastName"],
     });
     res.json(users);
   } catch (err) {
@@ -67,18 +67,6 @@ router.put("/:id", async (req, res, next) => {
     next(err);
   }
 });
-//Update the user once the form is updated
-//PUT api/users/:id
-// router.put('/:id', async (req, res, next) => {
-//   try {
-//     //decide what the req body looks like
-//     const user = await User.findByPk(req.params.id);
-//     //what are we able to change per user
-//     res.send(await user.update({ ...req.body }));
-//   } catch (err) {
-//     next(err);
-//   }
-// });
 
 //Delete the user if the user wants the account to be deleted
 //DELETE api/users/:id
@@ -92,195 +80,72 @@ router.delete('/:id', async (req, res, next) => {
   }
 });
 
-/////////////////////////////////////////////// CART ROUTES ///////////////////////////////////////
+/////////////////////////////////////////////// JUMP ROUTES for USERS ///////////////////////////////////////
 
-//grab the cart per single user
-//GET api/users/:id/cart/
-router.get(
-  '/:id/cart/',
-  /*requireToken,*/ async (req, res, next) => {
-
+//grab the jumps per single user
+//GET api/users/:id/jumps/
+router.get('/:id/jumps/', async (req, res, next) => {
     try {
-      // const tokenFromFrontEnd = req.headers.authorization;
-      // const payload = jwt.verify(tokenFromFrontEnd, process.env.JWT);
-      // if (payload.id === req.params.id) {
-      const cart = await Order.findOne({
-        where: { userId: req.params.id, open: true },
-      });
-      const items = await OrderItem.findAll({
-        where: { orderId: cart.id },
-      });
-      const itemDetails = [];
-      await Promise.all(
-        items.map(async item => {
-          let eachMon = await Item.findByPk(item.itemId);
-          eachMon.dataValues.priceAtSaleTime = item.price;
-          eachMon.dataValues.qty = item.qty;
-          eachMon.dataValues.totalPriceAtSaleTime = item.totalPrice;
-          itemDetails.push(eachMon);
-        })
+      // const user = await User.findOne({
+      //   where: { userId: req.params.id},
+      // });
+      const jumps = await Jump.findAll({
+        where: {userId: req.params.id}
+      }
       );
-      res.json(itemDetails);
-      // }
+      res.json(jumps);
     } catch (err) {
       next(err);
     }
   }
 );
 
-//Update the cart per item added to each cart
-//PUT api/users/:id/cart/
-router.put("/:id/cart/", async (req, res, next) => {
+//Update the edited jump
+//PUT api/users/:id/:jumpId/
+router.put("/:id/:jumpId/", async (req, res, next) => {
   try {
-    
-    const cart = await Order.findOne({
-      where: { userId: req.params.id, open: true },
+    const user = await User.findOne({
+      where: { userId: req.params.id},
     });
-    const item = await OrderItem.findOne({
-      where: { itemId: req.body.id, orderId: cart.id },
+    const editJump = await Jump.findByPk({
+      where: {jumpId :req.params.jumpId, userId: user.id}
     });
 
-    if (req.body.add) {
-      await item.update({
-        ...item,
-        qty: req.body.qty,
-        totalPrice: item.price * (item.qty + 1),
-      });
-    } else {
-      await item.update({
-        ...item,
-        qty: req.body.qty,
-        totalPrice: item.price * (item.qty - 1),
-      });
-    }
-
-    const items = await OrderItem.findAll({
-      where: { orderId: cart.id },
+    await editJump.update({
+      ...editJump,
+      ...req.body,
+      //all other items being updated
     });
-    const itemDetails = [];
-    await Promise.all(
-      items.map(async item => {
-        let eachMon = await Item.findByPk(item.itemId);
-        eachMon.dataValues.priceAtSaleTime = item.price;
-        eachMon.dataValues.qty = item.qty;
-        eachMon.dataValues.totalPriceAtSaleTime = item.totalPrice;
-        itemDetails.push(eachMon);
-      })
-    );
-    res.json(itemDetails);
-    // }
+    res.json(editJump);
   } catch (err) {
     next(err);
   }
 });
 
-// Are we trying to destroy carts per user? or maybe we can empty a cart at checkout
-//PUT api/users/:id/cart/ EMPTY CART AT CHECKOUT
-router.put('/:id/cart/', async (req, res, next) => {
+//Creating a new jump log for a user
+//POST /api/users/:id/:jumpId
+router.post('/:id/:jumpId/', async (req, res, next) => {
   try {
-    console.log(req.params);
-    const cart = await Order.findOne({
-      where: { userId: req.params.id, open: true },
-    });
-    await OrderItem.destroy({
-      where: { itemId: req.params.itemId, orderId: cart.id },
-    });
-    const items = await OrderItem.findAll({
-      where: { orderId: cart.id },
-    });
-    const itemDetails = [];
-    await Promise.all(
-      items.map(async item => {
-        let eachMon = await Item.findByPk(item.itemId);
-        eachMon.dataValues.priceAtSaleTime = item.price;
-        eachMon.dataValues.qty = item.qty;
-        eachMon.dataValues.totalPriceAtSaleTime = item.totalPrice;
-        itemDetails.push(eachMon);
-      })
-    );
-    res.json(itemDetails);
-  } catch (err) {
-    next(err);
-  }
-});
-
-router.post('/:id/cart', async (req, res, next) => {
-  try {
-    let cart = await Order.findOne({
-      where: { userId: req.params.id, open: true },
-    });
-    if (!cart) {
-      cart = await Order.create();
-    }
-
-    const itemOrder = await OrderItem.findOne({
-      where: { itemId: req.body.id, orderId: cart.id },
-    });
-
-    let itemToAdd = await Item.findByPk(req.body.id);
-
-    if (itemOrder) {
-      let newQty = 0;
-      newQty = itemOrder.qty + req.body.qty;
-      await itemOrder.update({
-        qty: newQty,
-        totalPrice: itemOrder.price * newQty,
-      });
-    } else {
-      let user = await User.findByPk(req.params.id);
-      itemToAdd.addOrder(cart, {
-        through: {
-          qty: 1,
-          price: itemToAdd.price,
-          totalPrice: itemToAdd.price,
-        },
-      });
-
-      cart.setUser(user);
-    }
-    res.json(itemToAdd);
+    //DO WE NEED TO IDENTIFY THE USER TO ACCESS THEIR TABLE AND THEN CREATE?
+    // const user = await User.findOne({
+    //   where: { userId: req.params.id},
+    // });
+    await Jump.create(req.body);
+    res.status(201).send(jump);
   } catch (e) {
     next(e);
   }
 });
-//DELETE ROUTE FOR CART ITEM
-router.delete('/:id/cart/:itemId', async (req, res, next) => {
+//DELETE ROUTE FOR A USERS JUMP
+router.delete('/:id/:jumpId', async (req, res, next) => {
   try {
-    console.log(req.params);
-    const cart = await Order.findOne({
-      where: { userId: req.params.id, open: true },
-    });
-    await OrderItem.destroy({
-      where: { itemId: req.params.itemId },
-    });
-    const items = await OrderItem.findAll({
-      where: { orderId: cart.id },
-    });
-    const itemDetails = [];
-    await Promise.all(
-      items.map(async item => {
-        let eachMon = await Item.findByPk(item.itemId);
-        eachMon.dataValues.priceAtSaleTime = item.price;
-        eachMon.dataValues.qty = item.qty;
-        eachMon.dataValues.totalPriceAtSaleTime = item.totalPrice;
-        itemDetails.push(eachMon);
-      })
-    );
-    res.json(itemDetails);
+    //DO WE NEED TO IDENTIFY THE USER TO ACCESS THEIR TABLE AND THEN CREATE?
+    // const user = await User.findOne({
+    //   where: { userId: req.params.id},
+    // });
+    const jump = await Jump.findByPk(req.params.jumpId);
+    await jump.destroy(req.params.id);
   } catch (err) {
     next(err);
   }
 });
-//Are we going to even allow for item creation to be a feature sincei it can be implicitly bound to each user
-// //POST api/users/:id/cart/
-// router.post('/:id/cart/', async (req, res, next) => {
-//   try {
-//     //decide what the req body looks like
-//     const cart = await Cart.create(req.body)
-//     res.status(201).json(cart)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
-
-//Do we need DELETE cart route?

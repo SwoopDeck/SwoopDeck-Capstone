@@ -1,6 +1,8 @@
 const router = require('express').Router()
 const {Jump} = require('../db')
 
+//I dont think we need this if we have to find a USERID to find the specific user's jump table.
+
 // GET /api/jumps
 router.get('/', async (req, res, next) => {
   try {
