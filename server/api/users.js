@@ -1,26 +1,16 @@
 const router = require('express').Router();
 const {
-  models: { User, Jump },
+  models: { User, Jumps },
 } = require('../db');
-module.exports = router;
 const jwt = require('jsonwebtoken');
-
-const requireToken = async (req, res, next) => {
-  try {
-    const token = req.headers.authorization;
-    const user = await User.findByToken(token);
-    req.user = user;
-    next();
-  } catch (e) {
-    next(e);
-  }
-};
+const { requireToken, isAdmin } = require('./middleware');
+module.exports = router;
 
 //GET api/users/ Get all users as admin
 router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
-
+      
       //   // explicitly select only the id and email fields - even though
       //   // users' passwords are encrypted, it won't help if we just
       //   // send everything to anyone who asks!
@@ -85,19 +75,19 @@ router.delete('/:id', async (req, res, next) => {
 //grab the jumps per single user
 //GET api/users/:id/jumps/
 router.get('/:id/jumps/', async (req, res, next) => {
-    try {
-      const user = await User.findOne({
-        where: { userId: req.params.id},
-      });
-      const jumps = await Jump.findAll({
-        where: {userId: req.params.id}
-      }
-      );
-      res.json(jumps);
-    } catch (err) {
-      next(err);
+  try {
+    const user = await User.findOne({
+      where: { userId: req.params.id},
+    });
+    const jumps = await Jump.findAll({
+      where: {userId: req.params.id}
     }
+    );
+    res.json(jumps);
+  } catch (err) {
+    next(err);
   }
+}
 );
 
 //Update the edited jump
@@ -110,7 +100,7 @@ router.put("/:id/:jumpId/", async (req, res, next) => {
     const editJump = await Jump.findByPk({
       where: {jumpId :req.params.jumpId, userId: user.id}
     });
-
+    
     await editJump.update({
       ...editJump,
       ...req.body,
