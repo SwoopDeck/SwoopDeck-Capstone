@@ -1,10 +1,10 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 
-const Jumps = db.define('jumplog', {
+const Jumps = db.define('jumps', {
   jumpNumber: {
-    type: Sequelize.NUMBER,
-    autoIncrement: true,
+    type: Sequelize.INTEGER,
+    // autoIncrement: true,
     // allowNull: false,
     // validate: {
     //   notEmpty: true,
@@ -32,7 +32,7 @@ const Jumps = db.define('jumplog', {
     },
   },
   exitAltitude: {
-    type: Sequelize.NUMBER,
+    type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
       notEmpty: true,
@@ -41,7 +41,7 @@ const Jumps = db.define('jumplog', {
     },
   },
   pullAltitude: {
-    type: Sequelize.NUMBER,
+    type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
       notEmpty: true,
@@ -50,7 +50,7 @@ const Jumps = db.define('jumplog', {
     },
   },
   freeFallTime: {
-    type: Sequelize.NUMBER,
+    type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
       notEmpty: true,

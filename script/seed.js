@@ -1,7 +1,47 @@
 'use strict'
 
-const {db, models: {User} } = require('../server/db')
+const {db, models: {User, Jumps} } = require('../server/db')
 
+
+// DUMMY DATA
+const jumps = [
+  {
+    jumpNumber: 1,
+    location: 'Cleveland Skydiving Center',
+    aircraft: 'Kodiak',
+    equipment: 'Falcon 260',
+    exitAltitude: 13500,
+    pullAltitude: 3500,
+    freeFallTime: 60,
+    jumpers: 'solo',
+    description: 'Great first jump of the day. Front flip exit. Good landing pattern & swoop.',
+    jumpType: 'angle',
+  },
+  {
+    jumpNumber: 2,
+    location: 'Cleveland Skydiving Center',
+    aircraft: 'Kodiak',
+    equipment: 'Falcon 260',
+    exitAltitude: 13500,
+    pullAltitude: 3500,
+    freeFallTime: 60,
+    jumpers: 'solo',
+    description: 'Great first jump of the day. Front flip exit. Good landing pattern & swoop.',
+    jumpType: 'angle',
+  },
+  {
+    jumpNumber: 3,
+    location: 'Cleveland Skydiving Center',
+    aircraft: 'Kodiak',
+    equipment: 'Falcon 260',
+    exitAltitude: 13500,
+    pullAltitude: 3500,
+    freeFallTime: 60,
+    jumpers: 'solo',
+    description: 'Great first jump of the day. Front flip exit. Good landing pattern & swoop.',
+    jumpType: 'angle',
+  },
+]
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
@@ -10,21 +50,50 @@ async function seed() {
   await db.sync({ force: true }) // clears db and matches models to tables
   console.log('db synced!')
 
-  // Creating Users
-  const users = await Promise.all([
-    User.create({ username: 'cody', password: '123' }),
-    User.create({ username: 'murphy', password: '123' }),
-  ])
+  // Creating Jumps
+  await Promise.all(
+    jumps.map((jump) => {
+      return Jumps.create(jump);
+    })
+  );
+ 
 
-  console.log(`seeded ${users.length} users`)
-  console.log(`seeded successfully`)
-  return {
-    users: {
-      cody: users[0],
-      murphy: users[1]
-    }
-  }
+  const admin = await User.create({
+    email: "admin@gmail.com",
+    password: "123",
+    firstName: "Admin",
+    lastName: "Admin",
+    address: "1 Coding Blvd",
+    isAdmin: true,
+  });
+  
+  const chris = await User.create({
+    email: "chris@gmail.com",
+    password: "123",
+    firstName: "Chris",
+    lastName: "Tomshack",
+    address: "2 Coding Blvd",
+    isAdmin: true,
+  });
+
+  const brian = await User.create({
+    email: "brian@gmail.com",
+    password: "123",
+    firstName: "Brian",
+    lastName: "Lee",
+    address: "3 Coding Blvd",
+    isAdmin: true,
+  });
+
+  const jump1 = await Jumps.findByPk(1); 
+const jump2 = await Jumps.findByPk(2); 
+const jump3 = await Jumps.findByPk(3); 
+
+await jump1.setUser(chris);
+await jump2.setUser(chris);
+await jump3.setUser(brian);
 }
+
 
 /*
  We've separated the `seed` function from the `runSeed` function.
