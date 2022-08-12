@@ -6,12 +6,13 @@ let SET_JUMPS = "SET_JUMPS";
 let DELETE_JUMP = "DELETE_JUMP";
 let UPDATE_JUMP = "UPDATE_JUMP";
 let ADD_JUMP = "ADD_JUMP";
+const SET_SINGLE_JUMP = "SET_SINGLE_JUMP";
 
 //ACTION CREATOR: SET ALL JUMPS
-export const setAllJumps = (JUMPs) => {
+export const setAllJumps = (JUMPS) => {
   return {
     type: SET_JUMPS,
-    JUMPs,
+    JUMPS,
   };
 };
 
@@ -27,6 +28,23 @@ export const fetchAllJumps = (id) => {
     };
   };
 
+export const setSingleJump = (JUMP) => {
+  return {
+    type: SET_SINGLE_JUMP,
+    JUMP,
+  };
+};
+
+export const fetchSingleJump = (userId, jumpId) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`/api/users/${userId}/jumps/${jumpId}`);
+      dispatch(setSingleJump(data));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
 //ADD JUMP 
 export const addJump = (JUMP) => {
   return {
@@ -80,11 +98,14 @@ export const deleteJump = (id, jumpId) => {
   };
 };
 
+
 //REDUCER
 export default function jumpReducer(state = initialState, action) {
   switch (action.type) {
     case SET_JUMPS:
-      return action.JUMPs;
+      return action.JUMPS;
+    case SET_SINGLE_JUMP:
+      return action.JUMP;  
     case ADD_JUMP:
       return [...state, action.JUMP];
     case UPDATE_JUMP:
