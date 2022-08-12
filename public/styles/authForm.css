@@ -1,6 +1,23 @@
 .form-container {
     display: flex;
   }
+
+  .login-main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  .centered-logo {
+    align-self: center;
+    padding-left: 2rem;
+    padding-top: 2rem;
+  }
   
   .login, .signup, .update {
       display: flex;
