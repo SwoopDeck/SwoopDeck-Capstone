@@ -114,19 +114,20 @@ router.get('/:id/jumps/:jumpId', async (req, res, next) => {
 //PUT api/users/:id/:jumpId/
 router.put("/:id/:jumpId/", async (req, res, next) => {
   try {
-    const user = await User.findOne({
-      where: { userId: req.params.id},
-    });
-    const editJump = await Jump.findByPk({
-      where: {jumpId :req.params.jumpId, userId: user.id}
-    });
-    
+    const editJump = await Jumps.findByPk(req.params.jumpId);
     await editJump.update({
-      ...editJump,
-      ...req.body,
-      //all other items being updated
-    });
-    res.json(editJump);
+      jumpNumber: req.body.jumpNumber,
+      location: req.body.location,
+      aircraft: req.body.aircraft,
+      equipment: req.body.equipment,
+      exitAltitude: req.body.exitAltitude,
+      pullAtltitude:req.body.pullAtltitude,
+      freeFallTime: req.body.freeFallTime,
+      jumpers: req.body.jumpers,
+      description: req.body.description,
+      jumpType: req.body.jumpType,
+    })
+    res.send(editJump)
   } catch (err) {
     next(err);
   }
@@ -136,11 +137,7 @@ router.put("/:id/:jumpId/", async (req, res, next) => {
 //POST /api/users/:id/create
 router.post('/:id/create/', async (req, res, next) => {
   try {
-    //DO WE NEED TO IDENTIFY THE USER TO ACCESS THEIR TABLE AND THEN CREATE?
-    const user = await User.findOne({
-      where: { userId: req.params.id},
-    });
-    let jump = await Jump.create({...req.body, userId: user.id});
+    let jump = await Jumps.create({...req.body, userId: req.params.id});
     res.status(201).send(jump);
   } catch (e) {
     next(e);

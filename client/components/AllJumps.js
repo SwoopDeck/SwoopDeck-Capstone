@@ -12,13 +12,11 @@ export class AllJumps extends React.Component {
   }
   componentDidMount() {
     let userId = this.props.user.id;
-    console.log(userId);
     this.props.getJumps(userId);
   }
 
   render() {
     let { jumps } = this.props;
-    console.log(this.props);
     return (
       <div>
         <Sidebar />
@@ -66,7 +64,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     getJumps: (userId) => dispatch(fetchAllJumps(userId)),
-    delete: (userId, jumpId, jump) => dispatch(deleteJump(userId, jumpId)),
+    delete: (userId, jumpId) => dispatch(deleteJump(userId, jumpId)),
   };
 };
 

@@ -56,7 +56,7 @@ export const addJump = (JUMP) => {
 export const createJump = (JUMP, id) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(`/api/jumps/${id}/create/`, JUMP);
+      const { data } = await axios.post(`/api/users/${id}/create/`, JUMP);
       dispatch(addJump(data));
     } catch (err) {
       console.log(err);
@@ -74,24 +74,22 @@ export const reformJump = (JUMP) => {
 //THUNK: PUT REQUEST
 export const updateJump = (JUMP, id, jumpId) => {
   return async (dispatch) => {
-    const { data } = await axios.put(`/api/jumps/${id}/${jumpId}`, JUMP);
+    const { data } = await axios.put(`/api/users/${id}/${jumpId}`, JUMP);
     dispatch(reformJump(data));
   };
 };
 
 //ACTION CREATOR: REMOVE A JUMP
 export const removeJump = (id) => {
-  console.log('afterthunk')
   return {
     type: DELETE_JUMP,
     id,
   };
 };
 //THUNK: DELETE REQUEST
-export const deleteJump = (id, jumpId,) => {
+export const deleteJump = (id, jumpId) => {
   return async (dispatch) => {
     try {
-      console.log('before thunk')
       await axios.delete(`/api/users/${id}/${jumpId}`);
       dispatch(removeJump(jumpId));
     } catch (err) {
@@ -113,7 +111,6 @@ export default function jumpReducer(state = initialState, action) {
     case UPDATE_JUMP:
       return action.JUMP
     case DELETE_JUMP:
-      console.log(state)
       return state.filter((log) => log.id !== action.id);
     default:
       return state;
