@@ -47,10 +47,5 @@
         "title": "About",
         "icon": "bi-paperclip",
         "path": "/#"
-    },
-    {
-        "title": "Logout",
-        "icon": "bi-box-arrow-right",
-        "path": "/"
     }
 ]
