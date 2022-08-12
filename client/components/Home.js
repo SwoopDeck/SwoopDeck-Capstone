@@ -21,7 +21,7 @@ export const Home = props => {
  */
 const mapState = state => {
   return {
-    username: state.auth.username
+    email: state.auth.email
   }
 }
 

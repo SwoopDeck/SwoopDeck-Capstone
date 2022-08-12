@@ -7,7 +7,7 @@ import jumpReducer from './jumps'
 
 const reducer = combineReducers({ 
   auth,
-  jumps: jumpReducer
+  jumps: jumpReducer,
  })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))

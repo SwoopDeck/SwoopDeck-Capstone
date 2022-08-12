@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import {Link} from 'react-router-dom'
 import { fetchAllJumps, deleteJump } from "../store/jumps";
 import { me } from "../store/auth";
 
@@ -8,19 +8,18 @@ export class AllJumps extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-    id: null,
+    
     };
   }
- componentDidMount() {
-    const user = this.props.getUser();
-    const userId = user.auth.id;
-    this.setState({ id: userId });
-    this.props.getJumps(userId);
-  }
+    componentDidMount() {
+        let userId = this.props.user.id
+        console.log(userId)
+        this.props.getJumps(userId);
+    }
 
   render() {
-    let { jumps } = this.props || {};
-    
+    let {jumps} = this.props
+    console.log(this.props)
     return (
       <div>
         <h1>JUMPS</h1>
@@ -30,12 +29,14 @@ export class AllJumps extends React.Component {
             return (
               <div key={jump.id}>
                 <Link to={`/jumps/${jumps.id}`}>
-                  {jump.jumpNumber}
+                    <div>
+                        Jump Number: {jump.jumpNumber}
+                    </div>
                   <img height="100vh" width="100vh" src={jump.imageUrl} />
                 </Link>
                 <div>
-                  <h3>Location: ${jump.location}</h3>
-                  <h3>Aircraft: {item.aircraft}</h3>
+                  <h3>Location: {jump.location}</h3>
+                  <h3>Aircraft: {jump.aircraft}</h3>
 
                   <button>
                     <Link to={`/jumps/${jumps.id}`}>
@@ -61,11 +62,12 @@ export class AllJumps extends React.Component {
 const mapState = (state) => {
   return {
     jumps: state.jumps,
+    user: state.auth
   };
 };
 const mapDispatch = (dispatch) => {
   return {
-    getUser: () => dispatch(me()),
+    //getUser: () => dispatch(me()),
     getJumps: (userId) => dispatch(fetchAllJumps(userId)),
     delete: (userId,jumpId) => dispatch(deleteJump(userId,jumpId)),
   };

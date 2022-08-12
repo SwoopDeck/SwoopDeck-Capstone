@@ -77,10 +77,10 @@ router.delete('/:id', async (req, res, next) => {
 router.get('/:id/jumps/', async (req, res, next) => {
   try {
     const user = await User.findOne({
-      where: { userId: req.params.id},
+      where: { id: req.params.id},
     });
-    const jumps = await Jump.findAll({
-      where: {userId: req.params.id}
+    const jumps = await Jumps.findAll({
+      where: {id: req.params.id}
     }
     );
     res.json(jumps);
