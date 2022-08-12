@@ -6,12 +6,12 @@ import Sidebar from './Sidebar'
  * COMPONENT
  */
 export const Home = props => {
-  const {username} = props
+  const {firstName} = props
 
   return (
     <div className='main'>
       <Sidebar />
-      <h3>Welcome, {username}</h3>
+      <h3>Welcome, {firstName}</h3>
     </div>
   )
 }

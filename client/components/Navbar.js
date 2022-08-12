@@ -10,8 +10,10 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       {isLoggedIn ? (
         <div className='nav-container'>
           {/* The navbar will show these links after you log in */}
-          <h1 className='navLogo'>Digital Logbook</h1>
+          <img src="/assets/SwoopLog.png" alt="logo" className="navLogo" />
           <div className='nav-links'></div>
+          <Link to="/login" className='navLink'>Login</Link>
+          <Link to="/signup" className='navLink'>Sign Up</Link>
           <Link className='navLink' href="#" onClick={handleClick}>
             Logout
           </Link>
@@ -26,7 +28,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         </div>
       )}
     </nav>
-    <hr />
+    {/* <hr /> */}
   </div>
 )
 
