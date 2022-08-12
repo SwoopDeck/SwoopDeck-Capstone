@@ -128,7 +128,7 @@ export class AddJump extends React.Component {
                   equipment: '',
                   exitAltitude: 14000,
                   pullAltitude: 4000,
-                  freefallTime: 60,
+                  freeFallTime: 60,
                   jumpers: '',
                   description: '',
                   jumpType: '',

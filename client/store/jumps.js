@@ -74,7 +74,7 @@ export const reformJump = (JUMP) => {
 //THUNK: PUT REQUEST
 export const updateJump = (JUMP, id, jumpId) => {
   return async (dispatch) => {
-    const { data } = await axios.put(`/api/jumps/${id}/${jumpId}`, JUMP);
+    const { data } = await axios.put(`/api/users/${id}/${jumpId}`, JUMP);
     dispatch(reformJump(data));
   };
 };

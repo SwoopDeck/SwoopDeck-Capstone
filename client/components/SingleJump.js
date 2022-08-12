@@ -2,9 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchSingleJump } from "../store/jumps";
-import { me } from "../store/auth";
-import { updateJump } from "../store/jumps";
-// import EditItem from "./EditItem";
+import EditJump from "./editjump";
 
 class SingleJump extends React.Component {
   constructor() {
@@ -14,11 +12,8 @@ class SingleJump extends React.Component {
    this.props.getJump(this.props.user.id, this.props.match.params.jumpId)
   }
   render() {
-    console.log(this.props)
     let {jump} = this.props
-    console.log(jump)
     let singleJump = jump[0] || {}
-    console.log(singleJump)
     return (
       <div>
        <h1>Jump Number: {singleJump.jumpNumber}</h1>
@@ -30,6 +25,7 @@ class SingleJump extends React.Component {
        <div>JUMPERS: {singleJump.jumpers}</div>
        <div>LOCATION: {singleJump.location}</div>
        <div>PULL ALTITUDE: {singleJump.pullAltitude}</div>
+       <EditJump/>
       </div>
     );
   }

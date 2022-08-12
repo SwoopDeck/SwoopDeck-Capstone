@@ -11,13 +11,11 @@ export class AllJumps extends React.Component {
   }
   componentDidMount() {
     let userId = this.props.user.id;
-    console.log(userId);
     this.props.getJumps(userId);
   }
 
   render() {
     let { jumps } = this.props;
-    console.log(this.props);
     return (
       <div>
         <h1>JUMPS</h1>

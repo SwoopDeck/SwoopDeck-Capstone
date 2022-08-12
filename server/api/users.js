@@ -114,19 +114,21 @@ router.get('/:id/jumps/:jumpId', async (req, res, next) => {
 //PUT api/users/:id/:jumpId/
 router.put("/:id/:jumpId/", async (req, res, next) => {
   try {
-    const user = await User.findOne({
-      where: { userId: req.params.id},
-    });
-    const editJump = await Jump.findByPk({
-      where: {jumpId :req.params.jumpId, userId: user.id}
-    });
-    
+    const editJump = await Jumps.findByPk(req.params.jumpId);
     await editJump.update({
-      ...editJump,
-      ...req.body,
-      //all other items being updated
-    });
-    res.json(editJump);
+      jumpNumber: req.body.jumpNumber,
+      location: req.body.location,
+      aircraft: req.body.aircraft,
+      equipment: req.body.equipment,
+      exitAltitude: req.body.exitAltitude,
+      pullAtltitude:req.body.pullAtltitude,
+      freeFallTime: req.body.freeFallTime,
+      jumpers: req.body.jumpers,
+      description: req.body.description,
+      jumpType: req.body.jumpType,
+    })
+    console.log(editJump)
+    res.send()
   } catch (err) {
     next(err);
   }
