@@ -90,6 +90,26 @@ router.get('/:id/jumps/', async (req, res, next) => {
 }
 );
 
+//grab the single jump for a user
+//GET api/users/:id/jumps/:jumpId
+router.get('/:id/jumps/:jumpId', async (req, res, next) => {
+  try {
+    const jump = await Jumps.findAll({
+      include: {
+        model: User,
+        where: {id: req.params.id}
+      },
+      where: {id: req.params.jumpId, 
+      }
+    }
+    );
+    res.json(jump);
+  } catch (err) {
+    next(err);
+  }
+}
+);
+
 //Update the edited jump
 //PUT api/users/:id/:jumpId/
 router.put("/:id/:jumpId/", async (req, res, next) => {

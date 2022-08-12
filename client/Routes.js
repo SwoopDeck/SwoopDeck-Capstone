@@ -5,6 +5,7 @@ import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
 import {me} from './store'
 import AllJumps from './components/AllJumps';
+import SingleJump from './components/SingleJump'
 
 /**
  * COMPONENT
@@ -26,6 +27,7 @@ class Routes extends Component {
             <Route exact path='/login' component={ Login } />
             <Route path="/signup" component={Signup} />
             <Route path="/alljumps" component={AllJumps} />
+            <Route path="/jumps/:jumpId" component={SingleJump} />
           </Switch>
         ) : (
           <Switch>
@@ -33,7 +35,7 @@ class Routes extends Component {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             {/* <Route path="/alljumps" component={AllJumps} /> */}
-            {/* <Route path="/jumps/:jumpId" component={SingleJump} /> */}
+            
           </Switch>
         )}
       </div>
