@@ -6,6 +6,11 @@ body {
   font-family: sans-serif;
 }
 
+.main {
+  display: flex;
+  flex-direction: row;
+}
+
 a {
   text-decoration: none;
 }

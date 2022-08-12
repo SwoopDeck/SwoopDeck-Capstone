@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { fetchSingleJump } from "../store/jumps";
 import { me } from "../store/auth";
 import { updateJump } from "../store/jumps";
+import Sidebar from "./Sidebar";
 // import EditItem from "./EditItem";
 
 class SingleJump extends React.Component {
@@ -21,6 +22,7 @@ class SingleJump extends React.Component {
     console.log(singleJump)
     return (
       <div>
+        <Sidebar />
        <h1>Jump Number: {singleJump.jumpNumber}</h1>
        <div>AIRCRAFT: {singleJump.aircraft}</div>
        <div>EQUIPMENT: {singleJump.equipment}</div>
