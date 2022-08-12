@@ -1,126 +1,56 @@
 [
     {
-        "title": "General",
-        "icon": "bi-gear-fill",
-        "children": [
-            {
-                "title": "Home",
-                "icon": "bi-house-fill",
-                "path": "/"
-            },
-            {
-                "title": "About",
-                "icon": "bi-info-circle-fill",
-                "path": "/about"
-            },
-            {
-                "title": "Contact",
-                "icon": "bi-phone-fill",
-                "children": [
-                    {
-                        "title": "Facebook",
-                        "icon": "bi-facebook"
-                    },
-                    {
-                        "title": "Twitter",
-                        "icon": "bi-twitter"
-                    },
-                    {
-                        "title": "Instagram",
-                        "icon": "bi-instagram"
-                    }
-                ]
-            },
-            {
-                "title": "FAQ",
-                "icon": "bi-question-circle-fill"
-            }
-        ]
-    },
-    {
-        "title": "Account",
-        "icon": "bi-info-circle-fill",
-        "children": [
-            {
-                "title": "Login",
-                "path": "/login"
-            },
-            {
-                "title": "Register",
-                "path": "/register"
-            },
-            {
-                "title": "Forgot Password",
-                "path": "/forgot-password"
-            },
-            {
-                "title": "Reset Password",
-                "path": "/reset-password"
-            }
-        ]
+        "title": "Home",
+        "icon": "bi-house-fill",
+        "path": "/dashboard"
     },
     {
         "title": "Profile",
         "icon": "bi-person-fill",
         "children": [
             {
-                "title": "Profile",
-                "path": "/profile"
+                "title": "Update profile",
+                "path": "/updateProfile"
             },
             {
-                "title": "Settings",
-                "childrens": [
-                    {
-                        "title": "Account",
-                        "path": "/settings/account"
-                    },
-                    {
-                        "title": "Billing",
-                        "childrens": [
-                            {
-                                "title": "Payment",
-                                "path": "/settings/billing/payment"
-                            },
-                            {
-                                "title": "Subscription",
-                                "path": "/settings/billing/subscription"
-                            }
-                        ]
-                    },
-                    {
-                        "title": "Notifications",
-                        "path": "/settings/notifications"
-                    }
-                ]
-            },
-            {
-                "title": "Logout",
-                "path": "/logout"
+                "title": "Reset password",
+                "path": "/reset-password"
             }
         ]
     },
     {
-        "title": "Advance",
-        "icon": "bi-view-list",
+        "title": "Logbook",
+        "icon": "bi-journal-text",
         "children": [
             {
-                "title": "Search",
-                "path": "/search"
+                "title": "View logbook",
+                "path": "/logbook"
             },
             {
-                "title": "History",
-                "path": "/history"   
+                "title": "Add new jump",
+                "path": "/add-new-jump"
             }
         ]
     },
+
     {
-        "title": "Support",
-        "icon": "bi-question-circle-fill",
-        "path": "/support"
+        "title": "Github",
+        "icon": "bi-github",
+        "path": "/#"
     },
     {
-        "title": "Report Bug",
-        "icon": "bi-bug",
-        "path": "/report-bug"
+        "title": "Contact Us",
+        "icon": "bi-voicemail",
+        "path": "/#"
+    },
+    {
+        "title": "About",
+        "icon": "bi-paperclip",
+        "path": "/#"
+    },
+    {
+        "title": "Logout",
+        "icon": "bi-box-arrow-right",
+        "path": "/"
     }
 ]

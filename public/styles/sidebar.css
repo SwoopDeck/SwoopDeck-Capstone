@@ -64,7 +64,7 @@ body {
 
   .sidebar-title{
     display: flex;
-    font-size: 1.2em;
+    /* font-size: 1.2em; */
     justify-content: space-between;
   }
   .sidebar-title span i{
@@ -104,7 +104,7 @@ body {
     background-color: #eaebef;
   }
 
-  .sidebar-item.sidebar-item.plain:focus:focus{
+  .sidebar-item.sidebar-item.plain:focus{
     background-color: #d3e3fd;
     font-weight: bold;
   }
