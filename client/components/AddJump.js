@@ -120,7 +120,6 @@ export class AddJump extends React.Component {
             <button
               onClick={(evt) => {
                 evt.preventDefault();
-                console.log(this.props.user.id)
                 this.props.add({...this.state}, this.props.user.id);
                 this.setState({
                   jumpNumber: '',

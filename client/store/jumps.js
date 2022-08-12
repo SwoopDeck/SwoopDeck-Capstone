@@ -87,7 +87,7 @@ export const removeJump = (id) => {
   };
 };
 //THUNK: DELETE REQUEST
-export const deleteJump = (id, jumpId,) => {
+export const deleteJump = (id, jumpId) => {
   return async (dispatch) => {
     try {
       await axios.delete(`/api/users/${id}/${jumpId}`);
@@ -111,7 +111,6 @@ export default function jumpReducer(state = initialState, action) {
     case UPDATE_JUMP:
       return action.JUMP
     case DELETE_JUMP:
-      console.log(state)
       return state.filter((log) => log.id !== action.id);
     default:
       return state;
