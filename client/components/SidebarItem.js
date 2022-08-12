@@ -13,7 +13,7 @@ export const SidebarItem = ({item}) => {
                     {item.icon && <i className={item.icon}></i>}
                     {item.title}
                 </span>
-                <i class="bi bi-chevron-down toggle-btn" onClick={() => setOpen(!open)}></i>
+                <i className="bi bi-chevron-down toggle-btn" onClick={() => setOpen(!open)}></i>
             </div>
             <div className='sidebar-content'>
                 {item.children.map((child, index) => <SidebarItem key={index} item={child} />)}

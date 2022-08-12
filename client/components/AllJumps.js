@@ -11,8 +11,8 @@ export class AllJumps extends React.Component {
     id: null,
     };
   }
-  async componentDidMount() {
-    const user = await this.props.getUser();
+ componentDidMount() {
+    const user = this.props.getUser();
     const userId = user.auth.id;
     this.setState({ id: userId });
     this.props.getJumps(userId);

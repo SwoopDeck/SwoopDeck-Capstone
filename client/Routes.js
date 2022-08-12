@@ -31,7 +31,7 @@ class Routes extends Component {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path="/alljumps" component={AllJumps} />
-            <Route path="/jumps/:jumpId" component={SingleJump} />
+            {/* <Route path="/jumps/:jumpId" component={SingleJump} /> */}
           </Switch>
         )}
       </div>
