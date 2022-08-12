@@ -42,7 +42,7 @@ export class AllJumps extends React.Component {
                   </button>
                   <button
                     onClick={() => {
-                      this.props.delete(this.state.id, jump.id);
+                      this.props.delete(this.props.user.id, jump.id);
                     }}
                   >
                     Remove Jump
@@ -66,7 +66,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     getJumps: (userId) => dispatch(fetchAllJumps(userId)),
-    delete: (userId, jumpId) => dispatch(deleteJump(userId, jumpId)),
+    delete: (userId, jumpId, jump) => dispatch(deleteJump(userId, jumpId)),
   };
 };
 
