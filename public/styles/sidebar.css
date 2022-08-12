@@ -57,7 +57,7 @@ body {
     background-color: #eaebef;
   }
 
-  .sidebar-item:focus{
+  .sidebar-item.active{
     background-color: #d3e3fd;
     font-weight: bold;
   }

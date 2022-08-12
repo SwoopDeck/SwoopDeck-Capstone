@@ -4,6 +4,13 @@ import { useState } from 'react'
 
 export const SidebarItem = ({item}) => {
     const [open, setOpen] = useState(false);
+    const [active, toggleActive] = useState('notActive');
+
+    function toggleActiveHandler() {
+        setOpen(true);
+        if (active === 'notActive') toggleActive('active');
+        if (active === 'active') toggleActive('notActive');
+    }
 
   if (item.children) {
     return (
@@ -16,7 +23,7 @@ export const SidebarItem = ({item}) => {
                 <i className="bi bi-chevron-down toggle-btn" onClick={() => setOpen(!open)}></i>
             </div>
             <div className='sidebar-content'>
-                {item.children.map((child, index) => <SidebarItem key={index} item={child} />)}
+                {item.children.map((child, index) => <SidebarItem key={index} item={child} className={active} onClick={() => toggleActiveHandler()}/>)}
             </div>
         </div>
       )

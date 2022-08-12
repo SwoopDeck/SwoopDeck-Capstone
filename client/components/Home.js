@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Sidebar from './Sidebar'
+import AllJumps from './AllJumps'
 
 /**
  * COMPONENT
@@ -12,6 +13,7 @@ export const Home = props => {
     <div className='main'>
       <Sidebar />
       <h3>Welcome, {firstName}</h3>
+      {/* <AllJumps /> */}
     </div>
   )
 }
