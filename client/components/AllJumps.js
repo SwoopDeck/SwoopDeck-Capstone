@@ -60,7 +60,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     getJumps: (userId) => dispatch(fetchAllJumps(userId)),
-    delete: (userId, jumpId, jump) => dispatch(deleteJump(userId, jumpId)),
+    delete: (userId, jumpId) => dispatch(deleteJump(userId, jumpId)),
   };
 };
 
