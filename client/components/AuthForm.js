@@ -9,7 +9,7 @@ import Navbar from './Navbar'
  */
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
-
+  console.log(props)
   return (
     <div>
       <Navbar />
@@ -71,6 +71,7 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
+      console.log(formName, email, password)
       dispatch(authenticate(email, password, formName))
     }
   }
