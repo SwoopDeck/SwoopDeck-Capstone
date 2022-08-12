@@ -57,7 +57,7 @@ body {
     background-color: #eaebef;
   }
 
-  .sidebar-item:focus{
+  .sidebar-item.active{
     background-color: #d3e3fd;
     font-weight: bold;
   }
@@ -108,4 +108,24 @@ body {
   .sidebar-item.sidebar-item.plain:focus{
     background-color: #d3e3fd;
     font-weight: bold;
+  }
+
+  .logout-btn {
+    border: none;
+    display: inline-block;
+    width: 1.7em;
+    background-color: inherit;
+    color: #202124;
+    padding: .75em 1em;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  .bi-box-arrow-right {
+
+    padding: .75em 1em;
+    display: block;
+    transition: background-color .15s;
+    border-radius: 5px;
   }

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchAllJumps, deleteJump } from "../store/jumps";
 import { me } from "../store/auth";
+import Sidebar from "./Sidebar";
 
 export class AllJumps extends React.Component {
   constructor(props) {
@@ -18,7 +19,9 @@ export class AllJumps extends React.Component {
     let { jumps } = this.props;
     return (
       <div>
-        <h1>JUMPS</h1>
+        <Sidebar />
+        <div>
+        <h1 style={{marginLeft: '10rem'}}>JUMPS</h1>
         {jumps.length === 0 ? <h2>Your JUMPS is empty</h2> : <span />}
         <div id="jumps">
           {jumps.map((jump) => {
@@ -46,6 +49,7 @@ export class AllJumps extends React.Component {
               </div>
             );
           })}
+        </div>
         </div>
       </div>
     );

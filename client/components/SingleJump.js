@@ -3,6 +3,10 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchSingleJump } from "../store/jumps";
 import EditJump from "./editjump";
+import { me } from "../store/auth";
+import { updateJump } from "../store/jumps";
+import Sidebar from "./Sidebar";
+// import EditItem from "./EditItem";
 
 class SingleJump extends React.Component {
   constructor() {
@@ -16,6 +20,7 @@ class SingleJump extends React.Component {
     let singleJump = jump[0] || {}
     return (
       <div>
+        <Sidebar />
        <h1>Jump Number: {singleJump.jumpNumber}</h1>
        <div>AIRCRAFT: {singleJump.aircraft}</div>
        <div>EQUIPMENT: {singleJump.equipment}</div>
