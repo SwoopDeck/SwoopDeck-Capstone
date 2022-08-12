@@ -113,8 +113,8 @@ router.put("/:id/:jumpId/", async (req, res, next) => {
 });
 
 //Creating a new jump log for a user
-//POST /api/users/:id/:jumpId
-router.post('/:id/:jumpId/', async (req, res, next) => {
+//POST /api/users/:id/create
+router.post('/:id/create/', async (req, res, next) => {
   try {
     //DO WE NEED TO IDENTIFY THE USER TO ACCESS THEIR TABLE AND THEN CREATE?
     const user = await User.findOne({
