@@ -82,6 +82,7 @@ body {
     padding-top: .25em;
     height: 0;
     overflow: hidden;
+    font-size: .8rem;
   }
   .sidebar-item.open > .sidebar-content{
     height: auto;
