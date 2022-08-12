@@ -12,6 +12,10 @@ export const Sidebar = (props) => {
             <div className='user-name'>Chris Tomshack</div>
             <hr></hr>
             {items.map((item, index) => <SidebarItem key={index} item={item}/>)}
+        <div className='sidebar-content plain'>
+                <i className='bi bi-box-arrow-right'></i>
+                Logout
+            </div>
         </div>
     </div>
   )

@@ -11,8 +11,12 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
   console.log(props)
   return (
-    <div>
-      <Navbar />
+    <div className='login-main'>
+      {/* <Navbar /> */}
+      <div className='logo-container'>
+
+      <img src="/assets/SwoopLog.png" alt="logo" className='centered-logo'/>
+      </div>
     <div className="form div-container">
       <form onSubmit={handleSubmit} name={name}>
         <div className="login">
