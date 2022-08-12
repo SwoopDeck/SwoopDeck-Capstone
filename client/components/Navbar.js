@@ -5,25 +5,30 @@ import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <h1>FS-App-Template</h1>
+    {/* <h1>Digital Logbook</h1> */}
     <nav>
       {isLoggedIn ? (
-        <div>
+        <div className='nav-container'>
           {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <a href="#" onClick={handleClick}>
+          <img src="/assets/SwoopLog.png" alt="logo" className="navLogo" />
+          <div className='nav-links'></div>
+          <Link to="/login" className="navLink">Login</Link>
+          <Link to="/signup" className="navLink">Sign Up</Link>
+          <Link to="/login" className="navLink" onClick={handleClick}>
             Logout
-          </a>
+          </Link>
         </div>
       ) : (
-        <div>
+        <div className='nav-container'>
           {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
+          <h1 className='navLogo'>Digital Logbook</h1>
+          <div className='nav-links'></div>
+          <Link to="/login" className='navLink'>Login</Link>
+          <Link to="/signup" className='navLink'>Sign Up</Link>
         </div>
       )}
     </nav>
-    <hr />
+    {/* <hr /> */}
   </div>
 )
 

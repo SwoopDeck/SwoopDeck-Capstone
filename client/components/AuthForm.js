@@ -1,33 +1,42 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {authenticate} from '../store'
+import { Link } from 'react-router-dom'
+import Navbar from './Navbar'
 
 /**
  * COMPONENT
  */
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
-
+  console.log(props)
   return (
     <div>
+      <Navbar />
+    <div className="form div-container">
       <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="username">
-            <small>Username</small>
-          </label>
-          <input name="username" type="text" />
+        <div className="login">
+          <div className="login-card">
+            <p className="title">Log In</p>
+            <input name="email" placeholder="Email" required />
+            <input
+              name="password"
+              placeholder="Password"
+              type="password"
+              required
+            />
+            <button className="loader">Sign in</button>
+            <p className="text">Don't have an account?</p>
+            <Link to="/signup">
+              <button className="buttonShadow" type="submit">
+                Create new account
+              </button>
+            </Link>
+          </div>
         </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
+        {error && <div> {error} </div>}
       </form>
+    </div>
     </div>
   )
 }
@@ -60,9 +69,10 @@ const mapDispatch = dispatch => {
     handleSubmit(evt) {
       evt.preventDefault()
       const formName = evt.target.name
-      const username = evt.target.username.value
+      const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(authenticate(username, password, formName))
+      console.log(formName, email, password)
+      dispatch(authenticate(email, password, formName))
     }
   }
 }

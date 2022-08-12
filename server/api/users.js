@@ -77,10 +77,10 @@ router.delete('/:id', async (req, res, next) => {
 router.get('/:id/jumps/', async (req, res, next) => {
   try {
     const user = await User.findOne({
-      where: { userId: req.params.id},
+      where: { id: req.params.id},
     });
-    const jumps = await Jump.findAll({
-      where: {userId: req.params.id}
+    const jumps = await Jumps.findAll({
+      where: {id: req.params.id}
     }
     );
     res.json(jumps);
@@ -113,14 +113,14 @@ router.put("/:id/:jumpId/", async (req, res, next) => {
 });
 
 //Creating a new jump log for a user
-//POST /api/users/:id/:jumpId
-router.post('/:id/:jumpId/', async (req, res, next) => {
+//POST /api/users/:id/create
+router.post('/:id/create/', async (req, res, next) => {
   try {
     //DO WE NEED TO IDENTIFY THE USER TO ACCESS THEIR TABLE AND THEN CREATE?
-    // const user = await User.findOne({
-    //   where: { userId: req.params.id},
-    // });
-    let jump = await Jump.create(req.body);
+    const user = await User.findOne({
+      where: { userId: req.params.id},
+    });
+    let jump = await Jump.create({...req.body, userId: user.id});
     res.status(201).send(jump);
   } catch (e) {
     next(e);
@@ -130,9 +130,9 @@ router.post('/:id/:jumpId/', async (req, res, next) => {
 router.delete('/:id/:jumpId', async (req, res, next) => {
   try {
     //DO WE NEED TO IDENTIFY THE USER TO ACCESS THEIR TABLE AND THEN CREATE?
-    // const user = await User.findOne({
-    //   where: { userId: req.params.id},
-    // });
+    const user = await User.findOne({
+      where: { userId: req.params.id},
+    });
     const jump = await Jump.findByPk(req.params.jumpId);
     await jump.destroy(req.params.id);
   } catch (err) {
