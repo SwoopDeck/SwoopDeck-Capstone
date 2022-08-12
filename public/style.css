@@ -1,3 +1,7 @@
+@import './styles/sidebar.css';
+@import './styles/authForm.css';
+@import './styles/navBar.css';
+
 body {
   font-family: sans-serif;
 }

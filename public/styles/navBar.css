@@ -1,0 +1,26 @@
+nav a {
+    display: inline-block;
+    margin: .5rem 1rem .25rem 1rem;
+  }
+  
+  .nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .navLogo {
+    width: 25vh;
+    margin-top: 1rem
+  }
+  
+  .navLink {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .nav-links {
+    /* display: flex;
+    justify-content: space-around; */
+    margin-right: 5rem;
+  }

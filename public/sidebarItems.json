@@ -1,0 +1,56 @@
+[
+    {
+        "title": "Home",
+        "icon": "bi-house-fill",
+        "path": "/dashboard"
+    },
+    {
+        "title": "Profile",
+        "icon": "bi-person-fill",
+        "children": [
+            {
+                "title": "Update profile",
+                "path": "/updateProfile"
+            },
+            {
+                "title": "Reset password",
+                "path": "/reset-password"
+            }
+        ]
+    },
+    {
+        "title": "Logbook",
+        "icon": "bi-journal-text",
+        "children": [
+            {
+                "title": "View logbook",
+                "path": "/logbook"
+            },
+            {
+                "title": "Add new jump",
+                "path": "/add-new-jump"
+            }
+        ]
+    },
+
+    {
+        "title": "Github",
+        "icon": "bi-github",
+        "path": "/#"
+    },
+    {
+        "title": "Contact Us",
+        "icon": "bi-voicemail",
+        "path": "/#"
+    },
+    {
+        "title": "About",
+        "icon": "bi-paperclip",
+        "path": "/#"
+    },
+    {
+        "title": "Logout",
+        "icon": "bi-box-arrow-right",
+        "path": "/"
+    }
+]

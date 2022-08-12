@@ -1,15 +1,17 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import Sidebar from './Sidebar'
 
 /**
  * COMPONENT
  */
 export const Home = props => {
-  const {username} = props
+  const {firstName} = props
 
   return (
-    <div>
-      <h3>Welcome, {username}</h3>
+    <div className='main'>
+      <Sidebar />
+      <h3>Welcome, {firstName}</h3>
     </div>
   )
 }
