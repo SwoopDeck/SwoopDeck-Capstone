@@ -32,7 +32,7 @@ export class EditJump extends Component {
   }
 
   render() {
-    let jump = this.props.jump[0]
+    let jump = this.props.jump[0] || {}
     console.log(jump)
     
     return (
@@ -139,7 +139,7 @@ export class EditJump extends Component {
               this.props.getJump(this.props.user.id, jump.id)
             }}
           >
-            Edit Jump Log
+            <Link to={`/jumps/${jump.id}`}>Edit Jump Log</Link>
           </button>
         </form>
       </div>

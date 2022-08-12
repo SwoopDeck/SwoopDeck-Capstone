@@ -127,8 +127,7 @@ router.put("/:id/:jumpId/", async (req, res, next) => {
       description: req.body.description,
       jumpType: req.body.jumpType,
     })
-    console.log(editJump)
-    res.send()
+    res.send(editJump)
   } catch (err) {
     next(err);
   }
