@@ -7,8 +7,9 @@ import { connect } from 'react-redux'
 import auth from './store/auth'
 
 class App extends React.Component {
-  
+ 
   render() {
+    console.log(this.props)
     const {isLoggedIn} = this.props;
 
     return (

@@ -6,14 +6,16 @@ import SidebarItem from './SidebarItem';
 import { logout } from '../store';
 import { Link } from 'react-router-dom';
 
+
 export const Sidebar = (props) => {
+  console.log(props)
   const dispatch = useDispatch(); 
   return (
     <div className='main'>
         <div className='sidebar'>
         <div className='user-avatar'>
         </div>
-            <div className='user-name'>Chris Tomshack</div>
+            <div className='user-name'>{props.user.firstName} {props.user.lastName}</div>
             <hr></hr>
             {items.map((item, index) => <SidebarItem key={index} item={item}/>)}
 
@@ -26,5 +28,10 @@ export const Sidebar = (props) => {
   )
 }
 
+const mapStateToProps = (state) => ({
+    user: state.auth
+})
 
-export default Sidebar
+const mapDispatchToProps = {}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)
