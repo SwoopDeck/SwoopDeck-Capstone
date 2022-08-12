@@ -136,11 +136,7 @@ router.put("/:id/:jumpId/", async (req, res, next) => {
 //POST /api/users/:id/create
 router.post('/:id/create/', async (req, res, next) => {
   try {
-    //DO WE NEED TO IDENTIFY THE USER TO ACCESS THEIR TABLE AND THEN CREATE?
-    const user = await User.findOne({
-      where: { userId: req.params.id},
-    });
-    let jump = await Jump.create({...req.body, userId: user.id});
+    let jump = await Jumps.create({...req.body, userId: req.params.id});
     res.status(201).send(jump);
   } catch (e) {
     next(e);

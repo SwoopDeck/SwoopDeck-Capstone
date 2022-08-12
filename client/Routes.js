@@ -6,6 +6,7 @@ import Home from './components/Home';
 import {me} from './store'
 import AllJumps from './components/AllJumps';
 import SingleJump from './components/SingleJump'
+import AddJump from './components/addjump'
 
 /**
  * COMPONENT
@@ -28,6 +29,7 @@ class Routes extends Component {
             <Route path="/signup" component={Signup} />
             <Route path="/alljumps" component={AllJumps} />
             <Route path="/jumps/:jumpId" component={SingleJump} />
+            <Route path="/add" component={AddJump} />
           </Switch>
         ) : (
           <Switch>

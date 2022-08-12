@@ -17,6 +17,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Link to="/login" className="navLink" onClick={handleClick}>
             Logout
           </Link>
+          <Link to="/add" className="navLink">Add Jump</Link>
         </div>
       ) : (
         <div className='nav-container'>

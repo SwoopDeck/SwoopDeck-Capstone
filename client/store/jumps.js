@@ -56,7 +56,7 @@ export const addJump = (JUMP) => {
 export const createJump = (JUMP, id) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(`/api/jumps/${id}/create/`, JUMP);
+      const { data } = await axios.post(`/api/users/${id}/create/`, JUMP);
       dispatch(addJump(data));
     } catch (err) {
       console.log(err);
@@ -81,7 +81,6 @@ export const updateJump = (JUMP, id, jumpId) => {
 
 //ACTION CREATOR: REMOVE A JUMP
 export const removeJump = (id) => {
-  console.log('afterthunk')
   return {
     type: DELETE_JUMP,
     id,
@@ -91,7 +90,6 @@ export const removeJump = (id) => {
 export const deleteJump = (id, jumpId,) => {
   return async (dispatch) => {
     try {
-      console.log('before thunk')
       await axios.delete(`/api/users/${id}/${jumpId}`);
       dispatch(removeJump(jumpId));
     } catch (err) {
