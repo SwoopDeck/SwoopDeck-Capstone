@@ -16,10 +16,10 @@ class App extends React.Component {
       <div>
         {/* <Navbar /> */}
         {isLoggedIn ? (
-          <>
+          <div className='main-container'>
           <Sidebar />
           <Routes />
-          </>
+          </div>
         ) : (
           <Routes />
         )}

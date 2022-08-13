@@ -30,7 +30,7 @@ export class AddJump extends React.Component {
   render() {
    
     return (
-      <div>
+      <div className="flex-right">
         <h1>ADD A LOG</h1>
         <form id='jump-form' >
           <div>JUMP NUMBER:

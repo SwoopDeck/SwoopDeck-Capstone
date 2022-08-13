@@ -1,3 +1,142 @@
+.main-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+.flex-right {
+  display: flex;
+  flex-direction: column;
+  width: 85vw;
+  height: 100vh;
+  margin: 5px;
+  padding: 5px;
+  border: 2px solid green;
+}
+
+.right-top-column {
+  display: flex;
+  flex-direction: row;
+  height: 25vh;
+  margin: 1rem;
+  border: 2px solid blue;
+}
+
+.right-bottom-column {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 70vh;
+  margin: 1rem;
+  border: 2px solid red;
+}
+
+.right-bottom-column-left-side {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 50%;
+  border: 2px solid red;
+}
+
+.recent-jumps {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 20%;
+  border: 1px solid black;
+  margin-bottom: .5rem;
+  /* border-radius: 10px; */
+}
+
+.recent-jump-info {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  height: 70%;
+  justify-content: space-between;
+  margin: 1rem;
+}
+
+.recent-jumps img {
+  margin: .75rem;
+}
+
+.jump-number {
+  align-self: center;
+  margin: 1rem;
+}
+
+.view-jump-details {
+  border-radius: 10px;
+  background-color: rgb(87, 126, 219);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: .2s;
+}
+.view-jump-details:hover {
+  background-color: #3A6DD8;
+}
+
+/* RIGHT SIDE OF BOTTOM COLUMN */
+.right-bottom-column-right-side {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 45%;
+  border: 2px solid red;
+}
+
+.recent-jumps {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 20%;
+  border: 1px solid black;
+  margin-bottom: .5rem;
+  /* border-radius: 10px; */
+}
+
+button.recent-jumps {
+  background-color: rgb(87, 126, 219);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  width: 100%;
+  font-size: 2rem;
+  border-style: none;
+  vertical-align: middle;
+  text-align: center;
+  padding-left: 5rem;
+  padding-top: 2.7rem;
+  transition-duration: .2s;
+}
+
+button.recent-jumps:hover {
+  background-color: #3A6DD8;
+  border-radius: 10px;
+  width: 100%;
+  font-size: 2rem;
+  border-style: none;
+  vertical-align: middle;
+  text-align: center;
+  padding-left: 5rem;
+  padding-top: 2.7rem;
+}
+
+link {
+  color: #fff;
+}
+
+a {
+  color: #fff;
+}
+
+
 * {
     margin: 0;
     padding: 0;
@@ -34,10 +173,6 @@ body {
     margin-bottom: 1rem;
   }
 
-.main {
-    display: flex;
-    height: 100vh;
-}
 
 .sidebar {
     width: 220px;

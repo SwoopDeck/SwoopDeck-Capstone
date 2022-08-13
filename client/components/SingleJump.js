@@ -19,8 +19,7 @@ class SingleJump extends React.Component {
     let {jump} = this.props
     let singleJump = jump[0] || {}
     return (
-      <div>
-        <Sidebar />
+      <div className="flex-right">
        <h1>Jump Number: {singleJump.jumpNumber}</h1>
        <div>AIRCRAFT: {singleJump.aircraft}</div>
        <div>EQUIPMENT: {singleJump.equipment}</div>

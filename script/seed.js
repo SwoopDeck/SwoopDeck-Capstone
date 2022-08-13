@@ -41,6 +41,42 @@ const jumps = [
     description: 'Great first jump of the day. Front flip exit. Good landing pattern & swoop.',
     jumpType: 'angle',
   },
+  {
+    jumpNumber: 4,
+    location: 'Cleveland Skydiving Center',
+    aircraft: 'Kodiak',
+    equipment: 'Falcon 260',
+    exitAltitude: 13500,
+    pullAltitude: 3500,
+    freeFallTime: 60,
+    jumpers: 'solo',
+    description: 'Great first jump of the day. Front flip exit. Good landing pattern & swoop.',
+    jumpType: 'angle',
+  },
+  {
+    jumpNumber: 5,
+    location: 'Cleveland Skydiving Center',
+    aircraft: 'Kodiak',
+    equipment: 'Falcon 260',
+    exitAltitude: 13500,
+    pullAltitude: 3500,
+    freeFallTime: 60,
+    jumpers: 'solo',
+    description: 'Great first jump of the day. Front flip exit. Good landing pattern & swoop.',
+    jumpType: 'angle',
+  },
+  {
+    jumpNumber: 6,
+    location: 'Cleveland Skydiving Center',
+    aircraft: 'Kodiak',
+    equipment: 'Falcon 260',
+    exitAltitude: 13500,
+    pullAltitude: 3500,
+    freeFallTime: 60,
+    jumpers: 'solo',
+    description: 'Great first jump of the day. Front flip exit. Good landing pattern & swoop.',
+    jumpType: 'angle',
+  },
 ]
 /**
  * seed - this function clears the database, updates tables to
@@ -88,9 +124,17 @@ async function seed() {
   const jump1 = await Jumps.findByPk(1); 
 const jump2 = await Jumps.findByPk(2); 
 const jump3 = await Jumps.findByPk(3); 
+const jump4 = await Jumps.findByPk(4); 
+const jump5 = await Jumps.findByPk(5); 
+const jump6 = await Jumps.findByPk(5); 
 
 await jump1.setUser(chris);
 await jump2.setUser(chris);
+await jump4.setUser(chris);
+await jump5.setUser(chris);
+await jump6.setUser(chris);
+
+
 await jump3.setUser(brian);
 }
 
