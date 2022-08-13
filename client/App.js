@@ -18,6 +18,7 @@ class App extends React.Component {
         {isLoggedIn ? (
           <div className='main-container'>
           <Sidebar />
+          {/* <TopMenu />  */} {/*top menu that says 'Welcome, *First Name */ }
           <Routes />
           </div>
         ) : (

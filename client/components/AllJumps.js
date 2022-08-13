@@ -21,7 +21,8 @@ export class AllJumps extends React.Component {
       <div className="flex-right">
         <div>
           <div className="right-top-column">
-        <h1>JUMPS</h1>
+            <div className="total-freefall-time-integers">3 hours 21 minutes</div>
+        <div className="total-freefall-time">Total FreeFall Time</div>
           </div>
 
         {jumps.length === 0 ? <h2>Your JUMPS is empty</h2> : <span />}
@@ -56,10 +57,10 @@ export class AllJumps extends React.Component {
           })}
           </div>
           <div className="right-bottom-column-right-side">
-            <h2 style={{marginBottom: '1rem'}}>Add new jump</h2>
-            <button className="recent-jumps">Record new jump</button>
-            <button className="recent-jumps">Add jump manually</button>
-            <button className="recent-jumps">Import new jump</button>
+            <h2 style={{marginBottom: '1rem'}}>Add New Jump</h2>
+            <button className="recent-jumps">Record</button>
+            <button className="recent-jumps">Add manually</button>
+            <button className="recent-jumps">Import</button>
 
           </div>
         </div>
