@@ -35,7 +35,7 @@ export class AllJumps extends React.Component {
             return (
               <div className="recent-jumps" key={jump.id}>
                 <Link to={`/jumps/${jump.id}`}>
-                  <img height="100vh" width="100vh" src={jump.imageUrl} />
+                  <img height="100vh" width="100vh" src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.kHAtTjGvPMSeFGe_bZUGFwHaHa%26pid%3DApi&f=1' />
                 </Link>
                 <div className="recent-jump-info">
                   <h4>{jump.location}</h4>
