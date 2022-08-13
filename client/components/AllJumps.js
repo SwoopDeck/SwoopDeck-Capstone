@@ -18,37 +18,51 @@ export class AllJumps extends React.Component {
   render() {
     let { jumps } = this.props;
     return (
-      <div>
-        <Sidebar />
+      <div className="flex-right">
         <div>
-        <h1 style={{marginLeft: '10rem'}}>JUMPS</h1>
+          <div className="right-top-column">
+            <div className="total-freefall-time-integers">3 hours 21 minutes</div>
+        <div className="total-freefall-time">Total FreeFall Time</div>
+          </div>
+
         {jumps.length === 0 ? <h2>Your JUMPS is empty</h2> : <span />}
-        <div id="jumps">
+
+        <div className="right-bottom-column" id="jumps">
+          <div className="right-bottom-column-left-side">
+
+            <h2 style={{marginBottom: '1rem'}}>Your recent activity</h2>
           {jumps.map((jump) => {
             return (
-              <div key={jump.id}>
+              <div className="recent-jumps" key={jump.id}>
                 <Link to={`/jumps/${jump.id}`}>
-                  <div>Jump Number: {jump.jumpNumber}</div>
                   <img height="100vh" width="100vh" src={jump.imageUrl} />
                 </Link>
-                <div>
-                  <h3>Location: {jump.location}</h3>
-                  <h3>Aircraft: {jump.aircraft}</h3>
-
-                  <button>
-                    <Link to={`/jumps/${jump.id}`}>View Details</Link>
+                <div className="recent-jump-info">
+                  <h4>{jump.location}</h4>
+                  <h4>Aircraft: {jump.aircraft}</h4>
+                  <button className="view-jump-details">
+                    <Link to={`/jumps/${jump.id}`}>View Jump Details</Link>
                   </button>
-                  <button
+                  {/* <button
                     onClick={() => {
                       this.props.delete(this.props.user.id, jump.id);
                     }}
-                  >
+                    >
                     Remove Jump
-                  </button>
+                  </button> */}
                 </div>
-              </div>
+                    <h4 className="jump-number">Jump #{jump.jumpNumber}</h4>
+                </div>
             );
           })}
+          </div>
+          <div className="right-bottom-column-right-side">
+            <h2 style={{marginBottom: '1rem'}}>Add New Jump</h2>
+            <button className="recent-jumps">Record</button>
+            <button className="recent-jumps">Add manually</button>
+            <button className="recent-jumps">Import</button>
+
+          </div>
         </div>
         </div>
       </div>

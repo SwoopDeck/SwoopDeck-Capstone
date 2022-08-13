@@ -24,11 +24,11 @@
         "children": [
             {
                 "title": "View logbook",
-                "path": "/logbook"
+                "path": "/alljumps"
             },
             {
                 "title": "Add new jump",
-                "path": "/add-new-jump"
+                "path": "/add"
             }
         ]
     },

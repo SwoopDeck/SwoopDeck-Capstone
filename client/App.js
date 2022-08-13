@@ -16,10 +16,11 @@ class App extends React.Component {
       <div>
         {/* <Navbar /> */}
         {isLoggedIn ? (
-          <>
+          <div className='main-container'>
           <Sidebar />
+          {/* <TopMenu />  */} {/*top menu that says 'Welcome, *First Name */ }
           <Routes />
-          </>
+          </div>
         ) : (
           <Routes />
         )}

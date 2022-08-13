@@ -10,9 +10,8 @@ export const Home = props => {
   const {firstName} = props
 
   return (
-    <div className='main'>
-      <Sidebar />
-      <h3>Welcome, {firstName}</h3>
+    <div className='flex-right'>
+      <h3>Welcome</h3>
       {/* <AllJumps /> */}
     </div>
   )
