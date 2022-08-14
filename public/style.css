@@ -2,6 +2,7 @@
 @import './styles/authForm.css';
 @import './styles/navBar.css';
 @import './styles/alljumps.css';
+@import './styles/addJump.css';
 
 body {
   font-family: sans-serif;
@@ -29,3 +30,8 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+button {
+  background-color: #ffff;
+}
+
