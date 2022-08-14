@@ -63,7 +63,7 @@
   }
   .login input:focus, .signup input:focus, .update input:focus, textarea:focus   {
       background-color: #fff;
-      border: 1px solid #d49090;
+      border: 1px solid rgb(87, 126, 219);
       box-shadow: 0 0 4px 2px rgb(50, 50, 50, .1);
   }
   
@@ -121,3 +121,5 @@
   .input-container {
       margin: 0;
   }
+
+  /* SIGN UP */
