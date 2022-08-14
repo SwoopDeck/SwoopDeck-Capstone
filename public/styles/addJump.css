@@ -80,23 +80,26 @@ input {
   border-radius: 5px;
   /* margin: 10px; */
   padding: 11px 15px;
-  background-color: #e5f2ff;
+  /* background-color: #e5f2ff; */
   outline: none;
   border: 1px solid rgb(0, 0, 0, 0);
   font-size: 15px;
-  color: rgb(30, 30, 30);
+  /* color: rgb(30, 30, 30); */
   transition: 0.2s;
+  background-color: #fff;
+  color: #202124;
+  box-shadow: 0 0 4px 2px #e5f2ff;
 }
 .jump-info-field::placeholder {
   color: rgb(200, 200, 200);
 }
 .jump-info-field:hover {
   background-color: #e5f2ff;
+  box-shadow: 0 0 4px 2px #658fff;
 }
 .jump-info-field:focus {
-  background-color: #fff;
-  /* border: 1px solid #d49090; */
-  box-shadow: 0 0 4px 2px #e5f2ff;
+  background-color: #e5f2ff;
+  box-shadow: 0 0 4px 2px #658fff;
 }
 
 .add-jump-btn {

@@ -145,24 +145,24 @@ export class AddJump extends React.Component {
           <input
           className="jump-info-field"
             type="text"
-            name='certifyingOfficial'
+            name='certifyingOfficialName'
             placeholder="Full name"
-            value={this.state.certifyingOfficial }
+            value={this.state.certifyingOfficialName }
             onChange={this.handleChange}
-            style={{    backgroundColor: '#fff',
-              color: 'rgb(100, 100, 100)',
-              boxShadow: '0 0 4px 2px #e5f2ff'}}
+            // style={{    backgroundColor: '#fff',
+            //   color: 'rgb(100, 100, 100)',
+            //   boxShadow: '0 0 4px 2px #e5f2ff'}}
           />
           <input
           className="jump-info-field"
             type="text"
-            name='certifyingOfficial'
+            name='certifyingOfficialLicenseNumber'
             placeholder="USPA license number"
-            value={this.state.certifyingOfficial }
+            value={this.state.certifyingOfficialLicenseNumber }
             onChange={this.handleChange}
-            style={{    backgroundColor: '#fff',
-              color: 'rgb(100, 100, 100)',
-              boxShadow: '0 0 4px 2px #e5f2ff'}}
+            // style={{    backgroundColor: '#fff',
+            //   color: 'rgb(100, 100, 100)',
+            //   boxShadow: '0 0 4px 2px #e5f2ff'}}
           />
           </div>
           
