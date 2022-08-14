@@ -2,7 +2,7 @@
     {
         "title": "Home",
         "icon": "bi-house-fill",
-        "path": "/home"
+        "path": "/alljumps"
     },
     {
         "title": "Profile",
@@ -36,7 +36,7 @@
     {
         "title": "Github",
         "icon": "bi-github",
-        "path": "/#"
+        "path": "https://github.com/Ctomshack/digital-logbook"
     },
     {
         "title": "Contact Us",
