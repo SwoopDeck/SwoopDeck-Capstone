@@ -24,12 +24,13 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
-            <Route exact path="/home" component={Home} />
+            <Route exact path="/" component={AllJumps} />
+            <Route exact path="/home" component={AllJumps} />
             {/* <Redirect to="/home" /> */}
-            <Route exact path='/login' component={ Login } />
+            {/* <Route exact path='/login' component={ Login } /> */}
             <Route path="/alljumps" component={AllJumps} />
             <Route path="/jumps/:jumpId" component={SingleJump} />
-            <Route path="/add" component={AddJump} />
+            <Route path="/addJump" component={AddJump} />
           </Switch>
         ) : (
           <Switch>
