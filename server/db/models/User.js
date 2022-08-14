@@ -36,9 +36,9 @@ const User = db.define('user', {
   },
   address: {
     type: Sequelize.STRING,
-    validate: {
-      notEmpty: true,
-    },
+    // validate: {
+    //   notEmpty: true,
+    // },
   },
   isAdmin: {
     type: Sequelize.BOOLEAN,
