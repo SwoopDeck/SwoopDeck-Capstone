@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchAllJumps, deleteJump } from "../store/jumps";
 import { me } from "../store/auth";
-import Sidebar from "./Sidebar";
 
 export class AllJumps extends React.Component {
   constructor(props) {
