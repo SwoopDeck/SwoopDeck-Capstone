@@ -1,6 +1,7 @@
 @import './styles/sidebar.css';
 @import './styles/authForm.css';
 @import './styles/navBar.css';
+@import './styles/alljumps.css';
 
 body {
   font-family: sans-serif;

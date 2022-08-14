@@ -29,7 +29,7 @@ class SingleJump extends React.Component {
        <div>JUMPERS: {singleJump.jumpers}</div>
        <div>LOCATION: {singleJump.location}</div>
        <div>PULL ALTITUDE: {singleJump.pullAltitude}</div>
-       <EditJump/>
+       {/* <EditJump/> */}
       </div>
     );
   }

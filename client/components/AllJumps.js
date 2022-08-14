@@ -58,11 +58,11 @@ export class AllJumps extends React.Component {
           </div>
           <div className="right-bottom-column-right-side">
             <h2 style={{marginBottom: '1rem'}}>Add New Jump</h2>
-            <button className="recent-jumps">Record</button>
             <button className="recent-jumps"           onClick={(e) => {
             e.preventDefault();
             window.location.href = "http://localhost:8080/add";
           }}>Add manually</button>
+            <button className="recent-jumps">Record</button>
             <button className="recent-jumps">Import</button>
 
           </div>
