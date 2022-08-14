@@ -25,10 +25,11 @@
   margin: 1rem;
   max-width: 950px;
   /* border: 2px solid blue; */
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   border-radius: 10px;
 
-  background-color: #2e3750;
-  color: #ffff;
+  background-color: #ffff;
+  color: #202124;
   transition-duration: .2s;
 }
 
