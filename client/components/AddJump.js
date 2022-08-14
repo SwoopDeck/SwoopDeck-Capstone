@@ -32,92 +32,153 @@ export class AddJump extends React.Component {
     return (
       <div className="flex-right">
         <h1>Select jump type</h1>
-        <form id='jump-form' >
-          <div>JUMP NUMBER:
-          </div>
+        <div className="select-jump-type-container">
+          <button className="jump-type">Belly</button>
+          <button className="jump-type">Angle</button>
+          <button className="jump-type">Head up</button>
+          <button className="jump-type">Head down</button>
+          <button className="jump-type">Formation</button>
+          <button className="jump-type">FreeFly</button>
+          <button className="jump-type">High altitude</button>
+          <button className="jump-type">AFF</button>
+          <button className="jump-type">Balloon</button>
+          <button className="jump-type">Heli</button>
+          <button className="jump-type">High pull</button>
+          <button className="jump-type">CRW</button>
+
+        </div>
+        <form id='jump-form-container' >
+          {/* <div>JUMP NUMBER:
+          </div> */}
+          <div className="jump-form-div">
+            <label> Jump number</label>
           <input
+          className="jump-info-field"
             type="text"
             name='jumpNumber'
             value={this.state.jumpNumber }
             onChange={this.handleChange}
-            style={{ margin: "25px"}}
           />
-          <div>LOCATION:
           </div>
+          <div className="jump-form-div">
+            <label> Location</label>
           <input
+          className="jump-info-field"
             type="text"
             name='location'
             value={this.state.location }
             onChange={this.handleChange}
-            style={{ margin: "25px"}}
           />
-          <div>AIRCRAFT:</div>
+          </div>
+          <div className="jump-form-div">
+            <label> Aircraft</label>
           <input
+          className="jump-info-field"
             type="text"
             name='aircraft'
             value={this.state.aircraft }
             onChange={this.handleChange}
-            style={{ margin: "25px"}}
           />
-          <div>EQUIPMENT:</div>
+          </div>
+          <div className="jump-form-div">
+            <label> Equipment</label>
           <input
+          className="jump-info-field"
             type="text"
             name='equipment'
             value={this.state.equipment }
             onChange={this.handleChange}
-            style={{ margin: "25px"}}
           />
-          <div>EXIT ALTITUDE:</div>
+          </div>
+          <div className="jump-form-div">
+            <label> Exit altitude</label>
           <input
-            type="number"
+          className="jump-info-field"
+            type="text"
             name='exitAltitude'
             value={this.state.exitAltitude }
             onChange={this.handleChange}
-            style={{ margin: "25px"}}
           />
-          <div>PULL ALTITUDE:</div>
+          </div>
+          <div className="jump-form-div">
+            <label> Pull altitude</label>
           <input
-            type="number"
+          className="jump-info-field"
+            type="text"
             name='pullAltitude'
             value={this.state.pullAltitude }
             onChange={this.handleChange}
-            style={{ margin: "25px"}}
           />
-          <div>FREEFALL TIME:</div>
+          </div>
+          <div className="jump-form-div">
+            <label> FreeFall time</label>
           <input
-            type="number"
+          className="jump-info-field"
+            type="text"
             name='freeFallTime'
             value={this.state.freeFallTime }
             onChange={this.handleChange}
-            style={{ margin: "25px"}}
           />
-          <div>JUMPERS:</div>
+          </div>
+          <div className="jump-form-div">
+            <label> Jumpers</label>
           <input
+          className="jump-info-field"
             type="text"
             name='jumpers'
-            value={this.state.jumpers}
+            value={this.state.jumpers }
             onChange={this.handleChange}
-            style={{ margin: "25px"}}
           />
-          <div>DESCRIPTION:</div>
+          </div>
+          <div className="jump-form-div">
+            <label> Description</label>
           <input
+          className="jump-info-field"
             type="text"
             name='description'
-            value={this.state.description}
+            value={this.state.description }
             onChange={this.handleChange}
-            style={{ margin: "25px"}}
           />
-          <div>JUMP TYPE:
+          </div>
+          <div className="jump-form-div">
+            <label> Jump certifying official</label>
+          <input
+          className="jump-info-field"
+            type="text"
+            name='certifyingOfficial'
+            placeholder="Full name"
+            value={this.state.certifyingOfficial }
+            onChange={this.handleChange}
+            style={{    backgroundColor: '#fff',
+              color: 'rgb(100, 100, 100)',
+              boxShadow: '0 0 4px 2px #e5f2ff'}}
+          />
+          <input
+          className="jump-info-field"
+            type="text"
+            name='certifyingOfficial'
+            placeholder="USPA license number"
+            value={this.state.certifyingOfficial }
+            onChange={this.handleChange}
+            style={{    backgroundColor: '#fff',
+              color: 'rgb(100, 100, 100)',
+              boxShadow: '0 0 4px 2px #e5f2ff'}}
+          />
+          </div>
+          
+        
+          {/* <div>JUMP TYPE:
           </div>
           <input
             type="text"
             name='jumpType'
             value={this.state.jumpType }
             onChange={this.handleChange}
-            style={{ margin: "25px"}}
-          />
-         
+
+          /> */}
+                     <div></div>
             <button
+            className="add-jump-btn"
               onClick={(evt) => {
                 evt.preventDefault();
                 this.props.add({...this.state}, this.props.user.id);
@@ -134,8 +195,9 @@ export class AddJump extends React.Component {
                   jumpType: '',
                 });
               }}
-            > <Link to="/alljumps">
-              Add Jump Log
+            > 
+            <Link to="/alljumps">
+              Add To Logbook
               </Link>
             </button>
          
