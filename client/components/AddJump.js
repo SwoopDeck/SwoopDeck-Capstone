@@ -21,10 +21,13 @@ export class AddJump extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(evt) {
-    this.setState({
-      [evt.target.name]: evt.target.value,
-    });
+  handleChange(event) {
+    // this.setState({
+    //   [evt.target.name]: evt.target.value,
+    // });
+    // MODIFIED IN AN ATTEMPT TO GET THE FUNCTIONALITY TO WORK
+    this.setState({ ...this.state, [event.target.name]: event.target.value });
+    console.log(this.state);
   }
 
   render() {
@@ -120,16 +123,38 @@ export class AddJump extends React.Component {
             onChange={this.handleChange}
           />
           </div>
+
+
+
+
+
           <div className="jump-form-div">
             <label> Jumpers</label>
-          <input
+            <div className="cat-cont">
+                <select onChange={this.handleChange} name='jumpers' className="category-list">
+                  {/* <option value={jumpers}></option> */}
+                  <option value="cake">Solo</option>
+                  <option value="cookie">2-way</option>
+                  <option value="cupcake">3-way</option>
+                  <option value="mini">4-way</option>
+                  <option value="other">5+</option>
+                </select>
+              </div>
+
+
+          {/* <input
           className="jump-info-field"
             type="text"
             name='jumpers'
             value={this.state.jumpers }
             onChange={this.handleChange}
-          />
+          /> */}
           </div>
+
+
+
+
+
           <div className="jump-form-div">
             <label> Description</label>
           <input
