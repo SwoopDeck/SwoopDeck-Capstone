@@ -5,20 +5,6 @@
         "path": "/alljumps"
     },
     {
-        "title": "Profile",
-        "icon": "bi-person-fill",
-        "children": [
-            {
-                "title": "Update profile",
-                "path": "/updateProfile"
-            },
-            {
-                "title": "Reset password",
-                "path": "/reset-password"
-            }
-        ]
-    },
-    {
         "title": "Logbook",
         "icon": "bi-journal-text",
         "children": [
@@ -32,16 +18,25 @@
             }
         ]
     },
+    {
+        "title": "Profile",
+        "icon": "bi-person-fill",
+        "children": [
+            {
+                "title": "Update profile",
+                "path": "/updateProfile"
+            },
+            {
+                "title": "Reset password",
+                "path": "/reset-password"
+            }
+        ]
+    },
 
     {
         "title": "Github",
         "icon": "bi-github",
         "path": "https://github.com/Ctomshack/digital-logbook"
-    },
-    {
-        "title": "Contact Us",
-        "icon": "bi-voicemail",
-        "path": "/#"
     },
     {
         "title": "About",
