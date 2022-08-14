@@ -31,7 +31,7 @@ export class AddJump extends React.Component {
    
     return (
       <div className="flex-right">
-        <h1>Select jump type</h1>
+        <h1 style={{marginLeft: '2rem', marginTop: '2rem'}}>Select jump type</h1>
         <div className="select-jump-type-container">
           <button className="jump-type">Belly</button>
           <button className="jump-type">Angle</button>
