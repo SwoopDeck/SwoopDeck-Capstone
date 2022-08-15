@@ -128,7 +128,7 @@ class SingleJump extends React.Component {
           </button>
           </Link>
         </form>
-        {/* <EditJump/> */}
+        <EditJump/>
       </div>
     );
   }
