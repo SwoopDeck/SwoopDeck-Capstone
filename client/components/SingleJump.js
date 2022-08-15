@@ -22,7 +22,8 @@ class SingleJump extends React.Component {
       <div className="flex-right">
         <h1 style={{ marginLeft: "2rem", marginTop: "2rem" }}>Jump type</h1>
         <div className="select-jump-type-container">
-          <button className="jump-type">Belly</button>
+          <button className="jump-type" style={{border: 'solid 2px #336dff',
+    color: '#336dff'}}>Belly</button> 
           <button className="jump-type">Angle</button>
           <button className="jump-type">Head up</button>
           <button className="jump-type">Head down</button>
@@ -45,7 +46,7 @@ class SingleJump extends React.Component {
               className="jump-info-field"
               type="text"
               name="jumpNumber"
-              placeholder={singleJump.jumpNumber}
+              value={singleJump.jumpNumber}
             />
           </div>
           <div className="jump-form-div">
@@ -54,7 +55,7 @@ class SingleJump extends React.Component {
               className="jump-info-field"
               type="text"
               name="location"
-              placeholder={singleJump.location}
+              value={singleJump.location}
             />
           </div>
           <div className="jump-form-div">
@@ -63,7 +64,7 @@ class SingleJump extends React.Component {
               className="jump-info-field"
               type="text"
               name="aircraft"
-              placeholder={singleJump.aircraft}
+              value={singleJump.aircraft}
             />
           </div>
           <div className="jump-form-div">
@@ -72,7 +73,7 @@ class SingleJump extends React.Component {
               className="jump-info-field"
               type="text"
               name="equipment"
-              placeholder={singleJump.equipment}
+              value={singleJump.equipment}
             />
           </div>
           <div className="jump-form-div">
@@ -81,7 +82,7 @@ class SingleJump extends React.Component {
               className="jump-info-field"
               type="text"
               name="exitAltitude"
-              placeholder={singleJump.exitAltitude}
+              value={singleJump.exitAltitude}
             />
           </div>
           <div className="jump-form-div">
@@ -90,7 +91,7 @@ class SingleJump extends React.Component {
               className="jump-info-field"
               type="text"
               name="pullAltitude"
-              placeholder={singleJump.pullAltitude}
+              value={singleJump.pullAltitude}
             />
           </div>
           <div className="jump-form-div">
@@ -99,7 +100,7 @@ class SingleJump extends React.Component {
               className="jump-info-field"
               type="text"
               name="freeFallTime"
-              placeholder={singleJump.freeFallTime}
+              value={singleJump.freeFallTime}
             />
           </div>
           <div className="jump-form-div">
@@ -108,7 +109,7 @@ class SingleJump extends React.Component {
               className="jump-info-field"
               type="text"
               name="jumpers"
-              placeholder={singleJump.jumpers}
+              value={singleJump.jumpers}
             />
           </div>
           <div className="jump-form-div">
@@ -117,7 +118,7 @@ class SingleJump extends React.Component {
               className="jump-info-field"
               type="text"
               name="description"
-              placeholder={singleJump.description}
+              value={singleJump.description}
             />
           </div>
           <div></div>
