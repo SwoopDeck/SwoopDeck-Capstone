@@ -73,8 +73,8 @@
   height: 100%;
   width: 50%;
   min-width: 370px;
-  margin-left: .5rem;
-  margin: 1.5rem;
+  margin-left: .8rem;
+  /* margin: 1.5rem; */
   /* border: 2px solid red; */
   /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
 }
@@ -94,7 +94,7 @@
   display: flex;
   flex-direction: column;
   /* border: 1px solid black; */
-  height: 70%;
+  height: 80%;
   justify-content: space-between;
   margin: 1rem;
 }
