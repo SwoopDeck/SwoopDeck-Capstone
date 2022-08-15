@@ -14,7 +14,12 @@ export class AllJumps extends React.Component {
     this.props.getJumps(userId);
   }
 
+  
   render() {
+    function alertMessage() {
+      alert('This feature is not yet available!')
+    }
+
     let { jumps } = this.props;
     return (
       <div className="flex-right">
@@ -24,7 +29,7 @@ export class AllJumps extends React.Component {
         <div className="total-freefall-time">Total FreeFall Time</div>
           </div>
 
-        {jumps.length === 0 ? <h2>Your JUMPS is empty</h2> : <span />}
+        {jumps.length === 0 ? <h2>You haven't made any skydives!</h2> : <span />}
 
         <div className="right-bottom-column" id="jumps">
           <div className="right-bottom-column-left-side">
@@ -61,8 +66,8 @@ export class AllJumps extends React.Component {
             e.preventDefault();
             window.location.href = "http://localhost:8080/add";
           }}>Add manually</button>
-            <button className="recent-jumps">Record</button>
-            <button className="recent-jumps">Import</button>
+            <button className="recent-jumps" onClick={alertMessage}>Record</button>
+            <button className="recent-jumps" onClick={alertMessage}>Import</button>
 
           </div>
         </div>
