@@ -28,15 +28,24 @@ export const me = () => async dispatch => {
   }
 }
 
-export const authenticate = (email, password, method) => async dispatch => {
+export const authenticate = (email, password, method) => async (dispatch) => {
   try {
-    const res = await axios.post(`/auth/${method}`, {email, password})
-    window.localStorage.setItem(TOKEN, res.data.token)
-    dispatch(me())
+    const res = await axios.post(`/auth/${method}`, { email, password });
+    window.localStorage.setItem(TOKEN, res.data.token);
+    dispatch(me());
+    history.push('/');
   } catch (authError) {
-    return dispatch(setAuth({error: authError}))
+    if (
+      authError.response &&
+      authError.response.data &&
+      authError.response.data.message
+    ) {
+      return dispatch(setAuth({ error: authError.response.data.message }));
+    } else {
+      return dispatch(setAuth({ error: 'An error has occurred' }));
+    }
   }
-}
+};
 
 export const logout = () => {
   window.localStorage.removeItem(TOKEN)

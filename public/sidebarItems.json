@@ -14,7 +14,7 @@
             },
             {
                 "title": "Add new jump",
-                "path": "/addJump"
+                "path": "/add"
             }
         ]
     },
