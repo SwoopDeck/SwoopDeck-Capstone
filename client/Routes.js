@@ -30,11 +30,11 @@ class Routes extends Component {
             {/* <Route exact path='/login' component={ Login } /> */}
             <Route path="/alljumps" component={AllJumps} />
             <Route path="/jumps/:jumpId" component={SingleJump} />
-            <Route path="/addJump" component={AddJump} />
+            <Route path="/add" component={AddJump} />
           </Switch>
         ) : (
           <Switch>
-            <Route exact path='/' component={ Login } />
+            {/* <Route exact path='/' component={ Login } /> */}
             <Route path="/login" component={Login} />
             <Route path="/signup" component={CreateUser} />
             {/* <Route path="/alljumps" component={AllJumps} /> */}

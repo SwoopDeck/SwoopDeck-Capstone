@@ -56,6 +56,7 @@ export const addJump = (JUMP) => {
 export const createJump = (JUMP, id) => {
   return async (dispatch) => {
     try {
+      console.log('thunk', JUMP)
       const { data } = await axios.post(`/api/users/${id}/create/`, JUMP);
       dispatch(addJump(data));
     } catch (err) {

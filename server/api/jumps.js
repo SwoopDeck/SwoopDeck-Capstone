@@ -33,7 +33,20 @@ router.get('/:jumpId', async (req, res, next) => {
 //POST to create a new jump log
 router.post('/add', async (req, res, next) => {
   try {
-    res.status(201).send(await Jump.create(req.body));
+    console.log('request body',req.body)
+    res.status(201).send(await Jump.create({
+      number: req.body.number,
+      date: req.body.date,
+      location: req.body.location,
+      aircraft: req.body.aircraft,
+      equipment: req.body.equipment,
+      exitAltitude: req.body.exitAltitude,
+      pullAtltitude:req.body.pullAtltitude,
+      freefallTime: req.body.freefallTime,
+      jumpers: req.body.jumpers,
+      description: req.body.description,
+      licenseNumber: req.body.licenseNumber,
+    }));
   } catch (error) {
     next(error); 
   }
@@ -44,7 +57,7 @@ router.post('/add', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
   try {
     const jump = await Jump.findByPk(req.params.id);
-    console.log(req.body)
+    console.log('request body',req.body)
     res.send(await jump.update({
     number: req.body.number,
     date: req.body.date,
