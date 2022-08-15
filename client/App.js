@@ -5,6 +5,7 @@ import Sidebar from './components/Sidebar'
 import Routes from './Routes'
 import { connect } from 'react-redux'
 import auth from './store/auth'
+import { ToastContainer } from 'react-toastify'
 
 class App extends React.Component {
  
@@ -18,7 +19,7 @@ class App extends React.Component {
         {isLoggedIn ? (
           <div className='main-container'>
           <Sidebar />
-          {/* <TopMenu />  */} {/*top menu that says 'Welcome, *First Name */ }
+          <ToastContainer />
           <Routes />
           </div>
         ) : (
