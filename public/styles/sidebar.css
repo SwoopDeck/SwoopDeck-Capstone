@@ -43,6 +43,9 @@ h4 {
     border-style:solid;
     /* border-color: #202124; */
     border-color: #ffff;
+    background-color: #ffff;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    opacity: 90%;
     margin-top: 3.5rem;
     margin-left: 3.5rem;
     margin-right: 3.5rem;
