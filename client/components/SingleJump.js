@@ -122,9 +122,11 @@ class SingleJump extends React.Component {
             />
           </div>
           <div></div>
-          {/* <button className="add-jump-btn">
-            <Link to="/alljumps">Go back</Link>
-          </button> */}
+          <Link to="/home"  style={{width: '50%'}}>
+          <button className="add-jump-btn">
+            Back to logbook
+          </button>
+          </Link>
         </form>
         {/* <EditJump/> */}
       </div>
