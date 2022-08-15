@@ -58,13 +58,15 @@ const Jumps = db.define('jumps', {
     },
   },
   jumpers: {
-    type: Sequelize.ENUM('solo','2-way','3-way','4-way','5+'),
+    type: Sequelize.STRING
+    // ENUM('solo','2-way','3-way','4-way','5+'),
   },
   description: {
     type: Sequelize.TEXT,
   },
   jumpType: {
-    type: Sequelize.ENUM('belly', 'angle', 'head up', 'head down', 'formation','freefly', 'high altitude', 'aff', 'balloon', 'heli','high pull','crw'),
+    type: Sequelize.STRING
+    // ENUM('belly', 'angle', 'head up', 'head down', 'formation','freefly', 'high altitude', 'aff', 'balloon', 'heli','high pull','crw'),
   },
 });
 
