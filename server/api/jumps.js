@@ -10,7 +10,7 @@ router.get('/', async (req, res, next) => {
     //res.json/res.send?
     res.send(allJumps)
   }
-  catch (error) {
+  catch (error) { 
     next(error)
   }
 });
