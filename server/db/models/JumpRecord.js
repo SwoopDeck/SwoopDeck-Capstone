@@ -7,7 +7,7 @@ const JumpRecord = db.define('jumpRecords', {
   },
 
   date: {
-    type: Sequelize.DATE
+    type: Sequelize.DATEONLY
   },
 
   aircraft: {
@@ -38,9 +38,9 @@ const JumpRecord = db.define('jumpRecords', {
     type: Sequelize.TEXT,
   },
 
-  jumpType: {
-    type: Sequelize.ENUM('belly', 'angle', 'head up', 'head down', 'formation','freefly', 'high altitude', 'aff', 'balloon', 'heli','high pull','crw'),
-  },
+  // jumpType: {
+  //   type: Sequelize.ENUM('belly', 'angle', 'head up', 'head down', 'formation','freefly', 'high altitude', 'aff', 'balloon', 'heli','high pull','crw'),
+  // },
 
 });
 
