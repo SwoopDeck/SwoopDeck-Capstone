@@ -21,16 +21,16 @@ const Load = db.define('loads', {
     },
 
     slotsFilled: {
-        type: Sequelize.ARRAY,
+        type: Sequelize.INTEGER
     },
 
     isFull: {
         type: Sequelize.BOOLEAN,
     },
 
-    status: {
-        type: Sequelize.ENUM('on time', 'delayed', 'closed', 'cancelled'),
-    },
+    // status: {
+    //     type: Sequelize.ENUM('on time', 'delayed', 'closed', 'cancelled'),
+    // },
 
 });
 

@@ -52,9 +52,7 @@ const User = db.define('user', {
 
   licenseNumber: {
     type: Sequelize.STRING,
-    validate: {
-      allowNull: false,
-    },
+    allowNull: false,
   },
 
   emergencyContact: {

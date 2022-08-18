@@ -27,5 +27,6 @@ module.exports = {
     User,
     JumpRecord,
     Load,
+    Dropzone
   },
 }

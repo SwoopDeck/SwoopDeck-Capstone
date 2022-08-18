@@ -18,7 +18,7 @@ const Dropzone = db.define('dropzones', {
     },
 
     phoneNumber: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         validate: {
             notEmpty: true,
         },
