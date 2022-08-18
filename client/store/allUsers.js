@@ -1,18 +1,17 @@
 import axios from "axios";
 import { me } from './auth'
 
-// Action type
+
+/* ACTION TYPES */ 
+
 const CREATE_USER = 'CREATE_USER';
 const SET_USERS = 'SET_USERS';
 
-// Action creators
-export const _createUser = (user) => {
-  return {
-    type: CREATE_USER,
-    user,
-  };
-};
 
+
+/* ACTION CREATORS */ 
+
+// GET ALL USERS
 export const _setUsers = (users) => {
   return {
     type: SET_USERS,
@@ -20,8 +19,20 @@ export const _setUsers = (users) => {
   };
 };
 
+// CREATE A NEW USER
+export const _createUser = (user) => {
+  return {
+    type: CREATE_USER,
+    user,
+  };
+};
 
-// Thunks
+
+
+
+/* THUNKS */ 
+
+// THUNK: CREATE A NEW USER
 export const createUser = (user, history) => {
   return async (dispatch) => {
     const { data: token } = await axios.post('/api/users', user);
@@ -32,6 +43,8 @@ export const createUser = (user, history) => {
   };
 };
 
+
+// THUNK: FETCH ALL USERS
 export const fetchUsers = () => {
   return async (dispatch) => {
     try {
@@ -52,7 +65,9 @@ export const fetchUsers = () => {
   };
 };
 
-// Reducer
+
+
+/* REDUCERS */ 
 const initialState = [];
 
 export default function usersReducer(state = initialState, action) {

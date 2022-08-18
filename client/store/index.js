@@ -3,12 +3,12 @@ import {createLogger} from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import auth from './auth'
-import jumpReducer from './jumps'
+import jumpRecordsReducer from './jumpRecords'
 import usersReducer from './allUsers'
 
 const reducer = combineReducers({ 
   auth,
-  jumps: jumpReducer,
+  jumpRecords: jumpRecordsReducer,
   users: usersReducer
  })
 const middleware = composeWithDevTools(
