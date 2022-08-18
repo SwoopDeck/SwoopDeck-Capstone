@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createJump } from "../store/jumps";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export class AddJump extends React.Component {
   constructor() {
@@ -14,37 +14,57 @@ export class AddJump extends React.Component {
         exitAltitude: 14000,
         pullAltitude: 4000,
         freeFallTime: 60,
-        jumpers: '',
+        jumpers: 'Solo',
         description: '',
-        jumpType: '',
+        jumpType: 'Belly',
       };
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(evt) {
-    this.setState({
-      [evt.target.name]: evt.target.value,
-    });
+  handleChange(event) {
+    // this.setState({
+    //   [evt.target.name]: evt.target.value,
+    // });
+    // MODIFIED IN AN ATTEMPT TO GET THE FUNCTIONALITY TO WORK
+    this.setState({ ...this.state, [event.target.name]: event.target.value });
+    console.log(this.state);
   }
 
+  navigateToAllJumps(){
+    nagivate('/alljumps')
+  }
   render() {
    
     return (
       <div className="flex-right">
         <h1 style={{marginLeft: '2rem', marginTop: '2rem'}}>Select jump type</h1>
-        <div className="select-jump-type-container">
-          <button className="jump-type">Belly</button>
-          <button className="jump-type">Angle</button>
-          <button className="jump-type">Head up</button>
-          <button className="jump-type">Head down</button>
-          <button className="jump-type">Formation</button>
-          <button className="jump-type">FreeFly</button>
-          <button className="jump-type">High altitude</button>
-          <button className="jump-type">AFF</button>
-          <button className="jump-type">Balloon</button>
-          <button className="jump-type">Heli</button>
-          <button className="jump-type">High pull</button>
-          <button className="jump-type">CRW</button>
+        <div className="select-jump-type-container" onClick={this.handleChange}
+       >
+          <button className="jump-type" name="jumpType" value="Belly"
+          >Belly</button>
+          <button className="jump-type"
+         name="jumpType" value="Angle"
+          >Angle</button>
+          <button className="jump-type"
+          name="jumpType" value="Head up">Head up</button>
+          <button className="jump-type"
+          name="jumpType" value="Head down">Head down</button>
+          <button className="jump-type"
+          name="jumpType" value="Formation">Formation</button>
+          <button className="jump-type"
+          name="jumpType" value="FreeFly">FreeFly</button>
+          <button className="jump-type"
+          name="jumpType" value="High altitude">High altitude</button>
+          <button className="jump-type"
+          name="jumpType" value="AFF">AFF</button>
+          <button className="jump-type"
+          name="jumpType" value="Balloon">Balloon</button>
+          <button className="jump-type"
+          name="jumpType" value="Heli">Heli</button>
+          <button className="jump-type"
+          name="jumpType" value="High pull">High pull</button>
+          <button className="jump-type"
+          name="jumpType" value="CRW">CRW</button>
 
         </div>
         <form id='jump-form-container' >
@@ -120,16 +140,39 @@ export class AddJump extends React.Component {
             onChange={this.handleChange}
           />
           </div>
+
+
+
+
+
           <div className="jump-form-div">
             <label> Jumpers</label>
-          <input
+            <div className="cat-cont">
+                <select onChange={this.handleChange} name='jumpers' className="category-list"
+                >
+                  {/* <option value={jumpers}></option> */}
+                  <option value={'Solo'}>Solo</option>
+                  <option value={'2-way'}>2-way</option>
+                  <option value={'3-way'}>3-way</option>
+                  <option value={'4-way'}>4-way</option>
+                  <option value={'5+'}>5+</option>
+                </select>
+              </div>
+
+
+          {/* <input
           className="jump-info-field"
             type="text"
             name='jumpers'
             value={this.state.jumpers }
             onChange={this.handleChange}
-          />
+          /> */}
           </div>
+
+
+
+
+
           <div className="jump-form-div">
             <label> Description</label>
           <input
@@ -194,6 +237,7 @@ export class AddJump extends React.Component {
                   description: '',
                   jumpType: '',
                 });
+                this.navigateToAllJumps
               }}
             > 
             <Link to="/alljumps">

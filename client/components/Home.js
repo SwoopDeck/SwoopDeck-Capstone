@@ -12,7 +12,11 @@ export const Home = props => {
   return (
     <div className='flex-right'>
       <h3>Welcome</h3>
-      {/* <AllJumps /> */}
+      <div className="right-top-column">
+            <div className="total-freefall-time-integers">3 hours 21 minutes</div>
+        <div className="total-freefall-time">Total FreeFall Time</div>
+          </div>
+      <AllJumps />
     </div>
   )
 }

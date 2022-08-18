@@ -96,6 +96,7 @@ export const Thunk_fetchSingleJump = (userId, jumpId) => {
 export const Thunk_createJump = (JUMP, id) => {
   return async (dispatch) => {
     try {
+      console.log('thunk', JUMP)
       const { data } = await axios.post(`/api/users/${id}/create/`, JUMP);
       dispatch(addJump(data));
     } catch (err) {

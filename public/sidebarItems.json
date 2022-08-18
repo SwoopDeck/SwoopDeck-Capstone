@@ -23,12 +23,12 @@
         "icon": "bi-person-fill",
         "children": [
             {
-                "title": "Update profile",
-                "path": "/updateProfile"
+                "title": "View profile",
+                "path": "/viewProfile"
             },
             {
-                "title": "Reset password",
-                "path": "/reset-password"
+                "title": "Edit profile",
+                "path": "/editProfile"
             }
         ]
     },

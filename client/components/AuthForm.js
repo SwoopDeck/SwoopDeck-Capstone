@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {authenticate} from '../store'
-import { Link } from 'react-router-dom'
+import { Link , useHistory} from 'react-router-dom'
 import { logout } from '../store'
 import Navbar from './Navbar'
 
@@ -9,6 +9,13 @@ import Navbar from './Navbar'
  * COMPONENT
  */
 const AuthForm = props => {
+
+  const history = useHistory();
+  
+  const routeChange = () =>{ 
+    let path = `/alljumps`; 
+    history.push(path);
+  }
   const {name, displayName, handleSubmit, error} = props
   console.log(props)
   return (
@@ -30,7 +37,7 @@ const AuthForm = props => {
               type="password"
               required
             />
-            <button className="loader">Sign in</button>
+            <button className="loader" ><Link to="/alljumps">Sign in</Link></button>
             <p className="text">Don't have an account?</p>
             <Link to="/signup">
               <button className="buttonShadow" type="submit">
@@ -78,6 +85,7 @@ const mapDispatch = dispatch => {
       const password = evt.target.password.value
       console.log(formName, email, password)
       dispatch(authenticate(email, password, formName))
+      // routeChange()
     },
     handleClick() {
       dispatch(logout());

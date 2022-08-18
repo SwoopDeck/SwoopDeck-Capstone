@@ -8,6 +8,7 @@ import AllJumps from './components/AllJumps';
 import SingleJump from './components/SingleJump'
 import AddJump from './components/addjump'
 import CreateUser from './components/CreateUser';
+import UserProfile from './components/UserProfile';
 
 /**
  * COMPONENT
@@ -24,16 +25,18 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
-            <Route exact path="/home" component={Home} />
+            <Route exact path="/" component={AllJumps} />
+            <Route exact path="/home" component={AllJumps} />
             {/* <Redirect to="/home" /> */}
-            <Route exact path='/login' component={ Login } />
+            {/* <Route exact path='/login' component={ Login } /> */}
             <Route path="/alljumps" component={AllJumps} />
             <Route path="/jumps/:jumpId" component={SingleJump} />
             <Route path="/add" component={AddJump} />
+            <Route path="/viewProfile" component={UserProfile} />
           </Switch>
         ) : (
           <Switch>
-            <Route exact path='/' component={ Login } />
+            {/* <Route exact path='/' component={ Login } /> */}
             <Route path="/login" component={Login} />
             <Route path="/signup" component={CreateUser} />
             {/* <Route path="/alljumps" component={AllJumps} /> */}
