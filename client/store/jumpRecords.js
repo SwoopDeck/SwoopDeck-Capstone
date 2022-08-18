@@ -2,13 +2,22 @@ import axios from "axios"
 
 let initialState = [];
 
+
+/* ACTION TYPES */ 
+
 let SET_JUMPS = "SET_JUMPS";
 let DELETE_JUMP = "DELETE_JUMP";
 let UPDATE_JUMP = "UPDATE_JUMP";
 let ADD_JUMP = "ADD_JUMP";
 const SET_SINGLE_JUMP = "SET_SINGLE_JUMP";
 
-//ACTION CREATOR: SET ALL JUMPS
+
+
+
+
+/* ACTION CREATORS */ 
+
+//SET ALL JUMP RECORDS
 export const setAllJumps = (JUMPS) => {
   return {
     type: SET_JUMPS,
@@ -16,8 +25,49 @@ export const setAllJumps = (JUMPS) => {
   };
 };
 
-//THUNK: GRAB ALL JUMPS
-export const fetchAllJumps = (id) => {
+
+//SET SINGLE JUMP RECORD
+export const setSingleJump = (JUMP) => {
+  return {
+    type: SET_SINGLE_JUMP,
+    JUMP,
+  };
+};
+
+
+//ADD SINGLE JUMP RECORD
+export const addJump = (JUMP) => {
+  return {
+    type: ADD_JUMP,
+    JUMP,
+  };
+};
+
+
+//UPDATE A SINGLE JUMP RECORD
+export const reformJump = (JUMP) => {
+  return {
+    type: UPDATE_JUMP,
+    JUMP,
+  };
+};
+
+
+//DELETE A SINGLE JUMP RECORD
+export const removeJump = (id) => {
+  return {
+    type: DELETE_JUMP,
+    id,
+  };
+};
+
+
+
+
+/* THUNKS */ 
+
+//THUNK: FETCH ALL JUMP RECORDS
+export const Thunk_fetchAllJumpRecords = (id) => {
     return async (dispatch) => {
       try {
         const { data } = await axios.get(`/api/users/${id}/jumps`);
@@ -28,14 +78,9 @@ export const fetchAllJumps = (id) => {
     };
   };
 
-export const setSingleJump = (JUMP) => {
-  return {
-    type: SET_SINGLE_JUMP,
-    JUMP,
-  };
-};
 
-export const fetchSingleJump = (userId, jumpId) => {
+// THUNK: FETCH SINGLE JUMP RECORD
+export const Thunk_fetchSingleJump = (userId, jumpId) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(`/api/users/${userId}/jumps/${jumpId}`);
@@ -45,15 +90,10 @@ export const fetchSingleJump = (userId, jumpId) => {
     }
   };
 };
-//ADD JUMP 
-export const addJump = (JUMP) => {
-  return {
-    type: ADD_JUMP,
-    JUMP,
-  };
-};
-//THUNK ADD JUMP
-export const createJump = (JUMP, id) => {
+
+
+//THUNK: ADD A NEW JUMP RECORD
+export const Thunk_createJump = (JUMP, id) => {
   return async (dispatch) => {
     try {
       console.log('thunk', JUMP)
@@ -65,30 +105,18 @@ export const createJump = (JUMP, id) => {
   };
 };
 
-//UPDATE JUMP 
-export const reformJump = (JUMP) => {
-  return {
-    type: UPDATE_JUMP,
-    JUMP,
-  };
-};
-//THUNK: PUT REQUEST
-export const updateJump = (JUMP, id, jumpId) => {
+
+//THUNK: UPDATE A SINGLE JUMP RECORD
+export const Thunk_updateJump = (JUMP, id, jumpId) => {
   return async (dispatch) => {
     const { data } = await axios.put(`/api/users/${id}/${jumpId}`, JUMP);
     dispatch(reformJump(data));
   };
 };
 
-//ACTION CREATOR: REMOVE A JUMP
-export const removeJump = (id) => {
-  return {
-    type: DELETE_JUMP,
-    id,
-  };
-};
-//THUNK: DELETE REQUEST
-export const deleteJump = (id, jumpId) => {
+
+//THUNK: DELETE A SINGLE JUMP RECORD
+export const Thunk_deleteJump = (id, jumpId) => {
   return async (dispatch) => {
     try {
       await axios.delete(`/api/users/${id}/${jumpId}`);
@@ -100,8 +128,10 @@ export const deleteJump = (id, jumpId) => {
 };
 
 
-//REDUCER
-export default function jumpReducer(state = initialState, action) {
+
+/* REDUCERS */ 
+
+export default function jumpRecordsReducer(state = initialState, action) {
   switch (action.type) {
     case SET_JUMPS:
       return action.JUMPS;
@@ -117,3 +147,4 @@ export default function jumpReducer(state = initialState, action) {
       return state;
   }
 }
+

@@ -14,6 +14,7 @@ const User = db.define('user', {
       notEmpty: true,
     },
   },
+
   lastName: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -21,6 +22,7 @@ const User = db.define('user', {
       notEmpty: true,
     },
   },
+
   email: {
     type: Sequelize.STRING,
     unique: true,
@@ -30,20 +32,45 @@ const User = db.define('user', {
       notEmpty: true,
     },
   },
+
   password: {
     type: Sequelize.STRING,
     allowNull: false,
   },
+
   address: {
     type: Sequelize.STRING,
-    // validate: {
-    //   notEmpty: true,
-    // },
+    validate: {
+      notEmpty: true,
+    },
   },
+
   isAdmin: {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
   },
+
+  licenseNumber: {
+    type: Sequelize.STRING,
+    validate: {
+      allowNull: false,
+    },
+  },
+
+  emergencyContact: {
+    type: Sequelize.STRING,
+    validate: {
+      allowNull: false,
+    },
+  },
+
+  emergencyPhoneNumber: {
+    type: Sequelize.INTEGER,
+    validate: {
+      allowNull: false,
+    },
+  },
+  
 });
 
 module.exports = User
