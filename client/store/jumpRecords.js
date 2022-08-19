@@ -74,7 +74,7 @@ export const removeJump = (JUMP) => {
 export const Thunk_fetchAllJumpRecords = (id) => {
     return async (dispatch) => {
       try {
-        const { data } = await axios.get(`/api/users/${id}/jumps`);
+        const { data } = await axios.get(`/api/jumprecords/${id}/jumps`);
         dispatch(setAllJumps(data));
       } catch (err) {
         console.log(err);
@@ -87,7 +87,7 @@ export const Thunk_fetchAllJumpRecords = (id) => {
 export const Thunk_fetchSingleJump = (userId, jumpId) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`/api/users/${userId}/jumps/${jumpId}`);
+      const { data } = await axios.get(`/api/jumprecords/${userId}/jumps/${jumpId}`);
       dispatch(setSingleJump(data));
     } catch (err) {
       console.log(err);
@@ -101,7 +101,7 @@ export const Thunk_createJump = (JUMP, id) => {
   return async (dispatch) => {
     try {
       console.log('thunk', JUMP)
-      const { data } = await axios.post(`/api/users/${id}/create/`, JUMP);
+      const { data } = await axios.post(`/api/jumprecords/${id}/create/`, JUMP);
       dispatch(addJump(data));
     } catch (err) {
       console.log(err);
@@ -114,7 +114,7 @@ export const Thunk_createJump = (JUMP, id) => {
 export const Thunk_updateJump = (JUMP, id, jumpId) => {
   return async (dispatch) => {
     console.log('before thunk')
-    const { data } = await axios.put(`/api/users/${id}/${jumpId}`, JUMP);
+    const { data } = await axios.put(`/api/jumprecords/${id}/${jumpId}`, JUMP);
     dispatch(reformJump(data));
   };
 };
@@ -124,7 +124,7 @@ export const Thunk_updateJump = (JUMP, id, jumpId) => {
 export const Thunk_deleteJump = (id, jumpId) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.delete(`/api/users/${id}/${jumpId}`);
+      const { data } = await axios.delete(`/api/jumprecords/${id}/${jumpId}`);
       dispatch(removeJump(data));
     } catch (err) {
       console.log(err);
