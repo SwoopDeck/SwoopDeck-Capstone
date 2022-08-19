@@ -362,6 +362,7 @@ async function seed() {
       jumpers: 1,
       description:
         "Great first jump of the day. Front flip exit. Good landing pattern & swoop.",
+        jumpType: 'belly'
     },
   });
 
