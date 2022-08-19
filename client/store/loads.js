@@ -5,10 +5,10 @@ let initialState = [];
 /* ACTION TYPES */ 
 
 let SET_LOADS = "SET_LOADS";
-let DELETE_LOADS = "DELETE_LOADS";
-let UPDATE_LOADS = "UPDATE_LOADS";
-let ADD_LOADS = "ADD_LOADS";
-const SET_SINGLE_LOADS = "SET_SINGLE_LOADS";
+let DELETE_LOAD = "DELETE_LOAD";
+let UPDATE_LOAD = "UPDATE_LOAD";
+let ADD_LOAD = "ADD_LOAD";
+const SET_SINGLE_LOAD = "SET_SINGLE_LOAD";
 
 /* ACTION CREATORS */ 
 
@@ -22,35 +22,34 @@ export const setAllLoads = (LOADS) => {
 
 
 //SET SINGLE LOADS RECORD
-export const setSingleLoad = (LOADS) => {
+export const setSingleLoad = (LOAD) => {
   return {
-    type: SET_SINGLE_LOADS,
-    LOADS,
+    type: SET_SINGLE_LOAD,
+    LOAD,
   };
 };
 
 //ADD SINGLE LOADS RECORD
-export const addLoad = (LOADS) => {
+export const addLoad = (LOAD) => {
   return {
-    type: ADD_LOADS,
-    LOADS,
+    type: ADD_LOAD,
+    LOAD,
   };
 };
 
 //UPDATE A SINGLE LOADS RECORD
-export const reformLoad = (LOADS) => {
+export const reformLoad = (LOAD) => {
   return {
-    type: UPDATE_LOADS,
-    LOADS,
+    type: UPDATE_LOAD,
+    LOAD,
   };
 };
 
 //DELETE A SINGLE LOADS RECORD
-export const removeLoad = (LOADS) => {
-  console.log(LOADS)
+export const removeLoad = (LOAD) => {
   return {
-    type: DELETE_LOADS,
-    LOADS,
+    type: DELETE_LOAD,
+    LOAD,
   };
 };
 
@@ -115,21 +114,21 @@ export const thunk_deleteLoad = (dropzoneId, loadId) => {
 
 
 /* REDUCERS */ 
-export default function LOADSRecordsReducer(state = initialState, action) {
+export default function loadsReducer(state = initialState, action) {
   switch (action.type) {
     case SET_LOADS:
       return action.LOADS;
-    case SET_SINGLE_LOADS:
-      return action.LOADS;  
-    case ADD_LOADS:
-      return action.LOADS;
-    case UPDATE_LOADS:
-      return action.LOADS;
+    case SET_SINGLE_LOAD:
+      return action.LOAD;  
+    case ADD_LOAD:
+      return action.LOAD;
+    case UPDATE_LOAD:
+      return action.LOAD;
       // return state.map((record) =>
       //   record.id === action.LOADS.id ? action.record : record
       // );
-    case DELETE_LOADS:
-      return action.LOADS;
+    case DELETE_LOAD:
+      return action.LOAD;
       // return state.filter((log) => log.id !== action.id);
     default:
       return state;

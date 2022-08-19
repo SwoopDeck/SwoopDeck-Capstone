@@ -136,7 +136,7 @@ export const Thunk_fetchSingleDropzone = (dropzoneId) => {
 
 /* REDUCERS */ 
 // [{},{},{},{}]
-export default function dropzoneReducer(state = initialState, action) {
+export default function dropzonesReducer(state = initialState, action) {
   switch (action.type) {
 //     case SET_DROPZONES:
 //       return action.DROPZONES;

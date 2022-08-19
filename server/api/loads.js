@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { models: { Loads }}= require('../db')
+const { models: { Load }}= require('../db')
 
 
 //grab the LOADS per DROPZONE
@@ -7,7 +7,11 @@ const { models: { Loads }}= require('../db')
 //GET 'api/loads/:dropzoneId'
 router.get('/:dropzoneId', async (req, res, next) => {
     try {
-      res.send()
+        const dropzoneLoads = await Load.findAll({
+            where: {id: req.params.dropzoneId}
+          }
+          );
+      res.send(dropzoneLoads)
     } catch (err) {
       next(err);
     }
