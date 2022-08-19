@@ -1,13 +1,13 @@
-const Sequelize = require('sequelize');
-const db = require('../db');
+const Sequelize = require("sequelize");
+const db = require("../db");
 
-const JumpRecord = db.define('jumpRecords', {
+const JumpRecords = db.define("jumpRecords", {
   jumpNumber: {
     type: Sequelize.INTEGER,
   },
 
   date: {
-    type: Sequelize.DATEONLY
+    type: Sequelize.DATEONLY,
   },
 
   aircraft: {
@@ -31,7 +31,7 @@ const JumpRecord = db.define('jumpRecords', {
   },
 
   jumpers: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
   },
 
   description: {
@@ -41,7 +41,6 @@ const JumpRecord = db.define('jumpRecords', {
   // jumpType: {
   //   type: Sequelize.ENUM('belly', 'angle', 'head up', 'head down', 'formation','freefly', 'high altitude', 'aff', 'balloon', 'heli','high pull','crw'),
   // },
-
 });
 
-module.exports = JumpRecord;
+module.exports = JumpRecords;

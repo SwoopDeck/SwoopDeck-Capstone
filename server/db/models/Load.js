@@ -1,37 +1,36 @@
-const Sequelize = require('sequelize');
-const db = require('../db');
+const Sequelize = require("sequelize");
+const db = require("../db");
 
-const Load = db.define('loads', {
-    date: {
-        type: Sequelize.DATE,
-        validate: {
-            notEmpty: true,
-        },
+const Load = db.define("loads", {
+  date: {
+    type: Sequelize.DATE,
+    validate: {
+      notEmpty: true,
     },
+  },
 
-    aircraft: {
-        type: Sequelize.STRING,
-        validate: {
-            notEmpty: true,
-        },
+  aircraft: {
+    type: Sequelize.STRING,
+    validate: {
+      notEmpty: true,
     },
+  },
 
-    slots: {
-        type: Sequelize.INTEGER,
-    },
+  slots: {
+    type: Sequelize.INTEGER,
+  },
 
-    slotsFilled: {
-        type: Sequelize.INTEGER
-    },
+  slotsFilled: {
+    type: Sequelize.INTEGER,
+  },
 
-    isFull: {
-        type: Sequelize.BOOLEAN,
-    },
+  isFull: {
+    type: Sequelize.BOOLEAN,
+  },
 
-    // status: {
-    //     type: Sequelize.ENUM('on time', 'delayed', 'closed', 'cancelled'),
-    // },
-
+  // status: {
+  //     type: Sequelize.ENUM('on time', 'delayed', 'closed', 'cancelled'),
+  // },
 });
 
 module.exports = Load;
