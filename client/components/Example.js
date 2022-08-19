@@ -40,7 +40,7 @@ export class Example extends React.Component {
   }
   componentDidMount() {
     //this.props.getJumps(3);
-    this.props.getDropzones();
+    // this.props.getLoads(1);
   }
 
   handleChange(evt) {
