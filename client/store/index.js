@@ -5,11 +5,16 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import auth from './auth'
 import jumpRecordsReducer from './jumpRecords'
 import usersReducer from './allUsers'
+import dropzonesReducer from './dropzones'
+import loadsReducer from './loads'
 
 const reducer = combineReducers({ 
   auth,
   jumpRecords: jumpRecordsReducer,
-  users: usersReducer
+  users: usersReducer,
+  dropzones: dropzonesReducer,
+  loads: loadsReducer
+
  })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
