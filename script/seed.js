@@ -345,6 +345,7 @@ async function seed() {
     slots: 10,
     slotsFilled: 0,
     isFull: false,
+    status: "delayed",
   });
 
   const DZ1 = await Dropzone.findByPk(1);

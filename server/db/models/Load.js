@@ -27,10 +27,9 @@ const Load = db.define("loads", {
   isFull: {
     type: Sequelize.BOOLEAN,
   },
-
-  // status: {
-  //     type: Sequelize.ENUM('on time', 'delayed', 'closed', 'cancelled'),
-  // },
+  status: {
+    type: Sequelize.ENUM("on time", "delayed", "closed", "cancelled"),
+  },
 });
 
 module.exports = Load;
