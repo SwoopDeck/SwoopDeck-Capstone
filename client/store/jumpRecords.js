@@ -46,6 +46,7 @@ export const addJump = (JUMP) => {
 
 //UPDATE A SINGLE JUMP RECORD
 export const reformJump = (JUMP) => {
+  console.log('after thunk')
   return {
     type: UPDATE_JUMP,
     JUMP,
@@ -54,10 +55,13 @@ export const reformJump = (JUMP) => {
 
 
 //DELETE A SINGLE JUMP RECORD
-export const removeJump = (id) => {
+export const removeJump = (JUMP) => {
+  console.log(JUMP)
+  console.log('afterexpress')
   return {
     type: DELETE_JUMP,
-    id,
+    JUMP,
+    // id,
   };
 };
 
@@ -109,6 +113,7 @@ export const Thunk_createJump = (JUMP, id) => {
 //THUNK: UPDATE A SINGLE JUMP RECORD
 export const Thunk_updateJump = (JUMP, id, jumpId) => {
   return async (dispatch) => {
+    console.log('before thunk')
     const { data } = await axios.put(`/api/users/${id}/${jumpId}`, JUMP);
     dispatch(reformJump(data));
   };
@@ -119,8 +124,8 @@ export const Thunk_updateJump = (JUMP, id, jumpId) => {
 export const Thunk_deleteJump = (id, jumpId) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`/api/users/${id}/${jumpId}`);
-      dispatch(removeJump(jumpId));
+      const { data } = await axios.delete(`/api/users/${id}/${jumpId}`);
+      dispatch(removeJump(data));
     } catch (err) {
       console.log(err);
     }
@@ -130,7 +135,7 @@ export const Thunk_deleteJump = (id, jumpId) => {
 
 
 /* REDUCERS */ 
-
+[{},{},{},{}]
 export default function jumpRecordsReducer(state = initialState, action) {
   switch (action.type) {
     case SET_JUMPS:
@@ -138,11 +143,15 @@ export default function jumpRecordsReducer(state = initialState, action) {
     case SET_SINGLE_JUMP:
       return action.JUMP;  
     case ADD_JUMP:
-      return [...state, action.JUMP];
+      return action.JUMP;
     case UPDATE_JUMP:
-      return action.JUMP
+      return action.JUMP;
+      // return state.map((record) =>
+      //   record.id === action.JUMP.id ? action.record : record
+      // );
     case DELETE_JUMP:
-      return state.filter((log) => log.id !== action.id);
+      return action.JUMP;
+      // return state.filter((log) => log.id !== action.id);
     default:
       return state;
   }
