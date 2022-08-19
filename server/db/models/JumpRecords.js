@@ -38,9 +38,10 @@ const JumpRecords = db.define("jumpRecords", {
     type: Sequelize.TEXT,
   },
 
-  // jumpType: {
-  //   type: Sequelize.ENUM('belly', 'angle', 'head up', 'head down', 'formation','freefly', 'high altitude', 'aff', 'balloon', 'heli','high pull','crw'),
-  // },
+  jumpType: {
+    type: Sequelize.ENUM('belly', 'angle', 'head up', 'head down', 'formation','freefly', 'high altitude', 'aff', 'balloon', 'heli','high pull','crw'),
+  },
+
 });
 
 module.exports = JumpRecords;
