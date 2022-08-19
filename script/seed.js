@@ -1,288 +1,292 @@
-'use strict'
+"use strict";
 
-const {db, models: {User, JumpRecord, Load, Dropzone } } = require('../server/db')
+const {
+  db,
+  models: { User, JumpRecord, Load, Dropzone },
+} = require("../server/db");
 
 /* DUMMY JUMP RECORD DATA */
 const jumps = [
   {
     jumpNumber: 1,
-    date: '2022-07-15',
-    aircraft: 'Kodiak',
-    equipment: 'PD 210',
+    date: "2022-07-15",
+    aircraft: "Kodiak",
+    equipment: "PD 210",
     exitAltitude: 13500,
     pullAltitude: 3500,
     freeFallTime: 60,
     jumpers: 1,
-    description: 'Great first jump of the day. Front flip exit. Good landing pattern & swoop.',
+    description:
+      "Great first jump of the day. Front flip exit. Good landing pattern & swoop.",
     // jumpType: 'angle',
   },
   {
     jumpNumber: 2,
-    date: '2022-07-15',
-    aircraft: 'Kodiak',
-    equipment: 'Falcon 260',
+    date: "2022-07-15",
+    aircraft: "Kodiak",
+    equipment: "Falcon 260",
     exitAltitude: 13500,
     pullAltitude: 3500,
     freeFallTime: 60,
     jumpers: 1,
-    description: 'Front flip exit.',
+    description: "Front flip exit.",
     // jumpType: 'belly',
   },
   {
     jumpNumber: 3,
-    date: '2022-07-20',
-    aircraft: 'Kodiak',
-    equipment: 'Falcon 260',
+    date: "2022-07-20",
+    aircraft: "Kodiak",
+    equipment: "Falcon 260",
     exitAltitude: 13500,
     pullAltitude: 3500,
     freeFallTime: 60,
     jumpers: 1,
-    description: 'Back flip exit.',
+    description: "Back flip exit.",
     // jumpType: 'belly',
   },
   {
     jumpNumber: 4,
-    date: '2022-07-20',
-    aircraft: 'Kodiak',
-    equipment: 'PD 210',
+    date: "2022-07-20",
+    aircraft: "Kodiak",
+    equipment: "PD 210",
     exitAltitude: 5500,
     pullAltitude: 3500,
     freeFallTime: 60,
     jumpers: 1,
-    description: 'great landing!',
+    description: "great landing!",
     // jumpType: 'belly',
   },
   {
     jumpNumber: 5,
-    date: '2022-07-20',
-    aircraft: 'Kodiak',
-    equipment: 'Falcon 260',
+    date: "2022-07-20",
+    aircraft: "Kodiak",
+    equipment: "Falcon 260",
     exitAltitude: 13500,
     pullAltitude: 3500,
     freeFallTime: 60,
     jumpers: 1,
-    description: 'Front flip exit.',
+    description: "Front flip exit.",
     // jumpType: 'belly',
   },
   {
     jumpNumber: 6,
-    date: '2022-07-21',
-    aircraft: 'Kodiak',
-    equipment: 'PD 210',
+    date: "2022-07-21",
+    aircraft: "Kodiak",
+    equipment: "PD 210",
     exitAltitude: 5500,
     pullAltitude: 3500,
     freeFallTime: 60,
     jumpers: 1,
-    description: 'Front flip exit.',
+    description: "Front flip exit.",
     // jumpType: 'belly',
   },
   {
     jumpNumber: 7,
-    date: '2022-07-21',
-    aircraft: 'Kodiak',
-    equipment: 'Falcon 260',
+    date: "2022-07-21",
+    aircraft: "Kodiak",
+    equipment: "Falcon 260",
     exitAltitude: 5500,
     pullAltitude: 3500,
     freeFallTime: 60,
     jumpers: 1,
-    description: 'Front flip exit.',
+    description: "Front flip exit.",
     // jumpType: 'belly',
   },
   {
     jumpNumber: 8,
-    date: '2022-07-21',
-    aircraft: 'Kodiak',
-    equipment: 'PD 210',
+    date: "2022-07-21",
+    aircraft: "Kodiak",
+    equipment: "PD 210",
     exitAltitude: 5500,
     pullAltitude: 3500,
     freeFallTime: 60,
     jumpers: 1,
-    description: 'Front flip exit.',
+    description: "Front flip exit.",
     // jumpType: 'belly',
   },
   {
     jumpNumber: 9,
-    date: '2022-07-23',
-    aircraft: 'Kodiak',
-    equipment: 'Falcon 260',
+    date: "2022-07-23",
+    aircraft: "Kodiak",
+    equipment: "Falcon 260",
     exitAltitude: 5500,
     pullAltitude: 3500,
     freeFallTime: 60,
     jumpers: 1,
-    description: 'Front flip exit.',
+    description: "Front flip exit.",
     // jumpType: 'belly',
   },
   {
     jumpNumber: 10,
-    date: '2022-07-23',
-    aircraft: 'Kodiak',
-    equipment: 'PD 210',
+    date: "2022-07-23",
+    aircraft: "Kodiak",
+    equipment: "PD 210",
     exitAltitude: 5500,
     pullAltitude: 3500,
     freeFallTime: 60,
     jumpers: 1,
-    description: 'Front flip exit.',
+    description: "Front flip exit.",
     // jumpType: 'belly',
   },
   {
     jumpNumber: 11,
-    date: '2022-07-15',
-    aircraft: 'Kodiak',
-    equipment: 'Falcon 260',
+    date: "2022-07-15",
+    aircraft: "Kodiak",
+    equipment: "Falcon 260",
     exitAltitude: 13500,
     pullAltitude: 3500,
     freeFallTime: 60,
     jumpers: 1,
-    description: 'Great first jump of the day. Front flip exit. Good landing pattern & swoop.',
+    description:
+      "Great first jump of the day. Front flip exit. Good landing pattern & swoop.",
     // jumpType: 'angle',
   },
   {
     jumpNumber: 12,
-    date: '2022-07-15',
-    aircraft: 'Kodiak',
-    equipment: 'PD 210',
+    date: "2022-07-15",
+    aircraft: "Kodiak",
+    equipment: "PD 210",
     exitAltitude: 13500,
     pullAltitude: 3500,
     freeFallTime: 60,
     jumpers: 1,
-    description: 'Front flip exit.',
+    description: "Front flip exit.",
     // jumpType: 'belly',
   },
   {
     jumpNumber: 13,
-    date: '2022-07-20',
-    aircraft: 'Kodiak',
-    equipment: 'Falcon 260',
+    date: "2022-07-20",
+    aircraft: "Kodiak",
+    equipment: "Falcon 260",
     exitAltitude: 13500,
     pullAltitude: 3500,
     freeFallTime: 60,
     jumpers: 1,
-    description: 'Back flip exit.',
+    description: "Back flip exit.",
     // jumpType: 'belly',
   },
   {
     jumpNumber: 14,
-    date: '2022-07-20',
-    aircraft: 'Kodiak',
-    equipment: 'PD 210',
+    date: "2022-07-20",
+    aircraft: "Kodiak",
+    equipment: "PD 210",
     exitAltitude: 5500,
     pullAltitude: 3500,
     freeFallTime: 60,
     jumpers: 1,
-    description: 'great landing!',
+    description: "great landing!",
     // jumpType: 'belly',
   },
   {
     jumpNumber: 15,
-    date: '2022-07-20',
-    aircraft: 'Kodiak',
-    equipment: 'Falcon 260',
+    date: "2022-07-20",
+    aircraft: "Kodiak",
+    equipment: "Falcon 260",
     exitAltitude: 13500,
     pullAltitude: 3500,
     freeFallTime: 60,
     jumpers: 1,
-    description: 'Front flip exit.',
+    description: "Front flip exit.",
     // jumpType: 'belly',
   },
   {
     jumpNumber: 16,
-    date: '2022-07-21',
-    aircraft: 'Kodiak',
-    equipment: 'PD 210',
+    date: "2022-07-21",
+    aircraft: "Kodiak",
+    equipment: "PD 210",
     exitAltitude: 5500,
     pullAltitude: 3500,
     freeFallTime: 60,
     jumpers: 1,
-    description: 'Front flip exit.',
+    description: "Front flip exit.",
     // jumpType: 'belly',
   },
   {
     jumpNumber: 17,
-    date: '2022-07-21',
-    aircraft: 'Kodiak',
-    equipment: 'Falcon 260',
+    date: "2022-07-21",
+    aircraft: "Kodiak",
+    equipment: "Falcon 260",
     exitAltitude: 5500,
     pullAltitude: 3500,
     freeFallTime: 60,
     jumpers: 1,
-    description: 'front flip exit.',
+    description: "front flip exit.",
     // jumpType: 'belly',
   },
   {
     jumpNumber: 18,
-    date: '2022-07-21',
-    aircraft: 'Kodiak',
-    equipment: 'Falcon 260',
+    date: "2022-07-21",
+    aircraft: "Kodiak",
+    equipment: "Falcon 260",
     exitAltitude: 5500,
     pullAltitude: 3500,
     freeFallTime: 60,
     jumpers: 1,
-    description: 'front float exit.',
+    description: "front float exit.",
     // jumpType: 'angle',
   },
   {
     jumpNumber: 19,
-    date: '2022-07-23',
-    aircraft: 'Kodiak',
-    equipment: 'Falcon 260',
+    date: "2022-07-23",
+    aircraft: "Kodiak",
+    equipment: "Falcon 260",
     exitAltitude: 5500,
     pullAltitude: 3500,
     freeFallTime: 60,
     jumpers: 1,
-    description: 'rear float exit.',
+    description: "rear float exit.",
     // jumpType: 'head down',
   },
   {
     jumpNumber: 20,
-    date: '2022-07-23',
-    aircraft: 'Kodiak',
-    equipment: 'PD 210',
+    date: "2022-07-23",
+    aircraft: "Kodiak",
+    equipment: "PD 210",
     exitAltitude: 5500,
     pullAltitude: 3500,
     freeFallTime: 60,
     jumpers: 1,
-    description: 'back flip exit.',
+    description: "back flip exit.",
     // jumpType: 'angle',
   },
-]
+];
 
 // DUMMY DROP ZONE DATA
 const dropZones = [
   {
-    name: 'Cleveland Skydiving Center',
-    address: '55 Grove St',
-    phoneNumber: '8005555555'
+    name: "Cleveland Skydiving Center",
+    address: "55 Grove St",
+    phoneNumber: "8005555555",
   },
   {
-    name: 'Skydive The Ranch',
-    address: '123 Manhattan rd',
-    phoneNumber: '8002222222'
+    name: "Skydive The Ranch",
+    address: "123 Manhattan rd",
+    phoneNumber: "8002222222",
   },
   {
-    name: 'Skydive San Diego',
-    address: '777 Sunset blvd',
-    phoneNumber: '8002222222'
+    name: "Skydive San Diego",
+    address: "777 Sunset blvd",
+    phoneNumber: "8002222222",
   },
-]
+];
 
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
  */
 async function seed() {
-  await db.sync({ force: true }) // clears db and matches models to tables
-  console.log('db synced!')
+  await db.sync({ force: true }); // clears db and matches models to tables
+  console.log("db synced!");
 
   // Creating Jump Records
   await Promise.all(
-    jumps.map((jump) => {
-      return JumpRecord.create(jump);
-    }),
+    // jumps.map((jump) => {
+    //   return JumpRecord.create(jump);
+    // }),
     dropZones.map((dz) => {
       return Dropzone.create(dz);
     })
   );
-
 
   // CREATE DUMMY USER DATA
   const admin = await User.create({
@@ -294,7 +298,7 @@ async function seed() {
     licenseNumber: 105050,
     isAdmin: true,
   });
-  
+
   const chris = await User.create({
     firstName: "Chris",
     lastName: "Tomshack",
@@ -335,49 +339,76 @@ async function seed() {
     isAdmin: false,
   });
 
-const jump1 = await JumpRecord.findByPk(1); 
-const jump2 = await JumpRecord.findByPk(2); 
-const jump3 = await JumpRecord.findByPk(3); 
-const jump4 = await JumpRecord.findByPk(4); 
-const jump5 = await JumpRecord.findByPk(5); 
-const jump6 = await JumpRecord.findByPk(6); 
-const jump7 = await JumpRecord.findByPk(7); 
-const jump8 = await JumpRecord.findByPk(8); 
-const jump9 = await JumpRecord.findByPk(9); 
-const jump10 = await JumpRecord.findByPk(10);
-const jump11 = await JumpRecord.findByPk(11); 
-const jump12 = await JumpRecord.findByPk(12); 
-const jump13 = await JumpRecord.findByPk(13); 
-const jump14 = await JumpRecord.findByPk(14); 
-const jump15 = await JumpRecord.findByPk(15); 
-const jump16 = await JumpRecord.findByPk(16); 
-const jump17 = await JumpRecord.findByPk(17); 
-const jump18 = await JumpRecord.findByPk(18); 
-const jump19 = await JumpRecord.findByPk(19); 
-const jump20 = await JumpRecord.findByPk(20); 
+  const load1 = await Load.create({
+    date: "2022-07-15",
+    aircraft: "some aircraft",
+    slots: 10,
+    slotsFilled: 0,
+    isFull: false,
+  });
 
-await jump1.setUser(chris);
-await jump3.setUser(chris);
-await jump2.setUser(chris);
-await jump4.setUser(chris);
-await jump5.setUser(chris);
-await jump6.setUser(cole);
-await jump7.setUser(cole);
-await jump8.setUser(cole);
-await jump9.setUser(cole);
-await jump10.setUser(cole);
-await jump11.setUser(brian);
-await jump12.setUser(brian);
-await jump13.setUser(brian);
-await jump14.setUser(brian);
-await jump15.setUser(brian);
-await jump16.setUser(christopher);
-await jump17.setUser(christopher);
-await jump18.setUser(christopher);
-await jump19.setUser(christopher);
-await jump20.setUser(christopher);
+  const DZ1 = await Dropzone.findByPk(1);
+  await DZ1.addLoad(load1);
+
+  await load1.addUser(cole, {
+    through: {
+      jumpNumber: 1,
+      date: "2022-07-15",
+      aircraft: "Kodiak",
+      equipment: "PD 210",
+      exitAltitude: 13500,
+      pullAltitude: 3500,
+      freeFallTime: 60,
+      jumpers: 1,
+      description:
+        "Great first jump of the day. Front flip exit. Good landing pattern & swoop.",
+    },
+  });
+
+  console.log(Object.keys(Load.prototype));
+
+  // const jump1 = await JumpRecord.findByPk(1);
+  // const jump2 = await JumpRecord.findByPk(2);
+  // const jump3 = await JumpRecord.findByPk(3);
+  // const jump4 = await JumpRecord.findByPk(4);
+  // const jump5 = await JumpRecord.findByPk(5);
+  // const jump6 = await JumpRecord.findByPk(6);
+  // const jump7 = await JumpRecord.findByPk(7);
+  // const jump8 = await JumpRecord.findByPk(8);
+  // const jump9 = await JumpRecord.findByPk(9);
+  // const jump10 = await JumpRecord.findByPk(10);
+  // const jump11 = await JumpRecord.findByPk(11);
+  // const jump12 = await JumpRecord.findByPk(12);
+  // const jump13 = await JumpRecord.findByPk(13);
+  // const jump14 = await JumpRecord.findByPk(14);
+  // const jump15 = await JumpRecord.findByPk(15);
+  // const jump16 = await JumpRecord.findByPk(16);
+  // const jump17 = await JumpRecord.findByPk(17);
+  // const jump18 = await JumpRecord.findByPk(18);
+  // const jump19 = await JumpRecord.findByPk(19);
+  // const jump20 = await JumpRecord.findByPk(20);
+
+  // await jump1.setUser(chris);
+  // await jump3.setUser(chris);
+  // await jump2.setUser(chris);
+  // await jump4.setUser(chris);
+  // await jump5.setUser(chris);
+  // await jump6.setUser(cole);
+  // await jump7.setUser(cole);
+  // await jump8.setUser(cole);
+  // await jump9.setUser(cole);
+  // await jump10.setUser(cole);
+  // await jump11.setUser(brian);
+  // await jump12.setUser(brian);
+  // await jump13.setUser(brian);
+  // await jump14.setUser(brian);
+  // await jump15.setUser(brian);
+  // await jump16.setUser(christopher);
+  // await jump17.setUser(christopher);
+  // await jump18.setUser(christopher);
+  // await jump19.setUser(christopher);
+  // await jump20.setUser(christopher);
 }
-
 
 /*
  We've separated the `seed` function from the `runSeed` function.
@@ -385,16 +416,16 @@ await jump20.setUser(christopher);
  The `seed` function is concerned only with modifying the database.
 */
 async function runSeed() {
-  console.log('seeding...')
+  console.log("seeding...");
   try {
-    await seed()
+    await seed();
   } catch (err) {
-    console.error(err)
-    process.exitCode = 1
+    console.error(err);
+    process.exitCode = 1;
   } finally {
-    console.log('closing db connection')
-    await db.close()
-    console.log('db connection closed')
+    console.log("closing db connection");
+    await db.close();
+    console.log("db connection closed");
   }
 }
 
@@ -404,8 +435,8 @@ async function runSeed() {
   any errors that might occur inside of `seed`.
 */
 if (module === require.main) {
-  runSeed()
+  runSeed();
 }
 
 // we export the seed function for testing purposes (see `./seed.spec.js`)
-module.exports = seed
+module.exports = seed;
