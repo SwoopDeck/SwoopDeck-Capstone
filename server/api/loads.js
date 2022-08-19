@@ -7,11 +7,8 @@ const { models: { Load }}= require('../db')
 //GET 'api/loads/:dropzoneId'
 router.get('/:dropzoneId', async (req, res, next) => {
     try {
-        const dropzoneLoads = await Load.findAll({
-            where: {id: req.params.dropzoneId}
-          }
-          );
-      res.send(dropzoneLoads)
+       //ADD QUERIES BASED ON DB TABLES
+      res.send()
     } catch (err) {
       next(err);
     }
@@ -56,6 +53,7 @@ router.get('/:dropzoneId', async (req, res, next) => {
   //DELETE 'api/loads/:dropzoneId/:loadId'
   router.delete('/:dropzoneId/:loadId', async (req, res, next) => {
     try {
+
       res.send()
     } catch (err) {
       next(err);

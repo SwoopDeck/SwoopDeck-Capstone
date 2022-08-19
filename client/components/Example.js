@@ -113,11 +113,29 @@ const mapState = (state) => {
 };
 const mapDispatch = (dispatch) => {
   return {
-    edit: (jump, userId, jumpId) => dispatch(Thunk_updateJump(jump, userId, jumpId)),
-    getJumps: (userId) => dispatch(Thunk_fetchAllJumpRecords(userId)),
-    delete: (userId, jumpId) => dispatch(Thunk_deleteJump(userId, jumpId)), 
-    add: (jump, id) => dispatch(Thunk_createJump(jump,id)),
-    getDropzone: (dropzoneId) => dispatch(Thunk_fetchSingleDropzone(dropzoneId))
+
+    // editJumpRecord: (jump, userId, jumpId) => dispatch(Thunk_updateJump(jump, userId, jumpId)),
+    // getJumpRecords: (userId) => dispatch(Thunk_fetchAllJumpRecords(userId)),
+    // deleteJumpRecord: (userId, jumpId) => dispatch(Thunk_deleteJump(userId, jumpId)), 
+    // addJumpRecord: (jump, id) => dispatch(Thunk_createJump(jump,id)),
+    // getSingleJumpRecord: (jump, id) => dispatch(Thunk_fetchSingleJump(jump,id)),
+
+    // ////////ABOVE is for USER TABLE//////BELOW IS FOR DROPZONE//////////////////////////
+
+    // editDropzone: (jump, userId, jumpId) => dispatch(REPLACE!!!!(jump, userId, jumpId)),
+    // getDropzones: (userId) => dispatch(REPLACE!!!!(userId)),
+    // deleteDropzone: (userId, jumpId) => dispatch(REPLACE!!!!(userId, jumpId)), 
+    // addDropzone: (jump, id) => dispatch(REPLACE!!!!(jump,id)),
+    // getSingleDropzone: (jump, id) => dispatch(REPLACE!!!!(jump,id)),
+
+    // /////////ABOVE IS FOR DROPZONE////////BELOW IS FOR LOADS/////////////////////////////
+
+    // editLoad: (jump, userId, jumpId) => dispatch(REPLACE!!!!(jump, userId, jumpId)),
+    // getLoads: (userId) => dispatch(REPLACE!!!!(userId)),
+    // deleteLoad: (userId, jumpId) => dispatch(REPLACE!!!!(userId, jumpId)), 
+    // addLoad: (jump, id) => dispatch(REPLACE!!!!(jump,id)),
+    // getSingleLoad: (jump, id) => dispatch(REPLACE!!!!(jump,id)),
+
   };
 };
 
