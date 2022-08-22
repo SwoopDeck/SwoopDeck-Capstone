@@ -4,6 +4,7 @@ const {
   db,
   models: { User, JumpRecord, Load, Dropzone },
 } = require("../server/db");
+const JumpRecords = require("../server/db/models/JumpRecords");
 
 /* DUMMY JUMP RECORD DATA */
 const jumps = [
@@ -18,7 +19,7 @@ const jumps = [
     jumpers: 1,
     description:
       "Great first jump of the day. Front flip exit. Good landing pattern & swoop.",
-    // jumpType: 'angle',
+    jumpType: 'angle',
   },
   {
     jumpNumber: 2,
@@ -30,7 +31,7 @@ const jumps = [
     freeFallTime: 60,
     jumpers: 1,
     description: "Front flip exit.",
-    // jumpType: 'belly',
+    jumpType: 'belly',
   },
   {
     jumpNumber: 3,
@@ -42,7 +43,7 @@ const jumps = [
     freeFallTime: 60,
     jumpers: 1,
     description: "Back flip exit.",
-    // jumpType: 'belly',
+    jumpType: 'belly',
   },
   {
     jumpNumber: 4,
@@ -54,7 +55,7 @@ const jumps = [
     freeFallTime: 60,
     jumpers: 1,
     description: "great landing!",
-    // jumpType: 'belly',
+    jumpType: 'belly',
   },
   {
     jumpNumber: 5,
@@ -280,9 +281,9 @@ async function seed() {
 
   // Creating Jump Records
   await Promise.all(
-    // jumps.map((jump) => {
-    //   return JumpRecord.create(jump);
-    // }),
+    jumps.map((jump) => {
+      return JumpRecords.create(jump);
+    }),
     dropZones.map((dz) => {
       return Dropzone.create(dz);
     })
@@ -348,68 +349,117 @@ async function seed() {
     status: "delayed",
   });
 
+  const load2 = await Load.create({
+    date: "2022-02-22",
+    aircraft: "some aircraft",
+    slots: 10,
+    slotsFilled: 0,
+    isFull: false,
+    status: "delayed",
+  });
+
   const DZ1 = await Dropzone.findByPk(1);
   await DZ1.addLoad(load1);
+  await DZ1.addLoad(load2);
 
-  await load1.addUser(cole, {
-    through: {
-      jumpNumber: 1,
-      date: "2022-07-15",
-      aircraft: "Kodiak",
-      equipment: "PD 210",
-      exitAltitude: 13500,
-      pullAltitude: 3500,
-      freeFallTime: 60,
-      jumpers: 1,
-      description:
-        "Great first jump of the day. Front flip exit. Good landing pattern & swoop.",
-        jumpType: 'belly'
-    },
-  });
+  // await load1.addUser(cole, {
+  //   through: {
+  //     jumpNumber: 1,
+  //     date: "2022-07-15",
+  //     aircraft: "Kodiak",
+  //     equipment: "PD 210",
+  //     exitAltitude: 13500,
+  //     pullAltitude: 3500,
+  //     freeFallTime: 60,
+  //     jumpers: 1,
+  //     description:
+  //       "Great first jump of the day. Front flip exit. Good landing pattern & swoop.",
+  //       jumpType: 'belly'
+  //   },
+  // });
+
+  // await load2.addUser(chris, {
+  //   through: {
+  //     jumpNumber: 1,
+  //     date: "2022-07-15",
+  //     aircraft: "Kodiak",
+  //     equipment: "PD 210",
+  //     exitAltitude: 13500,
+  //     pullAltitude: 3500,
+  //     freeFallTime: 60,
+  //     jumpers: 1,
+  //     description:
+  //       "Front flip exit",
+  //       jumpType: 'belly'
+  //   },
+  // });
 
   console.log(Object.keys(Load.prototype));
 
-  // const jump1 = await JumpRecord.findByPk(1);
-  // const jump2 = await JumpRecord.findByPk(2);
-  // const jump3 = await JumpRecord.findByPk(3);
-  // const jump4 = await JumpRecord.findByPk(4);
-  // const jump5 = await JumpRecord.findByPk(5);
-  // const jump6 = await JumpRecord.findByPk(6);
-  // const jump7 = await JumpRecord.findByPk(7);
-  // const jump8 = await JumpRecord.findByPk(8);
-  // const jump9 = await JumpRecord.findByPk(9);
-  // const jump10 = await JumpRecord.findByPk(10);
-  // const jump11 = await JumpRecord.findByPk(11);
-  // const jump12 = await JumpRecord.findByPk(12);
-  // const jump13 = await JumpRecord.findByPk(13);
-  // const jump14 = await JumpRecord.findByPk(14);
-  // const jump15 = await JumpRecord.findByPk(15);
-  // const jump16 = await JumpRecord.findByPk(16);
-  // const jump17 = await JumpRecord.findByPk(17);
-  // const jump18 = await JumpRecord.findByPk(18);
-  // const jump19 = await JumpRecord.findByPk(19);
-  // const jump20 = await JumpRecord.findByPk(20);
+  const jump1 = await JumpRecords.findByPk(1);
+  const jump2 = await JumpRecords.findByPk(2);
+  const jump3 = await JumpRecords.findByPk(3);
+  const jump4 = await JumpRecords.findByPk(4);
+  const jump5 = await JumpRecords.findByPk(5);
+  const jump6 = await JumpRecords.findByPk(6);
+  const jump7 = await JumpRecords.findByPk(7);
+  const jump8 = await JumpRecords.findByPk(8);
+  const jump9 = await JumpRecords.findByPk(9);
+  const jump10 = await JumpRecords.findByPk(10);
+  const jump11 = await JumpRecords.findByPk(11);
+  const jump12 = await JumpRecords.findByPk(12);
+  const jump13 = await JumpRecords.findByPk(13);
+  const jump14 = await JumpRecords.findByPk(14);
+  const jump15 = await JumpRecords.findByPk(15);
+  const jump16 = await JumpRecords.findByPk(16);
+  const jump17 = await JumpRecords.findByPk(17);
+  const jump18 = await JumpRecords.findByPk(18);
+  const jump19 = await JumpRecords.findByPk(19);
+  const jump20 = await JumpRecords.findByPk(20);
 
-  // await jump1.setUser(chris);
-  // await jump3.setUser(chris);
-  // await jump2.setUser(chris);
-  // await jump4.setUser(chris);
-  // await jump5.setUser(chris);
-  // await jump6.setUser(cole);
-  // await jump7.setUser(cole);
-  // await jump8.setUser(cole);
-  // await jump9.setUser(cole);
-  // await jump10.setUser(cole);
-  // await jump11.setUser(brian);
-  // await jump12.setUser(brian);
-  // await jump13.setUser(brian);
-  // await jump14.setUser(brian);
-  // await jump15.setUser(brian);
-  // await jump16.setUser(christopher);
-  // await jump17.setUser(christopher);
-  // await jump18.setUser(christopher);
-  // await jump19.setUser(christopher);
-  // await jump20.setUser(christopher);
+  await jump1.setUser(chris);
+  await jump3.setUser(chris);
+  await jump2.setUser(chris);
+  await jump4.setUser(chris);
+  await jump5.setUser(chris);
+  await jump6.setUser(cole);
+  await jump7.setUser(cole);
+  await jump8.setUser(cole);
+  await jump9.setUser(cole);
+  await jump10.setUser(cole);
+  await jump11.setUser(brian);
+  await jump12.setUser(brian);
+  await jump13.setUser(brian);
+  await jump14.setUser(brian);
+  await jump15.setUser(brian);
+  await jump16.setUser(christopher);
+  await jump17.setUser(christopher);
+  await jump18.setUser(christopher);
+  await jump19.setUser(christopher);
+  await jump20.setUser(christopher);
+
+  await jump1.setLoad(1)
+  await jump2.setLoad(1)
+  await jump3.setLoad(1)
+  await jump4.setLoad(1)
+  await jump5.setLoad(1)
+  await jump6.setLoad(1)
+  await jump7.setLoad(1)
+  await jump8.setLoad(1)
+  await jump9.setLoad(1)
+  await jump10.setLoad(2)
+  await jump11.setLoad(2)
+  await jump12.setLoad(2)
+  await jump13.setLoad(2)
+  await jump14.setLoad(2)
+  await jump15.setLoad(2)
+  await jump16.setLoad(2)
+  await jump17.setLoad(2)
+  await jump18.setLoad(2)
+  await jump19.setLoad(2)
+  await jump20.setLoad(2)
+
+  await jump1.setDropzone(1);
 }
 
 /*

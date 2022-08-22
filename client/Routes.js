@@ -1,14 +1,14 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
-// import { Login, Signup } from './components/AuthForm';
-// import Home from './components/Home';
-// import {me} from './store'
-// import AllJumps from './components/AllJumps';
-// import SingleJump from './components/SingleJump'
-// import AddJump from './components/addjump'
-// import CreateUser from './components/CreateUser';
-// import UserProfile from './components/UserProfile';
+import { Login, Signup } from './components/AuthForm';
+import Home from './components/Home';
+import {me} from './store'
+import AllJumps from './components/AllJumps';
+import SingleJump from './components/SingleJump'
+import AddJump from './components/AddJump'
+import CreateUser from './components/CreateUser';
+import UserProfile from './components/UserProfile';
 import Example from './components/Example';
 
 /**
@@ -24,11 +24,29 @@ class Routes extends Component {
 
     return (
       <div>
-        <Switch>
-            <Route path="/example" component={Example}/>
-            {/* <Route path="/alljumps" component={AllJumps} /> */}
-            
+        {isLoggedIn ? (
+          <Switch>
+            <Route exact path="/" component={AllJumps} />
+            <Route exact path="/home" component={AllJumps} />
+            {/* <Redirect to="/home" /> */}
+            {/* <Route exact path='/login' component={ Login } /> */}
+            <Route path="/alljumps" component={AllJumps} />
+            <Route path="/jumps/:jumpId" component={SingleJump} />
+            <Route path="/add" component={AddJump} />
+            <Route path="/viewProfile" component={UserProfile} />
           </Switch>
+        ) : (
+          <Switch>
+            {/* <Route exact path='/' component={ Login } /> */}
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={CreateUser} />
+         </Switch>
+        )}
+        {/* <Switch>
+            <Route path="/example" component={Example}/>
+            <Route path="/alljumps" component={AllJumps} />
+            
+          </Switch> */}
       </div>
     )
   }
@@ -41,14 +59,14 @@ const mapState = state => {
   return {
     // // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
     // // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
-    // isLoggedIn: !!state.auth.id
+    isLoggedIn: !!state.auth.id
   }
 }
 
 const mapDispatch = dispatch => {
   return {
     loadInitialData() {
-      // dispatch(me())
+      dispatch(me())
     }
   }
 }
@@ -57,23 +75,3 @@ const mapDispatch = dispatch => {
 // when the url changes
 export default withRouter(connect(mapState, mapDispatch)(Routes))
 
-
-// {isLoggedIn ? (
-//   <Switch>
-//     <Route exact path="/" component={AllJumps} />
-//     <Route exact path="/home" component={AllJumps} />
-//     {/* <Redirect to="/home" /> */}
-//     {/* <Route exact path='/login' component={ Login } /> */}
-//     <Route path="/alljumps" component={AllJumps} />
-//     <Route path="/jumps/:jumpId" component={SingleJump} />
-//     <Route path="/add" component={AddJump} />
-//     <Route path="/viewProfile" component={UserProfile} />
-//   </Switch>
-// ) : (
-//   <Switch>
-//     {/* <Route exact path='/' component={ Login } /> */}
-//     <Route path="/login" component={Login} />
-//     <Route path="/signup" component={CreateUser} />
-//  </Switch>
-// )}
-//

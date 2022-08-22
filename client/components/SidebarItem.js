@@ -41,4 +41,4 @@ const mapStateToProps = (state) => ({})
 
 const mapDispatchToProps = {}
 
-export default connect(mapStateToProps, mapDispatchToProps)(SidebarItem)
+export default connect(mapStateToProps, null)(SidebarItem)

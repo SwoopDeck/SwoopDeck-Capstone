@@ -1,7 +1,7 @@
 const router = require('express').Router()
 
 router.use('/users', require('./users'))
-router.use('/jumpsrecords', require('./jumprecords'));
+router.use('/jumprecords', require('./jumprecords'));
 router.use('/dropzones', require('./dropzones'));
 
 router.use((req, res, next) => {

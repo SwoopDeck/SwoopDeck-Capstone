@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createJump } from "../store/jumps";
 import { Link, useNavigate } from "react-router-dom";
+import { Thunk_createJump } from "../store/jumpRecords";
 
 export class AddJump extends React.Component {
   constructor() {
@@ -256,7 +256,7 @@ const mapState = (state) => {
   };
 };
 const mapDispatch = (dispatch) => ({
-  add: (jump, id) => dispatch(createJump(jump, id)),
+  add: (jump, id) => dispatch(Thunk_createJump(jump, id)),
 });
 
 export default connect(mapState, mapDispatch)(AddJump);

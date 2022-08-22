@@ -1,7 +1,7 @@
 const db = require("./db");
 
 const User = require("./models/User");
-const Load = require("./models/load");
+const Load = require("./models/Load");
 const Dropzone = require("./models/Dropzone");
 const JumpRecords = require("./models/JumpRecords");
 
@@ -20,11 +20,20 @@ const JumpRecords = require("./models/JumpRecords");
 
 // JumpRecord.belongsTo(User);
 
-User.belongsToMany(Load, { through: JumpRecords });
-Load.belongsToMany(User, { through: JumpRecords });
+// User.belongsToMany(Load, { through: JumpRecords });
+// Load.belongsToMany(User, { through: JumpRecords });
 
 Dropzone.hasMany(Load);
 Load.belongsTo(Dropzone);
+
+User.hasMany(JumpRecords);
+JumpRecords.belongsTo(User);
+
+JumpRecords.belongsTo(Load);
+Load.hasMany(JumpRecords);
+
+JumpRecords.belongsTo(Dropzone);
+Dropzone.hasMany(JumpRecords);
 
 module.exports = {
   db,

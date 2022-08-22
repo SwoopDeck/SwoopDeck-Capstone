@@ -74,7 +74,7 @@ export const removeJump = (JUMP) => {
 export const Thunk_fetchAllJumpRecords = (id) => {
     return async (dispatch) => {
       try {
-        const { data } = await axios.get(`/api/jumprecords/${id}/jumps`);
+        const { data } = await axios.get(`/api/jumprecords/${id}/jumps/`);
         dispatch(setAllJumps(data));
       } catch (err) {
         console.log(err);

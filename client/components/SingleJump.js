@@ -1,10 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchSingleJump } from "../store/jumps";
-import EditJump from "./editjump";
+import { Thunk_fetchSingleJump, Thunk_updateJump } from "../store/jumpRecords";
+// import EditJump from "./editjump";
 import { me } from "../store/auth";
-import { updateJump } from "../store/jumps";
 import Sidebar from "./Sidebar";
 // import EditItem from "./EditItem";
 
@@ -128,19 +127,19 @@ class SingleJump extends React.Component {
           </button>
           </Link>
         </form>
-        <EditJump/>
+        {/* <EditJump/> */}
       </div>
     );
   }
 }
 const mapState = (state) => {
   return {
-    jump: state.jumps,
+    jumpRecords: state.jumpRecords,
     user: state.auth,
   };
 };
 const mapDispatch = (dispatch) => ({
-  getJump: (userId, jumpId) => dispatch(fetchSingleJump(userId, jumpId)),
+  getJump: (userId, jumpId) => dispatch(Thunk_fetchSingleJump(userId, jumpId)),
 });
 
 export default connect(mapState, mapDispatch)(SingleJump);

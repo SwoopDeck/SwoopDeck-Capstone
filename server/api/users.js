@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {
-  models: { User, JumpRecord },
+  models: { User, JumpRecords },
 } = require('../db');
 const jwt = require('jsonwebtoken');
 const { requireToken, isAdmin } = require('./middleware');
