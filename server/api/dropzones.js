@@ -3,7 +3,7 @@ const {
   models: { Dropzone },
 } = require('../db');
 
-//grab the all DROPZONES for ADMIN
+//FETCH ALL DROPZONES
 
 //GET 'api/dropzones/'
 router.get('/', async (req, res, next) => {
@@ -16,7 +16,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-//grab a single DROPZONE by id
+//FETCH A SINGLE DROPZONE
 
 //GET 'api/dropzones/:dropzoneId'
 router.get('/:dropzoneId', async (req, res, next) => {
@@ -28,7 +28,7 @@ router.get('/:dropzoneId', async (req, res, next) => {
   }
 });
 
-//Update the DROPZONE by id
+//UPDATE A DROPZONE BY ID
 
 //GET 'api/dropzones/:dropzoneId'
 router.put('/:dropzoneId', async (req, res, next) => {
@@ -39,7 +39,8 @@ router.put('/:dropzoneId', async (req, res, next) => {
   }
 });
 
-//Creating a DROPZONE
+//CREATE A DROPZONE
+
 //GET 'api/dropzone/create'
 router.post('/create', async (req, res, next) => {
   try {
@@ -49,7 +50,7 @@ router.post('/create', async (req, res, next) => {
   }
 });
 
-//REMOVE A DROPZONE
+//DELETE A DROPZONE
 
 //DELETE 'api/dropzones/:dropzoneId'
 router.delete('/:dropzoneId', async (req, res, next) => {
