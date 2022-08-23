@@ -1,22 +1,22 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { Thunk_createJump } from "../store/jumpRecords";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { Thunk_createJump } from '../store/jumpRecords';
 
 export class AddJump extends React.Component {
   constructor() {
     super();
     this.state = {
-      jumpNumber: "",
-      location: "",
-      aircraft: "",
-      equipment: "",
+      jumpNumber: '',
+      location: '',
+      aircraft: '',
+      equipment: '',
       exitAltitude: 14000,
       pullAltitude: 4000,
       freeFallTime: 60,
-      jumpers: "Solo",
-      description: "",
-      jumpType: "Belly",
+      jumpers: 'Solo',
+      description: '',
+      jumpType: 'Belly',
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -27,16 +27,15 @@ export class AddJump extends React.Component {
     // });
     // MODIFIED IN AN ATTEMPT TO GET THE FUNCTIONALITY TO WORK
     this.setState({ ...this.state, [event.target.name]: event.target.value });
-    console.log(this.state);
   }
 
   navigateToAllJumps() {
-    nagivate("/alljumps");
+    nagivate('/alljumps');
   }
   render() {
     return (
       <div className="flex-right">
-        <h1 style={{ marginLeft: "2rem", marginTop: "2rem" }}>
+        <h1 style={{ marginLeft: '2rem', marginTop: '2rem' }}>
           Select jump type
         </h1>
         <div className="select-jump-type-container" onClick={this.handleChange}>
@@ -160,11 +159,11 @@ export class AddJump extends React.Component {
                 className="category-list"
               >
                 {/* <option value={jumpers}></option> */}
-                <option value={"Solo"}>Solo</option>
-                <option value={"2-way"}>2-way</option>
-                <option value={"3-way"}>3-way</option>
-                <option value={"4-way"}>4-way</option>
-                <option value={"5+"}>5+</option>
+                <option value={'Solo'}>Solo</option>
+                <option value={'2-way'}>2-way</option>
+                <option value={'3-way'}>3-way</option>
+                <option value={'4-way'}>4-way</option>
+                <option value={'5+'}>5+</option>
               </select>
             </div>
 
@@ -229,16 +228,16 @@ export class AddJump extends React.Component {
               evt.preventDefault();
               this.props.add({ ...this.state }, this.props.user.id);
               this.setState({
-                jumpNumber: "",
-                location: "",
-                aircraft: "",
-                equipment: "",
+                jumpNumber: '',
+                location: '',
+                aircraft: '',
+                equipment: '',
                 exitAltitude: 14000,
                 pullAltitude: 4000,
                 freeFallTime: 60,
-                jumpers: "",
-                description: "",
-                jumpType: "",
+                jumpers: '',
+                description: '',
+                jumpType: '',
               });
               this.navigateToAllJumps;
             }}

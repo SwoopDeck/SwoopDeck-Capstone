@@ -1,0 +1,46 @@
+[
+  {
+    "title": "Home",
+    "icon": "bi-house-fill",
+    "path": "/alljumps"
+  },
+  {
+    "title": "Manifest",
+    "icon": "",
+    "children": [
+      {
+        "title": "Create Load",
+        "path": "/createLoad"
+      },
+      {
+        "title": "View Loads",
+        "path": "/:dropzoneId/loads"
+      }
+    ]
+  },
+  {
+    "title": "Account",
+    "icon": "bi-person-fill",
+    "children": [
+      {
+        "title": "View Account",
+        "path": "/viewProfile"
+      },
+      {
+        "title": "Edit Account",
+        "path": "/editProfile"
+      }
+    ]
+  },
+
+  {
+    "title": "Github",
+    "icon": "bi-github",
+    "path": "/#"
+  },
+  {
+    "title": "About",
+    "icon": "bi-paperclip",
+    "path": "/#"
+  }
+]
