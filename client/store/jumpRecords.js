@@ -46,7 +46,6 @@ export const addJump = (JUMP) => {
 
 //UPDATE A SINGLE JUMP RECORD
 export const reformJump = (JUMP) => {
-  console.log('after thunk')
   return {
     type: UPDATE_JUMP,
     JUMP,
@@ -56,8 +55,6 @@ export const reformJump = (JUMP) => {
 
 //DELETE A SINGLE JUMP RECORD
 export const removeJump = (JUMP) => {
-  console.log(JUMP)
-  console.log('afterexpress')
   return {
     type: DELETE_JUMP,
     JUMP,
@@ -100,7 +97,6 @@ export const Thunk_fetchSingleJump = (userId, jumpId) => {
 export const Thunk_createJump = (JUMP, id) => {
   return async (dispatch) => {
     try {
-      console.log('thunk', JUMP)
       const { data } = await axios.post(`/api/jumprecords/${id}/create/`, JUMP);
       dispatch(addJump(data));
     } catch (err) {
@@ -113,7 +109,6 @@ export const Thunk_createJump = (JUMP, id) => {
 //THUNK: UPDATE A SINGLE JUMP RECORD
 export const Thunk_updateJump = (JUMP, id, jumpId) => {
   return async (dispatch) => {
-    console.log('before thunk')
     const { data } = await axios.put(`/api/jumprecords/${id}/${jumpId}`, JUMP);
     dispatch(reformJump(data));
   };
