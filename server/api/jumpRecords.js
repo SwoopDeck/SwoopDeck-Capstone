@@ -1,5 +1,8 @@
 const router = require('express').Router()
-const {JumpRecord} = require('../db')
+const JumpRecords = require('../db/models/JumpRecords');
+const Load = require('../db/models/Load');
+const User = require('../db/models/User');
+const Dropzone = require('../db/models/Dropzone')
 
 /////////////////////////////////////////////// JUMP ROUTES for USERS ///////////////////////////////////////
 
@@ -7,10 +10,25 @@ const {JumpRecord} = require('../db')
 //GET api/jumprecords/:id/jumps/
 router.get('/:id/jumps/', async (req, res, next) => {
   try {
-    const userJumps = await JumpRecord.findAll({
-      where: {userId: req.params.id}
-    }
-    );
+    // const userJumps = JumpRecords.findAll({
+    //   where: {
+    //     userId: req.params.id,
+    //     // include: [
+    //     //   Dropzone
+    //     // ]
+    //   }
+    // })
+    const userJumps = await User.findByPk(req.params.id, {
+      include: [
+        {
+          model: JumpRecords,
+          include: [
+            Dropzone
+          ]
+        }
+      ]
+    });
+    // const userJumps = await User.findByPk(req.params.id);
     res.json(userJumps);
   } catch (err) {
     next(err);

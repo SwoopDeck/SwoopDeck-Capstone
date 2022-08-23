@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { updateJump, fetchSingleJump } from "../store/jumps";
+import { Thunk_updateJump, Thunk_fetchAllJumpRecords } from "../store/jumpRecords";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -148,13 +148,13 @@ export class EditJump extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    jump: state.jumps,
+  jumpRecords: state.jumpRecords,
     user: state.auth
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  edit: (jump, userId, jumpId) => dispatch(updateJump(jump, userId, jumpId)),
-  getJump: (userId, jumpId) => dispatch(fetchSingleJump(userId, jumpId)),
+  edit: (jump, userId, jumpId) => dispatch(Thunk_updateJump(jump, userId, jumpId)),
+  getJump: (userId, jumpId) => dispatch(Thunk_fetchAllJumpRecords(userId, jumpId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditJump);

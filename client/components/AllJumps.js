@@ -1,16 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchAllJumps, deleteJump } from "../store/jumps";
+import { Thunk_fetchAllJumpRecords, Thunk_deleteJump } from "../store/jumpRecords";
 import { me } from "../store/auth";
 
 export class AllJumps extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    // this.state = {};
   }
   componentDidMount() {
-    let userId = this.props.user.id;
+    let userId = this.props.user.id
     this.props.getJumps(userId);
   }
 
@@ -20,7 +20,13 @@ export class AllJumps extends React.Component {
       alert('This feature is not yet available!')
     }
 
-    let { jumps } = this.props;
+    let userId = this.props.user.id || ''  
+    
+    let jumps = [this.props.jumpRecords] || []
+    console.log('jumps: ', jumps);
+    // console.log(this.props)
+    
+
     return (
       <div className="flex-right">
         <div>
@@ -78,14 +84,14 @@ export class AllJumps extends React.Component {
 }
 const mapState = (state) => {
   return {
-    jumps: state.jumps,
+    jumpRecords: state.jumpRecords,
     user: state.auth,
   };
 };
 const mapDispatch = (dispatch) => {
   return {
-    getJumps: (userId) => dispatch(fetchAllJumps(userId)),
-    delete: (userId, jumpId) => dispatch(deleteJump(userId, jumpId)),
+    getJumps: (userId) => dispatch(Thunk_fetchAllJumpRecords(userId)),
+    delete: (userId, jumpId) => dispatch(Thunk_deleteJump(userId, jumpId)),
   };
 };
 
