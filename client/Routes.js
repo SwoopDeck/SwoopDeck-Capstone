@@ -20,36 +20,47 @@ class Routes extends Component {
   }
 
   render() {
-    const {isLoggedIn} = this.props
-
-    return (
+    const {isLoggedIn, isUser, isDropzone, isAdmin} = this.props
+    console.log(this.props)
+    let user = (
       <div>
-        {isLoggedIn ? (
-          <Switch>
-            <Route exact path="/" component={AllJumps} />
-            <Route exact path="/home" component={AllJumps} />
-            {/* <Redirect to="/home" /> */}
-            {/* <Route exact path='/login' component={ Login } /> */}
-            <Route path="/alljumps" component={AllJumps} />
-            <Route path="/jumps/:jumpId" component={SingleJump} />
-            <Route path="/add" component={AddJump} />
-            <Route path="/viewProfile" component={UserProfile} />
-          </Switch>
-        ) : (
-          <Switch>
-            {/* <Route exact path='/' component={ Login } /> */}
-            <Route path="/login" component={Login} />
-            <Route path="/example" component={Example}/>
-            <Route path="/signup" component={CreateUser} />
-         </Switch>
-        )}
-        {/* <Switch>
-            <Route path="/example" component={Example}/>
-            <Route path="/alljumps" component={AllJumps} />
-            
-          </Switch> */}
+        <Switch>
+          <Route exact path="/" component={Home} />
+            {/* 1. Login/2. Logout/
+            3. All jumps/4. single jump/5. edit jump/6. add jump/7. delete jump/
+            8. add to load/9. remove from load/ 
+            10. edit user info/11. delete account 
+            12. add payment method */}
+        </Switch>
       </div>
     )
+    let dropzone = (
+      <div>
+        <Switch>
+          {/* 13. All loads/14. single load /15. edit load/16. add load/17. delete load/
+          18. edit dropzone info/ 19. delete account/
+           */}
+        </Switch>
+      </div>
+    )
+    let admin = (
+      <div>
+        <Switch>
+          {/* 20. all dropzones/ 21. all users/ 
+           */}
+        </Switch>
+      </div>
+    )
+
+    let notLoggedOn = (
+      <div>
+        <Switch>
+            {/* 22.sign up page for user/23. sign up as dropzone  */}
+        </Switch>
+      </div>
+    )
+    
+    return this.state.isLoggedin ? user : notLoggedOn
   }
 }
 
@@ -76,3 +87,66 @@ const mapDispatch = dispatch => {
 // when the url changes
 export default withRouter(connect(mapState, mapDispatch)(Routes))
 
+// render() {
+//   const { isLoggedIn, isAdmin, isUser, isDropzone } = this.props;
+
+//   return (
+//     <div>
+//       {isLoggedIn ? (
+//         <div>
+//           {isAdmin ? (
+//             <Switch>
+//               {/* Routes if logged in and admin */}
+//               <Route exact path="/" component={Home} />
+//               <Route exact path="/admin" component={Admin} />
+//               <Route exact path="/admin/users" component={AdminUsers} />
+//               <Route exact path="/admin/products" component={AdminShop} />
+//               {/* <Route exact path="/products" component={Shop} /> */}
+//               <Route path="/products/add" component={CreateProduct} />
+//               <Route
+//                 exact
+//                 path="/products/:id/update"
+//                 component={UpdateProduct}
+//               />
+//               <Route path="/products/:id" component={SingleProduct} />
+//               <Route exact path="/cart" component={Cart} />
+//               <Route exact path="/profile" component={UserProfile} />
+//               <Route path="/users/orders" component={OrderHistory} />
+//               <Route path="/checkout" component={Checkout} />
+//               <Route path="/orderSuccess" component={OrderSuccess} />
+//               <Route path="*" component={NotFoundPage} status={404} />
+//             </Switch>
+//           ) : (
+
+//             <Switch>
+//                 {/* Routes if logged in but not admin */}
+//                 <Route exact path="/" component={Home} />
+//                 <Route exact path="/products" component={Shop} />
+//                 <Route exact path="/products/:id" component={SingleProduct} />
+//                 <Route exact path="/cart" component={Cart} />
+//                 <Route exact path="/profile" component={UserProfile} />
+//                 <Route path="/users/orders" component={OrderHistory} />
+//                 <Route path="/checkout" component={Checkout} />
+//                 <Route path="/orderSuccess" component={OrderSuccess} />
+//                 <Route path="*" component={NotFoundPage} status={404} />
+//               </Switch>
+//             )}
+//           </div>
+//         ) : (
+//           <Switch>
+//             {/* Routes if not logged in */}
+//             <Route exact path="/" component={Home} />
+//             <Route path="/login" component={Login} />
+//             <Route path="/signup" component={CreateUser} />
+//             <Route exact path="/products" component={Shop} />
+//             <Route exact path="/products/:id" component={SingleProduct} />
+//             <Route exact path="/cart" component={Cart} />
+//             <Route path="/checkout" component={Checkout} />
+//             <Route path="/orderSuccess" component={OrderSuccess} />
+//             <Route path="*" component={NotFoundPage} status={404} />
+//           </Switch>
+//         )}
+//       </div>
+//     );
+//   }
+// }

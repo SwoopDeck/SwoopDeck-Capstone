@@ -56,8 +56,8 @@ export class Example extends React.Component {
     //this.props.getSingleJumpRecord(2, 3)
     //this.props.addJumpRecord({},3)
     //this.props.deleteJumpRecord(3,21) //NEED TO BE VERY SPECIFIC
-    this.props.editJumpRecord({aircraft:'NEWWWWWWWWW'},2,3)
-
+    //this.props.editJumpRecord({aircraft:'NEWWWWWWWWW'},2,3)
+    console.log(this.props)
   }
 
   handleChange(evt) {
@@ -70,7 +70,7 @@ export class Example extends React.Component {
     console.log(this.props);
     return (
       <div>
-        <h1>TEST</h1>
+        <h1>hello {this.props.user}</h1>
       </div>
     );
     ///////////////////////////////////////////BELOW IS THE JUMPRECORD CRUDS/////////ABOVE IS THE DROPZONE CRUD//////////////////////
