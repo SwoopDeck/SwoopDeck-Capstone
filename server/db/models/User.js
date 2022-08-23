@@ -50,6 +50,11 @@ const User = db.define('user', {
     defaultValue: false,
   },
 
+  isUser: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: true,
+  },
+
   licenseNumber: {
     type: Sequelize.STRING,
     allowNull: false,
