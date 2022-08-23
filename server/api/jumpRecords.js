@@ -22,7 +22,7 @@ router.get('/:id/jumps/', async (req, res, next) => {
 //GET api/jumprecords/:id/jumps/:jumpId
 router.get('/:id/jumps/:jumpId', async (req, res, next) => {
   try {
-    const jump = await Jumps.findAll({
+    const jump = await JumpRecord.findAll({
       include: {
         model: User,
         where: {id: req.params.id}

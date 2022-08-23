@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {
   Thunk_fetchAllJumpRecords,
+  Thunk_fetchSingleJump,
   Thunk_updateJump,
   Thunk_deleteJump,
   Thunk_createJump,
@@ -39,8 +40,19 @@ export class Example extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
   componentDidMount() {
-    //this.props.getJumps(3);
+    //this.props.getJumpRecords(3);
     // this.props.getLoads(1);
+    //this.props.getDropzone(2)
+    //this.props.addDropzone({name:'thenewDROPZONE',address:'yourmomshouse', phoneNumber:'deez'})
+    //this.props.editDropzone(4,{ name:'asdfas' , address:'hello', phoneNumber:'23424324'})
+    //this.props.deleteDropzone(4)
+    //this.props.getDropzones()
+    //this.props.getLoads(1)
+    //this.props.getSingleLoad(1,1)
+    //this.props.addLoad({dropzoneId: 1, aircraft: 'cessna', slots: 5, slotFilled: 2, isFull: false, status: 'on time'},1)
+    //this.props.deleteLoad(1, 4)
+    //this.props.editLoad(1,1,{aircraft:'cessna'})
+    
   }
 
   handleChange(evt) {
@@ -129,35 +141,27 @@ const mapState = (state) => {
 };
 const mapDispatch = (dispatch) => {
   return {
-    editJumpRecord: (jump, userId, jumpId) =>
-      dispatch(Thunk_updateJump(jump, userId, jumpId)),
-    getJumpRecords: (userId) => dispatch(Thunk_fetchAllJumpRecords(userId)),
-    deleteJumpRecord: (userId, jumpId) =>
-      dispatch(Thunk_deleteJump(userId, jumpId)),
-    addJumpRecord: (jump, id) => dispatch(Thunk_createJump(jump, id)),
-    getSingleJumpRecord: (jump, id) =>
-      dispatch(Thunk_fetchSingleJump(jump, id)),
+    editJumpRecord: (jump, userId, jumpId) => dispatch(Thunk_updateJump(jump, userId, jumpId)),//BROKEN//
+    getJumpRecords: (userId) => dispatch(Thunk_fetchAllJumpRecords(userId)),//BROKEN//
+    deleteJumpRecord: (userId, jumpId) => dispatch(Thunk_deleteJump(userId, jumpId)), //BROKEN//
+    addJumpRecord: (jump, id) => dispatch(Thunk_createJump(jump, id)), //BROKEN//
+    getSingleJumpRecord: (userId, jumpId) => dispatch(Thunk_fetchSingleJump(userId, jumpId)),//BROKEN//
 
     ////////ABOVE is for USER TABLE//////BELOW IS FOR DROPZONE//////////////////////////
 
-    editDropzone: (dropzoneId, dropzone) =>
-      dispatch(thunk_updateDropzone(dropzoneId, dropzone)),
-    getDropzones: () => dispatch(thunk_fetchAllDropzones()),
-    deleteDropzone: (dropzoneId) => dispatch(thunk_deleteDropzone(dropzoneId)),
-    addDropzone: (DROPZONE) => dispatch(thunk_createDropzone(DROPZONE)),
-    getSingleDropzone: (dropzoneId) =>
-      dispatch(thunk_fetchSingleDropzone(dropzoneId)),
+    editDropzone: (dropzoneId, dropzone) => dispatch(thunk_updateDropzone(dropzoneId, dropzone)),//WOKRING//
+    getDropzones: () => dispatch(thunk_fetchAllDropzones()),//WOKRING//
+    deleteDropzone: (dropzoneId) => dispatch(thunk_deleteDropzone(dropzoneId)),//WOKRING//
+    addDropzone: (DROPZONE) => dispatch(thunk_createDropzone(DROPZONE)),//WORKING//
+    getSingleDropzone: (dropzoneId) => dispatch(thunk_fetchSingleDropzone(dropzoneId)),//WORKING//
 
     /////////ABOVE IS FOR DROPZONE////////BELOW IS FOR LOADS/////////////////////////////
 
-    editLoad: (dropzoneId, loadId) =>
-      dispatch(thunk_updateLoad(dropzoneId, loadId)),
-    getLoads: (dropzoneId) => dispatch(thunk_fetchAllLoads(dropzoneId)),
-    deleteLoad: (dropzoneId, loadId) =>
-      dispatch(thunk_deleteLoad(dropzoneId, loadId)),
-    addLoad: (LOAD, dropzoneId) => dispatch(thunk_createLoad(LOAD, dropzoneId)),
-    getSingleLoad: (dropzoneId, loadId) =>
-      dispatch(thunk_fetchSingleLoad(dropzoneId, loadId)),
+    editLoad: (dropzoneId, loadId, LOAD) => dispatch(thunk_updateLoad(dropzoneId, loadId, LOAD)),//WORKING//
+    getLoads: (dropzoneId) => dispatch(thunk_fetchAllLoads(dropzoneId)),//WORKING//
+    deleteLoad: (dropzoneId, loadId) => dispatch(thunk_deleteLoad(dropzoneId, loadId)),//WORKING//
+    addLoad: (LOAD, dropzoneId) => dispatch(thunk_createLoad(LOAD, dropzoneId)),//WORKING//
+    getSingleLoad: (dropzoneId, loadId) => dispatch(thunk_fetchSingleLoad(dropzoneId, loadId)),//WORKING//
   };
 };
 

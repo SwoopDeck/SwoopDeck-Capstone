@@ -367,7 +367,7 @@ async function seed() {
     },
   });
 
-  console.log(Object.keys(Load.prototype));
+  // console.log(Object.keys(Load.prototype));
 
   // const jump1 = await JumpRecord.findByPk(1);
   // const jump2 = await JumpRecord.findByPk(2);

@@ -81,9 +81,9 @@ export const thunk_fetchSingleLoad = (dropzoneId, loadId) => {
 };
 
 //THUNK: UPDATE A SINGLE LOADS RECORD
-export const thunk_updateLoad = (dropzoneId, loadId) => {
+export const thunk_updateLoad = (dropzoneId, loadId, LOAD) => {
   return async (dispatch) => {
-    const { data } = await axios.put(`api/loads/${dropzoneId}/${loadId}`, LOADS);
+    const { data } = await axios.put(`api/loads/${dropzoneId}/${loadId}`, LOAD);
     dispatch(reformLoad(data));
   };
 };

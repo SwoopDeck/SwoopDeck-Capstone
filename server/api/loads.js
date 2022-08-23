@@ -8,14 +8,14 @@ const {
 //GET 'api/loads/:dropzoneId'
 router.get('/:dropzoneId', async (req, res, next) => {
   try {
-    //ADD QUERIES BASED ON DB TABLES
-    // console.log('test');
-    // let loads = await Load.findAll({
-    //   where: {
-    //     dropzoneId: req.params.dropzoneId,
-    //   },
-    // });
-    // res.json(loads);
+    
+    let loads = await Load.findAll({
+      where: {
+        dropzoneId: req.params.dropzoneId,
+      },
+    });
+
+    res.send(loads)
   } catch (err) {
     next(err);
   }
@@ -26,7 +26,19 @@ router.get('/:dropzoneId', async (req, res, next) => {
 //GET 'api/loads/:dropzoneId/:loadId'
 router.get('/:dropzoneId/:loadId', async (req, res, next) => {
   try {
-    res.send();
+    let singleLoad = await Load.findOne({
+      where: {
+        id: req.params.loadId,
+        dropzoneId: req.params.dropzoneId,
+      },
+    });
+    // let loads = await Load.findAll({
+    //   where: {
+    //     dropzoneId: req.params.dropzoneId,
+    //   },
+    // });
+
+    res.send(singleLoad);
   } catch (err) {
     next(err);
   }
@@ -37,7 +49,21 @@ router.get('/:dropzoneId/:loadId', async (req, res, next) => {
 //GET 'api/loads/:dropzoneId/:loadId'
 router.put('/:dropzoneId/:loadId', async (req, res, next) => {
   try {
-    res.send();
+    let singleLoad = await Load.findOne({
+      where: {
+        id: req.params.loadId,
+        dropzoneId: req.params.dropzoneId,
+      },
+    });
+    singleLoad.update({...singleLoad, ...req.body })
+    
+    // let loads = await Load.findAll({
+    //   where: {
+    //     dropzoneId: req.params.dropzoneId,
+    //   },
+    // });
+
+    res.send(singleLoad);
   } catch (err) {
     next(err);
   }
@@ -47,7 +73,17 @@ router.put('/:dropzoneId/:loadId', async (req, res, next) => {
 //GET 'api/loads/:dropzoneId/create'
 router.post('/:dropzoneId/create', async (req, res, next) => {
   try {
-    res.send();
+    //req.body contains all necessary info to fill data table
+    await Load.create(req.body)
+
+    let loads = await Load.findAll({
+      where: {
+        dropzoneId: req.params.dropzoneId,
+      },
+    });
+
+    res.send(loads);
+    
   } catch (e) {
     next(e);
   }
@@ -58,7 +94,21 @@ router.post('/:dropzoneId/create', async (req, res, next) => {
 //DELETE 'api/loads/:dropzoneId/:loadId'
 router.delete('/:dropzoneId/:loadId', async (req, res, next) => {
   try {
-    res.send();
+
+    await Load.destroy({
+      where: {
+        id: req.params.loadId,
+        dropzoneId: req.params.dropzoneId,
+      },
+    });
+
+    let loads = await Load.findAll({
+      where: {
+        dropzoneId: req.params.dropzoneId,
+      },
+    });
+
+    res.json(loads);
   } catch (err) {
     next(err);
   }
