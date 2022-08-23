@@ -24,6 +24,16 @@ const Dropzone = db.define('dropzones', {
         },
     },
 
+    isUser: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
+    
+      isDropzone: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,
+      },
+
 });
 
 module.exports = Dropzone;
