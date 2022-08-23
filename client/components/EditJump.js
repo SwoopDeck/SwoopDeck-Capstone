@@ -1,29 +1,32 @@
-import React, { Component } from "react";
-import { Thunk_updateJump, Thunk_fetchAllJumpRecords } from "../store/jumpRecords";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import {
+  Thunk_updateJump,
+  Thunk_fetchAllJumpRecords,
+} from '../store/jumpRecords';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export class EditJump extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      jumpNumber: "",
-      location: "",
-      aircraft: "",
-      equipment: "",
+      jumpNumber: '',
+      location: '',
+      aircraft: '',
+      equipment: '',
       exitAltitude: 14000,
       pullAltitude: 4000,
       freeFallTime: 60,
-      jumpers: "",
-      description: "",
-      jumpType: "",
+      jumpers: '',
+      description: '',
+      jumpType: '',
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
     //this.props.getJump(this.props.user.id, this.props.match.params.jumpId)
-   }
+  }
 
   handleChange(evt) {
     this.setState({
@@ -32,9 +35,8 @@ export class EditJump extends Component {
   }
 
   render() {
-    let jump = this.props.jump[0] || {}
-    console.log(jump)
-    
+    let jump = this.props.jump[0] || {};
+
     return (
       <div>
         <h1>Edit Log</h1>
@@ -45,7 +47,7 @@ export class EditJump extends Component {
             name="jumpNumber"
             value={this.state.jumpNumber}
             onChange={this.handleChange}
-            style={{ margin: "25px" }}
+            style={{ margin: '25px' }}
           />
           <div>LOCATION:</div>
           <input
@@ -53,7 +55,7 @@ export class EditJump extends Component {
             name="location"
             value={this.state.location}
             onChange={this.handleChange}
-            style={{ margin: "25px" }}
+            style={{ margin: '25px' }}
           />
           <div>AIRCRAFT:</div>
           <input
@@ -61,7 +63,7 @@ export class EditJump extends Component {
             name="aircraft"
             value={this.state.aircraft}
             onChange={this.handleChange}
-            style={{ margin: "25px" }}
+            style={{ margin: '25px' }}
           />
           <div>EQUIPMENT:</div>
           <input
@@ -69,7 +71,7 @@ export class EditJump extends Component {
             name="equipment"
             value={this.state.equipment}
             onChange={this.handleChange}
-            style={{ margin: "25px" }}
+            style={{ margin: '25px' }}
           />
           <div>EXIT ALTITUDE:</div>
           <input
@@ -77,7 +79,7 @@ export class EditJump extends Component {
             name="exitAltitude"
             value={this.state.exitAltitude}
             onChange={this.handleChange}
-            style={{ margin: "25px" }}
+            style={{ margin: '25px' }}
           />
           <div>PULL ALTITUDE:</div>
           <input
@@ -85,7 +87,7 @@ export class EditJump extends Component {
             name="pullAltitude"
             value={this.state.pullAltitude}
             onChange={this.handleChange}
-            style={{ margin: "25px" }}
+            style={{ margin: '25px' }}
           />
           <div>FREEFALL TIME:</div>
           <input
@@ -93,7 +95,7 @@ export class EditJump extends Component {
             name="freeFallTime"
             value={this.state.freeFallTime}
             onChange={this.handleChange}
-            style={{ margin: "25px" }}
+            style={{ margin: '25px' }}
           />
           <div>JUMPERS:</div>
           <input
@@ -101,7 +103,7 @@ export class EditJump extends Component {
             name="jumpers"
             value={this.state.jumpers}
             onChange={this.handleChange}
-            style={{ margin: "25px" }}
+            style={{ margin: '25px' }}
           />
           <div>DESCRIPTION:</div>
           <input
@@ -109,7 +111,7 @@ export class EditJump extends Component {
             name="description"
             value={this.state.description}
             onChange={this.handleChange}
-            style={{ margin: "25px" }}
+            style={{ margin: '25px' }}
           />
           <div>JUMP TYPE:</div>
           <input
@@ -117,7 +119,7 @@ export class EditJump extends Component {
             name="jumpType"
             value={this.state.jumpType}
             onChange={this.handleChange}
-            style={{ margin: "25px" }}
+            style={{ margin: '25px' }}
           />
 
           <button
@@ -125,18 +127,18 @@ export class EditJump extends Component {
               evt.preventDefault();
               this.props.edit({ ...this.state }, this.props.user.id, jump.id);
               this.setState({
-                jumpNumber: "",
-                location: "",
-                aircraft: "",
-                equipment: "",
+                jumpNumber: '',
+                location: '',
+                aircraft: '',
+                equipment: '',
                 exitAltitude: 14000,
                 pullAltitude: 4000,
                 freeFallTime: 60,
-                jumpers: "",
-                description: "",
-                jumpType: "",
+                jumpers: '',
+                description: '',
+                jumpType: '',
               });
-              this.props.getJump(this.props.user.id, jump.id)
+              this.props.getJump(this.props.user.id, jump.id);
             }}
           >
             <Link to={`/jumps/${jump.id}`}>Edit Jump Log</Link>
@@ -149,12 +151,14 @@ export class EditJump extends Component {
 
 const mapStateToProps = (state) => ({
   jumpRecords: state.jumpRecords,
-    user: state.auth
+  user: state.auth,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  edit: (jump, userId, jumpId) => dispatch(Thunk_updateJump(jump, userId, jumpId)),
-  getJump: (userId, jumpId) => dispatch(Thunk_fetchAllJumpRecords(userId, jumpId)),
+  edit: (jump, userId, jumpId) =>
+    dispatch(Thunk_updateJump(jump, userId, jumpId)),
+  getJump: (userId, jumpId) =>
+    dispatch(Thunk_fetchAllJumpRecords(userId, jumpId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditJump);

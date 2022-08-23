@@ -22,7 +22,7 @@ import {
   thunk_updateLoad,
 } from '../store/loads';
 
-export class Example extends React.Component {
+export class AllDropzones extends React.Component {
   constructor(props) {
     super(props);
     //this.state = {
@@ -68,70 +68,9 @@ export class Example extends React.Component {
   render() {
     return (
       <div>
-        <h1>TEST</h1>
+        <h1>DROPZONES PAGE</h1>
       </div>
     );
-    ///////////////////////////////////////////BELOW IS THE JUMPRECORD CRUDS/////////ABOVE IS THE DROPZONE CRUD//////////////////////
-    //   console.log('PROPS',this.props)
-
-    //   let { jumps } = this.props || [];
-    //   return (
-    //     <div >
-    //      {jumps.map((jump) => {
-    //           return (
-    //             <div className="recent-jumps" key={jump.id}>
-    //               <div>{jump.jumpNumber}</div>
-    //               <div>{jump.aircraft}</div>
-    //               <div>{jump.equipment}</div>
-    //               <h1>Edit Log</h1>
-    //               <form id="jump-form">
-    //                 <div>JUMP JUMBER:</div>
-    //                 <input
-    //                   type="text"
-    //                   name="jumpNumber"
-    //                   value={this.state.jumpNumber}
-    //                   onChange={this.handleChange}
-    //                 />
-    //               </form>
-    //               <button
-    //           onClick={(evt) => {
-    //             evt.preventDefault();
-    //             this.props.edit({ ...this.state }, 3, jump.id);
-    //             this.setState({
-    //               jumpNumber: "",
-    //               // location: "",
-    //               // aircraft: "",
-    //               // equipment: "",
-    //               // exitAltitude: 14000,
-    //               // pullAltitude: 4000,
-    //               // freeFallTime: 60,
-    //               // jumpers: "",
-    //               // description: "",
-    //               // jumpType: "",
-    //             });
-    //             //this.props.getJumps(3)
-    //           }}
-    //         >UPDATE</button>
-    //         <button
-    //           onClick={(evt) => {
-    //             evt.preventDefault();
-    //             this.props.delete( 3, jump.id);
-    //           }}
-    //         >DELETE</button>
-    //         <button
-    //           onClick={(evt) => {
-    //             evt.preventDefault();
-    //             this.props.add(
-    //           {jumpNumber: 91219, id: 239}, 3);
-    //           this.props.getJumps(3)
-    //           }}
-    //         >ADD</button>
-    //             </div>
-    //           );
-    //      })}
-
-    //     </div>
-    //   );
   }
 }
 const mapState = (state) => {
@@ -176,4 +115,4 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect(mapState, mapDispatch)(Example);
+export default connect(mapState, mapDispatch)(AllDropzones);
