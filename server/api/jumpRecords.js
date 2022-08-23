@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const JumpRecords = require('../db/models/JumpRecords');
+const JumpRecord = require('../db/models/JumpRecords');
 const Load = require('../db/models/Load');
 const User = require('../db/models/User');
 const Dropzone = require('../db/models/Dropzone')
@@ -10,26 +10,12 @@ const Dropzone = require('../db/models/Dropzone')
 //GET api/jumprecords/:id/jumps/
 router.get('/:id/jumps/', async (req, res, next) => {
   try {
-    // const userJumps = JumpRecords.findAll({
-    //   where: {
-    //     userId: req.params.id,
-    //     // include: [
-    //     //   Dropzone
-    //     // ]
-    //   }
-    // })
-    const userJumps = await User.findByPk(req.params.id, {
-      include: [
-        {
-          model: JumpRecords,
-          include: [
-            Dropzone
-          ]
-        }
-      ]
-    });
-    // const userJumps = await User.findByPk(req.params.id);
-    res.json(userJumps);
+    const userJumps = await JumpRecord.findAll({
+      where: {
+        userId: req.params.id,
+      }
+    })
+    res.send(userJumps);
   } catch (err) {
     next(err);
   }
@@ -61,17 +47,17 @@ router.get('/:id/jumps/:jumpId', async (req, res, next) => {
 router.put("/:id/:jumpId/", async (req, res, next) => {
   try {
     const editRecord = await JumpRecord.findByPk(req.params.jumpId);
-    await editRecord.update({
+    await editRecord.update({...editRecord,
       jumpNumber: req.body.jumpNumber,
-      // location: req.body.location,
-      // aircraft: req.body.aircraft,
-      // equipment: req.body.equipment,
-      // exitAltitude: req.body.exitAltitude,
-      // pullAtltitude:req.body.pullAtltitude,
-      // freeFallTime: req.body.freeFallTime,
-      // jumpers: req.body.jumpers,
-      // description: req.body.description,
-      // jumpType: req.body.jumpType,
+      location: req.body.location,
+      aircraft: req.body.aircraft,
+      equipment: req.body.equipment,
+      exitAltitude: req.body.exitAltitude,
+      pullAtltitude:req.body.pullAtltitude,
+      freeFallTime: req.body.freeFallTime,
+      jumpers: req.body.jumpers,
+      description: req.body.description,
+      jumpType: req.body.jumpType,
     })
     // res.send(editRecord)
     const userJumps = await JumpRecord.findAll({

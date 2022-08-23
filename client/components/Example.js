@@ -40,19 +40,24 @@ export class Example extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
   componentDidMount() {
-    //this.props.getJumpRecords(3);
-    // this.props.getLoads(1);
     //this.props.getDropzone(2)
     //this.props.addDropzone({name:'thenewDROPZONE',address:'yourmomshouse', phoneNumber:'deez'})
     //this.props.editDropzone(4,{ name:'asdfas' , address:'hello', phoneNumber:'23424324'})
     //this.props.deleteDropzone(4)
     //this.props.getDropzones()
+
     //this.props.getLoads(1)
     //this.props.getSingleLoad(1,1)
     //this.props.addLoad({dropzoneId: 1, aircraft: 'cessna', slots: 5, slotFilled: 2, isFull: false, status: 'on time'},1)
     //this.props.deleteLoad(1, 4)
     //this.props.editLoad(1,1,{aircraft:'cessna'})
-    
+
+    //this.props.getJumpRecords(3)
+    //this.props.getSingleJumpRecord(2, 3)
+    //this.props.addJumpRecord({},3)
+    //this.props.deleteJumpRecord(3,21) //NEED TO BE VERY SPECIFIC
+    this.props.editJumpRecord({aircraft:'NEWWWWWWWWW'},2,3)
+
   }
 
   handleChange(evt) {
@@ -141,11 +146,11 @@ const mapState = (state) => {
 };
 const mapDispatch = (dispatch) => {
   return {
-    editJumpRecord: (jump, userId, jumpId) => dispatch(Thunk_updateJump(jump, userId, jumpId)),//BROKEN//
-    getJumpRecords: (userId) => dispatch(Thunk_fetchAllJumpRecords(userId)),//BROKEN//
-    deleteJumpRecord: (userId, jumpId) => dispatch(Thunk_deleteJump(userId, jumpId)), //BROKEN//
-    addJumpRecord: (jump, id) => dispatch(Thunk_createJump(jump, id)), //BROKEN//
-    getSingleJumpRecord: (userId, jumpId) => dispatch(Thunk_fetchSingleJump(userId, jumpId)),//BROKEN//
+    editJumpRecord: (jump, userId, jumpId) => dispatch(Thunk_updateJump(jump, userId, jumpId)),//WORKING//
+    getJumpRecords: (userId) => dispatch(Thunk_fetchAllJumpRecords(userId)),//WORKING//
+    deleteJumpRecord: (userId, jumpId) => dispatch(Thunk_deleteJump(userId, jumpId)), //WOKRING//
+    addJumpRecord: (jump, id) => dispatch(Thunk_createJump(jump, id)), //WORKING//
+    getSingleJumpRecord: (userId, jumpId) => dispatch(Thunk_fetchSingleJump(userId, jumpId)),//WORKING//
 
     ////////ABOVE is for USER TABLE//////BELOW IS FOR DROPZONE//////////////////////////
 
