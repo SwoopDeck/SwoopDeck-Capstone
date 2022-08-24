@@ -14,17 +14,18 @@
     "icon": "",
     "path": "/users"
   },
+
   {
-    "title": "Profile",
+    "title": "Account",
     "icon": "bi-person-fill",
     "children": [
       {
-        "title": "View profile",
-        "path": "/viewProfile"
+        "title": "View account",
+        "path": "/viewAccount"
       },
       {
-        "title": "Edit profile",
-        "path": "/editProfile"
+        "title": "Edit account",
+        "path": "/editAccount"
       }
     ]
   },

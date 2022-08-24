@@ -4,6 +4,13 @@
     "icon": "bi-house-fill",
     "path": "/alljumps"
   },
+
+  {
+    "title": "Join A Load",
+    "icon": "",
+    "path": "/loads"
+  },
+
   {
     "title": "Logbook",
     "icon": "bi-journal-text",
@@ -18,24 +25,20 @@
       }
     ]
   },
+
   {
-    "title": "Profile",
+    "title": "Account",
     "icon": "bi-person-fill",
     "children": [
       {
-        "title": "View profile",
-        "path": "/viewProfile"
+        "title": "View account",
+        "path": "/viewAccount"
       },
       {
-        "title": "Edit profile",
-        "path": "/editProfile"
+        "title": "Edit account",
+        "path": "/editAccount"
       }
     ]
-  },
-  {
-    "title": "Join A Load",
-    "icon": "",
-    "path": "/loads"
   },
 
   {
@@ -43,6 +46,7 @@
     "icon": "bi-github",
     "path": "/#"
   },
+  
   {
     "title": "About",
     "icon": "bi-paperclip",
