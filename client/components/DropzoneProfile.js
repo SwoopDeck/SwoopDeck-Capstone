@@ -25,14 +25,14 @@ import {
 /**
  * REACT COMPONENT
  */
-export class Example extends React.Component {
+export class DropzoneProfile extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.handleChange = this.handleChange.bind(this);
   }
   componentDidMount() {
-    
+
   }
 
   handleChange(evt) {
@@ -50,7 +50,6 @@ export class Example extends React.Component {
     
   }
 }
-
 const mapState = (state) => {
   return {
     jumpRecords: state.jumpRecords,
@@ -93,4 +92,4 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect(mapState, mapDispatch)(Example);
+export default connect(mapState, mapDispatch)(DropzoneProfile);

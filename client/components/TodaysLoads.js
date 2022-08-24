@@ -25,10 +25,10 @@ import {
 /**
  * REACT COMPONENT
  */
-export class Example extends React.Component {
+export class TodaysLoads extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.handleChange = this.handleChange.bind(this);
   }
   componentDidMount() {
@@ -47,10 +47,9 @@ export class Example extends React.Component {
         <h1>TEST</h1>
       </div>
     );
-    
+   
   }
 }
-
 const mapState = (state) => {
   return {
     jumpRecords: state.jumpRecords,
@@ -93,4 +92,4 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect(mapState, mapDispatch)(Example);
+export default connect(mapState, mapDispatch)(TodaysLoads);

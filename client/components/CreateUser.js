@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createUser } from '../store/allUsers';
 
+// REACT COMPONENT //
 export class CreateUser extends React.Component {
   constructor(props) {
     super(props);

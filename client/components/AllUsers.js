@@ -22,6 +22,9 @@ import {
   thunk_updateLoad,
 } from '../store/loads';
 
+/**
+ * REACT COMPONENT
+ */
 export class AllUsers extends React.Component {
   constructor(props) {
     super(props);

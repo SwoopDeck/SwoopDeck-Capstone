@@ -121,6 +121,9 @@ import {
   thunk_updateLoad,
 } from '../store/loads';
 
+/**
+ * REACT COMPONENT
+ */
 export class AllJumps extends React.Component {
   constructor(props) {
     super(props);

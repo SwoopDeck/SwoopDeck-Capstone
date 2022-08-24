@@ -6,6 +6,7 @@ import Routes from './Routes'
 import { connect } from 'react-redux'
 import auth from './store/auth'
 import { ToastContainer } from 'react-toastify'
+import Copyright from './components/Copyright';
 
 class App extends React.Component {
  
@@ -21,9 +22,14 @@ class App extends React.Component {
           <Sidebar />
           <ToastContainer />
           <Routes />
+          <Copyright /> 
           </div>
         ) : (
+          <div> 
           <Routes />
+          <Copyright />
+          
+          </div>
         )}
 
       </div>

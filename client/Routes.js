@@ -12,6 +12,11 @@ import UserProfile from './components/UserProfile';
 import Example from './components/Example';
 import AllDropzones from './components/AllDropzones';
 import AllUsers from './components/AllUsers';
+import JoinLoad from './components/JoinLoad';
+import CreateLoad from './components/CreateLoad';
+import DropzoneProfile from './components/DropzoneProfile';
+import PastLoads from './components/PastLoads';
+import TodaysLoads from './components/TodaysLoads';
 
 /**
  * COMPONENT
@@ -27,6 +32,7 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
+            {/* USER ROUTES */}
             <Route exact path="/" component={AllJumps} />
             <Route exact path="/home" component={AllJumps} />
             {/* <Redirect to="/home" /> */}
@@ -35,14 +41,27 @@ class Routes extends Component {
             <Route path="/jumps/:jumpId" component={SingleJump} />
             <Route path="/add" component={AddJump} />
             <Route path="/viewProfile" component={UserProfile} />
-            {/* TO BE CHANGED TO ONLY ADMIN ACCESSIBLE SIDEBAR */}
+
+            {/* USER ONLY ROUTES */}
+            <Route path="/joinload" component={JoinLoad} />
+            
+
+            {/* ADMIN ONLY ROUTES */}
             <Route path="/users" component={AllUsers} />
             <Route path="/dropzones" component={AllDropzones} />
-            {/* TO BE CHANGED TO ONLY ADMIN ACCESSIBLE SIDEBAR */}
+
+
+            {/* DROPZONE ONLY ROUTES*/}
+            <Route path="/pastloads" component={PastLoads} />
+            <Route path="/todaysloads" component={TodaysLoads} />
+            <Route path="/createload" component={CreateLoad} />
+            <Route path="/dropzoneProfile" component={DropzoneProfile} />
+
           </Switch>
         ) : (
           <Switch>
             {/* <Route exact path='/' component={ Login } /> */}
+            <Route exact path="/" component={Login} />
             <Route path="/login" component={Login} />
             <Route path="/example" component={Example} />
             <Route path="/signup" component={CreateUser} />

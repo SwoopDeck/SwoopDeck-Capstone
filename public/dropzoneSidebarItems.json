@@ -9,11 +9,15 @@
     "icon": "",
     "children": [
       {
-        "title": "Create Load",
+        "title": "Create load",
         "path": "/createLoad"
       },
       {
-        "title": "View Loads",
+        "title": "Todays loads",
+        "path": "/:dropzoneId/loads"
+      },
+      {
+        "title": "Past loads",
         "path": "/:dropzoneId/loads"
       }
     ]
@@ -23,12 +27,12 @@
     "icon": "bi-person-fill",
     "children": [
       {
-        "title": "View Account",
-        "path": "/viewProfile"
+        "title": "View account",
+        "path": "/viewAccount"
       },
       {
-        "title": "Edit Account",
-        "path": "/editProfile"
+        "title": "Edit account",
+        "path": "/editAccount"
       }
     ]
   },
