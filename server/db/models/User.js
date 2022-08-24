@@ -50,9 +50,9 @@ const User = db.define('user', {
     defaultValue: false,
   },
 
-  isUser: {
+  isDropzone: {
     type: Sequelize.BOOLEAN,
-    defaultValue: true,
+    defaultValue: false,
   },
 
   licenseNumber: {

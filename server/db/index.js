@@ -35,6 +35,9 @@ Load.hasMany(JumpRecords);
 JumpRecords.belongsTo(Dropzone);
 Dropzone.hasMany(JumpRecords);
 
+Dropzone.hasOne(User);
+User.belongsTo(Dropzone);
+
 module.exports = {
   db,
   models: {

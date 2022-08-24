@@ -20,6 +20,7 @@ import {
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
+  addLoad,
 } from '../store/loads';
 
 /**
@@ -29,25 +30,74 @@ export class CreateLoad extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleChange = this.handleChange.bind(this);
-  }
-  componentDidMount() {
+    this.state = {
+      aircraft: '',
+      slots: null,
+      status: 'on time',
+    };
 
+    this.handleChange = this.handleChange.bind(this);
+    this.createLoad = this.createLoad.bind(this);
   }
+  componentDidMount() {}
 
   handleChange(evt) {
+    console.log('before', this.state);
     this.setState({
       [evt.target.name]: evt.target.value,
     });
+    console.log('after', this.state);
+  }
+
+  createLoad(evt) {
+    const dropzoneId = this.props.users.dropzoneId;
+    const load = { ...this.state };
+    this.props.addLoad(load, dropzoneId);
   }
 
   render() {
+    console.log(this.props);
     return (
       <div>
-        <h1>TEST</h1>
+        <h1>Create New Load</h1>
+        <form>
+          <input
+            type="text"
+            name="aircraft"
+            placeholder="Aircraft"
+            onChange={this.handleChange}
+          />
+          <label htmlFor="availableSlots">Available Slots</label>
+          <select name="availableSlots" onChange={this.handleChange}>
+            <option name={1}>1</option>
+            <option name={2}>2</option>
+            <option name={3}>3</option>
+            <option name={4}>4</option>
+            <option name={5}>5</option>
+            <option name={6}>6</option>
+            <option name={7}>7</option>
+            <option name={8}>8</option>
+            <option name={9}>9</option>
+            <option name={10}>10</option>
+            <option name={11}>11</option>
+            <option name={12}>12</option>
+            <option name={13}>13</option>
+            <option name={14}>14</option>
+            <option name={15}>15</option>
+          </select>
+          <label htmlFor="status">Status</label>
+          <select name="status" onChange={this.handleChange}>
+            <option name="on time">On Time</option>
+            <option name="delayed">Delayed</option>
+            <option name="closed">Closed</option>
+            <option name="canceled">Canceled</option>
+          </select>
+          <button type="button" onClick={this.createLoad}>
+            Submit
+          </button>
+        </form>
       </div>
     );
-
   }
 }
 const mapState = (state) => {

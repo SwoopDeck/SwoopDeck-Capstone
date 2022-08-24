@@ -16,6 +16,17 @@ const requireToken = async (req, res, next) => {
   }
 };
 
+// const requireTokenDZ = async (req, res, next) => {
+//   try {
+//     const token = req.headers.authorization;
+//     const dropzone = await Dropzone.findByToken(token);
+//     req.dropzone = dropzone;
+//     next();
+//   } catch (err) {
+//     next(err);
+//   }
+// };
+
 const isAdmin = (req, res, next) => {
   // if we get past requireToken, we can guarentee we are a user
   // we have access to req.user
@@ -26,7 +37,18 @@ const isAdmin = (req, res, next) => {
   }
 };
 
+const isDropzone = (req, res, next) => {
+  // if we get past requireToken, we can guarentee we are a user
+  // we have access to req.user
+  if (!req.user.isDropzone) {
+    return res.status(403).send('You are not a Dropzone!');
+  } else {
+    next();
+  }
+};
+
 module.exports = {
   requireToken,
   isAdmin,
+  isDropzone,
 };

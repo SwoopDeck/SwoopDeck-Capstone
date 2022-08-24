@@ -362,6 +362,37 @@ async function seed() {
   await DZ1.addLoad(load1);
   await DZ1.addLoad(load2);
 
+  // DUMMY DROPZONE WITH USER.CREATE
+  const Nigel = await User.create({
+    firstName: 'Nigel',
+    lastName: 'Doe',
+    email: 'nigel@gmail.com',
+    password: '123',
+    address: '99 Coding Blvd',
+    licenseNumber: 898989,
+    isAdmin: false,
+    isDropzone: true,
+  });
+
+  // DUMMY DATA TO ASSIGN A DROPZONE TO A USER
+  const nigelUser = await User.findByPk(6);
+  const sdsd = await Dropzone.findByPk(3);
+
+  await nigelUser.setDropzone(sdsd)
+
+
+  const BrianLee = await User.create({
+    firstName: 'Brian',
+    lastName: 'Lee',
+    email: 'BrianLee@gmail.com',
+    password: '123',
+    address: '99 Coding Blvd',
+    licenseNumber: 898989,
+    isAdmin: false,
+    isDropzone: true,
+    dropzoneId: 2,
+  });
+
   // await load1.addUser(cole, {
   //   through: {
   //     jumpNumber: 1,
