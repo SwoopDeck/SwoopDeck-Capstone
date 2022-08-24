@@ -50,8 +50,18 @@ export class CreateLoad extends React.Component {
   }
 
   createLoad(evt) {
+    //GETTING DATE & TIME INFO
+
+    const date = new Date();
+    date.getDate();
+    //GETTING DATE & TIME INFO
+
     const dropzoneId = this.props.users.dropzoneId;
-    const load = { ...this.state };
+    const load = {
+      ...this.state,
+      isFull: false,
+      date: date,
+    };
     this.props.addLoad(load, dropzoneId);
   }
 
@@ -61,6 +71,7 @@ export class CreateLoad extends React.Component {
       <div>
         <h1>Create New Load</h1>
         <form>
+          <label htmlFor="aircraft">Aircraft Type</label>
           <input
             type="text"
             name="aircraft"
@@ -68,23 +79,13 @@ export class CreateLoad extends React.Component {
             onChange={this.handleChange}
           />
           <label htmlFor="availableSlots">Available Slots</label>
-          <select name="availableSlots" onChange={this.handleChange}>
-            <option name={1}>1</option>
-            <option name={2}>2</option>
-            <option name={3}>3</option>
-            <option name={4}>4</option>
-            <option name={5}>5</option>
-            <option name={6}>6</option>
-            <option name={7}>7</option>
-            <option name={8}>8</option>
-            <option name={9}>9</option>
-            <option name={10}>10</option>
-            <option name={11}>11</option>
-            <option name={12}>12</option>
-            <option name={13}>13</option>
-            <option name={14}>14</option>
-            <option name={15}>15</option>
-          </select>
+          <input
+            type="text"
+            name="availableSlots"
+            placeholder="10"
+            onChange={this.handleChange}
+          />
+
           <label htmlFor="status">Status</label>
           <select name="status" onChange={this.handleChange}>
             <option name="on time">On Time</option>
