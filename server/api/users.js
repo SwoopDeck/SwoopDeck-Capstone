@@ -6,16 +6,18 @@ const jwt = require('jsonwebtoken');
 const { requireToken, isAdmin } = require('./middleware');
 module.exports = router;
 
-//GET api/users/ Get all users as admin
+//GET ALL USERS (ADMIN)
 router.get('/', async (req, res, next) => {
   try {
-    const users = await User.findAll({
+    const users = await User.findAll(
       
-      //   // explicitly select only the id and email fields - even though
-      //   // users' passwords are encrypted, it won't help if we just
-      //   // send everything to anyone who asks!
-      attributes: ["id", "email", "firstName", "lastName"],
-    });
+    //   {
+    //   //   // explicitly select only the id and email fields - even though
+    //   //   // users' passwords are encrypted, it won't help if we just
+    //   //   // send everything to anyone who asks!
+    //   attributes: ["id", "email", "firstName", "lastName"],
+    // }
+    );
     res.json(users);
   } catch (err) {
     next(err);
