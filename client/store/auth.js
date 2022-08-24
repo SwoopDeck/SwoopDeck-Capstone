@@ -7,11 +7,17 @@ const TOKEN = 'token'
  * ACTION TYPES
  */
 const SET_AUTH = 'SET_AUTH'
+const SET_AUTHDZ = 'SET_AUTHDZ'
 
 /**
  * ACTION CREATORS
  */
 const setAuth = auth => ({type: SET_AUTH, auth})
+
+/**
+ * ACTION CREATORS
+ */
+ const setAuthDZ = authDZ => ({type: SET_AUTHDZ, authDZ})
 
 /**
  * THUNK CREATORS
@@ -41,13 +47,13 @@ export const me = () => async dispatch => {
         authorization: token
       }
     })
-    return dispatch(setAuth(res.data))
+    return dispatch(setAuthDZ(res.data))
   }
 }
 
 export const authenticate = (email, password, method) => async (dispatch) => {
   try {
-    console.log('USER in store/auth, authenticate function', 20)
+    console.log('USER in store/auth, authenticate function')
     const res = await axios.post(`/auth/${method}`, { email, password });
     window.localStorage.setItem(TOKEN, res.data.token);
     dispatch(me());
@@ -103,6 +109,9 @@ export default function(state = {}, action) {
     case SET_AUTH:
       console.log(action.auth)
       return action.auth
+    case SET_AUTHDZ:
+    console.log(action.authDZ)
+    return action.authDZ
     default:
       return state
   }

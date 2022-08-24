@@ -17,6 +17,7 @@ import Example from './components/Example';
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
+    // this.props.loadInitialDataDZ()
   }
 
   render() {
@@ -29,6 +30,7 @@ class Routes extends Component {
           <Route exact path="/" component={Home} />
           <Route exact path="/home" component={AllJumps} />
           <Route path="/login" component={Login} />
+          <Route path="/add" component={AddJump} />
             {/* 1. Login/2. Logout/
             3. All jumps/4. single jump/5. edit jump/6. add jump/7. delete jump/
             8. add to load/9. remove from load/ 
@@ -88,18 +90,25 @@ const mapState = state => {
     // // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
     // // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
     isLoggedIn: !!state.auth.id,
-    // isAdmin: !!state.auth.isAdmin,
-    // isUser: !!state.auth.isUser,
-    // isDropzone: !!state.auth.isDropzone,
+    isAdmin: !!state.auth.isAdmin,
+    isUser: !!state.auth.isUser,
+    isDropzone: !!state.auth.isDropzone,
   }
 }
 
 const mapDispatch = dispatch => {
   return {
     loadInitialData() {
+      // isLoggedIn ? dispatch(me()) : dispatch(meDZ())
       dispatch(me())
-      // dispatch(meDZ())
-    }
+      dispatch(meDZ())
+     
+    },
+    // loadInitialDataDZ() {
+    //   // isLoggedIn ? dispatch(me()) : dispatch(meDZ())
+    //   dispatch(meDZ())
+     
+    // }
   }
 }
 

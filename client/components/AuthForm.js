@@ -16,7 +16,7 @@ const AuthForm = props => {
     let path = `/example`; 
     history.push(path);
   }
-  const {name, displayName, handleSubmit, error} = props
+  const {name, displayName, handleSubmit, handleSubmitDZ, error} = props
   console.log(props)
   return (
     <div className='login-main'>
@@ -30,6 +30,28 @@ const AuthForm = props => {
         <div className="login">
           <div className="login-card">
             <p className="title">Log In</p>
+            <input name="email" placeholder="Email" required />
+            <input
+              name="password"
+              placeholder="Password"
+              type="password"
+              required
+            />
+            <button className="loader" >Sign in</button>
+            <p className="text">Don't have an account?</p>
+            <Link to="/signup">
+              <button className="buttonShadow" type="submit">
+                Create new account
+              </button>
+            </Link>
+          </div>
+        </div>
+        {error && <div> {error} </div>}
+      </form>
+      <form onSubmit={handleSubmitDZ} name={name}>
+        <div className="login">
+          <div className="login-card">
+            <p className="title">Log In DROPZONE</p>
             <input name="email" placeholder="Email" required />
             <input
               name="password"
@@ -85,6 +107,14 @@ const mapDispatch = dispatch => {
       const password = evt.target.password.value
       console.log(formName, email, password)
       dispatch(authenticate(email, password, formName))
+      routeChange()
+    },
+    handleSubmitDZ(evt) {
+      evt.preventDefault()
+      const formName = evt.target.name
+      const email = evt.target.email.value
+      const password = evt.target.password.value
+      console.log(formName, email, password)
       dispatch(authenticateDZ(email, password, formName))
       routeChange()
     },
