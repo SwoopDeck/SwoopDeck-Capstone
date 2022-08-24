@@ -1,5 +1,10 @@
-const Sequelize = require('sequelize');
-const db = require('../db');
+const Sequelize = require('sequelize')
+const db = require('../db')
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt');
+const axios = require('axios');
+
+const SALT_ROUNDS = 5;
 
 const Dropzone = db.define('dropzones', {
     name: {
@@ -24,12 +29,80 @@ const Dropzone = db.define('dropzones', {
         },
     },
 
-      isDropzone: {
+    isDropzone: {
         type: Sequelize.BOOLEAN,
         defaultValue: true,
+    },
+
+    email: {
+        type: Sequelize.STRING,
+        unique: true,
+        allowNull: false,
+        // validate: {
+        //   isEmail: true,
+        //   notEmpty: true,
+        // },
       },
 
+    password: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
 });
 
 module.exports = Dropzone;
 
+/**
+ * instanceMethods
+ */
+ Dropzone.prototype.correctPassword = function(candidatePwd) {
+    //we need to compare the plain version to an encrypted version of the password
+    return bcrypt.compare(candidatePwd, this.password);
+  }
+  
+  Dropzone.prototype.generateToken = function() {
+    return jwt.sign({id: this.id}, process.env.JWT)
+  }
+  
+  /**
+   * classMethods
+   */
+  Dropzone.authenticate = async function({ email, password }){
+      const dropzone = await this.findOne({where: { email }})
+      if (!dropzone || !(await dropzone.correctPassword(password))) {
+        const error = Error('Incorrect email/password');
+        error.status = 401;
+        throw error;
+      }
+      return dropzone.generateToken();
+  };
+  
+  Dropzone.findByToken = async function(token) {
+    try {
+      const {id} = await jwt.verify(token, process.env.JWT)
+      const dropzone = Dropzone.findByPk(id)
+      if (!dropzone) {
+        throw 'nooo'
+      }
+      return dropzone
+    } catch (ex) {
+      const error = Error('bad token')
+      error.status = 401
+      throw error
+    }
+  }
+
+//HASHING OF PASSWORDS
+/**
+ * hooks
+ */
+ const hashPassword = async(dropzone) => {
+    //in case the password has been changed, we want to encrypt it with bcrypt
+    if (dropzone.changed('password')) {
+      dropzone.password = await bcrypt.hash(dropzone.password, SALT_ROUNDS);
+    }
+  }
+  
+  Dropzone.beforeCreate(hashPassword)
+  Dropzone.beforeUpdate(hashPassword)
+  Dropzone.beforeBulkCreate(dropzone => Promise.all(dropzone.map(hashPassword)))

@@ -258,16 +258,33 @@ const dropZones = [
     name: "Cleveland Skydiving Center",
     address: "55 Grove St",
     phoneNumber: "8005555555",
+    email: "csdc@gmail.com",
+    password:"123",
+    
   },
   {
     name: "Skydive The Ranch",
     address: "123 Manhattan rd",
     phoneNumber: "8002222222",
+    email: "sdtr@gmail.com",
+    password:"123",
+    
   },
   {
     name: "Skydive San Diego",
     address: "777 Sunset blvd",
     phoneNumber: "8002222222",
+    email: "sdsd@gmail.com",
+    password:"123",
+    
+  },
+  {
+    name: "Skydive Paracletes XP",
+    address: "200 Fort Bragg",
+    phoneNumber: "231232322",
+    email: "sdpx@gmail.com",
+    password:"123",
+    
   },
 ];
 

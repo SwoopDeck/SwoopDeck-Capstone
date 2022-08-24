@@ -1,15 +1,26 @@
 const express = require('express');
 const {
-  models: { User },
+  models: { User , Dropzone },
 } = require('../db');
 
 // store all of our functions that will act as middleware between our request and our response
 // expect 'bad token' when this works
-const requireToken = async (req, res, next) => {
+const isUser = async (req, res, next) => {
   try {
     const token = req.headers.authorization;
     const user = await User.findByToken(token);
     req.user = user;
+    next();
+  } catch (err) {
+    next(err);
+  }
+};
+
+const isDropzone = async (req, res, next) => {
+  try {
+    const token = req.headers.authorization;
+    const dropzone = await Dropzone.findByToken(token);
+    req.dropzone = dropzone;
     next();
   } catch (err) {
     next(err);
@@ -27,6 +38,7 @@ const isAdmin = (req, res, next) => {
 };
 
 module.exports = {
-  requireToken,
+  isUser,
   isAdmin,
+  isDropzone,
 };

@@ -1,12 +1,14 @@
 const router = require('express').Router();
 const {
-  models: { Dropzone },
+  models: { User, JumpRecords, Dropzone },
 } = require('../db');
+const jwt = require('jsonwebtoken');
+const { isUser, isAdmin, isDropzone } = require('./middleware');
 
 //FETCH ALL DROPZONES
 
 //GET 'api/dropzones/'
-router.get('/', async (req, res, next) => {
+router.get('/', isDropzone, isAdmin, async (req, res, next) => {
   try {
     const dropzones = await Dropzone.findAll();
     
@@ -19,7 +21,7 @@ router.get('/', async (req, res, next) => {
 //FETCH A SINGLE DROPZONE
 
 //GET 'api/dropzones/:dropzoneId'
-router.get('/:dropzoneId', async (req, res, next) => {
+router.get('/:dropzoneId', isDropzone, async (req, res, next) => {
   try {
     const selectedDropzone = await Dropzone.findByPk(req.params.dropzoneId);
 
@@ -32,7 +34,7 @@ router.get('/:dropzoneId', async (req, res, next) => {
 //UPDATE A DROPZONE BY ID
 
 //GET 'api/dropzones/:dropzoneId'
-router.put('/:dropzoneId', async (req, res, next) => {
+router.put('/:dropzoneId', isDropzone, async (req, res, next) => {
   try {
     const selectedDropzone = await Dropzone.findByPk(req.params.dropzoneId);
     selectedDropzone.update({...selectedDropzone, ...req.body})
@@ -63,7 +65,7 @@ router.post('/create', async (req, res, next) => {
 //DELETE A DROPZONE
 
 //DELETE 'api/dropzones/:dropzoneId'
-router.delete('/:dropzoneId', async (req, res, next) => {
+router.delete('/:dropzoneId', isDropzone, async (req, res, next) => {
   try {
 
     await Dropzone.destroy({

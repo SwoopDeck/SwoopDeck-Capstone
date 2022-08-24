@@ -60,7 +60,10 @@ class Routes extends Component {
       </div>
     )
     
-    return this.state.isLoggedin ? user : notLoggedOn
+    return this.state.isLoggedin ? (
+      <div>
+        {isUser ? isUser : isDropzone}
+      </div>) : notLoggedOn
   }
 }
 

@@ -1,14 +1,15 @@
 const router = require('express').Router();
 const {
-  models: { User, JumpRecords },
+  models: { User, JumpRecords, Dropzone },
 } = require('../db');
 const jwt = require('jsonwebtoken');
-const { requireToken, isAdmin } = require('./middleware');
+const { isUser, isAdmin, isDropzone } = require('./middleware');
 module.exports = router;
 
 //GET api/users/ Get all users as admin
-router.get('/', async (req, res, next) => {
+router.get('/', isUser, isAdmin, async (req, res, next) => {
   try {
+
     const users = await User.findAll({
       
       //   // explicitly select only the id and email fields - even though
@@ -24,7 +25,7 @@ router.get('/', async (req, res, next) => {
 
 //Grabbing a users data/profile when logged in
 //GET api/users/:id
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', isUser, async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id);
     res.json(user);
@@ -46,7 +47,7 @@ router.post('/', async (req, res, next) => {
 
 //Update the user once the form is updated
 //PUT api/users/:id
-router.put("/:id", async (req, res, next) => {
+router.put("/:id", isUser, async (req, res, next) => {
   try {
     const user = await User.findOne({
       where: { userId: req.params.id },
@@ -60,7 +61,7 @@ router.put("/:id", async (req, res, next) => {
 
 //Delete the user if the user wants the account to be deleted
 //DELETE api/users/:id
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', isUser, async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id);
     await user.destroy(req.params.id);

@@ -44,7 +44,7 @@ export class Example extends React.Component {
     //this.props.addDropzone({name:'thenewDROPZONE',address:'yourmomshouse', phoneNumber:'deez'})
     //this.props.editDropzone(4,{ name:'asdfas' , address:'hello', phoneNumber:'23424324'})
     //this.props.deleteDropzone(4)
-    //this.props.getDropzones()
+    //this.props.getDropzones(2)
 
     //this.props.getLoads(1)
     //this.props.getSingleLoad(1,1)
@@ -57,7 +57,7 @@ export class Example extends React.Component {
     //this.props.addJumpRecord({},3)
     //this.props.deleteJumpRecord(3,21) //NEED TO BE VERY SPECIFIC
     //this.props.editJumpRecord({aircraft:'NEWWWWWWWWW'},2,3)
-    console.log(this.props)
+    
   }
 
   handleChange(evt) {
@@ -70,7 +70,7 @@ export class Example extends React.Component {
     console.log(this.props);
     return (
       <div>
-        <h1>hello {this.props.user}</h1>
+        <h1>hello</h1>
       </div>
     );
     ///////////////////////////////////////////BELOW IS THE JUMPRECORD CRUDS/////////ABOVE IS THE DROPZONE CRUD//////////////////////
