@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
-import {me} from './store'
+import {me, meDZ} from './store'
 import AllJumps from './components/AllJumps';
 import SingleJump from './components/SingleJump'
 import AddJump from './components/AddJump'
@@ -25,7 +25,10 @@ class Routes extends Component {
     let user = (
       <div>
         <Switch>
+          <Route path="/example" component={Example} />
           <Route exact path="/" component={Home} />
+          <Route exact path="/home" component={AllJumps} />
+          <Route path="/login" component={Login} />
             {/* 1. Login/2. Logout/
             3. All jumps/4. single jump/5. edit jump/6. add jump/7. delete jump/
             8. add to load/9. remove from load/ 
@@ -37,6 +40,8 @@ class Routes extends Component {
     let dropzone = (
       <div>
         <Switch>
+          <Route path="/example" component={Example} />
+          <Route path="/login" component={Login} />
           {/* 13. All loads/14. single load /15. edit load/16. add load/17. delete load/
           18. edit dropzone info/ 19. delete account/
            */}
@@ -46,6 +51,8 @@ class Routes extends Component {
     let admin = (
       <div>
         <Switch>
+          <Route path="/example" component={Example} />
+          <Route path="/login" component={Login} />
           {/* 20. all dropzones/ 21. all users/ 
            */}
         </Switch>
@@ -56,13 +63,19 @@ class Routes extends Component {
       <div>
         <Switch>
             {/* 22.sign up page for user/23. sign up as dropzone  */}
+          <Route path="/login" component={Login} />
+          
+          <Route path="/signup" component={CreateUser} />
         </Switch>
       </div>
     )
     
-    return this.state.isLoggedin ? (
+    return isLoggedIn ? (
       <div>
-        {isUser ? isUser : isDropzone}
+        {isAdmin ? admin : (
+          <div>
+            {isDropzone ? dropzone : user}
+          </div>)}
       </div>) : notLoggedOn
   }
 }
@@ -74,7 +87,10 @@ const mapState = state => {
   return {
     // // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
     // // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
-    isLoggedIn: !!state.auth.id
+    isLoggedIn: !!state.auth.id,
+    // isAdmin: !!state.auth.isAdmin,
+    // isUser: !!state.auth.isUser,
+    // isDropzone: !!state.auth.isDropzone,
   }
 }
 
@@ -82,6 +98,7 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
+      // dispatch(meDZ())
     }
   }
 }
