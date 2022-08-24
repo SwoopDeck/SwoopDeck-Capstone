@@ -19,7 +19,7 @@ const jumps = [
     jumpers: 1,
     description:
       "Great first jump of the day. Front flip exit. Good landing pattern & swoop.",
-    jumpType: 'angle',
+    jumpType: "angle",
   },
   {
     jumpNumber: 2,
@@ -31,7 +31,7 @@ const jumps = [
     freeFallTime: 60,
     jumpers: 1,
     description: "Front flip exit.",
-    jumpType: 'belly',
+    jumpType: "belly",
   },
   {
     jumpNumber: 3,
@@ -43,7 +43,7 @@ const jumps = [
     freeFallTime: 60,
     jumpers: 1,
     description: "Back flip exit.",
-    jumpType: 'belly',
+    jumpType: "belly",
   },
   {
     jumpNumber: 4,
@@ -55,7 +55,7 @@ const jumps = [
     freeFallTime: 60,
     jumpers: 1,
     description: "great landing!",
-    jumpType: 'belly',
+    jumpType: "belly",
   },
   {
     jumpNumber: 5,
@@ -438,26 +438,26 @@ async function seed() {
   await jump19.setUser(christopher);
   await jump20.setUser(christopher);
 
-  await jump1.setLoad(1)
-  await jump2.setLoad(1)
-  await jump3.setLoad(1)
-  await jump4.setLoad(1)
-  await jump5.setLoad(1)
-  await jump6.setLoad(1)
-  await jump7.setLoad(1)
-  await jump8.setLoad(1)
-  await jump9.setLoad(1)
-  await jump10.setLoad(2)
-  await jump11.setLoad(2)
-  await jump12.setLoad(2)
-  await jump13.setLoad(2)
-  await jump14.setLoad(2)
-  await jump15.setLoad(2)
-  await jump16.setLoad(2)
-  await jump17.setLoad(2)
-  await jump18.setLoad(2)
-  await jump19.setLoad(2)
-  await jump20.setLoad(2)
+  await jump1.setLoad(1);
+  await jump2.setLoad(1);
+  await jump3.setLoad(1);
+  await jump4.setLoad(1);
+  await jump5.setLoad(1);
+  await jump6.setLoad(1);
+  await jump7.setLoad(1);
+  await jump8.setLoad(1);
+  await jump9.setLoad(1);
+  await jump10.setLoad(2);
+  await jump11.setLoad(2);
+  await jump12.setLoad(2);
+  await jump13.setLoad(2);
+  await jump14.setLoad(2);
+  await jump15.setLoad(2);
+  await jump16.setLoad(2);
+  await jump17.setLoad(2);
+  await jump18.setLoad(2);
+  await jump19.setLoad(2);
+  await jump20.setLoad(2);
 
   await jump1.setDropzone(1);
 }
