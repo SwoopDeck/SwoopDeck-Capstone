@@ -6,8 +6,8 @@ const jwt = require('jsonwebtoken');
 const { requireToken, isAdmin } = require('./middleware');
 module.exports = router;
 
-//GET ALL USERS (ADMIN)
-router.get('/', async (req, res, next) => {
+//ADMIN VIEW: GET ALL USERS
+router.get('/', requireToken, isAdmin, async (req, res, next) => {
   try {
     const users = await User.findAll(
       
@@ -21,6 +21,7 @@ router.get('/', async (req, res, next) => {
     res.json(users);
   } catch (err) {
     next(err);
+    console.log('did not work')
   }
 });
 
@@ -35,8 +36,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-//Create a new user row to the User table
-//POST api/users/
+//ADMIN VIEW: CREATE NEW USER
 router.post('/', async (req, res, next) => {
   try {
     const user = await User.create(req.body);
@@ -53,7 +53,7 @@ router.put("/:id", async (req, res, next) => {
     const user = await User.findOne({
       where: { userId: req.params.id },
     });
-    user.update({});
+    user.update(req.body);
     res.json([]);
   } catch (err) {
     next(err);
