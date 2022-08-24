@@ -22,7 +22,7 @@ class App extends React.Component {
           <Sidebar />
           <ToastContainer />
           <Routes />
-          <Copyright /> 
+          {/* <Copyright />  */}
           </div>
         ) : (
           <div> 
