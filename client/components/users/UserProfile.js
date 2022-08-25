@@ -1,55 +1,37 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
 import {
   Thunk_fetchAllJumpRecords,
   Thunk_fetchSingleJump,
   Thunk_updateJump,
   Thunk_deleteJump,
   Thunk_createJump,
-} from '../store/jumpRecords';
+} from '../../store/jumpRecords';
 import {
   thunk_fetchSingleDropzone,
   thunk_updateDropzone,
   thunk_createDropzone,
   thunk_deleteDropzone,
   thunk_fetchAllDropzones,
-} from '../store/dropzones.js';
+} from '../../store/dropzones.js';
 import {
   thunk_fetchAllLoads,
   thunk_createLoad,
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
-} from '../store/loads';
+} from '../../store/loads';
+
 
 /**
  * REACT COMPONENT
  */
-export class JoinLoad extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-  componentDidMount() {
-
-  }
-
-  handleChange(evt) {
-    this.setState({
-      [evt.target.name]: evt.target.value,
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>TEST</h1>
-      </div>
-    );
-
-  }
+export const UserProfile = (props) => {
+  return (
+    <div>UserProfile</div>
+  )
 }
+
 const mapState = (state) => {
   return {
     jumpRecords: state.jumpRecords,
@@ -58,6 +40,7 @@ const mapState = (state) => {
     loads: state.loads,
   };
 };
+
 const mapDispatch = (dispatch) => {
   return {
     editJumpRecord: (jump, userId, jumpId) =>
@@ -92,4 +75,4 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect(mapState, mapDispatch)(JoinLoad);
+export default connect(mapState, null)(UserProfile)

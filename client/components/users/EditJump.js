@@ -7,21 +7,21 @@ import {
   Thunk_updateJump,
   Thunk_deleteJump,
   Thunk_createJump,
-} from '../store/jumpRecords';
+} from '../../store/jumpRecords';
 import {
   thunk_fetchSingleDropzone,
   thunk_updateDropzone,
   thunk_createDropzone,
   thunk_deleteDropzone,
   thunk_fetchAllDropzones,
-} from '../store/dropzones.js';
+} from '../../store/dropzones.js';
 import {
   thunk_fetchAllLoads,
   thunk_createLoad,
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
-} from '../store/loads';
+} from '../../store/loads';
 
 export class EditJump extends Component {
   constructor(props) {
