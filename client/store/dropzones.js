@@ -90,6 +90,7 @@ export const thunk_fetchSingleDropzone = (id) => async (dispatch) => {
 //THUNK: UPDATE A SINGLE DROPZONE
 export const thunk_updateDropzone = (dropzoneId, DROPZONE) => {
   return async (dispatch) => {
+    console.log(DROPZONE)
     const { data } = await axios.put(`api/dropzones/${dropzoneId}`, DROPZONE);
     dispatch(reformDropzone(data));
   };

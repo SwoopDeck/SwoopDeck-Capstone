@@ -46,7 +46,7 @@ class SingleUser extends React.Component {
         <h2>{name}</h2>
           <p>{address} </p>
           <p>{phoneNumber} </p>
-          <Link to='/editDropzone'>
+          <Link to={`/dropzones/edit/${id}`}>
           <button>Edit</button> 
           </Link>
           <Link to='/dropzones'>

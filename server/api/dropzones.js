@@ -34,6 +34,7 @@ router.get('/:dropzoneId', async (req, res, next) => {
 //GET 'api/dropzones/:dropzoneId'
 router.put('/:dropzoneId', async (req, res, next) => {
   try {
+    console.log('test')
     const selectedDropzone = await Dropzone.findByPk(req.params.dropzoneId);
     selectedDropzone.update({...selectedDropzone, ...req.body})
 

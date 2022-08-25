@@ -49,11 +49,20 @@ router.post('/', async (req, res, next) => {
 //PUT api/users/:id
 router.put("/:id", async (req, res, next) => {
   try {
-    const user = await User.findOne({
-      where: { userId: req.params.id },
+    const user = await User.findByPk(req.params.id);
+    console.log('TESTTTTTTTTTTTTTTTTTTASDFASDFASDFADSFDS', user)
+    console.log('REQUESTBODY',req.body)
+    user.update({...user,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      // password: '',
+      address: req.body.address,
+      licenseNumber: req.body.licenseNumber,
+      emergencyContact: req.bodyemergencyContact,
+      emergencyPhoneNumber: req.body.emergencyPhoneNumber
     });
-    user.update(req.body);
-    res.json([]);
+    res.json(user);
   } catch (err) {
     next(err);
   }

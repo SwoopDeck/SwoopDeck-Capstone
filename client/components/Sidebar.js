@@ -110,7 +110,7 @@ export const Sidebar = (props) => {
           {userItems.map((item, index) => (
             <SidebarItem key={index} item={item} />
           ))}
-
+          
           <i className="bi bi-box-arrow-right">
             <button className="logout-btn" onClick={() => dispatch(logout())}>
               Logout
