@@ -23,6 +23,12 @@ class Routes extends Component {
       this.props.loadInitialData();
     }
   }
+  //include an onchange check sum
+
+  getDerivedStateFromProps(){
+    
+  }
+
 
   render() {
     const { isLoggedIn, isUser, isDropzone, isAdmin } = this.props;

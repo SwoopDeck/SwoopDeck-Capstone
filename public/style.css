@@ -1,9 +1,9 @@
-/* @import './styles/sidebar.css';
+@import './styles/sidebar.css';
 @import './styles/authForm.css';
 @import './styles/navBar.css';
 @import './styles/alljumps.css';
 @import './styles/addJump.css';
-@import './styles/popUpWindow.css';
+
 
 body {
   font-family: sans-serif;
@@ -39,4 +39,4 @@ button {
 html {
   height: 100%;
   bottom: 0;
-} */
+}
