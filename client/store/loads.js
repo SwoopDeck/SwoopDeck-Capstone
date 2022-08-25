@@ -1,16 +1,16 @@
-import axios from "axios"
+import axios from 'axios';
 
 let initialState = [];
 
-/* ACTION TYPES */ 
+/* ACTION TYPES */
 
-let SET_LOADS = "SET_LOADS";
-let DELETE_LOAD = "DELETE_LOAD";
-let UPDATE_LOAD = "UPDATE_LOAD";
-let ADD_LOAD = "ADD_LOAD";
-const SET_SINGLE_LOAD = "SET_SINGLE_LOAD";
+let SET_LOADS = 'SET_LOADS';
+let DELETE_LOAD = 'DELETE_LOAD';
+let UPDATE_LOAD = 'UPDATE_LOAD';
+let ADD_LOAD = 'ADD_LOAD';
+const SET_SINGLE_LOAD = 'SET_SINGLE_LOAD';
 
-/* ACTION CREATORS */ 
+/* ACTION CREATORS */
 
 //SET ALL LOADS RECORDS
 export const setAllLoads = (LOADS) => {
@@ -19,7 +19,6 @@ export const setAllLoads = (LOADS) => {
     LOADS,
   };
 };
-
 
 //SET SINGLE LOADS RECORD
 export const setSingleLoad = (LOAD) => {
@@ -53,20 +52,20 @@ export const removeLoad = (LOAD) => {
   };
 };
 
-
-/* THUNKS */ 
+/* THUNKS */
 
 //THUNK: FETCH ALL LOADS RECORDS
 export const thunk_fetchAllLoads = (dropzoneId) => {
-    return async (dispatch) => {
-      try {
-        const { data } = await axios.get(`api/loads/${dropzoneId}`);
-        dispatch(setAllLoads(data));
-      } catch (err) {
-        console.log(err);
-      }
-    };
+  return async (dispatch) => {
+    console.log('thunk');
+    try {
+      const { data } = await axios.get(`api/loads/${dropzoneId}`);
+      dispatch(setAllLoads(data));
+    } catch (err) {
+      console.log(err);
+    }
   };
+};
 
 // THUNK: FETCH SINGLE LOADS RECORD
 export const thunk_fetchSingleLoad = (dropzoneId, loadId) => {
@@ -88,17 +87,17 @@ export const thunk_updateLoad = (dropzoneId, loadId, LOAD) => {
   };
 };
 
-//THUNK: ADD A NEW LOADS 
+//THUNK: ADD A NEW LOADS
 export const thunk_createLoad = (LOAD, dropzoneId) => {
-    return async (dispatch) => {
-      try {
-        const { data } = await axios.post(`api/loads/${dropzoneId}/create`, LOAD);
-        dispatch(addLoad(data));
-      } catch (err) {
-        console.log(err);
-      }
-    };
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post(`api/loads/${dropzoneId}/create`, LOAD);
+      dispatch(addLoad(data));
+    } catch (err) {
+      console.log(err);
+    }
   };
+};
 
 //THUNK: DELETE A SINGLE LOADS RECORD
 export const thunk_deleteLoad = (dropzoneId, loadId) => {
@@ -112,26 +111,25 @@ export const thunk_deleteLoad = (dropzoneId, loadId) => {
   };
 };
 
-
-/* REDUCERS */ 
+/* REDUCERS */
 export default function loadsReducer(state = initialState, action) {
   switch (action.type) {
     case SET_LOADS:
+      console.log('reducer');
       return action.LOADS;
     case SET_SINGLE_LOAD:
-      return action.LOAD;  
+      return action.LOAD;
     case ADD_LOAD:
       return action.LOAD;
     case UPDATE_LOAD:
       return action.LOAD;
-      // return state.map((record) =>
-      //   record.id === action.LOADS.id ? action.record : record
-      // );
+    // return state.map((record) =>
+    //   record.id === action.LOADS.id ? action.record : record
+    // );
     case DELETE_LOAD:
       return action.LOAD;
-      // return state.filter((log) => log.id !== action.id);
+    // return state.filter((log) => log.id !== action.id);
     default:
       return state;
   }
 }
-

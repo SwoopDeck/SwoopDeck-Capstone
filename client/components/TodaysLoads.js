@@ -32,7 +32,8 @@ export class TodaysLoads extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
   componentDidMount() {
-    
+    // const dropzoneId = this.props.user.dropzoneId;
+    // this.props.getLoads(dropzoneId);
   }
 
   handleChange(evt) {
@@ -42,33 +43,36 @@ export class TodaysLoads extends React.Component {
   }
 
   render() {
+    const dropzoneId = this.props.user.dropzoneId;
+    let loadsArr = this.props.getLoads(dropzoneId);
+    console.log(loadsArr);
     return (
       <div>
         <h1>TEST</h1>
       </div>
     );
-   
   }
 }
-// const mapState = (state) => {
-//   return {
-//     jumpRecords: state.jumpRecords,
-//     users: state.auth,
-//     dropzones: state.dropzones,
-//     loads: state.loads,
-//   };
-// };
 
 const mapState = (state) => {
   return {
     jumpRecords: state.jumpRecords,
-    users: state.users.allUsers,
+    user: state.auth,
     dropzones: state.dropzones.allDropzones,
     loads: state.loads,
-    singleUser: state.users.singleUser,
-    singleDropzone: state.dropzones.singleDropzone
   };
 };
+
+// const mapState = (state) => {
+//   return {
+//     jumpRecords: state.jumpRecords,
+//     users: state.users.allUsers,
+//     dropzones: state.dropzones.allDropzones,
+//     loads: state.loads,
+//     singleUser: state.users.singleUser,
+//     singleDropzone: state.dropzones.singleDropzone,
+//   };
+// };
 const mapDispatch = (dispatch) => {
   return {
     editJumpRecord: (jump, userId, jumpId) =>

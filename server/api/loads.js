@@ -8,14 +8,14 @@ const {
 //GET 'api/loads/:dropzoneId'
 router.get('/:dropzoneId', async (req, res, next) => {
   try {
-    
+    console.log('api');
     let loads = await Load.findAll({
       where: {
         dropzoneId: req.params.dropzoneId,
       },
     });
 
-    res.send(loads)
+    res.send(loads);
   } catch (err) {
     next(err);
   }
@@ -55,8 +55,8 @@ router.put('/:dropzoneId/:loadId', async (req, res, next) => {
         dropzoneId: req.params.dropzoneId,
       },
     });
-    singleLoad.update({...singleLoad, ...req.body })
-    
+    singleLoad.update({ ...singleLoad, ...req.body });
+
     // let loads = await Load.findAll({
     //   where: {
     //     dropzoneId: req.params.dropzoneId,
@@ -74,7 +74,7 @@ router.put('/:dropzoneId/:loadId', async (req, res, next) => {
 router.post('/:dropzoneId/create', async (req, res, next) => {
   try {
     //req.body contains all necessary info to fill data table
-    await Load.create(req.body)
+    await Load.create(req.body);
 
     let loads = await Load.findAll({
       where: {
@@ -83,7 +83,6 @@ router.post('/:dropzoneId/create', async (req, res, next) => {
     });
 
     res.send(loads);
-    
   } catch (e) {
     next(e);
   }
@@ -94,7 +93,6 @@ router.post('/:dropzoneId/create', async (req, res, next) => {
 //DELETE 'api/loads/:dropzoneId/:loadId'
 router.delete('/:dropzoneId/:loadId', async (req, res, next) => {
   try {
-
     await Load.destroy({
       where: {
         id: req.params.loadId,

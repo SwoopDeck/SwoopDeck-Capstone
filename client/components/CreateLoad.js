@@ -22,7 +22,7 @@ import {
   thunk_updateLoad,
   addLoad,
 } from '../store/loads';
-
+import { Thunk_fetchUsers, Thunk_fetchUser } from '../store/allusers';
 /**
  * REACT COMPONENT
  */
@@ -40,7 +40,10 @@ export class CreateLoad extends React.Component {
     this.createLoad = this.createLoad.bind(this);
     this.clearFields = this.clearFields.bind(this);
   }
-  componentDidMount() {}
+  componentDidMount() {
+    //this.props.getSingleUser(this.props.match.params.id);
+    this.props.getUsers();
+  }
 
   handleChange(evt) {
     console.log('before', this.state);
@@ -57,7 +60,7 @@ export class CreateLoad extends React.Component {
     date.getDate();
     //GETTING DATE & TIME INFO
 
-    const dropzoneId = this.props.users.dropzoneId;
+    const dropzoneId = this.props.user.dropzoneId;
     const load = {
       ...this.state,
       isFull: false,
@@ -73,12 +76,12 @@ export class CreateLoad extends React.Component {
       aircraft: '',
       slots: '0',
       status: 'on time',
-    })
+    });
   }
 
   render() {
     const { handleChange, clearFields, createLoad } = this;
-    console.log(this.props);
+
     return (
       <div>
         <h1>Create New Load</h1>
@@ -113,25 +116,25 @@ export class CreateLoad extends React.Component {
     );
   }
 }
-// const mapState = (state) => {
-//   return {
-//     jumpRecords: state.jumpRecords,
-//     users: state.auth,
-//     dropzones: state.dropzones,
-//     loads: state.loads,
-//   };
-// };
-
 const mapState = (state) => {
   return {
     jumpRecords: state.jumpRecords,
-    users: state.users.allUsers,
+    user: state.auth,
     dropzones: state.dropzones.allDropzones,
     loads: state.loads,
-    singleUser: state.users.singleUser,
-    singleDropzone: state.dropzones.singleDropzone
   };
 };
+
+// const mapState = (state) => {
+//   return {
+//     jumpRecords: state.jumpRecords,
+//     Users: state.users.allUsers,
+//     dropzones: state.dropzones.allDropzones,
+//     loads: state.loads,
+//     singleUser: state.users.singleUser,
+//     singleDropzone: state.dropzones.singleDropzone,
+//   };
+// };
 
 const mapDispatch = (dispatch) => {
   return {
@@ -164,6 +167,10 @@ const mapDispatch = (dispatch) => {
     addLoad: (LOAD, dropzoneId) => dispatch(thunk_createLoad(LOAD, dropzoneId)), //WORKING//
     getSingleLoad: (dropzoneId, loadId) =>
       dispatch(thunk_fetchSingleLoad(dropzoneId, loadId)), //WORKING//
+
+    //////////////////BELOW IS FOR USER////////////////////
+    getUsers: () => dispatch(Thunk_fetchUsers()),
+    getSingleUser: (id) => dispatch(Thunk_fetchUser(id)),
   };
 };
 
