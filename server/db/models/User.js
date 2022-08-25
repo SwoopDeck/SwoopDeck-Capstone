@@ -45,6 +45,11 @@ const User = db.define('user', {
     },
   },
 
+  role: {
+    type: Sequelize.ENUM('Skydiver', 'Dropzone', 'Admin'),
+    defaultValue: 'Skydiver'
+  },
+
   isAdmin: {
     type: Sequelize.BOOLEAN,
     defaultValue: false,

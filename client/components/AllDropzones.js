@@ -48,7 +48,7 @@ export class AllDropzones extends React.Component {
 
     return (
       <div>
-        <h2>Dropzones:</h2>
+        <h2>All Dropzones:</h2>
         {allDropzones.map((dropzone) => (
           <div key={dropzone.id}>
             <p>First name: {dropzone.name}</p>

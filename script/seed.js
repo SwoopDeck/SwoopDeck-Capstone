@@ -298,6 +298,7 @@ async function seed() {
     address: '1 Coding Blvd',
     licenseNumber: 105050,
     isAdmin: true,
+    role: 'Admin'
   });
 
   const chris = await User.create({
@@ -372,6 +373,7 @@ async function seed() {
     licenseNumber: 898989,
     isAdmin: false,
     isDropzone: true,
+    role: 'Dropzone'
   });
 
   // DUMMY DATA TO ASSIGN A DROPZONE TO A USER
@@ -391,6 +393,7 @@ async function seed() {
     isAdmin: false,
     isDropzone: true,
     dropzoneId: 2,
+    role: 'Dropzone'
   });
 
   // await load1.addUser(cole, {
