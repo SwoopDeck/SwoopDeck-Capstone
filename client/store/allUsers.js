@@ -8,10 +8,15 @@ const CREATE_USER = 'CREATE_USER';
 const SET_USERS = 'SET_USERS';
 const UPDATE_USER = 'UPDATE_USER';
 const DELETE_USER = 'DELETE_USER';
-
+const SET_USER = 'SET_USER'
 
 
 /* ACTION CREATORS */ 
+
+export const _setUser = user => ({
+  type: SET_USER,
+  user
+});
 
 // GET ALL USERS
 export const _setUsers = (users) => {
@@ -109,6 +114,12 @@ export const Thunk_fetchUsers = () => {
 };
 
 
+// THUNK: FETCH SINGLE USER
+export const Thunk_fetchUser = (id) => async (dispatch) => {
+  const {data} = await axios.get(`/api/users/${id}`)
+  dispatch(_setUser(data));
+}
+
 
 /* REDUCERS */ 
 const initialState = [];
@@ -117,8 +128,10 @@ export default function usersReducer(state = initialState, action) {
   switch (action.type) {
     case CREATE_USER:
       return [...state, action.user];
+    case SET_USER: 
+    console.log(action.user)
+      return action.user
     case SET_USERS:
-      console.log(action.users)
       return action.users;
     case UPDATE_USER:
       return action.user;

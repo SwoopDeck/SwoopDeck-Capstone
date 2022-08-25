@@ -71,6 +71,7 @@ export const thunk_fetchSingleDropzone = (dropzoneId) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(`api/dropzones/${dropzoneId}`);
+      console.log(data)
       dispatch(setSingleDropzone(data));
     } catch (err) {
       console.log(err);
@@ -116,6 +117,7 @@ export default function dropzonesReducer(state = initialState, action) {
     case SET_DROPZONES:
       return action.DROPZONES;
     case SET_SINGLE_DROPZONE:
+      console.log(action.DROPZONE)
       return action.DROPZONE;
     case ADD_DROPZONE:
       return action.DROPZONE;

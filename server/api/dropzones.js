@@ -22,8 +22,8 @@ router.get('/', async (req, res, next) => {
 router.get('/:dropzoneId', async (req, res, next) => {
   try {
     const selectedDropzone = await Dropzone.findByPk(req.params.dropzoneId);
-
-    res.json(selectedDropzone);
+    console.log('hello world',selectedDropzone)
+    res.send(selectedDropzone);
   } catch (err) {
     next(err);
   }
@@ -31,7 +31,7 @@ router.get('/:dropzoneId', async (req, res, next) => {
 
 //UPDATE A DROPZONE BY ID
 
-//GET 'api/dropzones/:dropzoneId'
+//PUT 'api/dropzones/:dropzoneId'
 router.put('/:dropzoneId', async (req, res, next) => {
   try {
     const selectedDropzone = await Dropzone.findByPk(req.params.dropzoneId);
@@ -45,7 +45,7 @@ router.put('/:dropzoneId', async (req, res, next) => {
 
 //CREATE A DROPZONE
 
-//GET 'api/dropzone/create'
+//POST 'api/dropzone/create'
 router.post('/create', async (req, res, next) => {
   try {
 

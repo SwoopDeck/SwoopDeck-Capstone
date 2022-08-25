@@ -25,7 +25,7 @@ import {
   thunk_fetchSingleLoad,
   thunk_updateLoad,
 } from '../store/loads';
-import { fetchUser } from "../store/singleUser";
+import { Thunk_fetchUser } from "../store/allUsers";
 
 /**
  * REACT COMPONENT
@@ -72,7 +72,7 @@ const mapState = (state) => {
     users: state.auth,
     dropzones: state.dropzones,
     loads: state.loads,
-    singleUser: state.singleUser,
+    singleUser: state.users,
   };
 };
 const mapDispatch = (dispatch) => {
@@ -109,7 +109,7 @@ const mapDispatch = (dispatch) => {
 
       /////////////////BELOW IS FOR ADMINS/////////////////////////////
 
-      getSingleUser: (id) => dispatch(fetchUser(id))
+      getSingleUser: (id) => dispatch(Thunk_fetchUser(id))
 
   };
 };

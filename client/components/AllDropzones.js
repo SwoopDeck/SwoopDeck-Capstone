@@ -44,8 +44,8 @@ export class AllDropzones extends React.Component {
   }
 
   render() {
-    const allDropzones = this.props.dropzones;
-
+    const allDropzones = this.props.dropzones || [];
+    console.log(allDropzones)
     return (
       <div>
         <h2>All Dropzones:</h2>
