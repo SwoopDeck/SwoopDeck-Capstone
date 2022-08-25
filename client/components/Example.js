@@ -1,19 +1,19 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 import {
   Thunk_fetchAllJumpRecords,
   Thunk_fetchSingleJump,
   Thunk_updateJump,
   Thunk_deleteJump,
   Thunk_createJump,
-} from '../store/jumpRecords';
+} from "../store/jumpRecords";
 import {
   thunk_fetchSingleDropzone,
   thunk_updateDropzone,
   thunk_createDropzone,
   thunk_deleteDropzone,
   thunk_fetchAllDropzones,
-} from '../store/dropzones.js';
+} from "../store/dropzones.js";
 import {
   thunk_fetchAllLoads,
   thunk_createLoad,
@@ -21,7 +21,7 @@ import {
   thunk_fetchSingleLoad,
   thunk_updateLoad,
   addLoad,
-} from '../store/loads';
+} from "../store/loads";
 
 /**
  * REACT COMPONENT
@@ -29,12 +29,10 @@ import {
 export class Example extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.handleChange = this.handleChange.bind(this);
   }
-  componentDidMount() {
-    
-  }
+  componentDidMount() {}
 
   handleChange(evt) {
     this.setState({
@@ -43,20 +41,19 @@ export class Example extends React.Component {
   }
 
   render() {
-    let allDZs = this.props.getDropzones()
-   let currentDZArr = allDZs.filter((dz) => {
+    let allDZs = this.props.getDropzones();
+    let currentDZArr = allDZs.filter((dz) => {
       if (dz.id === props.user.dropzoneId) {
-        return dz
+        return dz;
       }
-    })
-    const currentDZ = currentDZArr[0]
-    addLoad(LOAD, currentDZ.id)
+    });
+    const currentDZ = currentDZArr[0];
+    addLoad(LOAD, currentDZ.id);
     return (
       <div>
         <h1>TEST</h1>
       </div>
     );
-    
   }
 }
 
@@ -103,3 +100,5 @@ const mapDispatch = (dispatch) => {
 };
 
 export default connect(mapState, mapDispatch)(Example);
+
+//C: what is going to be the purpose for this component?

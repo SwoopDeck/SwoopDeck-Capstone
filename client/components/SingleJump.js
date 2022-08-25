@@ -10,21 +10,21 @@ import {
   Thunk_updateJump,
   Thunk_deleteJump,
   Thunk_createJump,
-} from '../store/jumpRecords';
+} from "../store/jumpRecords";
 import {
   thunk_fetchSingleDropzone,
   thunk_updateDropzone,
   thunk_createDropzone,
   thunk_deleteDropzone,
   thunk_fetchAllDropzones,
-} from '../store/dropzones.js';
+} from "../store/dropzones.js";
 import {
   thunk_fetchAllLoads,
   thunk_createLoad,
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
-} from '../store/loads';
+} from "../store/loads";
 
 /**
  * REACT COMPONENT
@@ -43,8 +43,12 @@ class SingleJump extends React.Component {
       <div className="flex-right">
         <h1 style={{ marginLeft: "2rem", marginTop: "2rem" }}>Jump type</h1>
         <div className="select-jump-type-container">
-          <button className="jump-type" style={{border: 'solid 2px #336dff',
-    color: '#336dff'}}>Belly</button> 
+          <button
+            className="jump-type"
+            style={{ border: "solid 2px #336dff", color: "#336dff" }}
+          >
+            Belly
+          </button>
           <button className="jump-type">Angle</button>
           <button className="jump-type">Head up</button>
           <button className="jump-type">Head down</button>
@@ -143,10 +147,8 @@ class SingleJump extends React.Component {
             />
           </div>
           <div></div>
-          <Link to="/home"  style={{width: '50%'}}>
-          <button className="add-jump-btn">
-            Back to logbook
-          </button>
+          <Link to="/home" style={{ width: "50%" }}>
+            <button className="add-jump-btn">Back to logbook</button>
           </Link>
         </form>
         {/* <EditJump/> */}
@@ -198,3 +200,5 @@ const mapDispatch = (dispatch) => {
 };
 
 export default connect(mapState, mapDispatch)(SingleJump);
+
+//C: I had an issue rendering this component. The Thunk function being called in CDM doesnt exist nor does the state variable.

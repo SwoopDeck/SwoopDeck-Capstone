@@ -1,45 +1,47 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   Thunk_fetchAllJumpRecords,
   Thunk_fetchSingleJump,
   Thunk_updateJump,
   Thunk_deleteJump,
   Thunk_createJump,
-} from '../store/jumpRecords';
+} from "../store/jumpRecords";
 import {
   thunk_fetchSingleDropzone,
   thunk_updateDropzone,
   thunk_createDropzone,
   thunk_deleteDropzone,
   thunk_fetchAllDropzones,
-} from '../store/dropzones.js';
+} from "../store/dropzones.js";
 import {
   thunk_fetchAllLoads,
   thunk_createLoad,
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
-} from '../store/loads';
+} from "../store/loads";
 
 export class EditJump extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      jumpNumber: '',
-      location: '',
-      aircraft: '',
-      equipment: '',
+      jumpNumber: "",
+      location: "",
+      aircraft: "",
+      equipment: "",
       exitAltitude: 14000,
       pullAltitude: 4000,
       freeFallTime: 60,
-      jumpers: '',
-      description: '',
-      jumpType: '',
+      jumpers: "",
+      description: "",
+      jumpType: "",
     };
     this.handleChange = this.handleChange.bind(this);
   }
+
+  //C: Ive seen these values for exitAltitude, pullAltitude and freeFallTime in many places. Are these values some kind of standard?
 
   componentDidMount() {
     //this.props.getJump(this.props.user.id, this.props.match.params.jumpId)
@@ -64,7 +66,7 @@ export class EditJump extends Component {
             name="jumpNumber"
             value={this.state.jumpNumber}
             onChange={this.handleChange}
-            style={{ margin: '25px' }}
+            style={{ margin: "25px" }}
           />
           <div>LOCATION:</div>
           <input
@@ -72,7 +74,7 @@ export class EditJump extends Component {
             name="location"
             value={this.state.location}
             onChange={this.handleChange}
-            style={{ margin: '25px' }}
+            style={{ margin: "25px" }}
           />
           <div>AIRCRAFT:</div>
           <input
@@ -80,7 +82,7 @@ export class EditJump extends Component {
             name="aircraft"
             value={this.state.aircraft}
             onChange={this.handleChange}
-            style={{ margin: '25px' }}
+            style={{ margin: "25px" }}
           />
           <div>EQUIPMENT:</div>
           <input
@@ -88,7 +90,7 @@ export class EditJump extends Component {
             name="equipment"
             value={this.state.equipment}
             onChange={this.handleChange}
-            style={{ margin: '25px' }}
+            style={{ margin: "25px" }}
           />
           <div>EXIT ALTITUDE:</div>
           <input
@@ -96,7 +98,7 @@ export class EditJump extends Component {
             name="exitAltitude"
             value={this.state.exitAltitude}
             onChange={this.handleChange}
-            style={{ margin: '25px' }}
+            style={{ margin: "25px" }}
           />
           <div>PULL ALTITUDE:</div>
           <input
@@ -104,7 +106,7 @@ export class EditJump extends Component {
             name="pullAltitude"
             value={this.state.pullAltitude}
             onChange={this.handleChange}
-            style={{ margin: '25px' }}
+            style={{ margin: "25px" }}
           />
           <div>FREEFALL TIME:</div>
           <input
@@ -112,7 +114,7 @@ export class EditJump extends Component {
             name="freeFallTime"
             value={this.state.freeFallTime}
             onChange={this.handleChange}
-            style={{ margin: '25px' }}
+            style={{ margin: "25px" }}
           />
           <div>JUMPERS:</div>
           <input
@@ -120,7 +122,7 @@ export class EditJump extends Component {
             name="jumpers"
             value={this.state.jumpers}
             onChange={this.handleChange}
-            style={{ margin: '25px' }}
+            style={{ margin: "25px" }}
           />
           <div>DESCRIPTION:</div>
           <input
@@ -128,7 +130,7 @@ export class EditJump extends Component {
             name="description"
             value={this.state.description}
             onChange={this.handleChange}
-            style={{ margin: '25px' }}
+            style={{ margin: "25px" }}
           />
           <div>JUMP TYPE:</div>
           <input
@@ -136,7 +138,7 @@ export class EditJump extends Component {
             name="jumpType"
             value={this.state.jumpType}
             onChange={this.handleChange}
-            style={{ margin: '25px' }}
+            style={{ margin: "25px" }}
           />
 
           <button
@@ -144,16 +146,16 @@ export class EditJump extends Component {
               evt.preventDefault();
               this.props.edit({ ...this.state }, this.props.users.id, jump.id);
               this.setState({
-                jumpNumber: '',
-                location: '',
-                aircraft: '',
-                equipment: '',
+                jumpNumber: "",
+                location: "",
+                aircraft: "",
+                equipment: "",
                 exitAltitude: 14000,
                 pullAltitude: 4000,
                 freeFallTime: 60,
-                jumpers: '',
-                description: '',
-                jumpType: '',
+                jumpers: "",
+                description: "",
+                jumpType: "",
               });
               this.props.getJump(this.props.users.id, jump.id);
             }}

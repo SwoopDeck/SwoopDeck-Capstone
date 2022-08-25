@@ -1,57 +1,57 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import {authenticate} from '../store'
-import { Link , useHistory} from 'react-router-dom'
-import { logout } from '../store'
-import Navbar from './Navbar'
+import React from "react";
+import { connect } from "react-redux";
+import { authenticate } from "../store";
+import { Link, useHistory } from "react-router-dom";
+import { logout } from "../store";
+import Navbar from "./Navbar";
 
 /**
  * COMPONENT
  */
-const AuthForm = props => {
-
+const AuthForm = (props) => {
   const history = useHistory();
-  
-  const routeChange = () =>{ 
-    let path = `/alljumps`; 
-    history.push(path);
-  }
-  const {name, displayName, handleSubmit, error} = props
-  console.log(props)
-  return (
-    <div className='login-main'>
-      {/* <Navbar /> */}
-      <div className='logo-container'>
 
-      <img src="/assets/SwoopLog.png" alt="logo" className='centered-logo'/>
+  const routeChange = () => {
+    let path = `/alljumps`;
+    history.push(path);
+  };
+  const { name, displayName, handleSubmit, error } = props;
+  console.log(props);
+  return (
+    <div className="login-main">
+      {/* <Navbar /> */}
+      <div className="logo-container">
+        <img src="/assets/SwoopLog.png" alt="logo" className="centered-logo" />
       </div>
-    <div className="form div-container">
-      <form onSubmit={handleSubmit} name={name}>
-        <div className="login">
-          <div className="login-card">
-            <p className="title">Log In</p>
-            <input name="email" placeholder="Email" required />
-            <input
-              name="password"
-              placeholder="Password"
-              type="password"
-              required
-            />
-            <button className="loader" ><Link to="/alljumps">Sign in</Link></button>
-            <p className="text">Don't have an account?</p>
-            <Link to="/signup">
-              <button className="buttonShadow" type="submit">
-                Create new account
+      <div className="form div-container">
+        <form onSubmit={handleSubmit} name={name}>
+          <div className="login">
+            <div className="login-card">
+              <p className="title">Log In</p>
+              <input name="email" placeholder="Email" required />
+              <input
+                name="password"
+                placeholder="Password"
+                type="password"
+                required
+              />
+              <button className="loader">
+                <Link to="/alljumps">Sign in</Link>
               </button>
-            </Link>
+              <p className="text">Don't have an account?</p>
+              <Link to="/signup">
+                <button className="buttonShadow" type="submit">
+                  Create new account
+                </button>
+              </Link>
+            </div>
           </div>
-        </div>
-        {error && <div> {error} </div>}
-      </form>
+          {error && <div> {error} </div>}
+        </form>
+      </div>
     </div>
-    </div>
-  )
-}
+  );
+};
 
 /**
  * CONTAINER
@@ -60,38 +60,40 @@ const AuthForm = props => {
  *   function, and share the same Component. This is a good example of how we
  *   can stay DRY with interfaces that are very similar to each other!
  */
-const mapLogin = state => {
+const mapLogin = (state) => {
   return {
-    name: 'login',
-    displayName: 'Login',
-    error: state.auth.error
-  }
-}
+    name: "login",
+    displayName: "Login",
+    error: state.auth.error,
+  };
+};
 
-const mapSignup = state => {
+const mapSignup = (state) => {
   return {
-    name: 'signup',
-    displayName: 'Sign Up',
-    error: state.auth.error
-  }
-}
+    name: "signup",
+    displayName: "Sign Up",
+    error: state.auth.error,
+  };
+};
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
   return {
     handleSubmit(evt) {
-      evt.preventDefault()
-      const formName = evt.target.name
-      const email = evt.target.email.value
-      const password = evt.target.password.value
-      console.log(formName, email, password)
-      dispatch(authenticate(email, password, formName))
+      evt.preventDefault();
+      const formName = evt.target.name;
+      const email = evt.target.email.value;
+      const password = evt.target.password.value;
+      console.log(formName, email, password);
+      dispatch(authenticate(email, password, formName));
       // routeChange()
     },
     handleClick() {
       dispatch(logout());
-    }
-  }
-}
+    },
+  };
+};
 
-export const Login = connect(mapLogin, mapDispatch)(AuthForm)
-export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
+export const Login = connect(mapLogin, mapDispatch)(AuthForm);
+export const Signup = connect(mapSignup, mapDispatch)(AuthForm);
+
+//C: this AuthForm seems to be outdated compared to what Brian has been working on. Was his issue resolved?

@@ -1,27 +1,27 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import {
   Thunk_fetchAllJumpRecords,
   Thunk_fetchSingleJump,
   Thunk_updateJump,
   Thunk_deleteJump,
   Thunk_createJump,
-} from '../store/jumpRecords';
+} from "../store/jumpRecords";
 import {
   thunk_fetchSingleDropzone,
   thunk_updateDropzone,
   thunk_createDropzone,
   thunk_deleteDropzone,
   thunk_fetchAllDropzones,
-} from '../store/dropzones.js';
+} from "../store/dropzones.js";
 import {
   thunk_fetchAllLoads,
   thunk_createLoad,
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
-} from '../store/loads';
+} from "../store/loads";
 
 /**
  * REACT COMPONENT
@@ -54,7 +54,7 @@ export class AllDropzones extends React.Component {
             <p>First name: {dropzone.name}</p>
             <p>Last name: {dropzone.address} </p>
             <p>Email: {dropzone.email} </p>
-            <Link to={`/dropzones/${dropzone.id}`} >
+            <Link to={`/dropzones/${dropzone.id}`}>
               <button>View more</button>
             </Link>
             <hr />
@@ -74,6 +74,8 @@ const mapState = (state) => {
     loads: state.loads,
   };
 };
+
+//C: Why do you have every possible Thunk and State here??
 
 const mapDispatch = (dispatch) => {
   return {

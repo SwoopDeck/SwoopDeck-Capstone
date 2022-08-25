@@ -1,27 +1,28 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import React from "react";
+import { connect } from "react-redux";
+//:C useNavigate never used here. remove unused imports
+import { Link, useNavigate } from "react-router-dom";
 import {
   Thunk_fetchAllJumpRecords,
   Thunk_fetchSingleJump,
   Thunk_updateJump,
   Thunk_deleteJump,
   Thunk_createJump,
-} from '../store/jumpRecords';
+} from "../store/jumpRecords";
 import {
   thunk_fetchSingleDropzone,
   thunk_updateDropzone,
   thunk_createDropzone,
   thunk_deleteDropzone,
   thunk_fetchAllDropzones,
-} from '../store/dropzones.js';
+} from "../store/dropzones.js";
 import {
   thunk_fetchAllLoads,
   thunk_createLoad,
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
-} from '../store/loads';
+} from "../store/loads";
 
 /**
  * REACT COMPONENT
@@ -30,21 +31,22 @@ export class AddJump extends React.Component {
   constructor() {
     super();
     this.state = {
-      jumpNumber: '',
+      jumpNumber: "",
       // location: '', //LOCATION IS NO LONGER IN OUR DB MODELS. LOCATION MUST BE RETRIEVED THROUGH THE JumpRecord THRU-TABLE
-      aircraft: '',
-      equipment: '',
+      aircraft: "",
+      equipment: "",
       exitAltitude: 14000,
       pullAltitude: 4000,
       freeFallTime: 60,
-      jumpers: 'Solo',
-      description: '',
-      jumpType: 'Belly',
+      jumpers: "Solo",
+      description: "",
+      jumpType: "Belly",
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
+    //C: was this code not working for you??
     // this.setState({
     //   [evt.target.name]: evt.target.value,
     // });
@@ -53,12 +55,12 @@ export class AddJump extends React.Component {
   }
 
   navigateToAllJumps() {
-    nagivate('/alljumps');
+    nagivate("/alljumps");
   }
   render() {
     return (
       <div className="flex-right">
-        <h1 style={{ marginLeft: '2rem', marginTop: '2rem' }}>
+        <h1 style={{ marginLeft: "2rem", marginTop: "2rem" }}>
           Select jump type
         </h1>
         <div className="select-jump-type-container" onClick={this.handleChange}>
@@ -182,11 +184,11 @@ export class AddJump extends React.Component {
                 className="category-list"
               >
                 {/* <option value={jumpers}></option> */}
-                <option value={'Solo'}>Solo</option>
-                <option value={'2-way'}>2-way</option>
-                <option value={'3-way'}>3-way</option>
-                <option value={'4-way'}>4-way</option>
-                <option value={'5+'}>5+</option>
+                <option value={"Solo"}>Solo</option>
+                <option value={"2-way"}>2-way</option>
+                <option value={"3-way"}>3-way</option>
+                <option value={"4-way"}>4-way</option>
+                <option value={"5+"}>5+</option>
               </select>
             </div>
 
@@ -235,6 +237,8 @@ export class AddJump extends React.Component {
             />
           </div>
 
+          {/* {C: where is this.state.certifyingOfficialName && certifyingOfficialLivenseNumber coming from?} */}
+
           {/* <div>JUMP TYPE:
           </div>
           <input
@@ -251,16 +255,16 @@ export class AddJump extends React.Component {
               evt.preventDefault();
               this.props.add({ ...this.state }, this.props.users.id);
               this.setState({
-                jumpNumber: '',
-                location: '',
-                aircraft: '',
-                equipment: '',
+                jumpNumber: "",
+                location: "",
+                aircraft: "",
+                equipment: "",
                 exitAltitude: 14000,
                 pullAltitude: 4000,
                 freeFallTime: 60,
-                jumpers: '',
-                description: '',
-                jumpType: '',
+                jumpers: "",
+                description: "",
+                jumpType: "",
               });
               this.navigateToAllJumps;
             }}
@@ -281,6 +285,9 @@ const mapState = (state) => {
     loads: state.loads,
   };
 };
+
+//C: Why do you have every possible Thunk and State here??
+
 const mapDispatch = (dispatch) => {
   return {
     editJumpRecord: (jump, userId, jumpId) =>
@@ -316,5 +323,3 @@ const mapDispatch = (dispatch) => {
 };
 
 export default connect(mapState, mapDispatch)(AddJump);
-
-

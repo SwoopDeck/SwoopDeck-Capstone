@@ -1,17 +1,14 @@
 import axios from "axios";
-import { me } from './auth'
+import { me } from "./auth";
 
+/* ACTION TYPES */
 
-/* ACTION TYPES */ 
+const CREATE_USER = "CREATE_USER";
+const SET_USERS = "SET_USERS";
+const UPDATE_USER = "UPDATE_USER";
+const DELETE_USER = "DELETE_USER";
 
-const CREATE_USER = 'CREATE_USER';
-const SET_USERS = 'SET_USERS';
-const UPDATE_USER = 'UPDATE_USER';
-const DELETE_USER = 'DELETE_USER';
-
-
-
-/* ACTION CREATORS */ 
+/* ACTION CREATORS */
 
 // GET ALL USERS
 export const _setUsers = (users) => {
@@ -45,18 +42,16 @@ export const _deleteUser = (user) => {
   };
 };
 
-
-
-/* THUNKS */ 
+/* THUNKS */
 
 // THUNK: CREATE A NEW USER
 export const createUser = (user, history) => {
   return async (dispatch) => {
-    const { data: token } = await axios.post('/api/users', user);
-    window.localStorage.setItem('token', token);
+    const { data: token } = await axios.post("/api/users", user);
+    window.localStorage.setItem("token", token);
     dispatch(_createUser(user));
-    dispatch(me())
-    history.push('/');
+    dispatch(me());
+    history.push("/");
   };
 };
 
@@ -66,7 +61,7 @@ export const Thunk_updateUser = (id, history) => {
     try {
       const { data: user } = await axios.put(`/api/users/${id}`);
       dispatch(_updateUser(user));
-      history.push('/users');
+      history.push("/users");
     } catch (err) {
       console.error(err);
     }
@@ -79,28 +74,27 @@ export const Thunk_deleteUser = (id, history) => {
     try {
       const { data: user } = await axios.put(`/api/users/${id}`);
       dispatch(_deleteUser(user));
-      history.push('/users');
+      history.push("/users");
     } catch (err) {
       console.error(err);
     }
   };
 };
 
-
 // THUNK: FETCH ALL USERS
 export const Thunk_fetchUsers = () => {
   return async (dispatch) => {
     try {
-      const token = window.localStorage.getItem('token');
+      const token = window.localStorage.getItem("token");
       if (token) {
-        const { data } = await axios.get('/api/users', {
+        const { data } = await axios.get("/api/users", {
           headers: {
             authorization: token,
           },
         });
         await dispatch(_setUsers(data));
       } else {
-        console.log('Bad token 2')
+        console.log("Bad token 2");
       }
     } catch (err) {
       console.log(err);
@@ -108,9 +102,9 @@ export const Thunk_fetchUsers = () => {
   };
 };
 
+//C: what is the need for using a token to fetch all users?
 
-
-/* REDUCERS */ 
+/* REDUCERS */
 const initialState = [];
 
 export default function usersReducer(state = initialState, action) {
@@ -118,7 +112,7 @@ export default function usersReducer(state = initialState, action) {
     case CREATE_USER:
       return [...state, action.user];
     case SET_USERS:
-      console.log(action.users)
+      console.log(action.users);
       return action.users;
     case UPDATE_USER:
       return action.user;
