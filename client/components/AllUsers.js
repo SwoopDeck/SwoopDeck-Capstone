@@ -49,12 +49,13 @@ export class AllUsers extends React.Component {
 
     return (
       <div>
-        <h2>Users:</h2>
+        <h2>All Users:</h2>
         {allUsers.map((user) => (
           <div key={user.id}>
             <p>First name: {user.firstName}</p>
             <p>Last name: {user.lastName} </p>
             <p>Email: {user.email} </p>
+            <p>Role: {user.role} </p>
             <Link to={`/users/${user.id}`} >
               <button>View more</button>
             </Link>
