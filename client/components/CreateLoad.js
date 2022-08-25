@@ -32,12 +32,13 @@ export class CreateLoad extends React.Component {
 
     this.state = {
       aircraft: '',
-      slots: null,
+      slots: '0',
       status: 'on time',
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.createLoad = this.createLoad.bind(this);
+    this.clearFields = this.clearFields.bind(this);
   }
   componentDidMount() {}
 
@@ -61,11 +62,22 @@ export class CreateLoad extends React.Component {
       ...this.state,
       isFull: false,
       date: date,
+      dropzoneId: dropzoneId,
+      // slots: this.state.slots,
     };
     this.props.addLoad(load, dropzoneId);
   }
 
+  clearFields() {
+    this.setState({
+      aircraft: '',
+      slots: '0',
+      status: 'on time',
+    })
+  }
+
   render() {
+    const { handleChange, clearFields, createLoad } = this;
     console.log(this.props);
     return (
       <div>
@@ -76,24 +88,24 @@ export class CreateLoad extends React.Component {
             type="text"
             name="aircraft"
             placeholder="Aircraft"
-            onChange={this.handleChange}
+            onChange={handleChange}
           />
-          <label htmlFor="availableSlots">Available Slots</label>
+          <label htmlFor="slots">Available Slots</label>
           <input
             type="text"
-            name="availableSlots"
+            name="slots"
             placeholder="10"
-            onChange={this.handleChange}
+            onChange={handleChange}
           />
 
           <label htmlFor="status">Status</label>
-          <select name="status" onChange={this.handleChange}>
+          <select name="status" onChange={handleChange}>
             <option name="on time">On Time</option>
             <option name="delayed">Delayed</option>
             <option name="closed">Closed</option>
             <option name="canceled">Canceled</option>
           </select>
-          <button type="button" onClick={this.createLoad}>
+          <button type="button" onClick={createLoad}>
             Submit
           </button>
         </form>
