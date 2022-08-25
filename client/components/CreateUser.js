@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createUser } from '../store/allUsers';
+import { createUser } from '../store/allusers';
 
 // REACT COMPONENT //
 export class CreateUser extends React.Component {

@@ -4,11 +4,9 @@ import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import auth from './auth'
 import jumpRecordsReducer from './jumpRecords'
-import usersReducer from './allUsers'
+import usersReducer from './allusers'
 import dropzonesReducer from './dropzones'
 import loadsReducer from './loads'
-import singleUserReducer from './singleUser'
-import singleDropzoneReducer from './singleDropzone'
 
 const reducer = combineReducers({ 
   auth,
@@ -16,8 +14,8 @@ const reducer = combineReducers({
   users: usersReducer,
   dropzones: dropzonesReducer,
   loads: loadsReducer,
-  singleUser: singleUserReducer,
-  singleDropzone: singleDropzoneReducer
+  // singleUser: singleUserReducer,
+  // singleDropzone: singleDropzoneReducer
 
  })
 const middleware = composeWithDevTools(
