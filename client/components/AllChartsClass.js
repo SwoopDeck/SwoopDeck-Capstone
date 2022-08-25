@@ -20,7 +20,7 @@ export class AllChartsClass extends React.Component {
   }
   componentDidMount() {
     let userId = this.props.user.id;
-    this.props.getJumps(3);
+    this.props.getJumps(this.props.match.params.id);
   }
 
   render() {

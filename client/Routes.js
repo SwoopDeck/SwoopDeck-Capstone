@@ -20,7 +20,6 @@ import TodaysLoads from "./components/TodaysLoads";
 import SingleUser from "./components/SingleUser";
 import SingleDropzone from "./components/SingleDropzone";
 import AllChartsClass from "./components/AllChartsClass";
-import AllCharts from "./components/AllCharts";
 
 /**
  * COMPONENT
@@ -61,6 +60,7 @@ class Routes extends Component {
         <Route path="/add" component={AddJump} />
         <Route path="/viewProfile" component={UserProfile} />
         <Route path="/joinload" component={JoinLoad} />
+        <Route exact path="/allchartsclass/:id" component={AllChartsClass} />
       </Switch>
     );
 
@@ -81,8 +81,6 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/example" component={Example} />
         <Route path="/signup" component={CreateUser} />
-        <Route exact path="/allcharts" component={AllCharts} />
-        <Route exact path="/allchartsclass" component={AllChartsClass} />
       </Switch>
     );
     return (
