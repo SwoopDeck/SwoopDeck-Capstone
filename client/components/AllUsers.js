@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   Thunk_fetchAllJumpRecords,
@@ -20,20 +21,21 @@ import {
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
-  addLoad,
 } from '../store/loads';
+import { Thunk_fetchUsers, Thunk_updateUser } from '../store/allUsers';
 
 /**
  * REACT COMPONENT
  */
-export class Example extends React.Component {
+export class AllUsers extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.handleChange = this.handleChange.bind(this);
   }
-  componentDidMount() {
-    
+
+  async componentDidMount() {
+    await this.props.getUsers();
   }
 
   handleChange(evt) {
@@ -43,31 +45,38 @@ export class Example extends React.Component {
   }
 
   render() {
-    let allDZs = this.props.getDropzones()
-   let currentDZArr = allDZs.filter((dz) => {
-      if (dz.id === props.user.dropzoneId) {
-        return dz
-      }
-    })
-    const currentDZ = currentDZArr[0]
-    addLoad(LOAD, currentDZ.id)
+    const allUsers = this.props.users;
+
     return (
       <div>
-        <h1>TEST</h1>
+        <h2>All Users:</h2>
+        {allUsers.map((user) => (
+          <div key={user.id}>
+            <p>First name: {user.firstName}</p>
+            <p>Last name: {user.lastName} </p>
+            <p>Email: {user.email} </p>
+            <p>Role: {user.role} </p>
+            <Link to={`/users/${user.id}`} >
+              <button>View more</button>
+            </Link>
+            <hr />
+            <hr />
+          </div>
+        ))}
       </div>
     );
-    
   }
 }
 
 const mapState = (state) => {
   return {
     jumpRecords: state.jumpRecords,
-    users: state.auth,
+    users: state.users,
     dropzones: state.dropzones,
     loads: state.loads,
   };
 };
+
 const mapDispatch = (dispatch) => {
   return {
     editJumpRecord: (jump, userId, jumpId) =>
@@ -99,7 +108,15 @@ const mapDispatch = (dispatch) => {
     addLoad: (LOAD, dropzoneId) => dispatch(thunk_createLoad(LOAD, dropzoneId)), //WORKING//
     getSingleLoad: (dropzoneId, loadId) =>
       dispatch(thunk_fetchSingleLoad(dropzoneId, loadId)), //WORKING//
+
+      /////////ABOVE IS FOR DROPZONE////////BELOW IS FOR ADMIN/////////////////////////////
+
+      getUsers: () => dispatch(Thunk_fetchUsers()),
+      editUser: (userId) => dispatch(Thunk_updateUser(userId)),
+      deleteUser: (userId) => dispatch(Thunk_deleteUser(userId)),
+
+
   };
 };
 
-export default connect(mapState, mapDispatch)(Example);
+export default connect(mapState, mapDispatch)(AllUsers);

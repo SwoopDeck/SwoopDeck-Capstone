@@ -1,5 +1,9 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { me } from "../store/auth";
+import Sidebar from "./Sidebar";
+// import EditItem from "./EditItem";
 import {
   Thunk_fetchAllJumpRecords,
   Thunk_fetchSingleJump,
@@ -20,43 +24,45 @@ import {
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
-  addLoad,
 } from '../store/loads';
+import { fetchUser } from "../store/singleUser";
 
 /**
  * REACT COMPONENT
  */
-export class Example extends React.Component {
-  constructor(props) {
-    super(props);
-    
-    this.handleChange = this.handleChange.bind(this);
-  }
+class SingleUser extends React.Component {
+ 
   componentDidMount() {
-    
-  }
-
-  handleChange(evt) {
-    this.setState({
-      [evt.target.name]: evt.target.value,
-    });
+    this.props.getSingleUser(this.props.match.params.id)
   }
 
   render() {
-    let allDZs = this.props.getDropzones()
-   let currentDZArr = allDZs.filter((dz) => {
-      if (dz.id === props.user.dropzoneId) {
-        return dz
-      }
-    })
-    const currentDZ = currentDZArr[0]
-    addLoad(LOAD, currentDZ.id)
+    const { id, firstName, lastName, address, email, licenseNumber, role } = this.props.singleUser
+    console.log('PROPS',this.props)
     return (
       <div>
-        <h1>TEST</h1>
-      </div>
-    );
-    
+        <div key={id}>
+        <h2>{firstName} {lastName}</h2>
+          <p>Email: {email} </p>
+          <p>Address: {address} </p>
+          <p>Role: {role} </p>
+          {role === 'Skydiver' ? (
+            <p>UPSA#: {licenseNumber} </p>
+
+          ) : (
+            <></>
+          )}
+          <Link to='/editUser'>
+          <button>Edit</button> 
+          </Link>
+          <Link to='/users'>
+          <button>Go back</button> 
+          </Link>
+          <hr />
+          <hr />
+        </div>
+    </div>
+    )
   }
 }
 
@@ -66,6 +72,7 @@ const mapState = (state) => {
     users: state.auth,
     dropzones: state.dropzones,
     loads: state.loads,
+    singleUser: state.singleUser,
   };
 };
 const mapDispatch = (dispatch) => {
@@ -79,7 +86,7 @@ const mapDispatch = (dispatch) => {
     getSingleJumpRecord: (userId, jumpId) =>
       dispatch(Thunk_fetchSingleJump(userId, jumpId)), //WORKING//
 
-    ////////ABOVE is for USER TABLE//////BELOW IS FOR DROPZONE//////////////////////////
+    //////////////BELOW IS FOR DROPZONE//////////////////////////
 
     editDropzone: (dropzoneId, dropzone) =>
       dispatch(thunk_updateDropzone(dropzoneId, dropzone)), //WOKRING//
@@ -89,7 +96,7 @@ const mapDispatch = (dispatch) => {
     getSingleDropzone: (dropzoneId) =>
       dispatch(thunk_fetchSingleDropzone(dropzoneId)), //WORKING//
 
-    /////////ABOVE IS FOR DROPZONE////////BELOW IS FOR LOADS/////////////////////////////
+    /////////////////BELOW IS FOR LOADS/////////////////////////////
 
     editLoad: (dropzoneId, loadId, LOAD) =>
       dispatch(thunk_updateLoad(dropzoneId, loadId, LOAD)), //WORKING//
@@ -99,7 +106,12 @@ const mapDispatch = (dispatch) => {
     addLoad: (LOAD, dropzoneId) => dispatch(thunk_createLoad(LOAD, dropzoneId)), //WORKING//
     getSingleLoad: (dropzoneId, loadId) =>
       dispatch(thunk_fetchSingleLoad(dropzoneId, loadId)), //WORKING//
+
+      /////////////////BELOW IS FOR ADMINS/////////////////////////////
+
+      getSingleUser: (id) => dispatch(fetchUser(id))
+
   };
 };
 
-export default connect(mapState, mapDispatch)(Example);
+export default connect(mapState, mapDispatch)(SingleUser);

@@ -20,20 +20,19 @@ import {
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
-  addLoad,
 } from '../store/loads';
 
 /**
  * REACT COMPONENT
  */
-export class Example extends React.Component {
+export class DropzoneProfile extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.handleChange = this.handleChange.bind(this);
   }
   componentDidMount() {
-    
+
   }
 
   handleChange(evt) {
@@ -43,14 +42,6 @@ export class Example extends React.Component {
   }
 
   render() {
-    let allDZs = this.props.getDropzones()
-   let currentDZArr = allDZs.filter((dz) => {
-      if (dz.id === props.user.dropzoneId) {
-        return dz
-      }
-    })
-    const currentDZ = currentDZArr[0]
-    addLoad(LOAD, currentDZ.id)
     return (
       <div>
         <h1>TEST</h1>
@@ -59,7 +50,6 @@ export class Example extends React.Component {
     
   }
 }
-
 const mapState = (state) => {
   return {
     jumpRecords: state.jumpRecords,
@@ -102,4 +92,4 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect(mapState, mapDispatch)(Example);
+export default connect(mapState, mapDispatch)(DropzoneProfile);

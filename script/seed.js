@@ -135,8 +135,8 @@ const jumps = [
     aircraft: "Kodiak",
     equipment: "Falcon 260",
     exitAltitude: 13500,
-    pullAltitude: 3500,
-    freeFallTime: 60,
+    pullAltitude: 2500,
+    freeFallTime: 40,
     jumpers: 1,
     description:
       "Great first jump of the day. Front flip exit. Good landing pattern & swoop.",
@@ -148,8 +148,8 @@ const jumps = [
     aircraft: "Kodiak",
     equipment: "PD 210",
     exitAltitude: 13500,
-    pullAltitude: 3500,
-    freeFallTime: 60,
+    pullAltitude: 7500,
+    freeFallTime: 120,
     jumpers: 1,
     description: "Front flip exit.",
     // jumpType: 'belly',
@@ -160,8 +160,8 @@ const jumps = [
     aircraft: "Kodiak",
     equipment: "Falcon 260",
     exitAltitude: 13500,
-    pullAltitude: 3500,
-    freeFallTime: 60,
+    pullAltitude: 5500,
+    freeFallTime: 70,
     jumpers: 1,
     description: "Back flip exit.",
     // jumpType: 'belly',
@@ -185,7 +185,7 @@ const jumps = [
     equipment: "Falcon 260",
     exitAltitude: 13500,
     pullAltitude: 3500,
-    freeFallTime: 60,
+    freeFallTime: 90,
     jumpers: 1,
     description: "Front flip exit.",
     // jumpType: 'belly',
@@ -224,7 +224,7 @@ const jumps = [
     freeFallTime: 60,
     jumpers: 1,
     description: "front float exit.",
-    // jumpType: 'angle',
+    jumpType: "angle",
   },
   {
     jumpNumber: 19,
@@ -298,6 +298,7 @@ async function seed() {
     address: "1 Coding Blvd",
     licenseNumber: 105050,
     isAdmin: true,
+    role: "Admin",
   });
 
   const chris = await User.create({
@@ -361,6 +362,38 @@ async function seed() {
   const DZ1 = await Dropzone.findByPk(1);
   await DZ1.addLoad(load1);
   await DZ1.addLoad(load2);
+
+  // DUMMY DROPZONE WITH USER.CREATE
+  const Nigel = await User.create({
+    firstName: "Nigel",
+    lastName: "Doe",
+    email: "nigel@gmail.com",
+    password: "123",
+    address: "99 Coding Blvd",
+    licenseNumber: 898989,
+    isAdmin: false,
+    isDropzone: true,
+    role: "Dropzone",
+  });
+
+  // DUMMY DATA TO ASSIGN A DROPZONE TO A USER
+  const nigelUser = await User.findByPk(6);
+  const sdsd = await Dropzone.findByPk(3);
+
+  await nigelUser.setDropzone(sdsd);
+
+  const BrianLee = await User.create({
+    firstName: "Brian",
+    lastName: "Lee",
+    email: "BrianLee@gmail.com",
+    password: "123",
+    address: "99 Coding Blvd",
+    licenseNumber: 898989,
+    isAdmin: false,
+    isDropzone: true,
+    dropzoneId: 2,
+    role: "Dropzone",
+  });
 
   // await load1.addUser(cole, {
   //   through: {

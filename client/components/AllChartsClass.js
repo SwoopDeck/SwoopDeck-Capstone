@@ -20,21 +20,34 @@ export class AllChartsClass extends React.Component {
   }
   componentDidMount() {
     let userId = this.props.user.id;
-    this.props.getJumps(userId);
+    this.props.getJumps(3);
   }
 
   render() {
-    let jumps = [this.props.jumpRecords] || [];
+    let jumps = this.props.jumpRecords || [];
 
-    console.log("TTTTTTTTTTTTTTT", this.props.jumpRecords);
+    console.log("TESTTTTT", this.props.jumpRecords);
 
     const userId = {
-      labels: jumps.map((data) => data.equipment),
+      labels: jumps.map((data) => data.jumpNumber),
       datasets: [
         {
-          label: "Exit Altitude",
-          data: jumps.map((data) => data.jumptype),
-          backgroundColor: ["rgba(75,192,192,1)"],
+          label: "Freefall time",
+          data: jumps.map((data) => data.freeFallTime),
+          backgroundColor: ["rgba(75,192,192,1)", "blue"],
+          borderColor: "black",
+          borderWidth: 2,
+        },
+      ],
+    };
+
+    const pullAltitude = {
+      labels: jumps.map((data) => data.jumpNumber),
+      datasets: [
+        {
+          label: "pullAltitude",
+          data: jumps.map((data) => data.pullAltitude),
+          backgroundColor: ["yellow", "green"],
           borderColor: "black",
           borderWidth: 2,
         },
@@ -43,6 +56,7 @@ export class AllChartsClass extends React.Component {
 
     return (
       <div>
+        <h1>{this.props.jumpRecords.userId}</h1>
         <div style={{ width: 600 }}>
           <BarChart chartData={userId} />
         </div>
@@ -50,10 +64,10 @@ export class AllChartsClass extends React.Component {
           <LineChart chartData={userId} />
         </div>
         <div style={{ width: 600 }}>
-          <PieChart chartData={userId} />
+          <PieChart chartData={pullAltitude} />
         </div>
         <div style={{ width: 600 }}>
-          <DoughnutChart chartData={userId} />
+          <DoughnutChart chartData={pullAltitude} />
         </div>
       </div>
     );

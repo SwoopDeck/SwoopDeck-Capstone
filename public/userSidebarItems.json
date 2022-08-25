@@ -1,0 +1,55 @@
+[
+  {
+    "title": "Home",
+    "icon": "bi-house-fill",
+    "path": "/alljumps"
+  },
+
+  {
+    "title": "Join A Load",
+    "icon": "",
+    "path": "/loads"
+  },
+
+  {
+    "title": "Logbook",
+    "icon": "bi-journal-text",
+    "children": [
+      {
+        "title": "View logbook",
+        "path": "/alljumps"
+      },
+      {
+        "title": "Add new jump",
+        "path": "/add"
+      }
+    ]
+  },
+
+  {
+    "title": "Account",
+    "icon": "bi-person-fill",
+    "children": [
+      {
+        "title": "View account",
+        "path": "/viewAccount"
+      },
+      {
+        "title": "Edit account",
+        "path": "/editAccount"
+      }
+    ]
+  },
+
+  {
+    "title": "Github",
+    "icon": "bi-github",
+    "path": "/#"
+  },
+  
+  {
+    "title": "About",
+    "icon": "bi-paperclip",
+    "path": "/#"
+  }
+]

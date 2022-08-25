@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   Thunk_fetchAllJumpRecords,
@@ -20,20 +21,20 @@ import {
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
-  addLoad,
 } from '../store/loads';
 
 /**
  * REACT COMPONENT
  */
-export class Example extends React.Component {
+export class AllDropzones extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.handleChange = this.handleChange.bind(this);
   }
-  componentDidMount() {
-    
+
+  async componentDidMount() {
+    await this.props.getDropzones();
   }
 
   handleChange(evt) {
@@ -43,20 +44,25 @@ export class Example extends React.Component {
   }
 
   render() {
-    let allDZs = this.props.getDropzones()
-   let currentDZArr = allDZs.filter((dz) => {
-      if (dz.id === props.user.dropzoneId) {
-        return dz
-      }
-    })
-    const currentDZ = currentDZArr[0]
-    addLoad(LOAD, currentDZ.id)
+    const allDropzones = this.props.dropzones;
+
     return (
       <div>
-        <h1>TEST</h1>
+        <h2>All Dropzones:</h2>
+        {allDropzones.map((dropzone) => (
+          <div key={dropzone.id}>
+            <p>First name: {dropzone.name}</p>
+            <p>Last name: {dropzone.address} </p>
+            <p>Email: {dropzone.email} </p>
+            <Link to={`/dropzones/${dropzone.id}`} >
+              <button>View more</button>
+            </Link>
+            <hr />
+            <hr />
+          </div>
+        ))}
       </div>
     );
-    
   }
 }
 
@@ -68,6 +74,7 @@ const mapState = (state) => {
     loads: state.loads,
   };
 };
+
 const mapDispatch = (dispatch) => {
   return {
     editJumpRecord: (jump, userId, jumpId) =>
@@ -102,4 +109,4 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect(mapState, mapDispatch)(Example);
+export default connect(mapState, mapDispatch)(AllDropzones);

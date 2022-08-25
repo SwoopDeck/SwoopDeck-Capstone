@@ -1,9 +1,9 @@
-const Sequelize = require("sequelize");
-const db = require("../db");
+const Sequelize = require('sequelize');
+const db = require('../db');
 
-const Load = db.define("loads", {
+const Load = db.define('loads', {
   date: {
-    type: Sequelize.DATE,
+    type: Sequelize.STRING,
     validate: {
       notEmpty: true,
     },
@@ -28,7 +28,7 @@ const Load = db.define("loads", {
     type: Sequelize.BOOLEAN,
   },
   status: {
-    type: Sequelize.ENUM("on time", "delayed", "closed", "cancelled"),
+    type: Sequelize.ENUM('on time', 'delayed', 'closed', 'cancelled'),
   },
 });
 

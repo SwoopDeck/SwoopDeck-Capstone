@@ -6,24 +6,26 @@ const jwt = require('jsonwebtoken');
 const { requireToken, isAdmin } = require('./middleware');
 module.exports = router;
 
-//GET api/users/ Get all users as admin
-router.get('/', async (req, res, next) => {
+//ADMIN VIEW: GET ALL USERS
+router.get('/', requireToken, isAdmin, async (req, res, next) => {
   try {
-    const users = await User.findAll({
+    const users = await User.findAll(
       
-      //   // explicitly select only the id and email fields - even though
-      //   // users' passwords are encrypted, it won't help if we just
-      //   // send everything to anyone who asks!
-      attributes: ["id", "email", "firstName", "lastName"],
-    });
+    //   {
+    //   //   // explicitly select only the id and email fields - even though
+    //   //   // users' passwords are encrypted, it won't help if we just
+    //   //   // send everything to anyone who asks!
+    //   attributes: ["id", "email", "firstName", "lastName"],
+    // }
+    );
     res.json(users);
   } catch (err) {
     next(err);
+    console.log('did not work')
   }
 });
 
-//Grabbing a users data/profile when logged in
-//GET api/users/:id
+//ADMIN VIEW: GET A USER
 router.get('/:id', async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id);
@@ -33,8 +35,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-//Create a new user row to the User table
-//POST api/users/
+//ADMIN VIEW: CREATE NEW USER
 router.post('/', async (req, res, next) => {
   try {
     const user = await User.create(req.body);
@@ -51,7 +52,7 @@ router.put("/:id", async (req, res, next) => {
     const user = await User.findOne({
       where: { userId: req.params.id },
     });
-    user.update({});
+    user.update(req.body);
     res.json([]);
   } catch (err) {
     next(err);
