@@ -52,6 +52,12 @@ class SingleUser extends React.Component {
           ) : (
             <></>
           )}
+          <Link to='/editUser'>
+          <button>Edit</button> 
+          </Link>
+          <Link to='/users'>
+          <button>Go back</button> 
+          </Link>
           <hr />
           <hr />
         </div>

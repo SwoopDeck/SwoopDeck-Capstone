@@ -46,6 +46,12 @@ class SingleUser extends React.Component {
         <h2>{name}</h2>
           <p>{address} </p>
           <p>{phoneNumber} </p>
+          <Link to='/editDropzone'>
+          <button>Edit</button> 
+          </Link>
+          <Link to='/dropzones'>
+          <button>Go back</button> 
+          </Link>
           <hr />
           <hr />
         </div>
