@@ -25,8 +25,8 @@ import {
   thunk_fetchSingleLoad,
   thunk_updateLoad,
 } from '../store/loads';
-import { fetchUser } from "../store/singleUser";
-import { fetchDropzone } from "../store/singleDropzone";
+import { Thunk_fetchUser } from "../store/allusers";
+
 
 /**
  * REACT COMPONENT
@@ -39,7 +39,7 @@ class SingleUser extends React.Component {
 
   render() {
     const { id, name, address, phoneNumber } = this.props.singleDropzone
-    console.log('PROPS',this.props)
+    // console.log('PROPS',this.props)
     return (
       <div>
         <div key={id}>
@@ -63,11 +63,11 @@ class SingleUser extends React.Component {
 const mapState = (state) => {
   return {
     jumpRecords: state.jumpRecords,
-    users: state.auth,
-    dropzones: state.dropzones,
+    users: state.users.allUsers,
+    dropzones: state.dropzones.allDropzones,
     loads: state.loads,
-    singleUser: state.singleUser,
-    singleDropzone: state.singleDropzone,
+    singleUser: state.users.singleUser,
+    singleDropzone: state.dropzones.singleDropzone
   };
 };
 const mapDispatch = (dispatch) => {
@@ -104,8 +104,8 @@ const mapDispatch = (dispatch) => {
 
       /////////////////BELOW IS FOR ADMINS/////////////////////////////
 
-      getSingleUser: (id) => dispatch(fetchUser(id)),
-      getSingleDropzone: (id) => dispatch(fetchDropzone(id))
+      getSingleUser: (id) => dispatch(Thunk_fetchUser(id)),
+      
 
   };
 };

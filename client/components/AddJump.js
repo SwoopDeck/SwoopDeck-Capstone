@@ -273,14 +273,27 @@ export class AddJump extends React.Component {
   }
 }
 
+// const mapState = (state) => {
+//   return {
+//     jumpRecords: state.jumpRecords,
+//     userss: state.auth,
+//     dropzones: state.dropzones,
+//     loads: state.loads,
+//   };
+// };
+
+
 const mapState = (state) => {
   return {
     jumpRecords: state.jumpRecords,
-    userss: state.auth,
-    dropzones: state.dropzones,
+    users: state.users.allUsers,
+    dropzones: state.dropzones.allDropzones,
     loads: state.loads,
+    singleUser: state.users.singleUser,
+    singleDropzone: state.dropzones.singleDropzone
   };
 };
+
 const mapDispatch = (dispatch) => {
   return {
     editJumpRecord: (jump, userId, jumpId) =>
