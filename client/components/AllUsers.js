@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   Thunk_fetchAllJumpRecords,
@@ -54,6 +55,10 @@ export class AllUsers extends React.Component {
             <p>First name: {user.firstName}</p>
             <p>Last name: {user.lastName} </p>
             <p>Email: {user.email} </p>
+            <Link to={`/users/${user.id}`} >
+              <button>View more</button>
+            </Link>
+            <hr />
             <hr />
           </div>
         ))}

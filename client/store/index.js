@@ -7,13 +7,17 @@ import jumpRecordsReducer from './jumpRecords'
 import usersReducer from './allUsers'
 import dropzonesReducer from './dropzones'
 import loadsReducer from './loads'
+import singleUserReducer from './singleUser'
+import singleDropzoneReducer from './singleDropzone'
 
 const reducer = combineReducers({ 
   auth,
   jumpRecords: jumpRecordsReducer,
   users: usersReducer,
   dropzones: dropzonesReducer,
-  loads: loadsReducer
+  loads: loadsReducer,
+  singleUser: singleUserReducer,
+  singleDropzone: singleDropzoneReducer
 
  })
 const middleware = composeWithDevTools(

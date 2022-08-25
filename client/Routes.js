@@ -17,6 +17,8 @@ import CreateLoad from './components/CreateLoad';
 import DropzoneProfile from './components/DropzoneProfile';
 import PastLoads from './components/PastLoads';
 import TodaysLoads from './components/TodaysLoads';
+import SingleUser from './components/SingleUser';
+import SingleDropzone from './components/SingleDropzone';
 
 /**
  * COMPONENT
@@ -41,6 +43,9 @@ class Routes extends Component {
     <Route path="/jumps/:jumpId" component={SingleJump} />
     <Route path="/add" component={AddJump} />
     <Route path="/viewProfile" component={UserProfile} />
+    <Route path="/users/:id" component={SingleUser} />
+    <Route path="/dropzones/:id" component={SingleDropzone} />
+
     </Switch>)
 
     let userRoutes = (<Switch>

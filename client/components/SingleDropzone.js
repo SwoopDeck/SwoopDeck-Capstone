@@ -1,6 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { me } from "../store/auth";
+import Sidebar from "./Sidebar";
+// import EditItem from "./EditItem";
 import {
   Thunk_fetchAllJumpRecords,
   Thunk_fetchSingleJump,
@@ -22,47 +25,32 @@ import {
   thunk_fetchSingleLoad,
   thunk_updateLoad,
 } from '../store/loads';
+import { fetchUser } from "../store/singleUser";
+import { fetchDropzone } from "../store/singleDropzone";
 
 /**
  * REACT COMPONENT
  */
-export class AllDropzones extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  async componentDidMount() {
-    await this.props.getDropzones();
-  }
-
-  handleChange(evt) {
-    this.setState({
-      [evt.target.name]: evt.target.value,
-    });
+class SingleUser extends React.Component {
+ 
+  componentDidMount() {
+    this.props.getSingleDropzone(this.props.match.params.id)
   }
 
   render() {
-    const allDropzones = this.props.dropzones;
-
+    const { id, name, address, phoneNumber } = this.props.singleDropzone
+    console.log('PROPS',this.props)
     return (
       <div>
-        <h2>Dropzones:</h2>
-        {allDropzones.map((dropzone) => (
-          <div key={dropzone.id}>
-            <p>First name: {dropzone.name}</p>
-            <p>Last name: {dropzone.address} </p>
-            <p>Email: {dropzone.email} </p>
-            <Link to={`/dropzones/${dropzone.id}`} >
-              <button>View more</button>
-            </Link>
-            <hr />
-            <hr />
-          </div>
-        ))}
-      </div>
-    );
+        <div key={id}>
+        <h2>{name}</h2>
+          <p>{address} </p>
+          <p>{phoneNumber} </p>
+          <hr />
+          <hr />
+        </div>
+    </div>
+    )
   }
 }
 
@@ -72,9 +60,10 @@ const mapState = (state) => {
     users: state.auth,
     dropzones: state.dropzones,
     loads: state.loads,
+    singleUser: state.singleUser,
+    singleDropzone: state.singleDropzone,
   };
 };
-
 const mapDispatch = (dispatch) => {
   return {
     editJumpRecord: (jump, userId, jumpId) =>
@@ -86,7 +75,7 @@ const mapDispatch = (dispatch) => {
     getSingleJumpRecord: (userId, jumpId) =>
       dispatch(Thunk_fetchSingleJump(userId, jumpId)), //WORKING//
 
-    ////////ABOVE is for USER TABLE//////BELOW IS FOR DROPZONE//////////////////////////
+    //////////////BELOW IS FOR DROPZONE//////////////////////////
 
     editDropzone: (dropzoneId, dropzone) =>
       dispatch(thunk_updateDropzone(dropzoneId, dropzone)), //WOKRING//
@@ -96,7 +85,7 @@ const mapDispatch = (dispatch) => {
     getSingleDropzone: (dropzoneId) =>
       dispatch(thunk_fetchSingleDropzone(dropzoneId)), //WORKING//
 
-    /////////ABOVE IS FOR DROPZONE////////BELOW IS FOR LOADS/////////////////////////////
+    /////////////////BELOW IS FOR LOADS/////////////////////////////
 
     editLoad: (dropzoneId, loadId, LOAD) =>
       dispatch(thunk_updateLoad(dropzoneId, loadId, LOAD)), //WORKING//
@@ -106,7 +95,13 @@ const mapDispatch = (dispatch) => {
     addLoad: (LOAD, dropzoneId) => dispatch(thunk_createLoad(LOAD, dropzoneId)), //WORKING//
     getSingleLoad: (dropzoneId, loadId) =>
       dispatch(thunk_fetchSingleLoad(dropzoneId, loadId)), //WORKING//
+
+      /////////////////BELOW IS FOR ADMINS/////////////////////////////
+
+      getSingleUser: (id) => dispatch(fetchUser(id)),
+      getSingleDropzone: (id) => dispatch(fetchDropzone(id))
+
   };
 };
 
-export default connect(mapState, mapDispatch)(AllDropzones);
+export default connect(mapState, mapDispatch)(SingleUser);

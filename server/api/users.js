@@ -25,8 +25,7 @@ router.get('/', requireToken, isAdmin, async (req, res, next) => {
   }
 });
 
-//Grabbing a users data/profile when logged in
-//GET api/users/:id
+//ADMIN VIEW: GET A USER
 router.get('/:id', async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id);
