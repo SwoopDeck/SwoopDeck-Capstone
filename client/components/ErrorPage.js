@@ -1,17 +1,20 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 function ErrorPage() {
   return (
-    <div>
-        <h1>Oops - This page does not exist!</h1>
-        <h2>
-            <Link to='/'>
-            <button>Click here to pull your reserve and return home</button>
-            </Link>
-        </h2>
+    <div className="flex-right">
+    <div className="right-top-column">
+      <h1>You are below your pull altitude.</h1>
+      <p style={{margin: '1rem', marginBottom: '0'}}>Sorry, this page does not exist.</p>
+      <h2 style={{ display: "flex", justifyContent: "center" }}>
+        <Link to="/">
+          <button className="view-jump-details" style={{padding: '1rem', margin: '1rem', display: 'flex', alignItems: 'center', fontSize: '1.2rem'}}>Click here to activate your AAD and land safely</button>
+        </Link>
+      </h2>
     </div>
-  )
+    </div>
+  );
 }
 
-export default ErrorPage
+export default ErrorPage;
