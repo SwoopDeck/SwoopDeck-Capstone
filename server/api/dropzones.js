@@ -9,7 +9,7 @@ const {
 router.get('/', async (req, res, next) => {
   try {
     const dropzones = await Dropzone.findAll();
-    
+
     res.send(dropzones);
   } catch (err) {
     next(err);
@@ -35,11 +35,13 @@ router.get('/:dropzoneId', async (req, res, next) => {
 router.put('/:dropzoneId', async (req, res, next) => {
   try {
     const selectedDropzone = await Dropzone.findByPk(req.params.dropzoneId);
+
     selectedDropzone.update({...selectedDropzone, 
       name: req.body.name,
       address: req.body.address,
       phoneNumber: req.body.phoneNumber,
     })
+
 
     res.send(selectedDropzone);
   } catch (err) {
@@ -52,12 +54,10 @@ router.put('/:dropzoneId', async (req, res, next) => {
 //GET 'api/dropzone/create'
 router.post('/create', async (req, res, next) => {
   try {
-
-    await Dropzone.create(req.body)
+    await Dropzone.create(req.body);
 
     let loads = await Dropzone.findAll();
 
-   
     res.send(loads);
   } catch (e) {
     next(e);
@@ -69,18 +69,15 @@ router.post('/create', async (req, res, next) => {
 //DELETE 'api/dropzones/:dropzoneId'
 router.delete('/:dropzoneId', async (req, res, next) => {
   try {
-
     await Dropzone.destroy({
       where: {
         id: req.params.dropzoneId,
       },
     });
 
-    
     const dropzones = await Dropzone.findAll();
-    
-    res.send(dropzones);
 
+    res.send(dropzones);
   } catch (err) {
     next(err);
   }

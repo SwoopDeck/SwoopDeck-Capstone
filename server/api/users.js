@@ -7,21 +7,22 @@ const { requireToken, isAdmin } = require('./middleware');
 module.exports = router;
 
 //ADMIN VIEW: GET ALL USERS
-router.get('/', requireToken, isAdmin, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
-    const users = await User.findAll(
-      
-    //   {
-    //   //   // explicitly select only the id and email fields - even though
-    //   //   // users' passwords are encrypted, it won't help if we just
-    //   //   // send everything to anyone who asks!
-    //   attributes: ["id", "email", "firstName", "lastName"],
-    // }
-    );
+    const users = await User
+      .findAll
+
+      //   {
+      //   //   // explicitly select only the id and email fields - even though
+      //   //   // users' passwords are encrypted, it won't help if we just
+      //   //   // send everything to anyone who asks!
+      //   attributes: ["id", "email", "firstName", "lastName"],
+      // }
+      ();
     res.json(users);
   } catch (err) {
     next(err);
-    console.log('did not work')
+    console.log('did not work');
   }
 });
 
@@ -47,7 +48,7 @@ router.post('/', async (req, res, next) => {
 
 //Update the user once the form is updated
 //PUT api/users/:id
-router.put("/:id", async (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id);
     user.update({...user,
@@ -77,4 +78,3 @@ router.delete('/:id', async (req, res, next) => {
     next(err);
   }
 });
-
