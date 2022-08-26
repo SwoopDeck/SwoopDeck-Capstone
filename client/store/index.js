@@ -1,29 +1,26 @@
-import {createStore, combineReducers, applyMiddleware} from 'redux'
-import {createLogger} from 'redux-logger'
-import thunkMiddleware from 'redux-thunk'
-import {composeWithDevTools} from 'redux-devtools-extension'
-import auth from './auth'
-import jumpRecordsReducer from './jumpRecords'
-import usersReducer from './allUsers'
-import dropzonesReducer from './dropzones'
-import loadsReducer from './loads'
-import singleUserReducer from './singleUser'
-import singleDropzoneReducer from './singleDropzone'
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createLogger } from 'redux-logger';
+import thunkMiddleware from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import auth from './auth';
+import jumpRecordsReducer from './jumpRecords';
+import usersReducer from './allusers';
+import dropzonesReducer from './dropzones';
+import loadsReducer from './loads';
 
-const reducer = combineReducers({ 
+const reducer = combineReducers({
   auth,
   jumpRecords: jumpRecordsReducer,
   users: usersReducer,
   dropzones: dropzonesReducer,
   loads: loadsReducer,
-  singleUser: singleUserReducer,
-  singleDropzone: singleDropzoneReducer
-
- })
+  // singleUser: singleUserReducer,
+  // singleDropzone: singleDropzoneReducer
+});
 const middleware = composeWithDevTools(
-  applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
-)
-const store = createStore(reducer, middleware)
+  applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
+);
+const store = createStore(reducer, middleware);
 
-export default store
-export * from './auth'
+export default store;
+export * from './auth';

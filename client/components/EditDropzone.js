@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link , useHistory} from 'react-router-dom'
 import {
   Thunk_fetchAllJumpRecords,
   Thunk_fetchSingleJump,
@@ -22,20 +22,21 @@ import {
   thunk_fetchSingleLoad,
   thunk_updateLoad,
 } from '../store/loads';
-import { Thunk_fetchUsers, Thunk_updateUser } from '../store/allusers';
+import { Thunk_fetchUser, Thunk_updateUser } from "../store/allusers";
 
-/**
- * REACT COMPONENT
- */
-export class AllUsers extends React.Component {
+export class EditDropzone extends Component {
   constructor(props) {
     super(props);
-
+    this.state = {
+      name: '',
+      address: '',
+      phoneNumber: '',
+    };
     this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
-    this.props.getUsers();
+    this.props.getSingleDropzone(this.props.match.params.id)
   }
 
   handleChange(evt) {
@@ -45,28 +46,78 @@ export class AllUsers extends React.Component {
   }
 
   render() {
-    const allUsers = this.props.users || [];
-
+    const {id, name, address, phoneNumber } = this.props.singleDropzone
+  
+    console.log(this.props.singleDropzone)
+    
     return (
       <div>
-        <h2>All Users:</h2>
-        {allUsers.map((user) => (
-          <div key={user.id}>
-            <p>First name: {user.firstName}</p>
-            <p>Last name: {user.lastName} </p>
-            <p>Email: {user.email} </p>
-            <p>Role: {user.role} </p>
-            <Link to={`/users/${user.id}`} >
-              <button>View more</button>
-            </Link>
-            <hr />
-            <hr />
-          </div>
-        ))}
+        <div>Current:</div>
+        <div>NAME: {name}</div>
+        <div>ADDRESS: {address}</div>
+        <div>PHONE NUMBER: {phoneNumber}</div>
+        
+        
+        <h1>Edit User</h1>
+            <form id="edit-user">
+          <div>NAME:</div>
+          <input
+            type="text"
+            name="name"
+            placeholder={name}
+            value={this.state.name}
+            onChange={this.handleChange}
+            style={{ margin: '25px' }}
+          />
+           <div>ADDRESS:</div>
+          <input
+            type="text"
+            name="address"
+            placeholder={address}
+            value={this.state.address}
+            onChange={this.handleChange}
+            style={{ margin: '25px' }}
+          />
+          <div>PHONE NUMBER:</div>
+          <input
+            type="text"
+            name="phoneNumber"
+            placeholder={phoneNumber}
+            value={this.state.phoneNumber}
+            onChange={this.handleChange}
+            style={{ margin: '25px' }}
+          />
+          
+          <button
+            onClick={(evt) => {
+              evt.preventDefault();
+              this.props.editDropzone(id, { ...this.state });
+              this.props.getSingleDropzone(this.props.match.params.id)
+              this.setState({
+                name: '',
+                address: '',
+                email: '',
+              });
+                
+                this.props.history.push(`/dropzones/${id}`);
+                
+              }
+            }
+          >EDIT DROPZONE PROFILE</button>
+        </form> 
       </div>
     );
   }
 }
+
+// const mapState = (state) => {
+//   return {
+//     jumpRecords: state.jumpRecords,
+//     userss: state.auth,
+//     dropzones: state.dropzones,
+//     loads: state.loads,
+//   };
+// };
 
 const mapState = (state) => {
   return {
@@ -111,14 +162,12 @@ const mapDispatch = (dispatch) => {
     getSingleLoad: (dropzoneId, loadId) =>
       dispatch(thunk_fetchSingleLoad(dropzoneId, loadId)), //WORKING//
 
-      /////////ABOVE IS FOR DROPZONE////////BELOW IS FOR ADMIN/////////////////////////////
+    ////////////////////ABOVE IS FOR LOADS///////////BELOW IS FOR USER/////////////
 
-      getUsers: () => dispatch(Thunk_fetchUsers()),
-      // editUser: (userId) => dispatch(Thunk_updateUser(userId)),
-      // deleteUser: (userId) => dispatch(Thunk_deleteUser(userId)),
-
+    getSingleUser: (id) => dispatch(Thunk_fetchUser(id)),
+    editUser: (userId, userData) => dispatch(Thunk_updateUser(userId, userData))
 
   };
 };
 
-export default connect(mapState, mapDispatch)(AllUsers);
+export default connect(mapState, mapDispatch)(EditDropzone);

@@ -1,9 +1,5 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { me } from "../store/auth";
-import Sidebar from "./Sidebar";
-// import EditItem from "./EditItem";
+import React from 'react';
+import { connect } from 'react-redux';
 import {
   Thunk_fetchAllJumpRecords,
   Thunk_fetchSingleJump,
@@ -25,72 +21,76 @@ import {
   thunk_fetchSingleLoad,
   thunk_updateLoad,
 } from '../store/loads';
-import { Thunk_fetchUser, Thunk_fetchUsers, Thunk_updateUser } from "../store/allusers";
 
 /**
  * REACT COMPONENT
  */
-class SingleUser extends React.Component {
- 
+export class JoinDropzone extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleChange = this.handleChange.bind(this);
+    this.selectDropzone = this.selectDropzone.bind(this);
+  }
   componentDidMount() {
-    this.props.getSingleUser(this.props.match.params.id)
+    this.props.getDropzones();
+  }
+
+  handleChange(evt) {
+    this.setState({
+      [evt.target.name]: evt.target.value,
+    });
+  }
+
+  selectDropzone(evt) {
+    console.log('dropzone id', evt.target.id);
+    this.props.history.push(`/${evt.target.id}/loads`);
   }
 
   render() {
-    const { id, firstName, lastName, address, email, licenseNumber, role } = this.props.singleUser
-  
-    return (
+    const { selectDropzone } = this;
+    const dropzones = this.props.dropzones || [];
+    console.log(dropzones);
+    const allDropzones = (
       <div>
-        <div key={id}>
-        <h2>{firstName} {lastName}</h2>
-          <p>Email: {email} </p>
-          <p>Address: {address} </p>
-          <p>Role: {role} </p>
-          {role === 'Skydiver' ? (
-            <p>UPSA#: {licenseNumber} </p>
-
-          ) : (
-            <></>
-          )}
-           <button onClick={()=> {
-            this.props.getSingleUser(this.props.match.params.id)
-            this.props.history.push(`/users/edit/${id}`)
-          // this.props.getDropzones()
-        }}
-          >Edit</button> 
-          <button onClick={()=> {
-            this.props.getUsers();
-            this.props.history.push(`/users`)
-        }}>Go back</button> 
-          
-          <hr />
-          <hr />
-        </div>
-    </div>
-    )
+        <h1>Select Your Dropzone</h1>
+        <h1>--------------------------------</h1>
+        {dropzones.map((dropzone, idx) => {
+          return (
+            <div key={idx}>
+              <h2>Dropzone: {dropzone.name}</h2>
+              <h3>Address: {dropzone.address}</h3>
+              <button type="button" id={dropzone.id} onClick={selectDropzone}>
+                Select Dropzone
+              </button>
+            </div>
+          );
+        })}
+      </div>
+    );
+    return <div>{allDropzones}</div>;
   }
 }
+const mapState = (state) => {
+  return {
+    jumpRecords: state.jumpRecords,
+    user: state.auth,
+    dropzones: state.dropzones.allDropzones,
+    loads: state.loads,
+  };
+};
 
 // const mapState = (state) => {
 //   return {
 //     jumpRecords: state.jumpRecords,
-//     users: state.auth,
-//     dropzones: state.dropzones,
+//     users: state.users.allUsers,
+//     dropzones: state.dropzones.allDropzones,
 //     loads: state.loads,
 //     singleUser: state.users.singleUser,
+//     singleDropzone: state.dropzones.singleDropzone
 //   };
 // };
 
-const mapState = (state) => {
-  return {
-    jumpRecords: state.jumpRecords,
-    users: state.users.allUsers,
-    dropzones: state.dropzones.allDropzones,
-    loads: state.loads,
-    singleUser: state.users.singleUser,
-    singleDropzone: state.dropzones.singleDropzone
-  };
-};
 const mapDispatch = (dispatch) => {
   return {
     editJumpRecord: (jump, userId, jumpId) =>
@@ -102,7 +102,7 @@ const mapDispatch = (dispatch) => {
     getSingleJumpRecord: (userId, jumpId) =>
       dispatch(Thunk_fetchSingleJump(userId, jumpId)), //WORKING//
 
-    //////////////BELOW IS FOR DROPZONE//////////////////////////
+    ////////ABOVE is for USER TABLE//////BELOW IS FOR DROPZONE//////////////////////////
 
     editDropzone: (dropzoneId, dropzone) =>
       dispatch(thunk_updateDropzone(dropzoneId, dropzone)), //WOKRING//
@@ -112,7 +112,7 @@ const mapDispatch = (dispatch) => {
     getSingleDropzone: (dropzoneId) =>
       dispatch(thunk_fetchSingleDropzone(dropzoneId)), //WORKING//
 
-    /////////////////BELOW IS FOR LOADS/////////////////////////////
+    /////////ABOVE IS FOR DROPZONE////////BELOW IS FOR LOADS/////////////////////////////
 
     editLoad: (dropzoneId, loadId, LOAD) =>
       dispatch(thunk_updateLoad(dropzoneId, loadId, LOAD)), //WORKING//
@@ -122,13 +122,7 @@ const mapDispatch = (dispatch) => {
     addLoad: (LOAD, dropzoneId) => dispatch(thunk_createLoad(LOAD, dropzoneId)), //WORKING//
     getSingleLoad: (dropzoneId, loadId) =>
       dispatch(thunk_fetchSingleLoad(dropzoneId, loadId)), //WORKING//
-
-      /////////////////BELOW IS FOR ADMINS/////////////////////////////
-
-      getSingleUser: (id) => dispatch(Thunk_fetchUser(id)),
-      getUsers: () => dispatch(Thunk_fetchUsers()),
-
   };
 };
 
-export default connect(mapState, mapDispatch)(SingleUser);
+export default connect(mapState, mapDispatch)(JoinDropzone);

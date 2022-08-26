@@ -8,12 +8,12 @@ const CREATE_USER = 'CREATE_USER';
 const SET_USERS = 'SET_USERS';
 const UPDATE_USER = 'UPDATE_USER';
 const DELETE_USER = 'DELETE_USER';
-
+const SET_USER = 'SET_USER'
 
 
 /* ACTION CREATORS */ 
 
-// GET ALL USERS
+// ADMIN: GET ALL USERS
 export const _setUsers = (users) => {
   return {
     type: SET_USERS,
@@ -21,7 +21,7 @@ export const _setUsers = (users) => {
   };
 };
 
-// CREATE A NEW USER
+// ADMIN: CREATE A NEW USER
 export const _createUser = (user) => {
   return {
     type: CREATE_USER,
@@ -29,7 +29,7 @@ export const _createUser = (user) => {
   };
 };
 
-// UPDATE A USER
+// ADMIN: UPDATE A USER
 export const _updateUser = (user) => {
   return {
     type: UPDATE_USER,
@@ -37,7 +37,7 @@ export const _updateUser = (user) => {
   };
 };
 
-// DELETE A USER
+// ADMIN: DELETE A USER
 export const _deleteUser = (user) => {
   return {
     type: DELETE_USER,
@@ -45,9 +45,21 @@ export const _deleteUser = (user) => {
   };
 };
 
+// GET A SINGLE USER
+export const _setUser = user => ({
+  type: SET_USER,
+  user
+});
 
 
 /* THUNKS */ 
+
+// THUNK: GET A SINGLE USER
+export const Thunk_fetchUser = (id) => async (dispatch) => {
+  const {data} = await axios.get(`/api/users/${id}`)
+  dispatch(_setUser(data));
+}
+
 
 // THUNK: CREATE A NEW USER
 export const createUser = (user, history) => {
@@ -61,12 +73,12 @@ export const createUser = (user, history) => {
 };
 
 // THUNK: UPDATE A USER
-export const Thunk_updateUser = (id, history) => {
+export const Thunk_updateUser = (id, userData) => {
   return async (dispatch) => {
     try {
-      const { data: user } = await axios.put(`/api/users/${id}`);
+      console.log(userData)
+      const { data: user } = await axios.put(`/api/users/${id}`, userData);
       dispatch(_updateUser(user));
-      history.push('/users');
     } catch (err) {
       console.error(err);
     }
@@ -111,20 +123,25 @@ export const Thunk_fetchUsers = () => {
 
 
 /* REDUCERS */ 
-const initialState = [];
+const initialState = {
+  allUsers: [],
+  singleUser: {}
+};
 
 export default function usersReducer(state = initialState, action) {
   switch (action.type) {
     case CREATE_USER:
-      return [...state, action.user];
+      return {...state, allUsers:[...state.allUsers, action.user]};
     case SET_USERS:
-      console.log(action.users)
-      return action.users;
+      return {...state, allUsers:action.users};
+    case SET_USER: 
+    return {...state, singleUser:action.user}
     case UPDATE_USER:
-      return action.user;
+      return {...state, allUsers:[...state.allUsers, action.user]};
     case DELETE_USER:
-      return state.filter((users) => users.id !== action.users.id);
-    default:
+      return {...state, allUsers: state.allUsers.filter((users) => users.id !== action.users.id)}
+    
+      default:
       return state;
   }
 }

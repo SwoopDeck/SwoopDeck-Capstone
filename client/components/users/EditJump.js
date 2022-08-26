@@ -7,21 +7,21 @@ import {
   Thunk_updateJump,
   Thunk_deleteJump,
   Thunk_createJump,
-} from '../store/jumpRecords';
+} from '../../store/jumpRecords';
 import {
   thunk_fetchSingleDropzone,
   thunk_updateDropzone,
   thunk_createDropzone,
   thunk_deleteDropzone,
   thunk_fetchAllDropzones,
-} from '../store/dropzones.js';
+} from '../../store/dropzones.js';
 import {
   thunk_fetchAllLoads,
   thunk_createLoad,
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
-} from '../store/loads';
+} from '../../store/loads';
 
 export class EditJump extends Component {
   constructor(props) {
@@ -39,7 +39,6 @@ export class EditJump extends Component {
       jumpType: '',
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -50,11 +49,6 @@ export class EditJump extends Component {
     this.setState({
       [evt.target.name]: evt.target.value,
     });
-  }
-
-  handleSubmit(evt) {
-    evt.preventDefault();
-    // this.props.updateUser({ ...this.props.user, ...this.state }) //NEED TO FIND THE updateUser THUNK 
   }
 
   render() {
@@ -172,14 +166,26 @@ export class EditJump extends Component {
   }
 }
 
+// const mapState = (state) => {
+//   return {
+//     jumpRecords: state.jumpRecords,
+//     userss: state.auth,
+//     dropzones: state.dropzones,
+//     loads: state.loads,
+//   };
+// };
+
 const mapState = (state) => {
   return {
     jumpRecords: state.jumpRecords,
-    users: state.auth,
-    dropzones: state.dropzones,
+    users: state.users.allUsers,
+    dropzones: state.dropzones.allDropzones,
     loads: state.loads,
+    singleUser: state.users.singleUser,
+    singleDropzone: state.dropzones.singleDropzone
   };
 };
+
 const mapDispatch = (dispatch) => {
   return {
     editJumpRecord: (jump, userId, jumpId) =>
@@ -214,4 +220,4 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditJump);
+export default connect(mapState, mapDispatch)(EditJump);

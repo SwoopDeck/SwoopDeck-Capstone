@@ -1,83 +1,124 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { me } from "../store/auth";
-import Sidebar from "./Sidebar";
-// import EditItem from "./EditItem";
+import React from 'react';
+import { connect } from 'react-redux';
 import {
   Thunk_fetchAllJumpRecords,
   Thunk_fetchSingleJump,
   Thunk_updateJump,
   Thunk_deleteJump,
   Thunk_createJump,
-} from '../store/jumpRecords';
+} from '../../store/jumpRecords';
 import {
   thunk_fetchSingleDropzone,
   thunk_updateDropzone,
   thunk_createDropzone,
   thunk_deleteDropzone,
   thunk_fetchAllDropzones,
-} from '../store/dropzones.js';
+} from '../../store/dropzones.js';
 import {
   thunk_fetchAllLoads,
   thunk_createLoad,
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
-} from '../store/loads';
-import { Thunk_fetchUser, Thunk_fetchUsers, Thunk_updateUser } from "../store/allusers";
+  addLoad,
+} from '../../store/loads';
 
 /**
  * REACT COMPONENT
  */
-class SingleUser extends React.Component {
- 
-  componentDidMount() {
-    this.props.getSingleUser(this.props.match.params.id)
+export class CreateLoad extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      aircraft: '',
+      slots: '0',
+      status: 'on time',
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.createLoad = this.createLoad.bind(this);
+    this.clearFields = this.clearFields.bind(this);
+  }
+  componentDidMount() {}
+
+  handleChange(evt) {
+    console.log('before', this.state);
+    this.setState({
+      [evt.target.name]: evt.target.value,
+    });
+    console.log('after', this.state);
+  }
+
+  createLoad(evt) {
+    //GETTING DATE & TIME INFO
+
+    const date = new Date();
+    date.getDate();
+    //GETTING DATE & TIME INFO
+
+    const dropzoneId = this.props.users.dropzoneId;
+    const load = {
+      ...this.state,
+      isFull: false,
+      date: date,
+      dropzoneId: dropzoneId,
+      // slots: this.state.slots,
+    };
+    this.props.addLoad(load, dropzoneId);
+  }
+
+  clearFields() {
+    this.setState({
+      aircraft: '',
+      slots: '0',
+      status: 'on time',
+    })
   }
 
   render() {
-    const { id, firstName, lastName, address, email, licenseNumber, role } = this.props.singleUser
-  
+    const { handleChange, clearFields, createLoad } = this;
+    console.log(this.props);
     return (
       <div>
-        <div key={id}>
-        <h2>{firstName} {lastName}</h2>
-          <p>Email: {email} </p>
-          <p>Address: {address} </p>
-          <p>Role: {role} </p>
-          {role === 'Skydiver' ? (
-            <p>UPSA#: {licenseNumber} </p>
+        <h1>Create New Load</h1>
+        <form>
+          <label htmlFor="aircraft">Aircraft Type</label>
+          <input
+            type="text"
+            name="aircraft"
+            placeholder="Aircraft"
+            onChange={handleChange}
+          />
+          <label htmlFor="slots">Available Slots</label>
+          <input
+            type="text"
+            name="slots"
+            placeholder="10"
+            onChange={handleChange}
+          />
 
-          ) : (
-            <></>
-          )}
-           <button onClick={()=> {
-            this.props.getSingleUser(this.props.match.params.id)
-            this.props.history.push(`/users/edit/${id}`)
-          // this.props.getDropzones()
-        }}
-          >Edit</button> 
-          <button onClick={()=> {
-            this.props.getUsers();
-            this.props.history.push(`/users`)
-        }}>Go back</button> 
-          
-          <hr />
-          <hr />
-        </div>
-    </div>
-    )
+          <label htmlFor="status">Status</label>
+          <select name="status" onChange={handleChange}>
+            <option name="on time">On Time</option>
+            <option name="delayed">Delayed</option>
+            <option name="closed">Closed</option>
+            <option name="canceled">Canceled</option>
+          </select>
+          <button type="button" onClick={createLoad}>
+            Submit
+          </button>
+        </form>
+      </div>
+    );
   }
 }
-
 // const mapState = (state) => {
 //   return {
 //     jumpRecords: state.jumpRecords,
 //     users: state.auth,
 //     dropzones: state.dropzones,
 //     loads: state.loads,
-//     singleUser: state.users.singleUser,
 //   };
 // };
 
@@ -91,6 +132,7 @@ const mapState = (state) => {
     singleDropzone: state.dropzones.singleDropzone
   };
 };
+
 const mapDispatch = (dispatch) => {
   return {
     editJumpRecord: (jump, userId, jumpId) =>
@@ -102,7 +144,7 @@ const mapDispatch = (dispatch) => {
     getSingleJumpRecord: (userId, jumpId) =>
       dispatch(Thunk_fetchSingleJump(userId, jumpId)), //WORKING//
 
-    //////////////BELOW IS FOR DROPZONE//////////////////////////
+    ////////ABOVE is for USER TABLE//////BELOW IS FOR DROPZONE//////////////////////////
 
     editDropzone: (dropzoneId, dropzone) =>
       dispatch(thunk_updateDropzone(dropzoneId, dropzone)), //WOKRING//
@@ -112,7 +154,7 @@ const mapDispatch = (dispatch) => {
     getSingleDropzone: (dropzoneId) =>
       dispatch(thunk_fetchSingleDropzone(dropzoneId)), //WORKING//
 
-    /////////////////BELOW IS FOR LOADS/////////////////////////////
+    /////////ABOVE IS FOR DROPZONE////////BELOW IS FOR LOADS/////////////////////////////
 
     editLoad: (dropzoneId, loadId, LOAD) =>
       dispatch(thunk_updateLoad(dropzoneId, loadId, LOAD)), //WORKING//
@@ -122,13 +164,7 @@ const mapDispatch = (dispatch) => {
     addLoad: (LOAD, dropzoneId) => dispatch(thunk_createLoad(LOAD, dropzoneId)), //WORKING//
     getSingleLoad: (dropzoneId, loadId) =>
       dispatch(thunk_fetchSingleLoad(dropzoneId, loadId)), //WORKING//
-
-      /////////////////BELOW IS FOR ADMINS/////////////////////////////
-
-      getSingleUser: (id) => dispatch(Thunk_fetchUser(id)),
-      getUsers: () => dispatch(Thunk_fetchUsers()),
-
   };
 };
 
-export default connect(mapState, mapDispatch)(SingleUser);
+export default connect(mapState, mapDispatch)(CreateLoad);

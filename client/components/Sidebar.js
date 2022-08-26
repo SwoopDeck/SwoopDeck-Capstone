@@ -110,7 +110,7 @@ export const Sidebar = (props) => {
           {userItems.map((item, index) => (
             <SidebarItem key={index} item={item} />
           ))}
-
+          
           <i className="bi bi-box-arrow-right">
             <button className="logout-btn" onClick={() => dispatch(logout())}>
               Logout
@@ -152,6 +152,17 @@ const mapState = (state) => {
     loads: state.loads,
   };
 };
+
+// const mapState = (state) => {
+//   return {
+//     jumpRecords: state.jumpRecords,
+//     users: state.users.allUsers,
+//     dropzones: state.dropzones.allDropzones,
+//     loads: state.loads,
+//     singleUser: state.users.singleUser,
+//     singleDropzone: state.dropzones.singleDropzone
+//   };
+// };
 const mapDispatch = (dispatch) => {
   return {
     editJumpRecord: (jump, userId, jumpId) =>

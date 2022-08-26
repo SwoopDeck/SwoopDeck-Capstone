@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link , useHistory} from 'react-router-dom'
 import {
   Thunk_fetchAllJumpRecords,
   Thunk_fetchSingleJump,
@@ -22,28 +22,26 @@ import {
   thunk_fetchSingleLoad,
   thunk_updateLoad,
 } from '../store/loads';
+import { Thunk_fetchUser, Thunk_updateUser } from "../store/allusers";
 
 export class EditJump extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      jumpNumber: '',
-      location: '',
-      aircraft: '',
-      equipment: '',
-      exitAltitude: 14000,
-      pullAltitude: 4000,
-      freeFallTime: 60,
-      jumpers: '',
-      description: '',
-      jumpType: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+    //   password: '',
+      address: '',
+      licenseNumber: '',
+      emergencyContact: '',
+      emergencyPhoneNumber: null,
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    //this.props.getJump(this.props.user.id, this.props.match.params.jumpId)
+    this.props.getSingleUser(this.props.match.params.id)
   }
 
   handleChange(evt) {
@@ -52,134 +50,133 @@ export class EditJump extends Component {
     });
   }
 
-  handleSubmit(evt) {
-    evt.preventDefault();
-    // this.props.updateUser({ ...this.props.user, ...this.state }) //NEED TO FIND THE updateUser THUNK 
-  }
-
   render() {
-    let jump = this.props.jump[0] || {};
-
+    // let jump = this.props.jump[0] || {};
+    const {id, firstName, lastName, address, email, licenseNumber, emergencyContact , emergencyPhoneNumber} = this.props.singleUser
+  
+    console.log(this.props.singleUser)
+    
     return (
       <div>
-        <h1>Edit Log</h1>
-        <form id="jump-form">
-          <div>JUMP NUMBER:</div>
+        <div>Current:</div>
+        <div>FIRST NAME: {firstName}</div>
+        <div>LAST NAME: {lastName}</div>
+        <div>ADDRESS: {address}</div>
+        <div>LICENSE NUMBER: {licenseNumber}</div>
+        <div>EMERGENCY CONTACT: {emergencyContact}</div>
+        <div>EMERGENCY PHONE NUMBER: {emergencyPhoneNumber}</div>
+        
+        <h1>Edit User</h1>
+            <form id="edit-user">
+          <div>FIRST NAME:</div>
           <input
             type="text"
-            name="jumpNumber"
-            value={this.state.jumpNumber}
+            name="firstName"
+            placeholder={firstName}
+            value={this.state.firstName}
             onChange={this.handleChange}
             style={{ margin: '25px' }}
           />
-          <div>LOCATION:</div>
+           <div>LAST NAME:</div>
           <input
             type="text"
-            name="location"
-            value={this.state.location}
+            name="lastName"
+            placeholder={lastName}
+            value={this.state.lastName}
             onChange={this.handleChange}
             style={{ margin: '25px' }}
           />
-          <div>AIRCRAFT:</div>
+          <div>ADDRESS:</div>
           <input
             type="text"
-            name="aircraft"
-            value={this.state.aircraft}
+            name="address"
+            placeholder={address}
+            value={this.state.address}
             onChange={this.handleChange}
             style={{ margin: '25px' }}
           />
-          <div>EQUIPMENT:</div>
+           <div>EMAIL:</div>
           <input
             type="text"
-            name="equipment"
-            value={this.state.equipment}
+            name="email"
+            placeholder={email}
+            value={this.state.email}
             onChange={this.handleChange}
             style={{ margin: '25px' }}
           />
-          <div>EXIT ALTITUDE:</div>
+          <div>LICENSE NUMBER:</div>
           <input
             type="number"
-            name="exitAltitude"
-            value={this.state.exitAltitude}
+            name="licenseNumber"
+            placeholder={licenseNumber}
+            value={this.state.licenseNumber}
             onChange={this.handleChange}
             style={{ margin: '25px' }}
           />
-          <div>PULL ALTITUDE:</div>
+          <div>EMERGENCY CONTACT:</div>
+          <input
+            type="text"
+            name="emergencyContact"
+            placeholder={emergencyContact}
+            value={this.state.emergencyContact}
+            onChange={this.handleChange}
+            style={{ margin: '25px' }}
+          />
+          <div>EMERGENCY PHONE NUMBER:</div>
           <input
             type="number"
-            name="pullAltitude"
-            value={this.state.pullAltitude}
+            name="emergencyPhoneNumber"
+            placeholder={emergencyPhoneNumber}
+            value={this.state.emergencyPhoneNumber}
             onChange={this.handleChange}
             style={{ margin: '25px' }}
           />
-          <div>FREEFALL TIME:</div>
-          <input
-            type="number"
-            name="freeFallTime"
-            value={this.state.freeFallTime}
-            onChange={this.handleChange}
-            style={{ margin: '25px' }}
-          />
-          <div>JUMPERS:</div>
-          <input
-            type="text"
-            name="jumpers"
-            value={this.state.jumpers}
-            onChange={this.handleChange}
-            style={{ margin: '25px' }}
-          />
-          <div>DESCRIPTION:</div>
-          <input
-            type="text"
-            name="description"
-            value={this.state.description}
-            onChange={this.handleChange}
-            style={{ margin: '25px' }}
-          />
-          <div>JUMP TYPE:</div>
-          <input
-            type="text"
-            name="jumpType"
-            value={this.state.jumpType}
-            onChange={this.handleChange}
-            style={{ margin: '25px' }}
-          />
-
           <button
             onClick={(evt) => {
               evt.preventDefault();
-              this.props.edit({ ...this.state }, this.props.users.id, jump.id);
+              this.props.editUser(id, { ...this.state });
+              this.props.getSingleUser(this.props.match.params.id)
               this.setState({
-                jumpNumber: '',
-                location: '',
-                aircraft: '',
-                equipment: '',
-                exitAltitude: 14000,
-                pullAltitude: 4000,
-                freeFallTime: 60,
-                jumpers: '',
-                description: '',
-                jumpType: '',
+                firstName: '',
+                lastName: '',
+                email: '',
+                // password: '',
+                address: '',
+                licenseNumber: '',
+                emergencyContact: '',
+                emergencyPhoneNumber: null,
               });
-              this.props.getJump(this.props.users.id, jump.id);
-            }}
-          >
-            <Link to={`/jumps/${jump.id}`}>Edit Jump Log</Link>
-          </button>
-        </form>
+                
+                this.props.history.push(`/users/${id}`);
+              }
+            }
+          >EDIT USER PROFILE</button>
+        </form> 
       </div>
     );
   }
 }
 
+// const mapState = (state) => {
+//   return {
+//     jumpRecords: state.jumpRecords,
+//     userss: state.auth,
+//     dropzones: state.dropzones,
+//     loads: state.loads,
+//   };
+// };
+
 const mapState = (state) => {
   return {
     jumpRecords: state.jumpRecords,
-    users: state.auth,
-    dropzones: state.dropzones,
+    users: state.users.allUsers,
+    dropzones: state.dropzones.allDropzones,
     loads: state.loads,
+    singleUser: state.users.singleUser,
+    singleDropzone: state.dropzones.singleDropzone
   };
 };
+
 const mapDispatch = (dispatch) => {
   return {
     editJumpRecord: (jump, userId, jumpId) =>
@@ -211,7 +208,13 @@ const mapDispatch = (dispatch) => {
     addLoad: (LOAD, dropzoneId) => dispatch(thunk_createLoad(LOAD, dropzoneId)), //WORKING//
     getSingleLoad: (dropzoneId, loadId) =>
       dispatch(thunk_fetchSingleLoad(dropzoneId, loadId)), //WORKING//
+
+    ////////////////////ABOVE IS FOR LOADS///////////BELOW IS FOR USER/////////////
+
+    getSingleUser: (id) => dispatch(Thunk_fetchUser(id)),
+    editUser: (userId, userData) => dispatch(Thunk_updateUser(userId, userData))
+
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditJump);
+export default connect(mapState, mapDispatch)(EditJump);
