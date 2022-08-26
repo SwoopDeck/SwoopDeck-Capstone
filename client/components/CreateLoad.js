@@ -129,6 +129,7 @@ export class CreateLoad extends React.Component {
 const mapState = (state) => {
   return {
     jumpRecords: state.jumpRecords,
+
     user: state.auth,
     dropzones: state.dropzones.allDropzones,
     loads: state.loads,
@@ -145,6 +146,7 @@ const mapState = (state) => {
 //     singleDropzone: state.dropzones.singleDropzone,
 //   };
 // };
+
 
 const mapDispatch = (dispatch) => {
   return {

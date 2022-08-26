@@ -13,7 +13,7 @@ const SET_USER = 'SET_USER'
 
 /* ACTION CREATORS */ 
 
-// GET ALL USERS
+// ADMIN: GET ALL USERS
 export const _setUsers = (users) => {
   return {
     type: SET_USERS,
@@ -21,7 +21,7 @@ export const _setUsers = (users) => {
   };
 };
 
-// CREATE A NEW USER
+// ADMIN: CREATE A NEW USER
 export const _createUser = (user) => {
   return {
     type: CREATE_USER,
@@ -29,7 +29,7 @@ export const _createUser = (user) => {
   };
 };
 
-// UPDATE A USER
+// ADMIN: UPDATE A USER
 export const _updateUser = (user) => {
   return {
     type: UPDATE_USER,
@@ -37,7 +37,7 @@ export const _updateUser = (user) => {
   };
 };
 
-// DELETE A USER
+// ADMIN: DELETE A USER
 export const _deleteUser = (user) => {
   return {
     type: DELETE_USER,

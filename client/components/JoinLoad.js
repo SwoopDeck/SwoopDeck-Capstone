@@ -89,6 +89,7 @@ export class JoinLoad extends React.Component {
 const mapState = (state) => {
   return {
     jumpRecords: state.jumpRecords,
+
     user: state.auth,
     dropzones: state.dropzones.allDropzones,
     loads: state.loads,

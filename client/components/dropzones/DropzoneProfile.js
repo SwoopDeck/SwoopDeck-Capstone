@@ -6,33 +6,33 @@ import {
   Thunk_updateJump,
   Thunk_deleteJump,
   Thunk_createJump,
-} from '../store/jumpRecords';
+} from '../../store/jumpRecords';
 import {
   thunk_fetchSingleDropzone,
   thunk_updateDropzone,
   thunk_createDropzone,
   thunk_deleteDropzone,
   thunk_fetchAllDropzones,
-} from '../store/dropzones.js';
+} from '../../store/dropzones.js';
 import {
   thunk_fetchAllLoads,
   thunk_createLoad,
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
-} from '../store/loads';
+} from '../../store/loads';
 
 /**
  * REACT COMPONENT
  */
-export class PastLoads extends React.Component {
+export class DropzoneProfile extends React.Component {
   constructor(props) {
     super(props);
 
     this.handleChange = this.handleChange.bind(this);
   }
   componentDidMount() {
-    
+
   }
 
   handleChange(evt) {
@@ -47,15 +47,25 @@ export class PastLoads extends React.Component {
         <h1>TEST</h1>
       </div>
     );
-   
+    
   }
 }
+// const mapState = (state) => {
+//   return {
+//     jumpRecords: state.jumpRecords,
+//     users: state.auth,
+//     dropzones: state.dropzones,
+//     loads: state.loads,
+//   };
+// };
 const mapState = (state) => {
   return {
     jumpRecords: state.jumpRecords,
-    users: state.auth,
-    dropzones: state.dropzones,
+    users: state.users.allUsers,
+    dropzones: state.dropzones.allDropzones,
     loads: state.loads,
+    singleUser: state.users.singleUser,
+    singleDropzone: state.dropzones.singleDropzone
   };
 };
 const mapDispatch = (dispatch) => {
@@ -92,4 +102,4 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect(mapState, mapDispatch)(PastLoads);
+export default connect(mapState, mapDispatch)(DropzoneProfile);

@@ -32,23 +32,12 @@ export const UserProfile = (props) => {
   )
 }
 
-// const mapState = (state) => {
-//   return {
-//     jumpRecords: state.jumpRecords,
-//     users: state.auth,
-//     dropzones: state.dropzones,
-//     loads: state.loads,
-//   };
-// };
-
 const mapState = (state) => {
   return {
     jumpRecords: state.jumpRecords,
-    users: state.users.allUsers,
-    dropzones: state.dropzones.allDropzones,
+    users: state.auth,
+    dropzones: state.dropzones,
     loads: state.loads,
-    singleUser: state.users.singleUser,
-    singleDropzone: state.dropzones.singleDropzone
   };
 };
 

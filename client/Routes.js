@@ -19,10 +19,10 @@ import PastLoads from './components/PastLoads';
 import TodaysLoads from './components/TodaysLoads';
 import SingleUser from './components/SingleUser';
 import SingleDropzone from './components/SingleDropzone';
+import ErrorPage from './components/ErrorPage';
 import EditUser from './components/EditUser'
 import EditDropzone from './components/EditDropzone'
 import JoinDropzone from './components/JoinDropzone';
-
 
 /**
  * COMPONENT
@@ -52,9 +52,11 @@ class Routes extends Component {
         <Route path="/dropzones/:id" component={SingleDropzone} />
         <Route exact path="/dropzones/edit/:id" component={EditDropzone} />
         <Route exact path="/users/edit/:id" component={EditUser} />
+        <Route path="*" component={ErrorPage} />
         
       </Switch>
     );
+
 
     let userRoutes = (
       <Switch>
@@ -68,6 +70,7 @@ class Routes extends Component {
         <Route path="/:dropzoneId/loads" component={JoinLoad} />
         <Route path="/join/dropzone" component={JoinDropzone} />
         <Route path="/users/edit/:id" component={EditUser} />
+        <Route path="*" component={ErrorPage} />
       </Switch>
     );
 
@@ -78,6 +81,7 @@ class Routes extends Component {
         <Route path="/:dropzoneId/loads" component={TodaysLoads} />
         <Route path="/createload" component={CreateLoad} />
         <Route path="/dropzoneProfile" component={DropzoneProfile} />
+        <Route path="*" component={ErrorPage} />
       </Switch>
     );
 
@@ -88,6 +92,7 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/example" component={Example} />
         <Route path="/signup" component={CreateUser} />
+        <Route path="*" component={ErrorPage} />
       </Switch>
     );
     return (
