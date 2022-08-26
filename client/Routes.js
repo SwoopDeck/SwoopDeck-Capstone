@@ -20,6 +20,7 @@ import TodaysLoads from "./components/TodaysLoads";
 import SingleUser from "./components/SingleUser";
 import SingleDropzone from "./components/SingleDropzone";
 import AllChartsClass from "./components/AllChartsClass";
+import TodaysLoadsDZ from "./components/TodaysLoadsDZ";
 
 /**
  * COMPONENT
@@ -68,9 +69,10 @@ class Routes extends Component {
       <Switch>
         {/* DROPZONE ONLY ROUTES*/}
         <Route path="/pastloads" component={PastLoads} />
-        <Route path="/todaysloads" component={TodaysLoads} />
+        <Route path="/:dropzoneId/todaysLoads" component={TodaysLoadsDZ} />
         <Route path="/createload" component={CreateLoad} />
         <Route path="/dropzoneProfile" component={DropzoneProfile} />
+        {/* <Route path="/dropzoneLoadList" component={DropzoneLoadList} /> */}
       </Switch>
     );
 

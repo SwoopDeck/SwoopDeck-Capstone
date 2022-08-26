@@ -349,6 +349,16 @@ async function seed() {
     isFull: false,
     status: "delayed",
   });
+  ////////////////JUST ADDED TO TEST ALL LOADS DZ VIEW ////
+  const load3 = await Load.create({
+    date: "2022-07-15",
+    aircraft: "some aircraft",
+    slots: 10,
+    slotsFilled: 0,
+    isFull: false,
+    status: "delayed",
+    dropzoneId: 2,
+  });
 
   const load2 = await Load.create({
     date: "2022-02-22",
@@ -359,7 +369,7 @@ async function seed() {
     status: "delayed",
   });
 
-  const DZ1 = await Dropzone.findByPk(1);
+  const DZ1 = await Dropzone.findByPk(3);
   await DZ1.addLoad(load1);
   await DZ1.addLoad(load2);
 

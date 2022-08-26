@@ -241,7 +241,7 @@ export class AllJumps extends React.Component {
               </button>
               <button className="recent-jumps">
                 <Link to={`/allchartsclass/${this.props.users.id}`}>
-                  CHARTS CLICK HEREEREREREREERE!!!!!
+                  CHARTS CLICK HERE!!!!!
                 </Link>
               </button>
               <button className="recent-jumps" onClick={alertMessage}>
