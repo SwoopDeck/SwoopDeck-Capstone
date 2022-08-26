@@ -5,7 +5,7 @@ function ErrorPage() {
   return (
     <div className="flex-right">
     <div className="right-top-column">
-      <h1>You are below your pull altitude.</h1>
+      <h1> Oops - you are below your pull altitude!</h1>
       <p style={{margin: '1rem', marginBottom: '0'}}>Sorry, this page does not exist.</p>
       <h2 style={{ display: "flex", justifyContent: "center" }}>
         <Link to="/">
