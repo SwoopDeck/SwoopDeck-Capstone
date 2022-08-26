@@ -55,23 +55,20 @@ export const removeLoad = (LOAD) => {
 /* THUNKS */
 
 //THUNK: FETCH ALL LOADS RECORDS
-export const thunk_fetchAllLoads = (dropzoneId) => {
-  return async (dispatch) => {
-    console.log('thunk');
-    try {
-      const { data } = await axios.get(`api/loads/${dropzoneId}`);
-      dispatch(setAllLoads(data));
-    } catch (err) {
-      console.log(err);
-    }
-  };
+export const thunk_fetchAllLoads = (dropzoneId) => async (dispatch) => {
+  try {
+    const { data } = await axios.get(`/api/loads/${dropzoneId}`);
+    dispatch(setAllLoads(data));
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 // THUNK: FETCH SINGLE LOADS RECORD
 export const thunk_fetchSingleLoad = (dropzoneId, loadId) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`api/loads/${dropzoneId}/${loadId}`);
+      const { data } = await axios.get(`/api/loads/${dropzoneId}/${loadId}`);
       dispatch(setSingleLoad(data));
     } catch (err) {
       console.log(err);
@@ -82,7 +79,10 @@ export const thunk_fetchSingleLoad = (dropzoneId, loadId) => {
 //THUNK: UPDATE A SINGLE LOADS RECORD
 export const thunk_updateLoad = (dropzoneId, loadId, LOAD) => {
   return async (dispatch) => {
-    const { data } = await axios.put(`api/loads/${dropzoneId}/${loadId}`, LOAD);
+    const { data } = await axios.put(
+      `/api/loads/${dropzoneId}/${loadId}`,
+      LOAD
+    );
     dispatch(reformLoad(data));
   };
 };
@@ -91,7 +91,10 @@ export const thunk_updateLoad = (dropzoneId, loadId, LOAD) => {
 export const thunk_createLoad = (LOAD, dropzoneId) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(`api/loads/${dropzoneId}/create`, LOAD);
+      const { data } = await axios.post(
+        `/api/loads/${dropzoneId}/create`,
+        LOAD
+      );
       dispatch(addLoad(data));
     } catch (err) {
       console.log(err);
@@ -103,7 +106,7 @@ export const thunk_createLoad = (LOAD, dropzoneId) => {
 export const thunk_deleteLoad = (dropzoneId, loadId) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.delete(`api/loads/${dropzoneId}/${loadId}`);
+      const { data } = await axios.delete(`/api/loads/${dropzoneId}/${loadId}`);
       dispatch(removeLoad(data));
     } catch (err) {
       console.log(err);
@@ -115,7 +118,6 @@ export const thunk_deleteLoad = (dropzoneId, loadId) => {
 export default function loadsReducer(state = initialState, action) {
   switch (action.type) {
     case SET_LOADS:
-      console.log('reducer');
       return action.LOADS;
     case SET_SINGLE_LOAD:
       return action.LOAD;

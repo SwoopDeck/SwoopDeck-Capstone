@@ -32,8 +32,8 @@ export class TodaysLoads extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
   componentDidMount() {
-    // const dropzoneId = this.props.user.dropzoneId;
-    // this.props.getLoads(dropzoneId);
+    const dropzoneId = this.props.user.dropzoneId;
+    this.props.getLoads(dropzoneId);
   }
 
   handleChange(evt) {
@@ -43,9 +43,7 @@ export class TodaysLoads extends React.Component {
   }
 
   render() {
-    const dropzoneId = this.props.user.dropzoneId;
-    let loadsArr = this.props.getLoads(dropzoneId);
-    console.log(loadsArr);
+    console.log(this.props.loads);
     return (
       <div>
         <h1>TEST</h1>

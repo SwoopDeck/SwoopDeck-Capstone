@@ -8,7 +8,6 @@ const {
 //GET 'api/loads/:dropzoneId'
 router.get('/:dropzoneId', async (req, res, next) => {
   try {
-    console.log('api');
     let loads = await Load.findAll({
       where: {
         dropzoneId: req.params.dropzoneId,
