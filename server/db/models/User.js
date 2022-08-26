@@ -9,7 +9,7 @@ const SALT_ROUNDS = 5;
 const User = db.define('user', {
   firstName: {
     type: Sequelize.STRING,
-    allowNull: false,
+    // allowNull: false,
     validate: {
       notEmpty: true,
     },
@@ -17,7 +17,7 @@ const User = db.define('user', {
 
   lastName: {
     type: Sequelize.STRING,
-    allowNull: false,
+    // allowNull: false,
     validate: {
       notEmpty: true,
     },
@@ -26,16 +26,16 @@ const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false,
-    validate: {
-      isEmail: true,
-      notEmpty: true,
-    },
+    // allowNull: false,
+    // validate: {
+    //   isEmail: true,
+    //   notEmpty: true,
+    // },
   },
 
   password: {
     type: Sequelize.STRING,
-    allowNull: false,
+    // allowNull: false,
   },
 
   address: {
@@ -62,21 +62,21 @@ const User = db.define('user', {
 
   licenseNumber: {
     type: Sequelize.STRING,
-    allowNull: false,
+    // allowNull: false,
   },
 
   emergencyContact: {
     type: Sequelize.STRING,
-    validate: {
-      allowNull: false,
-    },
+    // validate: {
+    //   allowNull: false,
+    // },
   },
 
   emergencyPhoneNumber: {
     type: Sequelize.INTEGER,
-    validate: {
-      allowNull: false,
-    },
+    // validate: {
+    //   allowNull: false,
+    // },
   },
   
 });
