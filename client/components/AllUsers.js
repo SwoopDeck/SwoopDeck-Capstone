@@ -22,7 +22,7 @@ import {
   thunk_fetchSingleLoad,
   thunk_updateLoad,
 } from '../store/loads';
-import { Thunk_fetchUsers, Thunk_updateUser } from '../store/allUsers';
+import { Thunk_fetchUsers, Thunk_updateUser } from '../store/allusers';
 
 /**
  * REACT COMPONENT
@@ -34,8 +34,8 @@ export class AllUsers extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  async componentDidMount() {
-    await this.props.getUsers();
+  componentDidMount() {
+    this.props.getUsers();
   }
 
   handleChange(evt) {
@@ -45,7 +45,7 @@ export class AllUsers extends React.Component {
   }
 
   render() {
-    const allUsers = this.props.users;
+    const allUsers = this.props.users || [];
 
     return (
       <div>
@@ -71,9 +71,11 @@ export class AllUsers extends React.Component {
 const mapState = (state) => {
   return {
     jumpRecords: state.jumpRecords,
-    users: state.users,
-    dropzones: state.dropzones,
+    users: state.users.allUsers,
+    dropzones: state.dropzones.allDropzones,
     loads: state.loads,
+    singleUser: state.users.singleUser,
+    singleDropzone: state.dropzones.singleDropzone
   };
 };
 
@@ -112,8 +114,8 @@ const mapDispatch = (dispatch) => {
       /////////ABOVE IS FOR DROPZONE////////BELOW IS FOR ADMIN/////////////////////////////
 
       getUsers: () => dispatch(Thunk_fetchUsers()),
-      editUser: (userId) => dispatch(Thunk_updateUser(userId)),
-      deleteUser: (userId) => dispatch(Thunk_deleteUser(userId)),
+      // editUser: (userId) => dispatch(Thunk_updateUser(userId)),
+      // deleteUser: (userId) => dispatch(Thunk_deleteUser(userId)),
 
 
   };
