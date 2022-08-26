@@ -19,6 +19,7 @@ import PastLoads from './components/PastLoads';
 import TodaysLoads from './components/TodaysLoads';
 import SingleUser from './components/SingleUser';
 import SingleDropzone from './components/SingleDropzone';
+import JoinDropzone from './components/JoinDropzone';
 
 /**
  * COMPONENT
@@ -58,7 +59,8 @@ class Routes extends Component {
         <Route path="/jumps/:jumpId" component={SingleJump} />
         <Route path="/add" component={AddJump} />
         <Route path="/viewProfile" component={UserProfile} />
-        <Route path="/joinload" component={JoinLoad} />
+        <Route path="/:dropzoneId/loads" component={JoinLoad} />
+        <Route path="/join/dropzone" component={JoinDropzone} />
       </Switch>
     );
 

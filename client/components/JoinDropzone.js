@@ -20,29 +20,20 @@ import {
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
-  addLoad,
 } from '../store/loads';
-import { Thunk_fetchUsers, Thunk_fetchUser } from '../store/allusers';
+
 /**
  * REACT COMPONENT
  */
-export class CreateLoad extends React.Component {
+export class JoinDropzone extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      aircraft: '',
-      slots: '0',
-      status: 'on time',
-    };
-
     this.handleChange = this.handleChange.bind(this);
-    this.createLoad = this.createLoad.bind(this);
-    this.clearFields = this.clearFields.bind(this);
+    this.selectDropzone = this.selectDropzone.bind(this);
   }
   componentDidMount() {
-    //this.props.getSingleUser(this.props.match.params.id);
-    this.props.getUsers();
+    this.props.getDropzones();
   }
 
   handleChange(evt) {
@@ -51,79 +42,33 @@ export class CreateLoad extends React.Component {
     });
   }
 
-  createLoad(evt) {
-    //GETTING DATE & TIME INFO
-
-    const year = new Date();
-    const createYear = year.getFullYear();
-
-    const month = new Date();
-    const createMonth = month.getMonth();
-
-    const day = new Date();
-    const createDay = day.getDate();
-
-    const hour = new Date();
-    const createHour = hour.getHours();
-
-    const minutes = new Date();
-    const createMinutes = minutes.getMinutes();
-    //GETTING DATE & TIME INFO
-
-    const dropzoneId = this.props.user.dropzoneId;
-    const load = {
-      ...this.state,
-      isFull: false,
-      date: `${createYear}-${createDay}-${createMonth} at ${createHour}:${createMinutes}`,
-      dropzoneId: dropzoneId,
-      // slots: this.state.slots,
-    };
-    this.props.addLoad(load, dropzoneId);
-  }
-
-  clearFields() {
-    this.setState({
-      aircraft: '',
-      slots: '0',
-      status: 'on time',
-    });
+  selectDropzone(evt) {
+    console.log('dropzone id', evt.target.id);
+    this.props.history.push(`/${evt.target.id}/loads`);
   }
 
   render() {
-    const { handleChange, clearFields, createLoad } = this;
-
-    return (
+    const { selectDropzone } = this;
+    const dropzones = this.props.dropzones || [];
+    console.log(dropzones);
+    const allDropzones = (
       <div>
-        <h1>Create New Load</h1>
-        <form>
-          <label htmlFor="aircraft">Aircraft Type</label>
-          <input
-            type="text"
-            name="aircraft"
-            placeholder="Aircraft"
-            onChange={handleChange}
-          />
-          <label htmlFor="slots">Available Slots</label>
-          <input
-            type="text"
-            name="slots"
-            placeholder="10"
-            onChange={handleChange}
-          />
-
-          <label htmlFor="status">Status</label>
-          <select name="status" onChange={handleChange}>
-            <option name="on time">On Time</option>
-            <option name="delayed">Delayed</option>
-            <option name="closed">Closed</option>
-            <option name="canceled">Canceled</option>
-          </select>
-          <button type="button" onClick={createLoad}>
-            Submit
-          </button>
-        </form>
+        <h1>Select Your Dropzone</h1>
+        <h1>--------------------------------</h1>
+        {dropzones.map((dropzone, idx) => {
+          return (
+            <div key={idx}>
+              <h2>Dropzone: {dropzone.name}</h2>
+              <h3>Address: {dropzone.address}</h3>
+              <button type="button" id={dropzone.id} onClick={selectDropzone}>
+                Select Dropzone
+              </button>
+            </div>
+          );
+        })}
       </div>
     );
+    return <div>{allDropzones}</div>;
   }
 }
 const mapState = (state) => {
@@ -138,11 +83,11 @@ const mapState = (state) => {
 // const mapState = (state) => {
 //   return {
 //     jumpRecords: state.jumpRecords,
-//     Users: state.users.allUsers,
+//     users: state.users.allUsers,
 //     dropzones: state.dropzones.allDropzones,
 //     loads: state.loads,
 //     singleUser: state.users.singleUser,
-//     singleDropzone: state.dropzones.singleDropzone,
+//     singleDropzone: state.dropzones.singleDropzone
 //   };
 // };
 
@@ -177,11 +122,7 @@ const mapDispatch = (dispatch) => {
     addLoad: (LOAD, dropzoneId) => dispatch(thunk_createLoad(LOAD, dropzoneId)), //WORKING//
     getSingleLoad: (dropzoneId, loadId) =>
       dispatch(thunk_fetchSingleLoad(dropzoneId, loadId)), //WORKING//
-
-    //////////////////BELOW IS FOR USER////////////////////
-    getUsers: () => dispatch(Thunk_fetchUsers()),
-    getSingleUser: (id) => dispatch(Thunk_fetchUser(id)),
   };
 };
 
-export default connect(mapState, mapDispatch)(CreateLoad);
+export default connect(mapState, mapDispatch)(JoinDropzone);

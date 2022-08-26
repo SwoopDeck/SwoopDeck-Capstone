@@ -43,10 +43,43 @@ export class TodaysLoads extends React.Component {
   }
 
   render() {
-    console.log(this.props.loads);
+    const year = new Date();
+    const createYear = year.getFullYear();
+
+    const month = new Date();
+    const createMonth = month.getMonth();
+
+    const day = new Date();
+    const createDay = day.getDate();
+
+    const todaysDate = `${createYear}-${createDay}-${createMonth} `;
+
+    const loadsArr = this.props.loads || [];
+    const todaysLoads = loadsArr.filter((load) => {
+      let loadDate = load.date.slice(0, 10);
+
+      if (loadDate === todaysDate) {
+        return load;
+      }
+    });
     return (
       <div>
-        <h1>TEST</h1>
+        <h1>Loads for {`${todaysDate}`}</h1>
+        <p>
+          ....................................................................
+        </p>
+        {todaysLoads.map((load) => {
+          return (
+            <div key={load.id}>
+              <h2>Load ID: {load.id}</h2>
+              <p>Load Date: {load.date}</p>
+              <p>Load Aircraft: {load.aircraft}</p>
+              <p>Available Slots: {load.slots}</p>
+              <p>Booked Slots: {load.slotsFilled}</p>
+              <p>-------------------------</p>
+            </div>
+          );
+        })}
       </div>
     );
   }
