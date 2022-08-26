@@ -19,6 +19,7 @@ import PastLoads from './components/PastLoads';
 import TodaysLoads from './components/TodaysLoads';
 import SingleUser from './components/SingleUser';
 import SingleDropzone from './components/SingleDropzone';
+import JoinDropzone from './components/JoinDropzone';
 
 /**
  * COMPONENT
@@ -31,61 +32,70 @@ class Routes extends Component {
   render() {
     const { isLoggedIn, isAdmin, isDropzone } = this.props;
 
-    let adminRoutes = (<Switch>
-      {/* Routes if logged in and Admin */}
-    <Route exact path="/users" component={AllUsers} />
-    <Route exact path="/dropzones" component={AllDropzones} />
-    <Route exact path="/" component={AllJumps} />
-    <Route exact path="/home" component={AllJumps} />
-    {/* <Redirect to="/home" /> */}
-    {/* <Route exact path='/login' component={ Login } /> */}
-    <Route path="/alljumps" component={AllJumps} />
-    <Route path="/jumps/:jumpId" component={SingleJump} />
-    <Route path="/add" component={AddJump} />
-    <Route path="/viewProfile" component={UserProfile} />
-    <Route path="/users/:id" component={SingleUser} />
-    <Route path="/dropzones/:id" component={SingleDropzone} />
+    let adminRoutes = (
+      <Switch>
+        {/* Routes if logged in and Admin */}
+        <Route exact path="/users" component={AllUsers} />
+        <Route exact path="/dropzones" component={AllDropzones} />
+        <Route exact path="/" component={AllJumps} />
+        <Route exact path="/home" component={AllJumps} />
+        {/* <Redirect to="/home" /> */}
+        {/* <Route exact path='/login' component={ Login } /> */}
+        <Route path="/alljumps" component={AllJumps} />
+        <Route path="/jumps/:jumpId" component={SingleJump} />
+        <Route path="/add" component={AddJump} />
+        <Route path="/viewProfile" component={UserProfile} />
+        <Route path="/users/:id" component={SingleUser} />
+        <Route path="/dropzones/:id" component={SingleDropzone} />
+      </Switch>
+    );
 
-    </Switch>)
+    let userRoutes = (
+      <Switch>
+        {/* Routes if logged in but not Admin */}
+        <Route exact path="/" component={AllJumps} />
+        <Route exact path="/home" component={AllJumps} />
+        <Route path="/alljumps" component={AllJumps} />
+        <Route path="/jumps/:jumpId" component={SingleJump} />
+        <Route path="/add" component={AddJump} />
+        <Route path="/viewProfile" component={UserProfile} />
+        <Route path="/:dropzoneId/loads" component={JoinLoad} />
+        <Route path="/join/dropzone" component={JoinDropzone} />
+      </Switch>
+    );
 
-    let userRoutes = (<Switch>
-      {/* Routes if logged in but not Admin */}
-      <Route exact path="/" component={AllJumps} />
-      <Route exact path="/home" component={AllJumps} />
-      <Route path="/alljumps" component={AllJumps} />
-      <Route path="/jumps/:jumpId" component={SingleJump} />
-      <Route path="/add" component={AddJump} />
-      <Route path="/viewProfile" component={UserProfile} />
-      <Route path="/joinload" component={JoinLoad} />
-      </Switch>)
-
-      let dropzoneRoutes = (<Switch>
+    let dropzoneRoutes = (
+      <Switch>
         {/* DROPZONE ONLY ROUTES*/}
-      <Route path="/pastloads" component={PastLoads} />
-      <Route path="/todaysloads" component={TodaysLoads} />
-      <Route path="/createload" component={CreateLoad} />
-      <Route path="/dropzoneProfile" component={DropzoneProfile} />
-      </Switch>)
+        <Route path="/pastloads" component={PastLoads} />
+        <Route path="/:dropzoneId/loads" component={TodaysLoads} />
+        <Route path="/createload" component={CreateLoad} />
+        <Route path="/dropzoneProfile" component={DropzoneProfile} />
+      </Switch>
+    );
 
-        let notLoggedIn = (<Switch>
-          {/* <Route exact path='/' component={ Login } /> */}
-          <Route exact path="/" component={Login} />
-          <Route path="/login" component={Login} />
-          <Route path="/example" component={Example} />
-          <Route path="/signup" component={CreateUser} />
-        </Switch>)
+    let notLoggedIn = (
+      <Switch>
+        {/* <Route exact path='/' component={ Login } /> */}
+        <Route exact path="/" component={Login} />
+        <Route path="/login" component={Login} />
+        <Route path="/example" component={Example} />
+        <Route path="/signup" component={CreateUser} />
+      </Switch>
+    );
     return (
       <div>
         {isLoggedIn ? (
           <div>
-          {isAdmin ? (adminRoutes
-          ) : (
-            <div>
-              {isDropzone ? dropzoneRoutes : userRoutes}
-            </div>
+            {isAdmin ? (
+              adminRoutes
+            ) : (
+              <div>{isDropzone ? dropzoneRoutes : userRoutes}</div>
             )}
-            </div>) :  notLoggedIn}
-        
+          </div>
+        ) : (
+          notLoggedIn
+        )}
       </div>
     );
   }

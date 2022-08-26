@@ -30,9 +30,11 @@ export class JoinLoad extends React.Component {
     super(props);
 
     this.handleChange = this.handleChange.bind(this);
+    this.selectLoad = this.selectLoad.bind(this);
   }
   componentDidMount() {
-
+    console.log(this.props.match.params.dropzoneId);
+    this.props.getLoads(this.props.match.params.dropzoneId);
   }
 
   handleChange(evt) {
@@ -41,34 +43,68 @@ export class JoinLoad extends React.Component {
     });
   }
 
+  selectLoad(evt) {
+    //this.props.editLoad(this.props.match.params.dropzoneId, evt.target.id, {userid: user.id(fromreducer auth)})
+    console.log('load ID', evt.target.id);
+    //this.props.history.push('/')
+  }
+
   render() {
-    return (
+    const { selectLoad } = this;
+    //WE NEED TO FILTER THROUGH THE LOADS FOR THE DAY
+    const loads = this.props.loads || [];
+    console.log(loads);
+    const allLoads = (
       <div>
-        <h1>TEST</h1>
+        <h1>Select Your Load</h1>
+        <h1>--------------------------------</h1>
+        {loads.map((load, idx) => {
+          return (
+            <div key={idx}>
+              <h2>Departure Time: NEED TO ADD IN MODEL</h2>
+              <p>Aircraft: {load.aircraft} </p>
+              <p>Total Slots: {load.slots} </p>
+              {/* TEMPORARY 'SLOTS FILLED'... SHOULD BE 'AVAILABLE SLOTS' AND RENDER THE REMAINING SLOTS */}
+              <p>
+                Slots Filled:
+                {load.slotsFilled === null ? 0 : load.slotsFilled}
+              </p>
+              {/* TEMPORARY 'SLOTS FILLED'... SHOULD BE 'AVAILABLE SLOTS' AND RENDER THE REMAINING SLOTS */}
+              <p>Status: {load.status}</p>
+              {load.slots !== load.slotsFilled ? (
+                <button type="button" id={load.id} onClick={selectLoad}>
+                  Join Load
+                </button>
+              ) : (
+                <p>This Load is Full</p>
+              )}
+            </div>
+          );
+        })}
       </div>
     );
-
+    return <div>{allLoads}</div>;
   }
 }
-// const mapState = (state) => {
-//   return {
-//     jumpRecords: state.jumpRecords,
-//     users: state.auth,
-//     dropzones: state.dropzones,
-//     loads: state.loads,
-//   };
-// };
-
 const mapState = (state) => {
   return {
     jumpRecords: state.jumpRecords,
-    users: state.users.allUsers,
+    user: state.auth,
     dropzones: state.dropzones.allDropzones,
     loads: state.loads,
-    singleUser: state.users.singleUser,
-    singleDropzone: state.dropzones.singleDropzone
   };
 };
+
+// const mapState = (state) => {
+//   return {
+//     jumpRecords: state.jumpRecords,
+//     users: state.users.allUsers,
+//     dropzones: state.dropzones.allDropzones,
+//     loads: state.loads,
+//     singleUser: state.users.singleUser,
+//     singleDropzone: state.dropzones.singleDropzone
+//   };
+// };
 
 const mapDispatch = (dispatch) => {
   return {

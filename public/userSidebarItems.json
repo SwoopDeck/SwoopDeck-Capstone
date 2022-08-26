@@ -8,7 +8,7 @@
   {
     "title": "Join A Load",
     "icon": "",
-    "path": "/loads"
+    "path": "/join/dropzone"
   },
 
   {
@@ -46,7 +46,7 @@
     "icon": "bi-github",
     "path": "/#"
   },
-  
+
   {
     "title": "About",
     "icon": "bi-paperclip",
