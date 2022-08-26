@@ -58,7 +58,7 @@ export const removeDropzone = (DROPZONE) => {
 export const thunk_fetchAllDropzones = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`api/dropzones/`);
+      const { data } = await axios.get(`/api/dropzones/`);
       dispatch(setAllDropzones(data));
     } catch (err) {
       console.log(err);
@@ -87,20 +87,21 @@ export const thunk_fetchSingleDropzone = (id) => async (dispatch) => {
 //   };
 // };
 
-//THUNK: UPDATE A SINGLE DROPZONE
-export const thunk_updateDropzone = (dropzoneId, DROPZONE) => {
-  return async (dispatch) => {
-    console.log(DROPZONE)
-    const { data } = await axios.put(`api/dropzones/${dropzoneId}`, DROPZONE);
-    dispatch(reformDropzone(data));
-  };
+// //THUNK: UPDATE A SINGLE DROPZONE
+export const thunk_updateDropzone = (id, DROPZONE) => async (dispatch) => {
+  try {
+  const {data} = await axios.put(`/api/dropzones/${id}`, DROPZONE)
+  dispatch(reformDropzone(data));
+  } catch (err) {
+        console.log(err);
+      }
 };
 
 //THUNK: ADD A NEW DROPZONE
 export const thunk_createDropzone = (DROPZONE) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(`api/dropzones/create`, DROPZONE);
+      const { data } = await axios.post(`/api/dropzones/create`, DROPZONE);
       dispatch(addDropzone(data));
     } catch (err) {
       console.log(err);
@@ -112,7 +113,7 @@ export const thunk_createDropzone = (DROPZONE) => {
 export const thunk_deleteDropzone = (dropzoneId) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.delete(`api/dropzones/${dropzoneId}`);
+      const { data } = await axios.delete(`/api/dropzones/${dropzoneId}`);
       dispatch(removeDropzone(data));
     } catch (err) {
       console.log(err);

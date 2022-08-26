@@ -97,7 +97,7 @@ export class EditDropzone extends Component {
                 address: '',
                 email: '',
               });
-                this.props.history.push('/dropzones');
+                this.props.history.push(`/dropzones/${id}`);
               }
             }
           >EDIT DROPZONE PROFILE</button>

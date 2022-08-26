@@ -46,9 +46,14 @@ class SingleUser extends React.Component {
         <h2>{name}</h2>
           <p>{address} </p>
           <p>{phoneNumber} </p>
-          <Link to={`/dropzones/edit/${id}`}>
-          <button>Edit</button> 
-          </Link>
+          
+          <button onClick={()=> {
+            this.props.getSingleDropzone(this.props.match.params.id)
+            this.props.history.push(`/dropzones/edit/${id}`)
+          // this.props.getDropzones()
+        }}
+          >Edit</button> 
+        
           <Link to='/dropzones'>
           <button>Go back</button> 
           </Link>
