@@ -25,7 +25,7 @@ import {
   thunk_fetchSingleLoad,
   thunk_updateLoad,
 } from '../store/loads';
-import { Thunk_fetchUser } from "../store/allusers";
+import { Thunk_fetchUser, Thunk_fetchUsers, Thunk_updateUser } from "../store/allusers";
 
 /**
  * REACT COMPONENT
@@ -52,12 +52,17 @@ class SingleUser extends React.Component {
           ) : (
             <></>
           )}
-          <Link to={`/users/edit/${id}`}>
-          <button>Edit</button> 
-          </Link>
-          <Link to='/users'>
-          <button>Go back</button> 
-          </Link>
+           <button onClick={()=> {
+            this.props.getSingleUser(this.props.match.params.id)
+            this.props.history.push(`/users/edit/${id}`)
+          // this.props.getDropzones()
+        }}
+          >Edit</button> 
+          <button onClick={()=> {
+            this.props.getUsers();
+            this.props.history.push(`/users`)
+        }}>Go back</button> 
+          
           <hr />
           <hr />
         </div>
@@ -120,7 +125,8 @@ const mapDispatch = (dispatch) => {
 
       /////////////////BELOW IS FOR ADMINS/////////////////////////////
 
-      getSingleUser: (id) => dispatch(Thunk_fetchUser(id))
+      getSingleUser: (id) => dispatch(Thunk_fetchUser(id)),
+      getUsers: () => dispatch(Thunk_fetchUsers()),
 
   };
 };

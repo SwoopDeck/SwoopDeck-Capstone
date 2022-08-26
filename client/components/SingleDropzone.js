@@ -53,10 +53,10 @@ class SingleUser extends React.Component {
           // this.props.getDropzones()
         }}
           >Edit</button> 
-        
-          <Link to='/dropzones'>
-          <button>Go back</button> 
-          </Link>
+          <button onClick={()=> {
+            this.props.getDropzones();
+            this.props.history.push(`/dropzones`)
+        }}>Go back</button> 
           <hr />
           <hr />
         </div>

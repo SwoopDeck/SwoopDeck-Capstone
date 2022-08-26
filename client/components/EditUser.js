@@ -135,6 +135,7 @@ export class EditJump extends Component {
             onClick={(evt) => {
               evt.preventDefault();
               this.props.editUser(id, { ...this.state });
+              this.props.getSingleUser(this.props.match.params.id)
               this.setState({
                 firstName: '',
                 lastName: '',
@@ -146,7 +147,7 @@ export class EditJump extends Component {
                 emergencyPhoneNumber: null,
               });
                 
-                this.props.history.push('/alljumps');
+                this.props.history.push(`/users/${id}`);
               }
             }
           >EDIT USER PROFILE</button>

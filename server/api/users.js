@@ -26,7 +26,7 @@ router.get('/', requireToken, isAdmin, async (req, res, next) => {
 });
 
 //ADMIN VIEW: GET A USER
-router.get('/:id', async (req, res, next) => {
+router.get('/:id',  async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id);
     res.json(user);
@@ -50,8 +50,6 @@ router.post('/', async (req, res, next) => {
 router.put("/:id", async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id);
-    console.log('TESTTTTTTTTTTTTTTTTTTASDFASDFASDFADSFDS', user)
-    console.log('REQUESTBODY',req.body)
     user.update({...user,
       firstName: req.body.firstName,
       lastName: req.body.lastName,

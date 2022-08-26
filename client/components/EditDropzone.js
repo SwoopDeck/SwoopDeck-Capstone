@@ -92,12 +92,15 @@ export class EditDropzone extends Component {
             onClick={(evt) => {
               evt.preventDefault();
               this.props.editDropzone(id, { ...this.state });
+              this.props.getSingleDropzone(this.props.match.params.id)
               this.setState({
                 name: '',
                 address: '',
                 email: '',
               });
+                
                 this.props.history.push(`/dropzones/${id}`);
+                
               }
             }
           >EDIT DROPZONE PROFILE</button>

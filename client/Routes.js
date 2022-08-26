@@ -45,9 +45,10 @@ class Routes extends Component {
     <Route path="/jumps/:jumpId" component={SingleJump} />
     <Route path="/add" component={AddJump} />
     <Route path="/viewProfile" component={UserProfile} />
-    <Route path="/users/:id" component={SingleUser} />
+    <Route exact path="/users/:id" component={SingleUser} />
     <Route exact path="/dropzones/:id" component={SingleDropzone} />
     <Route exact path="/dropzones/edit/:id" component={EditDropzone} />
+    <Route exact path="/users/edit/:id" component={EditUser} />
 
     </Switch>)
 
