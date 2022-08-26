@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 let initialState = [];
 
 /* ACTION TYPES */
@@ -55,6 +56,17 @@ export const removeLoad = (LOAD) => {
 /* THUNKS */
 
 //THUNK: FETCH ALL LOADS RECORDS
+
+// export const thunk_fetchAllLoads = (dropzoneId) => {
+//   return async (dispatch) => {
+//     try {
+//       const { data } = await axios.get(`/api/loads/${dropzoneId}`);
+//       dispatch(setAllLoads(data));
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   }; 
+
 export const thunk_fetchAllLoads = (dropzoneId) => async (dispatch) => {
   try {
     const { data } = await axios.get(`/api/loads/${dropzoneId}`);

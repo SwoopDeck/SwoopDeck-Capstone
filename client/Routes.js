@@ -1,3 +1,4 @@
+
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
@@ -23,6 +24,9 @@ import ErrorPage from './components/ErrorPage';
 import EditUser from './components/EditUser'
 import EditDropzone from './components/EditDropzone'
 import JoinDropzone from './components/JoinDropzone';
+import AllChartsClass from "./components/AllChartsClass";
+import TodaysLoadsDZ from "./components/TodaysLoadsDZ";
+
 
 /**
  * COMPONENT
@@ -50,12 +54,14 @@ class Routes extends Component {
         <Route path="/viewProfile" component={UserProfile} />
         <Route path="/users/:id" component={SingleUser} />
         <Route path="/dropzones/:id" component={SingleDropzone} />
+
         <Route exact path="/dropzones/edit/:id" component={EditDropzone} />
         <Route exact path="/users/edit/:id" component={EditUser} />
         <Route path="*" component={ErrorPage} />
         
       </Switch>
     );
+
 
 
     let userRoutes = (
@@ -67,10 +73,13 @@ class Routes extends Component {
         <Route path="/jumps/:jumpId" component={SingleJump} />
         <Route path="/add" component={AddJump} />
         <Route path="/viewProfile" component={UserProfile} />
+
         <Route path="/:dropzoneId/loads" component={JoinLoad} />
         <Route path="/join/dropzone" component={JoinDropzone} />
         <Route path="/users/edit/:id" component={EditUser} />
         <Route path="*" component={ErrorPage} />
+        <Route exact path="/allchartsclass/:id" component={AllChartsClass} />
+
       </Switch>
     );
 
@@ -78,10 +87,17 @@ class Routes extends Component {
       <Switch>
         {/* DROPZONE ONLY ROUTES*/}
         <Route path="/pastloads" component={PastLoads} />
+
+        <Route path="/:dropzoneId/todaysLoads" component={TodaysLoadsDZ} />
+        {/*<Route path="/createload" component={CreateLoad} />
+        <Route path="/dropzoneProfile" component={DropzoneProfile} />
+        <Route path="/dropzoneLoadList" component={DropzoneLoadList} /> */}
+
         <Route path="/:dropzoneId/loads" component={TodaysLoads} />
         <Route path="/createload" component={CreateLoad} />
         <Route path="/dropzoneProfile" component={DropzoneProfile} />
         <Route path="*" component={ErrorPage} />
+
       </Switch>
     );
 
@@ -92,7 +108,9 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/example" component={Example} />
         <Route path="/signup" component={CreateUser} />
+
         <Route path="*" component={ErrorPage} />
+          
       </Switch>
     );
     return (
