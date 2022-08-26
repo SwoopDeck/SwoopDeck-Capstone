@@ -24,19 +24,24 @@ import {
 } from '../store/loads';
 import { Thunk_fetchUser, Thunk_updateUser } from "../store/allusers";
 
-export class EditDropzone extends Component {
+export class EditJump extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+    //   password: '',
       address: '',
-      phoneNumber: '',
+      licenseNumber: '',
+      emergencyContact: '',
+      emergencyPhoneNumber: null,
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
-    this.props.getSingleDropzone(this.props.match.params.id)
+    this.props.getSingleUser(this.props.match.params.id)
   }
 
   handleChange(evt) {
@@ -46,30 +51,42 @@ export class EditDropzone extends Component {
   }
 
   render() {
-    const {id, name, address, phoneNumber } = this.props.singleDropzone
+    // let jump = this.props.jump[0] || {};
+    const {id, firstName, lastName, address, email, licenseNumber, emergencyContact , emergencyPhoneNumber} = this.props.singleUser
   
-    console.log(this.props.singleDropzone)
+    console.log(this.props.singleUser)
     
     return (
       <div>
         <div>Current:</div>
-        <div>NAME: {name}</div>
+        <div>FIRST NAME: {firstName}</div>
+        <div>LAST NAME: {lastName}</div>
         <div>ADDRESS: {address}</div>
-        <div>PHONE NUMBER: {phoneNumber}</div>
-        
+        <div>LICENSE NUMBER: {licenseNumber}</div>
+        <div>EMERGENCY CONTACT: {emergencyContact}</div>
+        <div>EMERGENCY PHONE NUMBER: {emergencyPhoneNumber}</div>
         
         <h1>Edit User</h1>
             <form id="edit-user">
-          <div>NAME:</div>
+          <div>FIRST NAME:</div>
           <input
             type="text"
-            name="name"
-            placeholder={name}
-            value={this.state.name}
+            name="firstName"
+            placeholder={firstName}
+            value={this.state.firstName}
             onChange={this.handleChange}
             style={{ margin: '25px' }}
           />
-           <div>ADDRESS:</div>
+           <div>LAST NAME:</div>
+          <input
+            type="text"
+            name="lastName"
+            placeholder={lastName}
+            value={this.state.lastName}
+            onChange={this.handleChange}
+            style={{ margin: '25px' }}
+          />
+          <div>ADDRESS:</div>
           <input
             type="text"
             name="address"
@@ -78,32 +95,62 @@ export class EditDropzone extends Component {
             onChange={this.handleChange}
             style={{ margin: '25px' }}
           />
-          <div>PHONE NUMBER:</div>
+           <div>EMAIL:</div>
           <input
             type="text"
-            name="phoneNumber"
-            placeholder={phoneNumber}
-            value={this.state.phoneNumber}
+            name="email"
+            placeholder={email}
+            value={this.state.email}
             onChange={this.handleChange}
             style={{ margin: '25px' }}
           />
-          
+          <div>LICENSE NUMBER:</div>
+          <input
+            type="number"
+            name="licenseNumber"
+            placeholder={licenseNumber}
+            value={this.state.licenseNumber}
+            onChange={this.handleChange}
+            style={{ margin: '25px' }}
+          />
+          <div>EMERGENCY CONTACT:</div>
+          <input
+            type="text"
+            name="emergencyContact"
+            placeholder={emergencyContact}
+            value={this.state.emergencyContact}
+            onChange={this.handleChange}
+            style={{ margin: '25px' }}
+          />
+          <div>EMERGENCY PHONE NUMBER:</div>
+          <input
+            type="number"
+            name="emergencyPhoneNumber"
+            placeholder={emergencyPhoneNumber}
+            value={this.state.emergencyPhoneNumber}
+            onChange={this.handleChange}
+            style={{ margin: '25px' }}
+          />
           <button
             onClick={(evt) => {
               evt.preventDefault();
-              this.props.editDropzone(id, { ...this.state });
-              this.props.getSingleDropzone(this.props.match.params.id)
+              this.props.editUser(id, { ...this.state });
+              this.props.getSingleUser(this.props.match.params.id)
               this.setState({
-                name: '',
-                address: '',
+                firstName: '',
+                lastName: '',
                 email: '',
+                // password: '',
+                address: '',
+                licenseNumber: '',
+                emergencyContact: '',
+                emergencyPhoneNumber: null,
               });
                 
-                this.props.history.push(`/dropzones/${id}`);
-                
+                this.props.history.push(`/users/${id}`);
               }
             }
-          >EDIT DROPZONE PROFILE</button>
+          >EDIT USER PROFILE</button>
         </form> 
       </div>
     );
@@ -170,4 +217,4 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect(mapState, mapDispatch)(EditDropzone);
+export default connect(mapState, mapDispatch)(EditJump);

@@ -73,12 +73,12 @@ export const createUser = (user, history) => {
 };
 
 // THUNK: UPDATE A USER
-export const Thunk_updateUser = (id, history) => {
+export const Thunk_updateUser = (id, userData) => {
   return async (dispatch) => {
     try {
-      const { data: user } = await axios.put(`/api/users/${id}`);
+      console.log(userData)
+      const { data: user } = await axios.put(`/api/users/${id}`, userData);
       dispatch(_updateUser(user));
-      history.push('/users');
     } catch (err) {
       console.error(err);
     }

@@ -4,9 +4,9 @@ const db = require('../db');
 const Dropzone = db.define('dropzones', {
     name: {
         type: Sequelize.STRING,
-        validate: {
-            notEmpty: true,
-        },
+        // validate: {
+        //     notEmpty: true,
+        // },
         
     },
 
@@ -27,16 +27,16 @@ const Dropzone = db.define('dropzones', {
 
     address: {
         type: Sequelize.STRING,
-        validate: {
-            notEmpty: true,
-        },
+        // validate: {
+        //     notEmpty: true,
+        // },
     },
 
     phoneNumber: {
         type: Sequelize.STRING,
-        validate: {
-            notEmpty: true,
-        },
+        // validate: {
+        //     notEmpty: true,
+        // },
     },
 
       isDropzone: {
