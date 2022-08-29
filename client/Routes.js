@@ -26,6 +26,9 @@ import EditDropzone from './components/EditDropzone'
 import JoinDropzone from './components/JoinDropzone';
 import AllChartsClass from "./components/AllChartsClass";
 import TodaysLoadsDZ from "./components/TodaysLoadsDZ";
+import PaymentForm from './components/stripe/PaymentForm';
+import Cart from './components/stripe/Cart';
+
 
 
 /**
@@ -57,6 +60,9 @@ class Routes extends Component {
 
         <Route exact path="/dropzones/edit/:id" component={EditDropzone} />
         <Route exact path="/users/edit/:id" component={EditUser} />
+        <Route exact path="/payment" component={PaymentForm} />
+        <Route exact path="/cart" component={Cart} />
+        {/* ERROR PAGE ROUTE MUST BE THE LAST ROUTE */}
         <Route path="*" component={ErrorPage} />
         
       </Switch>
@@ -77,8 +83,11 @@ class Routes extends Component {
         <Route path="/:dropzoneId/loads" component={JoinLoad} />
         <Route path="/join/dropzone" component={JoinDropzone} />
         <Route path="/users/edit/:id" component={EditUser} />
-        <Route path="*" component={ErrorPage} />
+        <Route exact path="/payment" component={PaymentForm} />
+        <Route exact path="/cart" component={Cart} />
         <Route exact path="/allchartsclass/:id" component={AllChartsClass} />
+        {/* ERROR PAGE ROUTE MUST BE THE LAST ROUTE */}
+        <Route path="*" component={ErrorPage} />
 
       </Switch>
     );
@@ -96,6 +105,7 @@ class Routes extends Component {
         <Route path="/:dropzoneId/loads" component={TodaysLoads} />
         <Route path="/createload" component={CreateLoad} />
         <Route path="/dropzoneProfile" component={DropzoneProfile} />
+        {/* ERROR PAGE ROUTE MUST BE THE LAST ROUTE */}
         <Route path="*" component={ErrorPage} />
 
       </Switch>
@@ -108,7 +118,7 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/example" component={Example} />
         <Route path="/signup" component={CreateUser} />
-
+        {/* ERROR PAGE ROUTE MUST BE THE LAST ROUTE */}
         <Route path="*" component={ErrorPage} />
           
       </Switch>
