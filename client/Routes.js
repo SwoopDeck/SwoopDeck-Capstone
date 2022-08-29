@@ -1,4 +1,3 @@
-
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
@@ -21,12 +20,12 @@ import TodaysLoads from './components/TodaysLoads';
 import SingleUser from './components/SingleUser';
 import SingleDropzone from './components/SingleDropzone';
 import ErrorPage from './components/ErrorPage';
-import EditUser from './components/EditUser'
-import EditDropzone from './components/EditDropzone'
+import EditUser from './components/EditUser';
+import EditDropzone from './components/EditDropzone';
 import JoinDropzone from './components/JoinDropzone';
-import AllChartsClass from "./components/AllChartsClass";
-import TodaysLoadsDZ from "./components/TodaysLoadsDZ";
-
+import AllChartsClass from './components/AllChartsClass';
+import DropzoneLoadList from './components/DropzoneLoadList';
+import LoadDetailsDZ from './components/LoadDetailsDZ';
 
 /**
  * COMPONENT
@@ -57,12 +56,11 @@ class Routes extends Component {
 
         <Route exact path="/dropzones/edit/:id" component={EditDropzone} />
         <Route exact path="/users/edit/:id" component={EditUser} />
+        <Route exact path="/:dropzoneId/loads" component={DropzoneLoadList} />
+        <Route path="/:dropzoneId/loads/:loadId" component={LoadDetailsDZ} />
         <Route path="*" component={ErrorPage} />
-        
       </Switch>
     );
-
-
 
     let userRoutes = (
       <Switch>
@@ -79,7 +77,6 @@ class Routes extends Component {
         <Route path="/users/edit/:id" component={EditUser} />
         <Route path="*" component={ErrorPage} />
         <Route exact path="/allchartsclass/:id" component={AllChartsClass} />
-
       </Switch>
     );
 
@@ -88,16 +85,25 @@ class Routes extends Component {
         {/* DROPZONE ONLY ROUTES*/}
         <Route path="/pastloads" component={PastLoads} />
 
-        <Route path="/:dropzoneId/todaysLoads" component={TodaysLoadsDZ} />
+        <Route
+          exact
+          path="/:dropzoneId/todaysLoads"
+          component={DropzoneLoadList}
+        />
         {/*<Route path="/createload" component={CreateLoad} />
         <Route path="/dropzoneProfile" component={DropzoneProfile} />
         <Route path="/dropzoneLoadList" component={DropzoneLoadList} /> */}
 
-        <Route path="/:dropzoneId/loads" component={TodaysLoads} />
+        {/* <Route exact path="/:dropzoneId/loads" component={TodaysLoads} /> */}
+        <Route
+          exact
+          path="/:dropzoneId/loads/:loadId"
+          component={LoadDetailsDZ}
+        />
+
         <Route path="/createload" component={CreateLoad} />
         <Route path="/dropzoneProfile" component={DropzoneProfile} />
         <Route path="*" component={ErrorPage} />
-
       </Switch>
     );
 
@@ -110,7 +116,6 @@ class Routes extends Component {
         <Route path="/signup" component={CreateUser} />
 
         <Route path="*" component={ErrorPage} />
-          
       </Switch>
     );
     return (

@@ -1,26 +1,26 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 import {
   Thunk_fetchAllJumpRecords,
   Thunk_fetchSingleJump,
   Thunk_updateJump,
   Thunk_deleteJump,
   Thunk_createJump,
-} from "../store/jumpRecords";
+} from '../store/jumpRecords';
 import {
   thunk_fetchSingleDropzone,
   thunk_updateDropzone,
   thunk_createDropzone,
   thunk_deleteDropzone,
   thunk_fetchAllDropzones,
-} from "../store/dropzones.js";
+} from '../store/dropzones.js';
 import {
   thunk_fetchAllLoads,
   thunk_createLoad,
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
-} from "../store/loads";
+} from '../store/loads';
 
 /**
  * REACT COMPONENT
@@ -33,6 +33,7 @@ export class DropzoneLoadList extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount() {
     const dropzoneId = this.props.users.dropzoneId;
@@ -45,12 +46,16 @@ export class DropzoneLoadList extends React.Component {
     });
   }
 
+  handleClick(evt) {
+    let loadId = evt.target.id;
+    this.props.history.push(`/:dropzoneId/loads/${loadId}`);
+  }
+
   render() {
     //const Allloads = this.props.loads;
     //may need a filter for just speicfic Dropzone
     //need name that is asscoated with load
     const allLoads = this.props.loads;
-    console.log(this.props.users);
 
     return (
       <div>
@@ -61,6 +66,9 @@ export class DropzoneLoadList extends React.Component {
             <p>Aircraft: {load.aircraft}</p>
             <p>Slots: {load.slots} </p>
             <p>Slots Filled: {load.slotsFilled} </p>
+            <button type="button" id={load.id} onClick={this.handleClick}>
+              View Details
+            </button>
           </div>
         ))}
       </div>
@@ -70,9 +78,11 @@ export class DropzoneLoadList extends React.Component {
 const mapState = (state) => {
   return {
     jumpRecords: state.jumpRecords,
+
     users: state.auth,
-    dropzones: state.dropzones,
-    loads: state.loads,
+    dropzones: state.dropzones.allDropzones,
+    loads: state.loads.allLoads,
+    singleLoad: state.loads.singleLoad,
   };
 };
 const mapDispatch = (dispatch) => {

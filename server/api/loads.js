@@ -31,17 +31,39 @@ router.get('/:dropzoneId/:loadId', async (req, res, next) => {
         dropzoneId: req.params.dropzoneId,
       },
     });
+
     // let loads = await Load.findAll({
     //   where: {
     //     dropzoneId: req.params.dropzoneId,
     //   },
     // });
-
+    console.log(singleLoad);
     res.send(singleLoad);
   } catch (err) {
     next(err);
   }
 });
+
+///////
+
+// router.get('/:dropzoneId/:loadId', async (req, res, next) => {
+//   try {
+//     console.log(req.params.loadId);
+//     let singleLoad = await Load.findByPk(16);
+
+//     // let loads = await Load.findAll({
+//     //   where: {
+//     //     dropzoneId: req.params.dropzoneId,
+//     //   },
+//     // });
+//     console.log(singleLoad);
+//     res.send(singleLoad);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
+
+///////
 
 //Update the LOAD by load id
 

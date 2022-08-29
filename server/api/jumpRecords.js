@@ -1,8 +1,8 @@
-const router = require('express').Router()
+const router = require('express').Router();
 const JumpRecord = require('../db/models/JumpRecords');
 const Load = require('../db/models/Load');
 const User = require('../db/models/User');
-const Dropzone = require('../db/models/Dropzone')
+const Dropzone = require('../db/models/Dropzone');
 
 /////////////////////////////////////////////// JUMP ROUTES for USERS ///////////////////////////////////////
 
@@ -13,14 +13,34 @@ router.get('/:id/jumps/', async (req, res, next) => {
     const userJumps = await JumpRecord.findAll({
       where: {
         userId: req.params.id,
-      }
-    })
+      },
+    });
     res.send(userJumps);
   } catch (err) {
     next(err);
   }
-}
-);
+});
+
+//GET api/jumprecords/loadList/:loadId
+router.get('/loadlist/:loadId', async (req, res, next) => {
+  try {
+    console.log('express route hit');
+    const userJumps = await JumpRecord.findAll({
+      where: {
+        loadId: req.params.loadId,
+      },
+    });
+    let jumperNames = [];
+    for (let i = 0; i < userJumps.length; i++) {
+      let userId = userJumps[i].userId;
+      let user = await User.findByPk(userId);
+      jumperNames.push(user);
+    }
+    res.send(jumperNames);
+  } catch (err) {
+    next(err);
+  }
+});
 
 //grab the single jump for a user
 //GET api/jumprecords/:id/jumps/:jumpId
@@ -29,41 +49,38 @@ router.get('/:id/jumps/:jumpId', async (req, res, next) => {
     const jump = await JumpRecord.findAll({
       include: {
         model: User,
-        where: {id: req.params.id}
+        where: { id: req.params.id },
       },
-      where: {id: req.params.jumpId, 
-      }
-    }
-    );
+      where: { id: req.params.jumpId },
+    });
     res.json(jump);
   } catch (err) {
     next(err);
   }
-}
-);
+});
 
 //Update the edited jump
 //PUT api/jumprecords/:id/:jumpId/
-router.put("/:id/:jumpId/", async (req, res, next) => {
+router.put('/:id/:jumpId/', async (req, res, next) => {
   try {
     const editRecord = await JumpRecord.findByPk(req.params.jumpId);
-    await editRecord.update({...editRecord,
+    await editRecord.update({
+      ...editRecord,
       jumpNumber: req.body.jumpNumber,
       location: req.body.location,
       aircraft: req.body.aircraft,
       equipment: req.body.equipment,
       exitAltitude: req.body.exitAltitude,
-      pullAtltitude:req.body.pullAtltitude,
+      pullAtltitude: req.body.pullAtltitude,
       freeFallTime: req.body.freeFallTime,
       jumpers: req.body.jumpers,
       description: req.body.description,
       jumpType: req.body.jumpType,
-    })
+    });
     // res.send(editRecord)
     const userJumps = await JumpRecord.findAll({
-      where: {userId: req.params.id}
-    }
-    );
+      where: { userId: req.params.id },
+    });
     res.json(userJumps);
   } catch (err) {
     next(err);
@@ -74,12 +91,19 @@ router.put("/:id/:jumpId/", async (req, res, next) => {
 //POST /api/jumprecords/:id/create
 router.post('/:id/create/', async (req, res, next) => {
   try {
-    await JumpRecord.create({...req.body, userId: req.params.id});
+    console.log('body req date', typeof req.body.date);
+    await JumpRecord.create({
+      // ...req.body,
+      userId: req.params.id,
+      aircraft: req.body.aircraft,
+      jumpDate: req.body.jumpDate,
+      loadId: req.body.loadId,
+      dropzoneId: req.body.dropzoneId,
+    });
     const userJumps = await JumpRecord.findAll({
-      where: {userId: req.params.id}
-    }
-    );
-    res.send(userJumps)
+      where: { userId: req.params.id },
+    });
+    res.send(userJumps);
   } catch (e) {
     next(e);
   }
@@ -87,21 +111,18 @@ router.post('/:id/create/', async (req, res, next) => {
 //DELETE ROUTE FOR A USERS JUMP
 router.delete('/:id/:jumpId', async (req, res, next) => {
   try {
-    const record = await JumpRecord.findByPk(req.params.jumpId)
-     await record.destroy()
+    const record = await JumpRecord.findByPk(req.params.jumpId);
+    await record.destroy();
     const userJumps = await JumpRecord.findAll({
-      where: {userId: req.params.id}
-    }
-    );
-    res.send(userJumps)
+      where: { userId: req.params.id },
+    });
+    res.send(userJumps);
   } catch (err) {
     next(err);
   }
 });
 
-
-module.exports = router
-
+module.exports = router;
 
 //I dont think we need this if we have to find a USERID to find the specific user's jump table.
 
@@ -150,10 +171,9 @@ module.exports = router
 //       licenseNumber: req.body.licenseNumber,
 //     }));
 //   } catch (error) {
-//     next(error); 
+//     next(error);
 //   }
 // });
-
 
 // // PUT /api/jumps/:id
 // router.put('/:id', async (req, res, next) => {
