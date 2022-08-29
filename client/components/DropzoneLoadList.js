@@ -55,12 +55,30 @@ export class DropzoneLoadList extends React.Component {
     //const Allloads = this.props.loads;
     //may need a filter for just speicfic Dropzone
     //need name that is asscoated with load
-    const allLoads = this.props.loads;
+    const year = new Date();
+    const createYear = year.getFullYear();
+
+    const month = new Date();
+    const createMonth = month.getMonth();
+
+    const day = new Date();
+    const createDay = day.getDate();
+
+    const todaysDate = `${createYear}-${createDay}-${createMonth} `;
+
+    const loadsArr = this.props.loads || [];
+    const todaysLoads = loadsArr.filter((load) => {
+      let loadDate = load.date.slice(0, 10);
+
+      if (loadDate === todaysDate) {
+        return load;
+      }
+    });
 
     return (
       <div>
-        <h2>All loads:</h2>
-        {allLoads.map((load) => (
+        <h2>Today's Loads:</h2>
+        {todaysLoads.map((load) => (
           <div key={load.id}>
             <p>Date: {load.date}</p>
             <p>Aircraft: {load.aircraft}</p>

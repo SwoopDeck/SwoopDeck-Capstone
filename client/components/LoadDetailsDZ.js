@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import {
   Thunk_fetchAllJumpRecords,
   Thunk_fetchSingleJump,
@@ -49,22 +50,45 @@ export class LoadDetailsDZ extends React.Component {
   }
 
   handleClick(evt) {
-    let loadId = evt.target.id;
-    this.props.history.push(`/:dropzoneId/todaysLoads/:${loadId}`);
+    this.props.history.push(`/:dropzoneId/todaysLoads`);
   }
 
   render() {
     const allLoads = this.props.loads;
     console.log(this.props.jumpRecords);
-    // const jumpers = (
-    //   <div>
-    //     {this.props.jumpRecords.map((jump) => {
-    //       this.props.getSingleUser;
-    //     })}
-    //   </div>
-    // );
+    const jumpers = this.props.jumpRecords.map((user, idx) => {
+      return (
+        <div key={idx}>
+          <br />
+          <h4>
+            NAME: {user.firstName} {user.lastName}
+          </h4>
+          <h4>LICENSE #: {user.licenseNumber}</h4>
+          <h4>EMAIL: {user.email}</h4>
+        </div>
+      );
+    });
 
-    return <div>TEST {this.props.singleLoad.id}</div>;
+    return (
+      <div>
+        <h2>LOAD ID: {this.props.singleLoad.id}</h2>
+        <br />
+        <h2>LOAD AIRCRAFT: {this.props.singleLoad.aircraft}</h2>
+        <br />
+        <h2>EXPECTED DEPARTURE TIME: need to add</h2>
+        <br />
+        <h2>LOAD STATUS: {this.props.singleLoad.status}</h2>
+        <br />
+        <h2>JUMPERS</h2>
+        <h2>----------------</h2>
+        <div> {jumpers}</div>
+        <br />
+        <br />
+        <Link to="/:dropzoneId/todaysLoads">
+          <button type="button">Back to Today's Loads</button>
+        </Link>
+      </div>
+    );
   }
 }
 const mapState = (state) => {
