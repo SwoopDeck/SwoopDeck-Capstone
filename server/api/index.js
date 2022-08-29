@@ -4,6 +4,7 @@ router.use('/users', require('./users'))
 router.use('/jumprecords', require('./jumprecords'));
 router.use('/dropzones', require('./dropzones'));
 router.use('/loads', require('./loads'));
+router.use('/stripe', require('./stripe'))
 
 router.use((req, res, next) => {
   const error = new Error('Not Found')

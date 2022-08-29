@@ -2,6 +2,11 @@ const path = require('path')
 const express = require('express')
 const morgan = require('morgan')
 const app = express()
+// Stripe 
+// require("dotenv").config();
+// const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST);
+// const bodyParser = require("body-parser");
+// const cors = require("cors");
 module.exports = app
 
 // logging middleware
