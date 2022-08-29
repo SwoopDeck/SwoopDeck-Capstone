@@ -63,7 +63,9 @@ export default function PaymentForm() {
               <CardElement options={CARD_OPTIONS} />
             </div>
           </fieldset>
-          <button style={{width: '25%'}}>Join Load</button>
+          <button
+          type="submit" 
+          style={{width: '25%'}}>Join Load</button>
         </form>
       ) : (
         <div>
