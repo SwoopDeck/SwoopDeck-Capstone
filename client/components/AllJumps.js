@@ -176,7 +176,7 @@ export class AllJumps extends React.Component {
 
     let jumps = [this.props.jumpRecords][0] || [];
     let dropzones = [this.props.dropzones][0] || [];
-    console.log("jumps: ", jumps);
+    let userId = this.props.users.id
     //console.log('dropzones', dropzones);
     console.log("props", this.props);
 
@@ -213,7 +213,7 @@ export class AllJumps extends React.Component {
                       <h4>{jump.location}</h4>
                       <h4>Aircraft: {jump.aircraft}</h4>
                       <button className="view-jump-details">
-                        <Link to={`/jumps/${jump.id}`}>View Jump Details</Link>
+                        <Link to={`/jumps/${userId}/${jump.id}`}>View Jump Details</Link>
                       </button>
                       {/* <button
                   onClick={() => {

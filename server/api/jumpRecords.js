@@ -67,15 +67,18 @@ router.put('/:id/:jumpId/', async (req, res, next) => {
     await editRecord.update({
       ...editRecord,
       jumpNumber: req.body.jumpNumber,
-      location: req.body.location,
+      jumpDate: req.body.jumpDate,
       aircraft: req.body.aircraft,
       equipment: req.body.equipment,
       exitAltitude: req.body.exitAltitude,
-      pullAtltitude: req.body.pullAtltitude,
+      pullAltitude: req.body.pullAltitude,
       freeFallTime: req.body.freeFallTime,
       jumpers: req.body.jumpers,
       description: req.body.description,
       jumpType: req.body.jumpType,
+      loadId: req.body.loadId,
+      dropzoneId: req.body.dropzoneId,
+      userId: req.params.id,
     });
     // res.send(editRecord)
     const userJumps = await JumpRecord.findAll({
@@ -87,11 +90,40 @@ router.put('/:id/:jumpId/', async (req, res, next) => {
   }
 });
 
-//Creating a new jump log for a user
+//Creating a new jump log for a user WHEN A LOAD IS JOINED
 //POST /api/jumprecords/:id/create
 router.post('/:id/create/', async (req, res, next) => {
   try {
-    console.log('body req date', typeof req.body.date);
+    console.log(req.body)
+    await JumpRecord.create({
+      // ...req.body,jumpNumber: req.body.number,
+      jumpNumber: req.body.jumpNumber,
+      jumpDate: req.body.jumpDate,
+      aircraft: req.body.aircraft,
+      equipment: req.body.equipment,
+      exitAltitude: req.body.exitAltitude,
+      pullAltitude: req.body.pullAltitude,
+      freeFallTime: req.body.freeFallTime,
+      jumpers: req.body.jumpers,
+      description: req.body.description,
+      jumpType: req.body.jumpType,
+      loadId: req.body.loadId,
+      dropzoneId: req.body.dropzoneId,
+      userId: req.params.id,
+    });
+    const userJumps = await JumpRecord.findAll({
+      where: { userId: req.params.id },
+    });
+    res.send(userJumps);
+  } catch (e) {
+    next(e);
+  }
+});
+
+//KEY NOTE THIS IS FOR A MANUAL ENTRY !!!! Creating a new jump log for a user MANUALLY
+//POST /api/jumprecords/:id/create/manual
+router.post('/:id/create/maunal', async (req, res, next) => {
+  try {
     await JumpRecord.create({
       // ...req.body,
       userId: req.params.id,

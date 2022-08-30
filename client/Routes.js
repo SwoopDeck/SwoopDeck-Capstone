@@ -29,6 +29,7 @@ import DropzoneLoadList from './components/DropzoneLoadList';
 import LoadDetailsDZ from './components/LoadDetailsDZ';
 import PaymentForm from './components/stripe/PaymentForm';
 import Cart from './components/stripe/Cart';
+import EditJumpRecord from "./components/EditJumpRecord"
 
 
 /**
@@ -78,22 +79,16 @@ class Routes extends Component {
         <Route exact path="/" component={AllJumps} />
         <Route exact path="/home" component={AllJumps} />
         <Route path="/alljumps" component={AllJumps} />
-        <Route path="/jumps/:jumpId" component={SingleJump} />
+        <Route exact path="/jumps/:userId/:jumpId" component={SingleJump} />
         <Route path="/add" component={AddJump} />
         <Route path="/viewProfile" component={UserProfile} />
-
         <Route path="/:dropzoneId/loads" component={JoinLoad} />
         <Route path="/join/dropzone" component={JoinDropzone} />
         <Route path="/users/edit/:id" component={EditUser} />
-
         <Route exact path="/payment" component={PaymentForm} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/allchartsclass/:id" component={AllChartsClass} />
-
-     
-
-
-        <Route exact path="/allchartsclass/:id" component={AllChartsClass} />
+        <Route exact path="/edit/:jumpId" component={EditJumpRecord} />
         <Route path="*" component={ErrorPage} />
 
       </Switch>
