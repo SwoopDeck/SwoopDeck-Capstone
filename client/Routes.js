@@ -1,33 +1,35 @@
-import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
-import { withRouter, Route, Switch, Redirect } from "react-router-dom";
-import { Login, Signup } from "./components/AuthForm";
-import Home from "./components/Home";
-import { me } from "./store";
-import AllJumps from "./components/AllJumps";
-import SingleJump from "./components/SingleJump";
-import AddJump from "./components/AddJump";
-import CreateUser from "./components/CreateUser";
-import UserProfile from "./components/UserProfile";
-import Example from "./components/Example";
-import AllDropzones from "./components/AllDropzones";
-import AllUsers from "./components/AllUsers";
-import JoinLoad from "./components/JoinLoad";
-import CreateLoad from "./components/CreateLoad";
-import DropzoneProfile from "./components/DropzoneProfile";
-import PastLoads from "./components/PastLoads";
-import TodaysLoads from "./components/TodaysLoads";
-import SingleUser from "./components/SingleUser";
-import SingleDropzone from "./components/SingleDropzone";
-import ErrorPage from "./components/ErrorPage";
-import EditUser from "./components/EditUser";
-import EditDropzone from "./components/EditDropzone";
-import JoinDropzone from "./components/JoinDropzone";
-import AllChartsClass from "./components/AllChartsClass";
-import TodaysLoadsDZ from "./components/TodaysLoadsDZ";
 
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { Login, Signup } from './components/AuthForm';
+import Home from './components/Home';
+import { me } from './store';
+import AllJumps from './components/AllJumps';
+import SingleJump from './components/SingleJump';
+import AddJump from './components/AddJump';
+import CreateUser from './components/CreateUser';
+import UserProfile from './components/UserProfile';
+import Example from './components/Example';
+import AllDropzones from './components/AllDropzones';
+import AllUsers from './components/AllUsers';
+import JoinLoad from './components/JoinLoad';
+import CreateLoad from './components/CreateLoad';
+import DropzoneProfile from './components/DropzoneProfile';
+import PastLoads from './components/PastLoads';
+import TodaysLoads from './components/TodaysLoads';
+import SingleUser from './components/SingleUser';
+import SingleDropzone from './components/SingleDropzone';
+import ErrorPage from './components/ErrorPage';
+import EditUser from './components/EditUser';
+import EditDropzone from './components/EditDropzone';
+import JoinDropzone from './components/JoinDropzone';
+import AllChartsClass from './components/AllChartsClass';
+import DropzoneLoadList from './components/DropzoneLoadList';
+import LoadDetailsDZ from './components/LoadDetailsDZ';
 import PaymentForm from './components/stripe/PaymentForm';
 import Cart from './components/stripe/Cart';
+
 
 /**
  * COMPONENT
@@ -58,9 +60,14 @@ class Routes extends Component {
 
         <Route exact path="/dropzones/edit/:id" component={EditDropzone} />
         <Route exact path="/users/edit/:id" component={EditUser} />
+
+        <Route exact path="/:dropzoneId/loads" component={DropzoneLoadList} />
+        <Route path="/:dropzoneId/loads/:loadId" component={LoadDetailsDZ} />
+
         <Route exact path="/payment" component={PaymentForm} />
         <Route exact path="/cart" component={Cart} />
         {/* ERROR PAGE ROUTE MUST BE THE LAST ROUTE */}
+
         <Route path="*" component={ErrorPage} />
       </Switch>
     );
@@ -82,12 +89,13 @@ class Routes extends Component {
         <Route exact path="/payment" component={PaymentForm} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/allchartsclass/:id" component={AllChartsClass} />
-        {/* ERROR PAGE ROUTE MUST BE THE LAST ROUTE */}
-        <Route path="*" component={ErrorPage} />
+
+     
 
 
         <Route exact path="/allchartsclass/:id" component={AllChartsClass} />
         <Route path="*" component={ErrorPage} />
+
       </Switch>
     );
 
@@ -96,12 +104,22 @@ class Routes extends Component {
         {/* DROPZONE ONLY ROUTES*/}
         <Route path="/pastloads" component={PastLoads} />
 
-        <Route path="/:dropzoneId/todaysLoads" component={TodaysLoadsDZ} />
+        <Route
+          exact
+          path="/:dropzoneId/todaysLoads"
+          component={DropzoneLoadList}
+        />
         {/*<Route path="/createload" component={CreateLoad} />
         <Route path="/dropzoneProfile" component={DropzoneProfile} />
         <Route path="/dropzoneLoadList" component={DropzoneLoadList} /> */}
 
-        <Route path="/:dropzoneId/loads" component={TodaysLoads} />
+        {/* <Route exact path="/:dropzoneId/loads" component={TodaysLoads} /> */}
+        <Route
+          exact
+          path="/:dropzoneId/loads/:loadId"
+          component={LoadDetailsDZ}
+        />
+
         <Route path="/createload" component={CreateLoad} />
         <Route path="/dropzoneProfile" component={DropzoneProfile} />
         {/* ERROR PAGE ROUTE MUST BE THE LAST ROUTE */}

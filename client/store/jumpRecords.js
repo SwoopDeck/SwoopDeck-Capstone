@@ -1,21 +1,17 @@
-import axios from "axios"
+import axios from 'axios';
 
 let initialState = [];
 
+/* ACTION TYPES */
 
-/* ACTION TYPES */ 
+let SET_JUMPS = 'SET_JUMPS';
+let DELETE_JUMP = 'DELETE_JUMP';
+let UPDATE_JUMP = 'UPDATE_JUMP';
+let ADD_JUMP = 'ADD_JUMP';
+const SET_SINGLE_JUMP = 'SET_SINGLE_JUMP';
+let SET_ALL_JUMPERS_ON_LOAD = 'SET_ALL_JUMPERS_ON_LOAD';
 
-let SET_JUMPS = "SET_JUMPS";
-let DELETE_JUMP = "DELETE_JUMP";
-let UPDATE_JUMP = "UPDATE_JUMP";
-let ADD_JUMP = "ADD_JUMP";
-const SET_SINGLE_JUMP = "SET_SINGLE_JUMP";
-
-
-
-
-
-/* ACTION CREATORS */ 
+/* ACTION CREATORS */
 
 //SET ALL JUMP RECORDS
 export const setAllJumps = (JUMPS) => {
@@ -25,6 +21,13 @@ export const setAllJumps = (JUMPS) => {
   };
 };
 
+//SET ALL JUMPERS ON LOAD
+export const setAllJumpersOnLoad = (USERS) => {
+  return {
+    type: SET_ALL_JUMPERS_ON_LOAD,
+    USERS,
+  };
+};
 
 //SET SINGLE JUMP RECORD
 export const setSingleJump = (JUMP) => {
@@ -34,7 +37,6 @@ export const setSingleJump = (JUMP) => {
   };
 };
 
-
 //ADD SINGLE JUMP RECORD
 export const addJump = (JUMP) => {
   return {
@@ -43,7 +45,6 @@ export const addJump = (JUMP) => {
   };
 };
 
-
 //UPDATE A SINGLE JUMP RECORD
 export const reformJump = (JUMP) => {
   return {
@@ -51,7 +52,6 @@ export const reformJump = (JUMP) => {
     JUMP,
   };
 };
-
 
 //DELETE A SINGLE JUMP RECORD
 export const removeJump = (JUMP) => {
@@ -62,36 +62,45 @@ export const removeJump = (JUMP) => {
   };
 };
 
-
-
-
-/* THUNKS */ 
+/* THUNKS */
 
 //THUNK: FETCH ALL JUMP RECORDS
 export const Thunk_fetchAllJumpRecords = (id) => {
-    return async (dispatch) => {
-      try {
-        const { data } = await axios.get(`/api/jumprecords/${id}/jumps/`);
-        dispatch(setAllJumps(data));
-      } catch (err) {
-        console.log(err);
-      }
-    };
-  };
-
-
-// THUNK: FETCH SINGLE JUMP RECORD
-export const Thunk_fetchSingleJump = (userId, jumpId) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`/api/jumprecords/${userId}/jumps/${jumpId}`);
-      dispatch(setSingleJump(data));
+      const { data } = await axios.get(`/api/jumprecords/${id}/jumps/`);
+      dispatch(setAllJumps(data));
     } catch (err) {
       console.log(err);
     }
   };
 };
 
+//THUNK: FETCH ALL JUMPERS ON LOAD
+export const Thunk_fetchAllJumpersOnLoad = (loadId) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`/api/jumprecords/loadList/${loadId}`);
+      dispatch(setAllJumpersOnLoad(data));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+// THUNK: FETCH SINGLE JUMP RECORD
+export const Thunk_fetchSingleJump = (userId, jumpId) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(
+        `/api/jumprecords/${userId}/jumps/${jumpId}`
+      );
+      dispatch(setSingleJump(data));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
 
 //THUNK: ADD A NEW JUMP RECORD
 export const Thunk_createJump = (JUMP, id) => {
@@ -105,7 +114,6 @@ export const Thunk_createJump = (JUMP, id) => {
   };
 };
 
-
 //THUNK: UPDATE A SINGLE JUMP RECORD
 export const Thunk_updateJump = (JUMP, id, jumpId) => {
   return async (dispatch) => {
@@ -113,7 +121,6 @@ export const Thunk_updateJump = (JUMP, id, jumpId) => {
     dispatch(reformJump(data));
   };
 };
-
 
 //THUNK: DELETE A SINGLE JUMP RECORD
 export const Thunk_deleteJump = (id, jumpId) => {
@@ -127,28 +134,27 @@ export const Thunk_deleteJump = (id, jumpId) => {
   };
 };
 
-
-
-/* REDUCERS */ 
-[{},{},{},{}]
+/* REDUCERS */
+[{}, {}, {}, {}];
 export default function jumpRecordsReducer(state = initialState, action) {
   switch (action.type) {
     case SET_JUMPS:
       return action.JUMPS;
+    case SET_ALL_JUMPERS_ON_LOAD:
+      return action.USERS;
     case SET_SINGLE_JUMP:
-      return action.JUMP;  
+      return action.JUMP;
     case ADD_JUMP:
       return action.JUMP;
     case UPDATE_JUMP:
       return action.JUMP;
-      // return state.map((record) =>
-      //   record.id === action.JUMP.id ? action.record : record
-      // );
+    // return state.map((record) =>
+    //   record.id === action.JUMP.id ? action.record : record
+    // );
     case DELETE_JUMP:
       return action.JUMP;
-      // return state.filter((log) => log.id !== action.id);
+    // return state.filter((log) => log.id !== action.id);
     default:
       return state;
   }
 }
-
