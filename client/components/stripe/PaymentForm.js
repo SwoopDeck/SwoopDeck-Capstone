@@ -1,6 +1,8 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+
 
 const CARD_OPTIONS = {
   iconStyle: "solid",
@@ -26,6 +28,11 @@ export default function PaymentForm() {
   const [success, setSuccess] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
+  const history = useHistory();
+
+  const redirect = () => {
+    history.push('/alljumps');
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,12 +40,11 @@ export default function PaymentForm() {
       type: "card",
       card: elements.getElement(CardElement),
     });
-
+    let STRIPE_SECRET_TEST="sk_test_51LcBPfJnsV3y1MlNQynKOFOIw6lsDyaqoMOaLSSC3kQsyTrpfX9LwREGtifIfdyokOA2duaJHGxFbty6VmgPK6vM00bVjniCak"
     if (!error) {
       try {
         const { id } = paymentMethod;
-        const response = await axios.post("http://localhost:8080/payment", {
-          amount: 3000,
+        const response = await axios.post("/api/stripe/payment", {
           id,
         });
 
@@ -46,6 +52,7 @@ export default function PaymentForm() {
           console.log("Successful payment");
           setSuccess(true);
         }
+        redirect();
       } catch (error) {
         console.log("Error", error);
       }
