@@ -1,3 +1,4 @@
+
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
@@ -26,6 +27,9 @@ import JoinDropzone from './components/JoinDropzone';
 import AllChartsClass from './components/AllChartsClass';
 import DropzoneLoadList from './components/DropzoneLoadList';
 import LoadDetailsDZ from './components/LoadDetailsDZ';
+import PaymentForm from './components/stripe/PaymentForm';
+import Cart from './components/stripe/Cart';
+
 
 /**
  * COMPONENT
@@ -51,13 +55,19 @@ class Routes extends Component {
         <Route path="/jumps/:jumpId" component={SingleJump} />
         <Route path="/add" component={AddJump} />
         <Route path="/viewProfile" component={UserProfile} />
-        <Route path="/users/:id" component={SingleUser} />
-        <Route path="/dropzones/:id" component={SingleDropzone} />
+        <Route exact path="/users/:id" component={SingleUser} />
+        <Route exact path="/dropzones/:id" component={SingleDropzone} />
 
         <Route exact path="/dropzones/edit/:id" component={EditDropzone} />
         <Route exact path="/users/edit/:id" component={EditUser} />
+
         <Route exact path="/:dropzoneId/loads" component={DropzoneLoadList} />
         <Route path="/:dropzoneId/loads/:loadId" component={LoadDetailsDZ} />
+
+        <Route exact path="/payment" component={PaymentForm} />
+        <Route exact path="/cart" component={Cart} />
+        {/* ERROR PAGE ROUTE MUST BE THE LAST ROUTE */}
+
         <Route path="*" component={ErrorPage} />
       </Switch>
     );
@@ -75,8 +85,17 @@ class Routes extends Component {
         <Route path="/:dropzoneId/loads" component={JoinLoad} />
         <Route path="/join/dropzone" component={JoinDropzone} />
         <Route path="/users/edit/:id" component={EditUser} />
-        <Route path="*" component={ErrorPage} />
+
+        <Route exact path="/payment" component={PaymentForm} />
+        <Route exact path="/cart" component={Cart} />
         <Route exact path="/allchartsclass/:id" component={AllChartsClass} />
+
+     
+
+
+        <Route exact path="/allchartsclass/:id" component={AllChartsClass} />
+        <Route path="*" component={ErrorPage} />
+
       </Switch>
     );
 
@@ -103,6 +122,7 @@ class Routes extends Component {
 
         <Route path="/createload" component={CreateLoad} />
         <Route path="/dropzoneProfile" component={DropzoneProfile} />
+        {/* ERROR PAGE ROUTE MUST BE THE LAST ROUTE */}
         <Route path="*" component={ErrorPage} />
       </Switch>
     );
@@ -114,6 +134,11 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/example" component={Example} />
         <Route path="/signup" component={CreateUser} />
+
+        {/* ERROR PAGE ROUTE MUST BE THE LAST ROUTE */}
+
+        <Route exact path="/payment" component={PaymentForm} />
+        <Route exact path="/cart" component={Cart} />
 
         <Route path="*" component={ErrorPage} />
       </Switch>
