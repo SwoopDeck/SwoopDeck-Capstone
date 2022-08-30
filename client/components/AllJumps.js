@@ -208,7 +208,8 @@ export class AllJumps extends React.Component {
     //   console.log(evt.target.name);
     // }
 
-    //console.log(page);
+    let userId = this.props.users.id
+
 
     return (
       <div className="flex-right">
@@ -245,7 +246,7 @@ export class AllJumps extends React.Component {
                       {/* <h4>{jump.location}</h4> */}
                       <h4>Aircraft: {aircraft}</h4>
                       <button className="view-jump-details">
-                        <Link to={`/jumps/${jump.id}`}>View Jump Details</Link>
+                        <Link to={`/jumps/${userId}/${jump.id}`}>View Jump Details</Link>
                       </button>
                       {/* <button
                   onClick={() => {
