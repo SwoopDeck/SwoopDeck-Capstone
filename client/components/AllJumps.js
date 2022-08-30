@@ -95,31 +95,31 @@
 
 // export default connect(mapState, mapDispatch)(AllJumps);
 
-import React from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { me } from "../store/auth";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { me } from '../store/auth';
 import {
   Thunk_fetchAllJumpRecords,
   Thunk_fetchSingleJump,
   Thunk_updateJump,
   Thunk_deleteJump,
   Thunk_createJump,
-} from "../store/jumpRecords";
+} from '../store/jumpRecords';
 import {
   thunk_fetchSingleDropzone,
   thunk_updateDropzone,
   thunk_createDropzone,
   thunk_deleteDropzone,
   thunk_fetchAllDropzones,
-} from "../store/dropzones.js";
+} from '../store/dropzones.js';
 import {
   thunk_fetchAllLoads,
   thunk_createLoad,
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
-} from "../store/loads";
+} from '../store/loads';
 
 /**
  * REACT COMPONENT
@@ -139,6 +139,12 @@ export class AllJumps extends React.Component {
     // description: "",
     // jumpType: "",
     //};
+
+    //FOR PAGINATION
+    // this.state = {
+    //   pageNum: 0,
+    // };
+
     this.handleChange = this.handleChange.bind(this);
   }
   componentDidMount() {
@@ -158,27 +164,52 @@ export class AllJumps extends React.Component {
     //this.props.getSingleJumpRecord(2, 3)
     //this.props.addJumpRecord({},3)
     //this.props.deleteJumpRecord(3,21) //NEED TO BE VERY SPECIFIC
-    this.props.editJumpRecord({ aircraft: "NEWWWWWWWWW" }, 2, 3);
+    //this.props.editJumpRecord({ aircraft: 'NEWWWWWWWWW' }, 2, 3);
+    this.props.getJumpRecords(this.props.users.id);
   }
 
   handleChange(evt) {
     this.setState({
       [evt.target.name]: evt.target.value,
     });
+
+    // this.setState({
+    //   pageNum: evt.target.value,
+    // });
   }
 
   render() {
     function alertMessage() {
-      alert("This feature is not yet available!");
+      alert('This feature is not yet available!');
     }
 
-    //let userId = this.props.user.id || '';
+    //GETS USER'S MOST RECENT 5 JUMPS
+    let jumps = this.props.jumpRecords || [];
+    jumps.sort((a, b) => {
+      return a.jumpNumber - b.jumpNumber;
+    });
+    let recentFiveJumps = jumps.slice(0, 5);
 
-    let jumps = [this.props.jumpRecords][0] || [];
-    let dropzones = [this.props.dropzones][0] || [];
+    //PAGINATION FUNCTIONS
+    // let numOfPages = Math.ceil(jumps.length / 5);
+    // let pagesArr = [];
+    // for (let i = 0; i < numOfPages; i++) {
+    //   pagesArr.push(i + 1);
+    // }
+    // let startIdx = 0;
+    // let endIdx = 0;
+    // function renderHelper(pageNum) {
+    //   endIdx = pageNum * 5 - 1;
+    //   startIdx = endIdx - 4;
+    // }
+    // let page = 1;
+    // function dropdownChange(evt) {
+    //   page = evt.target.name;
+    //   console.log(evt.target.name);
+    // }
+
     let userId = this.props.users.id
-    //console.log('dropzones', dropzones);
-    console.log("props", this.props);
+
 
     return (
       <div className="flex-right">
@@ -198,8 +229,10 @@ export class AllJumps extends React.Component {
 
           <div className="right-bottom-column" id="jumps">
             <div className="right-bottom-column-left-side">
-              <h2 style={{ marginBottom: "1rem" }}>Your recent activity</h2>
-              {jumps.map((jump, idx) => {
+              <h2 style={{ marginBottom: '1rem' }}>Your recent activity</h2>
+              {recentFiveJumps.map((jump, idx) => {
+                const aircraft = jump.aircraft;
+                const jumpNum = jumps.length - idx;
                 return (
                   <div className="recent-jumps" key={idx}>
                     <Link to={`/jumps/${jump.id}`}>
@@ -210,8 +243,8 @@ export class AllJumps extends React.Component {
                       />
                     </Link>
                     <div className="recent-jump-info">
-                      <h4>{jump.location}</h4>
-                      <h4>Aircraft: {jump.aircraft}</h4>
+                      {/* <h4>{jump.location}</h4> */}
+                      <h4>Aircraft: {aircraft}</h4>
                       <button className="view-jump-details">
                         <Link to={`/jumps/${userId}/${jump.id}`}>View Jump Details</Link>
                       </button>
@@ -223,18 +256,33 @@ export class AllJumps extends React.Component {
                   Remove Jump
                 </button> */}
                     </div>
-                    <h4 className="jump-number">Jump #{jump.jumpNumber}</h4>
+                    <h4 className="jump-number">Jump #{jumpNum}</h4>
                   </div>
                 );
               })}
+              {/* <form onChange={this.handleChange}>
+                <select>
+                  {pagesArr.map((pageNum) => {
+                    return (
+                      <option
+                        name="pageNum"
+                        value={pageNum}
+                        onChange={this.handleChange}
+                      >
+                        {pageNum}
+                      </option>
+                    );
+                  })}
+                </select>
+              </form> */}
             </div>
             <div className="right-bottom-column-right-side">
-              <h2 style={{ marginBottom: "1rem" }}>Add New Jump</h2>
+              <h2 style={{ marginBottom: '1rem' }}>Add New Jump</h2>
               <button
                 className="recent-jumps"
                 onClick={(e) => {
                   e.preventDefault();
-                  window.location.href = "http://localhost:8080/add";
+                  window.location.href = 'http://localhost:8080/add';
                 }}
               >
                 Add manually
