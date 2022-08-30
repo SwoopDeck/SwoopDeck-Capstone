@@ -8,6 +8,7 @@ let SET_JUMPS = 'SET_JUMPS';
 let DELETE_JUMP = 'DELETE_JUMP';
 let UPDATE_JUMP = 'UPDATE_JUMP';
 let ADD_JUMP = 'ADD_JUMP';
+let ADD_JUMP_MANUAL = 'ADD_JUMP_MANUAL';
 const SET_SINGLE_JUMP = 'SET_SINGLE_JUMP';
 let SET_ALL_JUMPERS_ON_LOAD = 'SET_ALL_JUMPERS_ON_LOAD';
 
@@ -44,6 +45,16 @@ export const addJump = (JUMP) => {
     JUMP,
   };
 };
+
+
+//ADD SINGLE JUMP RECORD MANUALLY
+export const addJumpManual = (JUMP) => {
+  return {
+    type: ADD_JUMP_MANUAL,
+    JUMP,
+  };
+}; 
+
 
 //UPDATE A SINGLE JUMP RECORD
 export const reformJump = (JUMP) => {
@@ -114,6 +125,19 @@ export const Thunk_createJump = (JUMP, id) => {
   };
 };
 
+
+
+//THUNK: ADD A NEW JUMP RECORD MANUALLY
+export const Thunk_createJumpManually = (JUMP, id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post(`/api/jumprecords/${id}/create/manual`, JUMP);
+      dispatch(addJumpManual(data));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+}; 
 //THUNK: UPDATE A SINGLE JUMP RECORD
 export const Thunk_updateJump = (JUMP, id, jumpId) => {
   return async (dispatch) => {
@@ -146,6 +170,8 @@ export default function jumpRecordsReducer(state = initialState, action) {
       return action.JUMP;
     case ADD_JUMP:
       return action.JUMP;
+    case ADD_JUMP_MANUAL:
+      return action.JUMP;  
     case UPDATE_JUMP:
       return action.JUMP;
     // return state.map((record) =>
