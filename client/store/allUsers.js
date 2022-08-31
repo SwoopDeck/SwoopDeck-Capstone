@@ -36,11 +36,11 @@ export const _updateUser = (user) => {
 };
 
 // ADMIN: DELETE A USER
-export const _deleteUser = (userId) => {
+export const _deleteUser = (users) => {
   console.log('action creator', users);
   return {
     type: DELETE_USER,
-    userId,
+    users,
   };
 };
 
@@ -86,15 +86,14 @@ export const Thunk_updateUser = (id, userData) => {
 export const Thunk_deleteUser = (id) => {
   return async (dispatch) => {
     try {
-      console.log('hit thunk');
-      await axios.delete(`/api/users/${id}`);
-
-      dispatch(_deleteUser(id));
+      let {data} =  await axios.delete(`/api/users/${id}`);
+      dispatch(_deleteUser(data));
     } catch (err) {
       console.error(err);
     }
   };
 };
+
 
 // THUNK: FETCH ALL USERS
 export const Thunk_fetchUsers = () => {
@@ -146,7 +145,6 @@ export default function usersReducer(state = initialState, action) {
     //   ),
     // };
     // return { ...state, allUsers: action.users };
-
     default:
       return state;
   }
