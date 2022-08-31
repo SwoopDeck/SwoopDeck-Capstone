@@ -86,14 +86,13 @@ export const Thunk_updateUser = (id, userData) => {
 export const Thunk_deleteUser = (id) => {
   return async (dispatch) => {
     try {
-      let {data} =  await axios.delete(`/api/users/${id}`);
+      let { data } = await axios.delete(`/api/users/${id}`);
       dispatch(_deleteUser(data));
     } catch (err) {
       console.error(err);
     }
   };
 };
-
 
 // THUNK: FETCH ALL USERS
 export const Thunk_fetchUsers = () => {
@@ -134,17 +133,12 @@ export default function usersReducer(state = initialState, action) {
       return { ...state, allUsers: [...state.allUsers, action.user] };
     case DELETE_USER:
       console.log('saldkfjsaldkfj', state.allUsers);
+
       return {
         ...state,
-        allUsers: state.allUsers.filter((user) => user.id !== action.userId),
+        allUsers: action.users,
       };
-    // return {
-    //   ...state,
-    //   allUsers: state.allUsers.filter(
-    //     (user) => user.id !== action.dropzoneId
-    //   ),
-    // };
-    // return { ...state, allUsers: action.users };
+
     default:
       return state;
   }
