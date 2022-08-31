@@ -65,9 +65,26 @@ router.get('/:dropzoneId/:loadId', async (req, res, next) => {
 
 ///////
 
+//Update the LOAD STATUS by load id
+
+//GET 'api/loads/status/:loadId'
+router.put('/status/:loadId', async (req, res, next) => {
+  try {
+    let loadUpdate = await Load.findOne({
+      where: {
+        id: req.params.loadId,
+      },
+    });
+    let newStatus = await loadUpdate.update({status: req.body.status})
+    res.send(newStatus);
+  } catch (err) {
+    next(err);
+  }
+});
+
 //Update the LOAD by load id
 
-//GET 'api/loads/:loadId/:userId'
+// //GET 'api/loads/:loadId/:userId'
 router.put('/:loadId/:userId', async (req, res, next) => {
   try {
  
@@ -99,25 +116,7 @@ router.put('/:loadId/:userId', async (req, res, next) => {
   }
 });
 
-//Update the LOAD STATUS by load id
 
-//GET 'api/loads/:loadId/*'
-router.put('/:loadId/*', async (req, res, next) => {
-  try {
-    console.log('express route hit', req.params.loadId, req.params.status);
-    let loadUpdate = await Load.findOne({
-      where: {
-        id: req.params.loadId,
-      },
-    });
-    // let currentStatus = req.params.status === 'On%20Time' ? 'On Time' : req.params.status
-    console.log(currentStatus)
-    //loadUpdate.update({status: currentStatus})
-    res.send(loadUpdate);
-  } catch (err) {
-    next(err);
-  }
-});
 
 //Creating a LOAD for a DROPZONE
 //GET 'api/loads/:dropzoneId/create'

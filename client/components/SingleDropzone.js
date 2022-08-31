@@ -58,9 +58,8 @@ class SingleUser extends React.Component {
           <button
             onClick={() => {
               this.props.deleteDropzone(id);
-
+              // this.props.getDropzones();
               this.props.history.push(`/dropzones`);
-              this.props.getDropzones();
             }}
           >
             Delete

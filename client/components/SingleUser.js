@@ -72,7 +72,7 @@ class SingleUser extends React.Component {
           <button
             onClick={() => {
               this.props.deleteUser(this.props.match.params.id);
-              this.props.getUsers();
+              // this.props.getUsers();
               this.props.history.push(`/users`);
             }}
           >
