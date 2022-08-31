@@ -3,7 +3,7 @@ import axios from 'axios';
 // /* ACTION TYPES */
 
 let SET_DROPZONES = 'SET_DROPZONES';
-let DELETE_DROPZONE = 'DELETE_DROPZONE';
+const DELETE_DROPZONE = 'DELETE_DROPZONE';
 let UPDATE_DROPZONE = 'UPDATE_DROPZONE';
 let ADD_DROPZONE = 'ADD_DROPZONE';
 const SET_SINGLE_DROPZONE = 'SET_SINGLE_DROPZONE';
@@ -113,8 +113,8 @@ export const thunk_deleteDropzone = (dropzoneId) => {
   return async (dispatch) => {
     try {
       console.log('hit thunk');
-      const { data } = await axios.delete(`/api/dropzones/${dropzoneId}`);
-      dispatch(removeDropzone(data));
+      await axios.delete(`/api/dropzones/${dropzoneId}`);
+      dispatch(removeDropzone(dropzoneId));
     } catch (err) {
       console.log(err);
     }
@@ -141,15 +141,14 @@ export default function dropzonesReducer(state = initialState, action) {
         allDropzones: [...state.allDropzones, action.DROPZONE],
       };
     case DELETE_DROPZONE:
-      console.log('hit reducer');
+      console.log(state.allDropzones);
       return {
         ...state,
         allDropzones: state.allDropzones.filter(
-          (dropzones) => dropzones.id !== action.dropzoneId
+          (zone) => zone.id !== action.dropzoneId
         ),
       };
-    // return { ...state, singleDropzone: action.DROPZONE };
-    // return { ...state, allDropzones: action.DROPZONES };
+
     default:
       return state;
   }
