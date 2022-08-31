@@ -37,6 +37,7 @@ export const _updateUser = (user) => {
 
 // ADMIN: DELETE A USER
 export const _deleteUser = (userId) => {
+  console.log('action creator', users);
   return {
     type: DELETE_USER,
     userId,
@@ -86,7 +87,7 @@ export const Thunk_deleteUser = (id) => {
   return async (dispatch) => {
     try {
       console.log('hit thunk');
-      const { data } = await axios.delete(`/api/users/${id}`);
+      await axios.delete(`/api/users/${id}`);
 
       dispatch(_deleteUser(id));
     } catch (err) {
@@ -133,12 +134,18 @@ export default function usersReducer(state = initialState, action) {
     case UPDATE_USER:
       return { ...state, allUsers: [...state.allUsers, action.user] };
     case DELETE_USER:
-      console.log('test');
-      // return {
-      //   ...state,
-      //   allUsers: state.allUsers.filter((user) => user.id !== action.userId),
-      // };
-      return { ...state, allUsers: action.users };
+      console.log('saldkfjsaldkfj', state.allUsers);
+      return {
+        ...state,
+        allUsers: state.allUsers.filter((user) => user.id !== action.userId),
+      };
+    // return {
+    //   ...state,
+    //   allUsers: state.allUsers.filter(
+    //     (user) => user.id !== action.dropzoneId
+    //   ),
+    // };
+    // return { ...state, allUsers: action.users };
 
     default:
       return state;

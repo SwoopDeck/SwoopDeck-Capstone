@@ -37,6 +37,13 @@ export class AllDropzones extends React.Component {
     await this.props.getDropzones();
   }
 
+  // componentDidUpdate(prevProps) {
+  //   console.log('prevProps', prevProps, 'currentProps', this.props);
+  //   if (prevProps.dropzones.length !== this.props.dropzones.length) {
+  //     this.props.getDropzones();
+  //   }
+  // }
+
   handleChange(evt) {
     this.setState({
       [evt.target.name]: evt.target.value,
@@ -46,6 +53,8 @@ export class AllDropzones extends React.Component {
   render() {
     const allDropzones = this.props.dropzones;
 
+    console.log('chris', this.props.dropzones[0]);
+
     return (
       <div>
         <h2>All Dropzones:</h2>
@@ -54,7 +63,7 @@ export class AllDropzones extends React.Component {
             <p>First name: {dropzone.name}</p>
             <p>Last name: {dropzone.address} </p>
             <p>Email: {dropzone.email} </p>
-            <Link to={`/dropzones/${dropzone.id}`} >
+            <Link to={`/dropzones/${dropzone.id}`}>
               <button>View more</button>
             </Link>
             <hr />
@@ -82,7 +91,7 @@ const mapState = (state) => {
     dropzones: state.dropzones.allDropzones,
     loads: state.loads,
     singleUser: state.users.singleUser,
-    singleDropzone: state.dropzones.singleDropzone
+    singleDropzone: state.dropzones.singleDropzone,
   };
 };
 const mapDispatch = (dispatch) => {

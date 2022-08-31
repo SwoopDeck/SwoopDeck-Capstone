@@ -76,7 +76,9 @@ router.delete('/:id', async (req, res, next) => {
 
     await user.destroy();
 
-    res.sendStatus(200);
+    // const allUsers = await User.findAll();
+    // console.log(allUsers);
+    // res.json(allUsers);
   } catch (err) {
     next(err);
   }
