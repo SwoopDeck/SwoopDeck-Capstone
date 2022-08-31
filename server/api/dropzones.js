@@ -36,12 +36,12 @@ router.put('/:dropzoneId', async (req, res, next) => {
   try {
     const selectedDropzone = await Dropzone.findByPk(req.params.dropzoneId);
 
-    selectedDropzone.update({...selectedDropzone, 
+    selectedDropzone.update({
+      ...selectedDropzone,
       name: req.body.name,
       address: req.body.address,
       phoneNumber: req.body.phoneNumber,
-    })
-
+    });
 
     res.send(selectedDropzone);
   } catch (err) {
@@ -69,15 +69,19 @@ router.post('/create', async (req, res, next) => {
 //DELETE 'api/dropzones/:dropzoneId'
 router.delete('/:dropzoneId', async (req, res, next) => {
   try {
-    await Dropzone.destroy({
-      where: {
-        id: req.params.dropzoneId,
-      },
-    });
+    // await Dropzone.destroy({
+    //   where: {
+    //     id: req.params.dropzoneId,
+    //   },
+    // });
 
-    const dropzones = await Dropzone.findAll();
+    // const dropzones = await Dropzone.findAll();
 
-    res.send(dropzones);
+    // res.send(dropzones);
+    console.log('hit express route');
+    const dropzone = await Dropzone.findByPk(req.params.dropzoneId);
+    await dropzone.destroy();
+    res.sendStatus(200);
   } catch (err) {
     next(err);
   }

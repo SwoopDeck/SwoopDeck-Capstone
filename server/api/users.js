@@ -27,7 +27,7 @@ router.get('/', async (req, res, next) => {
 });
 
 //ADMIN VIEW: GET A USER
-router.get('/:id',  async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id);
     res.json(user);
@@ -51,7 +51,8 @@ router.post('/', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id);
-    user.update({...user,
+    user.update({
+      ...user,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
@@ -59,7 +60,7 @@ router.put('/:id', async (req, res, next) => {
       address: req.body.address,
       licenseNumber: req.body.licenseNumber,
       emergencyContact: req.bodyemergencyContact,
-      emergencyPhoneNumber: req.body.emergencyPhoneNumber
+      emergencyPhoneNumber: req.body.emergencyPhoneNumber,
     });
     res.json(user);
   } catch (err) {
@@ -72,8 +73,10 @@ router.put('/:id', async (req, res, next) => {
 router.delete('/:id', async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id);
-    await user.destroy(req.params.id);
-    res.send(user);
+
+    await user.destroy();
+
+    res.sendStatus(200);
   } catch (err) {
     next(err);
   }
