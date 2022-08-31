@@ -37,8 +37,10 @@ router.get('/:id', async (req, res, next) => {
 });
 
 //ADMIN VIEW: CREATE NEW USER
+//POST /api/users/
 router.post('/', async (req, res, next) => {
   try {
+    console.log(req.body)
     const user = await User.create(req.body);
     res.status(201).json(user);
   } catch (err) {

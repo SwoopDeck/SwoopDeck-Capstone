@@ -28,7 +28,7 @@ const Load = db.define('loads', {
     type: Sequelize.BOOLEAN,
   },
   status: {
-    type: Sequelize.ENUM('on time', 'delayed', 'closed', 'cancelled'),
+    type: Sequelize.ENUM("On Time", 'Delayed', 'Closed', 'Cancelled'),
   },
 });
 

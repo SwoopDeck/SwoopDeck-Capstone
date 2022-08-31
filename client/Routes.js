@@ -127,7 +127,7 @@ class Routes extends Component {
         <Route exact path="/" component={Login} />
         <Route path="/login" component={Login} />
         <Route path="/example" component={Example} />
-        <Route path="/signup" component={CreateUser} />
+        <Route exact path="/signup" component={CreateUser} />
 
         {/* ERROR PAGE ROUTE MUST BE THE LAST ROUTE */}
 

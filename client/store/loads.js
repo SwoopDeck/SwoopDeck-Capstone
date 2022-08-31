@@ -156,6 +156,7 @@ import axios from 'axios';
 let SET_LOADS = 'SET_LOADS';
 let DELETE_LOAD = 'DELETE_LOAD';
 let UPDATE_LOAD = 'UPDATE_LOAD';
+let UPDATE_LOAD_STATUS = 'UPDATE_LOAD_STATUS';
 let ADD_LOAD = 'ADD_LOAD';
 const SET_SINGLE_LOAD = 'SET_SINGLE_LOAD';
 
@@ -193,11 +194,19 @@ export const reformLoad = (LOAD) => {
   };
 };
 
+//UPDATE A SINGLE LOADS RECORD
+export const reformLoadStatus = (LOAD) => {
+  return {
+    type: UPDATE_LOAD,
+    LOAD,
+  };
+};
+
 //DELETE A SINGLE LOADS RECORD
-export const removeLoad = (LOAD) => {
+export const removeLoad = (LOADS) => {
   return {
     type: DELETE_LOAD,
-    LOAD,
+    LOADS,
   };
 };
 
@@ -238,14 +247,21 @@ export const thunk_fetchSingleLoad = (dropzoneId, loadId) => {
   };
 };
 
-//THUNK: UPDATE A SINGLE LOADS RECORD
-export const thunk_updateLoad = (dropzoneId, loadId, LOAD) => {
+//THUNK: UPDATE A SINGLE LOADS JUMPER LIST
+export const thunk_updateLoad = (userId, loadId) => {
   return async (dispatch) => {
     const { data } = await axios.put(
-      `/api/loads/${dropzoneId}/${loadId}`,
-      LOAD
-    );
+      `/api/loads/${loadId}/${userId}`);
     dispatch(reformLoad(data));
+  };
+};
+
+//THUNK: UPDATE A SINGLE LOADS STATUS
+export const thunk_updateLoadStatus = (status, loadId) => {
+  return async (dispatch) => {
+    const { data } = await axios.put(
+      `/api/loads/${loadId}/${status}`);
+    dispatch(reformLoadStatus(data));
   };
 };
 
@@ -295,11 +311,17 @@ export default function loadsReducer(state = initialState, action) {
         ...state,
         allLOADS: [...state.allLoads, action.LOAD],
       };
-    case DELETE_LOAD:
+      case UPDATE_LOAD_STATUS:
       return {
         ...state,
-        allLOADS: state.allLoads.filter((LOADS) => LOADS.id !== action.LOAD.id),
+        allLOADS: [...state.allLoads, action.LOAD],
       };
+    case DELETE_LOAD:
+      // return {
+      //   ...state,
+      //   allLOADS: state.allLoads.filter((LOADS) => LOADS.id !== action.LOAD.id),
+      // };
+      return { ...state, allLoads: action.LOADS };
     default:
       return state;
   }

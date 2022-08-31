@@ -22,6 +22,7 @@ import {
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
+  thunk_updateLoadStatus,
 } from '../store/loads';
 
 /**
@@ -32,9 +33,12 @@ export class LoadDetailsDZ extends React.Component {
     super(props);
     this.state = {
       loadsdata: this.props.loads,
+      status: 'On Time'
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.removeJumper = this.removeJumper.bind(this);
+    this.changeStatus = this.changeStatus.bind(this);
   }
   componentDidMount() {
     const loadId = this.props.match.params.loadId;
@@ -49,9 +53,15 @@ export class LoadDetailsDZ extends React.Component {
     });
   }
 
-  handleClick(evt) {
-    this.props.history.push(`/:dropzoneId/todaysLoads`);
+  removeJumper(userId, loadId){
+    this.props.editLoad(userId, loadId)
   }
+
+  changeStatus(status, loadId){
+    console.log(status, loadId)
+    this.props.editLoadStatus(status, loadId)
+  }
+
 
   render() {
     const allLoads = this.props.loads;
@@ -65,6 +75,7 @@ export class LoadDetailsDZ extends React.Component {
           </h4>
           <h4>LICENSE #: {user.licenseNumber}</h4>
           <h4>EMAIL: {user.email}</h4>
+          <button type="button" onClick={()=> this.removeJumper(user.id,this.props.match.params.loadId)}>Remove From Load</button>
         </div>
       );
     });
@@ -84,6 +95,14 @@ export class LoadDetailsDZ extends React.Component {
         <div> {jumpers}</div>
         <br />
         <br />
+        <label htmlFor="status">Status</label>
+          <select name="status" onChange={this.handleChange}>
+            <option name="on time">On Time</option>
+            <option name="delayed">Delayed</option>
+            <option name="closed">Closed</option>
+            <option name="canceled">Canceled</option>
+          </select>
+        <button type="button" onClick={()=> this.changeStatus(this.state.status,this.props.match.params.loadId)}>Update Status</button>
         <Link to="/:dropzoneId/todaysLoads">
           <button type="button">Back to Today's Loads</button>
         </Link>
@@ -126,8 +145,10 @@ const mapDispatch = (dispatch) => {
 
     /////////ABOVE IS FOR DROPZONE////////BELOW IS FOR LOADS/////////////////////////////
 
-    editLoad: (dropzoneId, loadId, LOAD) =>
-      dispatch(thunk_updateLoad(dropzoneId, loadId, LOAD)), //WORKING//
+    editLoad: (userId, loadId) =>
+      dispatch(thunk_updateLoad(userId, loadId)), //WORKING//
+      editLoadStatus: (status, loadId) =>
+      dispatch(thunk_updateLoadStatus(status, loadId)), //WORKING//
     getLoads: (dropzoneId) => dispatch(thunk_fetchAllLoads(dropzoneId)), //WORKING//
     deleteLoad: (dropzoneId, loadId) =>
       dispatch(thunk_deleteLoad(dropzoneId, loadId)), //WORKING//
