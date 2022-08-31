@@ -67,6 +67,7 @@ export class AllJumps extends React.Component {
                   All skydiving jump logs
                 </div>
               </div>
+              <Link to={`/add`}>
               <div className="frame-527">
                 <button className="add-btn">
                   <img
@@ -76,6 +77,7 @@ export class AllJumps extends React.Component {
                   <div className="button">Add</div>
                 </button>
               </div>
+              </Link>
               {/* <img
                 className="line-15"
                 src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e84f46d0125081c2cb8ad/img/line-15@1x.svg"
@@ -145,7 +147,9 @@ export class AllJumps extends React.Component {
                     <td>{jump.jumpType}</td>
                     <td style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
                       <button className='edit-btn'><i className="fa-solid fa-pen-to-square"/></button>
+                      <Link to={`/jumps/${jump.id}`}>
                       <button className="edit-btn" style={{margin: '1rem 1rem'}}><i className="fa-solid fa-eye"/></button>
+                      </Link>
                       {/* <button style={{backgroundColor: 'red'}}><i className="fa-solid fa-trash-can"/></button> */}
                     </td>
                   </tr>
@@ -156,133 +160,8 @@ export class AllJumps extends React.Component {
 
           {/* //////////////////////// Manual TABLE COMMENTED OUT //////////////////////// */}
 
-          {/* <table className="table-1">
-            <tr className="column-1">
-              <th className="head border-1px-mystic">
-                <th className="jump-number manrope-semi-bold-storm-gray-14px">
-                  JUMP NUMBER
-                </th>
-              </th>
-                  {jumps.reverse().map((jump, index) => {
-                    return (
-              <div className="head-1 border-1px-mystic">
-                <div className="frame-52">
-                      <div className="number-2 manrope-normal-mirage-16px" key={index}>{jump.jumpNumber}</div>
-
-                      </div>
-                    </div>
-                    )
-                  })}
-              
-
-
-            </tr>
-            <tr className="column-2">
-              <th className="head border-1px-mystic">
-                <div className="location manrope-semi-bold-storm-gray-14px">
-                  LOCATION
-                </div>
-              </th>
-              {jumps.reverse().map((jump, index) => {
-                return (
-              <div className="head-1 border-1px-mystic">
-                <div className="skydive-the-ranch manrope-normal-mirage-16px" key={index}>
-                  need to access dz name
-                </div>
-              </div>
-
-                )
-              })}
-
-
-
-            </tr>
-            <tr className="column">
-              <th className="head-4 border-1px-mystic">
-                <div className="place manrope-semi-bold-storm-gray-14px">DATE</div>
-                <img
-                  className="icon"
-                  src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e7086917e60f152cf697a/img/icons-1@2x.svg"
-                />
-              </th>
-              {jumps.reverse().map((jump, index) => {
-                return (
-              <div className="head-1 border-1px-mystic" key={index}>
-                <div className="date manrope-normal-mirage-16px">access date</div>
-              </div>
-
-                )
-              })}
-              
-
-
-            </tr>
-            <tr className="column">
-              <th className="head-2 border-1px-mystic">
-                <div className="jump-ticket manrope-semi-bold-storm-gray-14px">
-                  JUMP TYPE
-                </div>
-              </th>
-              {jumps.reverse().map((jump, index) => {
-                return (
-              <div className="head-1 border-1px-mystic" key={index}>
-                <div className="full-altitude manrope-semi-bold-mirage-16px">
-                  {jump.exitAltitude > 7000 ? 'Full Altitude' : `Hop 'n Pop`}
-                </div>
-              </div>
-
-                )
-              })}
-            </tr>
-
-
-            
-            <tr className="column">
-              <th className="head-2 border-1px-mystic">
-                <div className="type manrope-semi-bold-storm-gray-14px">STYLE</div>
-              </th>
-              {jumps.reverse().map((jump, index) => {
-                return (
-              <div className="head-1 border-1px-mystic" key={index}>
-                <div className="belly manrope-semi-bold-mirage-16px">{jump.jumpType}</div>
-              </div>
-
-                )
-              })}
-              
-
-
-            </tr>
-            <tr className="column">
-              <div className="head-5 border-1px-mystic"></div>
-
-                {jumps.reverse().map((jump, index) => {
-                  return (
-                    <>
-                    <div className="head-6 border-1px-mystic">
-                    <div className="light-button">
-                      <div className="edit valign-text-middle manrope-normal-storm-gray-16px">
-                        Edit
-                      </div>
-                    </div>
-                
-              </div>
-                    </>
-                  )
-                })}
-              
-
-
-            </tr>
-          </table>  */}
         </div>
 
-        <div>
-          {jumps.length === 0 ? (
-            <h2>You haven't made any skydives!</h2>
-          ) : (
-            <span />
-          )}
 
           {/* //////////////////////// ORIGINAL JUMP RECORD CARDS //////////////////////// */}
 
@@ -315,7 +194,6 @@ export class AllJumps extends React.Component {
           </div> */}
 
           {/* //////////////////////// ORIGINAL JUMP RECORD CARDS //////////////////////// */}
-        </div>
       </div>
     );
   }
