@@ -1,8 +1,8 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { me } from "../store/auth";
-import Sidebar from "./Sidebar";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { me } from '../store/auth';
+import Sidebar from './Sidebar';
 // import EditItem from "./EditItem";
 import {
   Thunk_fetchAllJumpRecords,
@@ -25,49 +25,72 @@ import {
   thunk_fetchSingleLoad,
   thunk_updateLoad,
 } from '../store/loads';
-import { Thunk_fetchUser, Thunk_fetchUsers, Thunk_updateUser } from "../store/allusers";
+import {
+  Thunk_fetchUser,
+  Thunk_fetchUsers,
+  Thunk_updateUser,
+  Thunk_deleteUser,
+} from '../store/allUsers';
+// import {
+//   Thunk_fetchUser,
+//   Thunk_fetchUsers,
+//   Thunk_updateUser,
+//   Thunk_deleteUser,
+// } from '../store/allusers';
 
 /**
  * REACT COMPONENT
  */
 class SingleUser extends React.Component {
- 
   componentDidMount() {
-    this.props.getSingleUser(this.props.match.params.id)
+    this.props.getSingleUser(this.props.match.params.id);
   }
 
   render() {
-    const { id, firstName, lastName, address, email, licenseNumber, role } = this.props.singleUser
-  
+    const { id, firstName, lastName, address, email, licenseNumber, role } =
+      this.props.singleUser;
+
     return (
       <div>
         <div key={id}>
-        <h2>{firstName} {lastName}</h2>
+          <h2>
+            {firstName} {lastName}
+          </h2>
           <p>Email: {email} </p>
           <p>Address: {address} </p>
           <p>Role: {role} </p>
-          {role === 'Skydiver' ? (
-            <p>UPSA#: {licenseNumber} </p>
-
-          ) : (
-            <></>
-          )}
-           <button onClick={()=> {
-            this.props.getSingleUser(this.props.match.params.id)
-            this.props.history.push(`/users/edit/${id}`)
-          // this.props.getDropzones()
-        }}
-          >Edit</button> 
-          <button onClick={()=> {
-            this.props.getUsers();
-            this.props.history.push(`/users`)
-        }}>Go back</button> 
-          
+          {role === 'Skydiver' ? <p>UPSA#: {licenseNumber} </p> : <></>}
+          <button
+            onClick={() => {
+              this.props.getSingleUser(this.props.match.params.id);
+              this.props.history.push(`/users/edit/${id}`);
+              // this.props.getDropzones()
+            }}
+          >
+            Edit
+          </button>
+          <button
+            onClick={() => {
+              this.props.deleteUser(this.props.match.params.id);
+              this.props.getUsers();
+              this.props.history.push(`/users`);
+            }}
+          >
+            Delete User
+          </button>
+          <button
+            onClick={() => {
+              this.props.getUsers();
+              this.props.history.push(`/users`);
+            }}
+          >
+            Go back
+          </button>
           <hr />
           <hr />
         </div>
-    </div>
-    )
+      </div>
+    );
   }
 }
 
@@ -88,7 +111,7 @@ const mapState = (state) => {
     dropzones: state.dropzones.allDropzones,
     loads: state.loads,
     singleUser: state.users.singleUser,
-    singleDropzone: state.dropzones.singleDropzone
+    singleDropzone: state.dropzones.singleDropzone,
   };
 };
 const mapDispatch = (dispatch) => {
@@ -123,11 +146,11 @@ const mapDispatch = (dispatch) => {
     getSingleLoad: (dropzoneId, loadId) =>
       dispatch(thunk_fetchSingleLoad(dropzoneId, loadId)), //WORKING//
 
-      /////////////////BELOW IS FOR ADMINS/////////////////////////////
+    /////////////////BELOW IS FOR ADMINS/////////////////////////////
 
-      getSingleUser: (id) => dispatch(Thunk_fetchUser(id)),
-      getUsers: () => dispatch(Thunk_fetchUsers()),
-
+    getSingleUser: (id) => dispatch(Thunk_fetchUser(id)),
+    getUsers: () => dispatch(Thunk_fetchUsers()),
+    deleteUser: (id) => dispatch(Thunk_deleteUser(id)),
   };
 };
 

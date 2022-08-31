@@ -1,4 +1,3 @@
-
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
@@ -29,8 +28,8 @@ import DropzoneLoadList from './components/DropzoneLoadList';
 import LoadDetailsDZ from './components/LoadDetailsDZ';
 import PaymentForm from './components/stripe/PaymentForm';
 import Cart from './components/stripe/Cart';
-import EditJumpRecord from "./components/EditJumpRecord"
-
+import EditJumpRecord from './components/EditJumpRecord';
+import ContactUs from './components/ContactUs';
 
 /**
  * COMPONENT
@@ -89,8 +88,8 @@ class Routes extends Component {
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/allchartsclass/:id" component={AllChartsClass} />
         <Route exact path="/edit/:jumpId" component={EditJumpRecord} />
+        <Route exact path="/contact" component={ContactUs} />
         <Route path="*" component={ErrorPage} />
-
       </Switch>
     );
 
