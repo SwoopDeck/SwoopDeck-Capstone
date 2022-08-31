@@ -206,34 +206,7 @@ export class AllJumps extends React.Component {
         </div>
 
 
-          {/* //////////////////////// ORIGINAL JUMP RECORD CARDS //////////////////////// */}
-
-          {/* <div className="right-bottom-column" id="jumps">
-            <div className="right-bottom-column-left-side">
-              <h2 style={{ marginBottom: '1rem' }}>Your recent activity</h2>
-              {recentFiveJumps.map((jump, idx) => {
-                const aircraft = jump.aircraft;
-                const jumpNum = jumps.length - idx;
-                return (
-                  <div className="recent-jumps" key={idx}>
-                    <Link to={`/jumps/${jump.id}`}>
-                      <img
-                        height="100vh"
-                        width="100vh"
-                        src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.kHAtTjGvPMSeFGe_bZUGFwHaHa%26pid%3DApi&f=1"
-                      />
-                    </Link>
-                    <div className="recent-jump-info">
-                      {/* <h4>{jump.location}</h4> */}
-                      <h4>Aircraft: {aircraft}</h4>
-                      <button className="view-jump-details">
-                        <Link to={`/jumps/${userId}/${jump.id}`}>View Jump Details</Link>
-                      </button>
-                    </div>
-                    <h4 className="jump-number">Jump #{jumpNum}</h4>
-                  </div>
-                );
-              })}
+          
               {/* <form onChange={this.handleChange}>
                 <select>
                   {pagesArr.map((pageNum) => {
@@ -250,9 +223,9 @@ export class AllJumps extends React.Component {
                 </select>
               </form> */}
             </div> 
-          </div> */}
-          {/* //////////////////////// ORIGINAL JUMP RECORD CARDS //////////////////////// */}
-      </div>
+
+      // </div>
+      // </div>
     );
   }
 }

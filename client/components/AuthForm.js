@@ -44,7 +44,7 @@ const AuthForm = props => {
                 Create New Account
               </button>
             </Link>
-            <Link to="/signupDropzone">
+            <Link to="/contact">
             <button className="buttonShadow" type="submit">
                 Request New Dropzone
               </button>
