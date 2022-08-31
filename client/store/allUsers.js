@@ -62,13 +62,13 @@ export const Thunk_fetchUser = (id) => async (dispatch) => {
 
 
 // THUNK: CREATE A NEW USER
-export const createUser = (user, history) => {
+export const createUser = (user) => {
   return async (dispatch) => {
-    const { data: token } = await axios.post('/api/users', user);
-    window.localStorage.setItem('token', token);
-    dispatch(_createUser(user));
-    dispatch(me())
-    history.push('/');
+    console.log(user)
+    const { data } = await axios.post('/api/users', user);
+    // window.localStorage.setItem('token', token);
+    dispatch(_createUser(data));
+    // dispatch(me())
   };
 };
 

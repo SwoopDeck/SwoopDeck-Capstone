@@ -73,7 +73,7 @@ const User = db.define('user', {
   },
 
   emergencyPhoneNumber: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     // validate: {
     //   allowNull: false,
     // },
