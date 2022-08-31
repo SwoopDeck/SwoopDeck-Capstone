@@ -47,8 +47,82 @@ export class AllDropzones extends React.Component {
     const allDropzones = this.props.dropzones;
 
     return (
-      <div>
-        <h2>All Dropzones:</h2>
+      <div className='flex-right'>
+
+
+
+
+<div className="table screen">
+          <div className="frame-529">
+            <div className="frame-528">
+              <div className="frame-526">
+                <p id="titleLog">Dropzones</p>
+                <div className="view-all-past-skydiving-jump-logs">
+                  All registered locations
+                </div>
+              </div>
+              <div className="frame-527">
+                <button className="add-btn">
+                  <img
+                    className="icon"
+                    src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e84f46d0125081c2cb8ad/img/-icon@2x.svg"
+                  />
+                  <div className="button">Add</div>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="frame-530">
+            <input
+              className="search-bar border-1px-mystic search"
+              type="search"
+              placeholder="Search"/>
+            <button className="buttons-1 filter-btn">
+              <img
+                className="icon"
+                src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e84f46d0125081c2cb8ad/img/-icon-1@2x.svg"
+              />
+              <div className="button-1">Filter</div>
+            </button>
+          </div>
+
+          {/* //////////////////////// MANUAL TABLE //////////////////////// */}
+
+          <table>
+            <thead>
+              <tr>
+                <th>NAME</th>
+                <th>ADDRESS</th>
+                <th>PHONE NUMBER</th>
+                <th>ACTION</th>
+              </tr>
+            </thead>
+            <tbody>
+              {allDropzones.map((dropzone, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{dropzone.name}</td>
+                    <td>{dropzone.address}</td>
+                    <td>{dropzone.phoneNumber}</td>
+                    <td style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+                      <Link to={`/dropzones/${dropzone.id}`} >
+                        {/* <button className='edit-btn'><i className="fa-solid fa-pen-to-square"/></button> */}
+                        <button className="edit-btn" style={{margin: '1rem 1rem'}}><i className="fa-solid fa-eye"/></button>
+                        </Link>
+                      <button style={{backgroundColor: 'red'}}><i className="fa-solid fa-trash-can"/></button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+
+
+
+
+
+        {/* <h2>All Dropzones:</h2>
         {allDropzones.map((dropzone) => (
           <div key={dropzone.id}>
             <p>First name: {dropzone.name}</p>
@@ -60,7 +134,12 @@ export class AllDropzones extends React.Component {
             <hr />
             <hr />
           </div>
-        ))}
+        ))} */}
+
+
+
+
+
       </div>
     );
   }

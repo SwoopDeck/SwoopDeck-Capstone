@@ -1,104 +1,8 @@
-// import React from "react";
-// import { connect } from "react-redux";
-// import { Link } from "react-router-dom";
-// import { Thunk_fetchAllJumpRecords, Thunk_deleteJump } from "../store/jumpRecords";
-// import { me } from "../store/auth";
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { me } from "../store/auth";
 
-// export class AllJumps extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     // this.state = {};
-//   }
-//   componentDidMount() {
-//     let userId = this.props.user.id
-//     this.props.getJumps(userId);
-//   }
-
-//   render() {
-//     function alertMessage() {
-//       alert('This feature is not yet available!')
-//     }
-
-//     let userId = this.props.user.id || ''
-
-//     let jumps = [this.props.jumpRecords] || []
-//     console.log('jumps: ', jumps);
-//     // console.log(this.props)
-
-//     return (
-//       <div className="flex-right">
-//         <div>
-//           <div className="right-top-column">
-//             <div className="total-freefall-time-integers">3 hours 21 minutes</div>
-//         <div className="total-freefall-time">Total FreeFall Time</div>
-//           </div>
-
-//         {jumps.length === 0 ? <h2>You haven't made any skydives!</h2> : <span />}
-
-//         <div className="right-bottom-column" id="jumps">
-//           <div className="right-bottom-column-left-side">
-
-//             <h2 style={{marginBottom: '1rem'}}>Your recent activity</h2>
-//           {jumps.map((jump) => {
-//             return (
-//               <div className="recent-jumps" key={jump.id}>
-//                 <Link to={`/jumps/${jump.id}`}>
-//                   <img height="100vh" width="100vh" src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.kHAtTjGvPMSeFGe_bZUGFwHaHa%26pid%3DApi&f=1' />
-//                 </Link>
-//                 <div className="recent-jump-info">
-//                   <h4>{jump.location}</h4>
-//                   <h4>Aircraft: {jump.aircraft}</h4>
-//                   <button className="view-jump-details">
-//                     <Link to={`/jumps/${jump.id}`}>View Jump Details</Link>
-//                   </button>
-//                   {/* <button
-//                     onClick={() => {
-//                       this.props.delete(this.props.user.id, jump.id);
-//                     }}
-//                     >
-//                     Remove Jump
-//                   </button> */}
-//                 </div>
-//                     <h4 className="jump-number">Jump #{jump.jumpNumber}</h4>
-//                 </div>
-//             );
-//           })}
-//           </div>
-//           <div className="right-bottom-column-right-side">
-//             <h2 style={{marginBottom: '1rem'}}>Add New Jump</h2>
-//             <button className="recent-jumps"           onClick={(e) => {
-//             e.preventDefault();
-//             window.location.href = "http://localhost:8080/add";
-//           }}>Add manually</button>
-//             <button className="recent-jumps" onClick={alertMessage}>Record</button>
-//             <button className="recent-jumps" onClick={alertMessage}>Import</button>
-
-//           </div>
-//         </div>
-//         </div>
-//       </div>
-//     );
-//   }
-// }
-// const mapState = (state) => {
-//   return {
-//     jumpRecords: state.jumpRecords,
-//     user: state.auth,
-//   };
-// };
-// const mapDispatch = (dispatch) => {
-//   return {
-//     getJumps: (userId) => dispatch(Thunk_fetchAllJumpRecords(userId)),
-//     delete: (userId, jumpId) => dispatch(Thunk_deleteJump(userId, jumpId)),
-//   };
-// };
-
-// export default connect(mapState, mapDispatch)(AllJumps);
-
-import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { me } from '../store/auth';
 import {
   Thunk_fetchAllJumpRecords,
   Thunk_fetchSingleJump,
@@ -145,27 +49,11 @@ export class AllJumps extends React.Component {
     //   pageNum: 0,
     // };
 
+
     this.handleChange = this.handleChange.bind(this);
   }
   componentDidMount() {
-    //this.props.getDropzone();
-    //this.props.addDropzone({name:'thenewDROPZONE',address:'yourmomshouse', phoneNumber:'deez'})
-    //this.props.editDropzone(4,{ name:'asdfas' , address:'hello', phoneNumber:'23424324'})
-    //this.props.deleteDropzone(4)
-    //this.props.getDropzones()
 
-    //this.props.getLoads(1)
-    //this.props.getSingleLoad(1,1)
-    //this.props.addLoad({dropzoneId: 1, aircraft: 'cessna', slots: 5, slotFilled: 2, isFull: false, status: 'on time'},1)
-    //this.props.deleteLoad(1, 4)
-    //this.props.editLoad(1,1,{aircraft:'cessna'})
-
-    //this.props.getJumpRecords(3)
-    //this.props.getSingleJumpRecord(2, 3)
-    //this.props.addJumpRecord({},3)
-    //this.props.deleteJumpRecord(3,21) //NEED TO BE VERY SPECIFIC
-    //this.props.editJumpRecord({ aircraft: 'NEWWWWWWWWW' }, 2, 3);
-    this.props.getJumpRecords(this.props.users.id);
   }
 
   handleChange(evt) {
@@ -213,21 +101,114 @@ export class AllJumps extends React.Component {
 
     return (
       <div className="flex-right">
-        <div>
-          <div className="right-top-column">
-            <div className="total-freefall-time-integers">
-              3 hours 21 minutes
+        <div className="table screen">
+          <div className="frame-529">
+            <div className="frame-528">
+              <div className="frame-526">
+                <p id="titleLog">Logbook</p>
+                <div className="view-all-past-skydiving-jump-logs">
+                  All skydiving jump logs
+                </div>
+              </div>
+              <Link to={`/add`}>
+              <div className="frame-527">
+                <button className="add-btn">
+                  <img
+                    className="icon"
+                    src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e84f46d0125081c2cb8ad/img/-icon@2x.svg"
+                  />
+                  <div className="button">Add</div>
+                </button>
+              </div>
+              </Link>
+              {/* <img
+                className="line-15"
+                src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e84f46d0125081c2cb8ad/img/line-15@1x.svg"
+              /> */}
             </div>
-            <div className="total-freefall-time">Total FreeFall Time</div>
+            {/* <div className="frame-523">
+              <div className="frame-524">
+                <div className="frame-522">
+                  <div className="overview manrope-semi-bold-mirage-16px">
+                    Overview
+                  </div>
+                </div>
+                <div className="frame-523-1"></div>
+              </div>
+              <img
+                className="line-16"
+                src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e6d34d90b3a5e2f76143d/img/line-16@2x.svg"
+              />
+            </div> */}
+          </div>
+          <div className="frame-530">
+            <input
+              className="search-bar border-1px-mystic search"
+              type="search"
+              placeholder="Search"
+            >
+              {/* <img
+                className="icon"
+                src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e6d34d90b3a5e2f76143d/img/icons@2x.svg"
+              />
+              <div className="search">Search</div> */}
+            </input>
+            <button className="buttons-1 filter-btn">
+              <img
+                className="icon"
+                src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e84f46d0125081c2cb8ad/img/-icon-1@2x.svg"
+              />
+              <div className="button-1">Filter</div>
+            </button>
           </div>
 
-          {jumps.length === 0 ? (
-            <h2>You haven't made any skydives!</h2>
-          ) : (
-            <span />
-          )}
+          {/* //////////////////////// Manual TABLE COMMENTED OUT //////////////////////// */}
 
-          <div className="right-bottom-column" id="jumps">
+          <table>
+            <thead>
+              <tr>
+                <th>JUMP NUMBER</th>
+                <th>DATE</th>
+                <th>LOCATION</th>
+                <th>JUMP TYPE</th>
+                <th>STYLE</th>
+                <th>ACTION</th>
+              </tr>
+            </thead>
+            <tbody>
+              {jumps.reverse().map((jump, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{jump.jumpNumber}</td>
+                    <td>access date</td>
+                    <td>access dropzone name</td>
+                    <td>
+                      {jump.exitAltitude > 7000
+                        ? "Full Altitude"
+                        : `Hop 'n Pop`}
+                    </td>
+                    <td>{jump.jumpType}</td>
+                    <td style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+                      <button className='edit-btn'><i className="fa-solid fa-pen-to-square"/></button>
+                      <Link to={`/jumps/${jump.id}`}>
+                      <button className="edit-btn" style={{margin: '1rem 1rem'}}><i className="fa-solid fa-eye"/></button>
+                      </Link>
+                      {/* <button style={{backgroundColor: 'red'}}><i className="fa-solid fa-trash-can"/></button> */}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+
+          {/* //////////////////////// Manual TABLE COMMENTED OUT //////////////////////// */}
+
+        </div>
+
+
+          {/* //////////////////////// ORIGINAL JUMP RECORD CARDS //////////////////////// */}
+
+          {/* <div className="right-bottom-column" id="jumps">
             <div className="right-bottom-column-left-side">
               <h2 style={{ marginBottom: '1rem' }}>Your recent activity</h2>
               {recentFiveJumps.map((jump, idx) => {
@@ -248,13 +229,6 @@ export class AllJumps extends React.Component {
                       <button className="view-jump-details">
                         <Link to={`/jumps/${userId}/${jump.id}`}>View Jump Details</Link>
                       </button>
-                      {/* <button
-                  onClick={() => {
-                    this.props.delete(this.props.user.id, jump.id);
-                  }}
-                  >
-                  Remove Jump
-                </button> */}
                     </div>
                     <h4 className="jump-number">Jump #{jumpNum}</h4>
                   </div>
@@ -275,32 +249,9 @@ export class AllJumps extends React.Component {
                   })}
                 </select>
               </form> */}
-            </div>
-            <div className="right-bottom-column-right-side">
-              <h2 style={{ marginBottom: '1rem' }}>Add New Jump</h2>
-              <button
-                className="recent-jumps"
-                onClick={(e) => {
-                  e.preventDefault();
-                  window.location.href = 'http://localhost:8080/add';
-                }}
-              >
-                Add manually
-              </button>
-              <button className="recent-jumps">
-                <Link to={`/allchartsclass/${this.props.users.id}`}>
-                  CHARTS CLICK HERE!!!!!
-                </Link>
-              </button>
-              <button className="recent-jumps" onClick={alertMessage}>
-                Record
-              </button>
-              <button className="recent-jumps" onClick={alertMessage}>
-                Import
-              </button>
-            </div>
-          </div>
-        </div>
+            </div> 
+          </div> */}
+          {/* //////////////////////// ORIGINAL JUMP RECORD CARDS //////////////////////// */}
       </div>
     );
   }

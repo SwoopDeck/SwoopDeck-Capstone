@@ -34,10 +34,9 @@ export const Home = props => {
     <div className='flex-right'>
       <h3>Welcome</h3>
       <div className="right-top-column">
-            <div className="total-freefall-time-integers">3 hours 21 minutes</div>
-        <div className="total-freefall-time">Total FreeFall Time</div>
+            <div className="total-freefall-time-integers">Insert Charts</div>
           </div>
-      <AllJumps />
+
     </div>
   )
 }

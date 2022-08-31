@@ -48,21 +48,83 @@ export class AllUsers extends React.Component {
     const allUsers = this.props.users || [];
 
     return (
-      <div>
-        <h2>All Users:</h2>
-        {allUsers.map((user) => (
-          <div key={user.id}>
-            <p>First name: {user.firstName}</p>
-            <p>Last name: {user.lastName} </p>
-            <p>Email: {user.email} </p>
-            <p>Role: {user.role} </p>
-            <Link to={`/users/${user.id}`} >
-              <button>View more</button>
-            </Link>
-            <hr />
-            <hr />
+      <div className='flex-right'>
+
+
+
+
+      <div className="table screen">
+          <div className="frame-529">
+            <div className="frame-528">
+              <div className="frame-526">
+                <p id="titleLog">Users</p>
+                <div className="view-all-past-skydiving-jump-logs">
+                  All registered user accounts
+                </div>
+              </div>
+              <div className="frame-527">
+                <button className="add-btn">
+                  <img
+                    className="icon"
+                    src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e84f46d0125081c2cb8ad/img/-icon@2x.svg"
+                  />
+                  <div className="button">Add</div>
+                </button>
+              </div>
+            </div>
           </div>
-        ))}
+          <div className="frame-530">
+            <input
+              className="search-bar border-1px-mystic search"
+              type="search"
+              placeholder="Search"/>
+            <button className="buttons-1 filter-btn">
+              <img
+                className="icon"
+                src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e84f46d0125081c2cb8ad/img/-icon-1@2x.svg"
+              />
+              <div className="button-1">Filter</div>
+            </button>
+          </div>
+
+          {/* //////////////////////// MANUAL TABLE //////////////////////// */}
+
+          <table>
+            <thead>
+              <tr>
+                <th>NAME</th>
+                <th>ROLE</th>
+                <th>PHONE NUMBER</th>
+                <th>EMAIL</th>
+                <th>ACTION</th>
+              </tr>
+            </thead>
+            <tbody>
+              {allUsers.map((user, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{user.firstName} {user.lastName}</td>
+                    <td>{user.role}</td>
+                    <td>{user.phoneNumber}</td>
+                    <td>{user.email}</td>
+                    <td style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+                      <Link to={`/users/${user.id}`} >
+                        {/* <button className='edit-btn'><i className="fa-solid fa-pen-to-square"/></button> */}
+                        <button className="edit-btn" style={{margin: '1rem 1rem'}}><i className="fa-solid fa-eye"/></button>
+                        </Link>
+                      <button style={{backgroundColor: 'red'}}><i className="fa-solid fa-trash-can"/></button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+
+
+
+
+
       </div>
     );
   }
