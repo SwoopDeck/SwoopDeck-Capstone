@@ -31,18 +31,7 @@ import {
 export class AllJumps extends React.Component {
   constructor(props) {
     super(props);
-    //this.state = {
-    //jumpNumber: "",
-    // location: "",
-    // aircraft: "",
-    // equipment: "",
-    // exitAltitude: 14000,
-    // pullAltitude: 4000,
-    // freeFallTime: 60,
-    // jumpers: "",
-    // description: "",
-    // jumpType: "",
-    //};
+
 
     //FOR PAGINATION
     // this.state = {
@@ -61,9 +50,7 @@ export class AllJumps extends React.Component {
       [evt.target.name]: evt.target.value,
     });
 
-    // this.setState({
-    //   pageNum: evt.target.value,
-    // });
+
   }
 
   render() {
@@ -121,25 +108,8 @@ export class AllJumps extends React.Component {
                 </button>
               </div>
               </Link>
-              {/* <img
-                className="line-15"
-                src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e84f46d0125081c2cb8ad/img/line-15@1x.svg"
-              /> */}
+
             </div>
-            {/* <div className="frame-523">
-              <div className="frame-524">
-                <div className="frame-522">
-                  <div className="overview manrope-semi-bold-mirage-16px">
-                    Overview
-                  </div>
-                </div>
-                <div className="frame-523-1"></div>
-              </div>
-              <img
-                className="line-16"
-                src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e6d34d90b3a5e2f76143d/img/line-16@2x.svg"
-              />
-            </div> */}
           </div>
           <div className="frame-530">
             <input
@@ -147,11 +117,7 @@ export class AllJumps extends React.Component {
               type="search"
               placeholder="Search"
             >
-              {/* <img
-                className="icon"
-                src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e6d34d90b3a5e2f76143d/img/icons@2x.svg"
-              />
-              <div className="search">Search</div> */}
+
             </input>
             <button className="buttons-1 filter-btn">
               <img
@@ -206,34 +172,7 @@ export class AllJumps extends React.Component {
         </div>
 
 
-          {/* //////////////////////// ORIGINAL JUMP RECORD CARDS //////////////////////// */}
-
-          {/* <div className="right-bottom-column" id="jumps">
-            <div className="right-bottom-column-left-side">
-              <h2 style={{ marginBottom: '1rem' }}>Your recent activity</h2>
-              {recentFiveJumps.map((jump, idx) => {
-                const aircraft = jump.aircraft;
-                const jumpNum = jumps.length - idx;
-                return (
-                  <div className="recent-jumps" key={idx}>
-                    <Link to={`/jumps/${jump.id}`}>
-                      <img
-                        height="100vh"
-                        width="100vh"
-                        src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.kHAtTjGvPMSeFGe_bZUGFwHaHa%26pid%3DApi&f=1"
-                      />
-                    </Link>
-                    <div className="recent-jump-info">
-                      {/* <h4>{jump.location}</h4> */}
-                      <h4>Aircraft: {aircraft}</h4>
-                      <button className="view-jump-details">
-                        <Link to={`/jumps/${userId}/${jump.id}`}>View Jump Details</Link>
-                      </button>
-                    </div>
-                    <h4 className="jump-number">Jump #{jumpNum}</h4>
-                  </div>
-                );
-              })}
+          
               {/* <form onChange={this.handleChange}>
                 <select>
                   {pagesArr.map((pageNum) => {
@@ -250,9 +189,6 @@ export class AllJumps extends React.Component {
                 </select>
               </form> */}
             </div> 
-          </div> */}
-          {/* //////////////////////// ORIGINAL JUMP RECORD CARDS //////////////////////// */}
-      </div>
     );
   }
 }
