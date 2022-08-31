@@ -1,8 +1,8 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { me } from "../store/auth";
-import Sidebar from "./Sidebar";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { me } from '../store/auth';
+import Sidebar from './Sidebar';
 // import EditItem from "./EditItem";
 import {
   Thunk_fetchAllJumpRecords,
@@ -25,43 +25,59 @@ import {
   thunk_fetchSingleLoad,
   thunk_updateLoad,
 } from '../store/loads';
-import { Thunk_fetchUser } from "../store/allusers";
-
+import { Thunk_fetchUser } from '../store/allusers';
 
 /**
  * REACT COMPONENT
  */
 class SingleUser extends React.Component {
- 
   componentDidMount() {
-    this.props.getSingleDropzone(this.props.match.params.id)
+    this.props.getSingleDropzone(this.props.match.params.id);
+    // this.props.getDropzones();
   }
 
   render() {
-    const { id, name, address, phoneNumber } = this.props.singleDropzone
+    const { id, name, address, phoneNumber } = this.props.singleDropzone;
     // console.log('PROPS',this.props)
     return (
       <div>
         <div key={id}>
-        <h2>{name}</h2>
+          <h2>{name}</h2>
           <p>{address} </p>
           <p>{phoneNumber} </p>
-          
-          <button onClick={()=> {
-            this.props.getSingleDropzone(this.props.match.params.id)
-            this.props.history.push(`/dropzones/edit/${id}`)
-          // this.props.getDropzones()
-        }}
-          >Edit</button> 
-          <button onClick={()=> {
-            this.props.getDropzones();
-            this.props.history.push(`/dropzones`)
-        }}>Go back</button> 
+
+          <button
+            onClick={() => {
+              this.props.getSingleDropzone(this.props.match.params.id);
+              this.props.history.push(`/dropzones/edit/${id}`);
+              // this.props.getDropzones()
+            }}
+          >
+            Edit
+          </button>
+          <button
+            onClick={() => {
+              this.props.deleteDropzone(id);
+
+              this.props.history.push(`/dropzones`);
+              this.props.getDropzones();
+            }}
+          >
+            Delete
+          </button>
+          <button
+            onClick={() => {
+              this.props.getDropzones();
+              this.props.history.push(`/dropzones`);
+            }}
+          >
+            Go back
+          </button>
           <hr />
           <hr />
         </div>
-    </div>
-    )
+      </div>
+    );
   }
 }
 
@@ -72,7 +88,7 @@ const mapState = (state) => {
     dropzones: state.dropzones.allDropzones,
     loads: state.loads,
     singleUser: state.users.singleUser,
-    singleDropzone: state.dropzones.singleDropzone
+    singleDropzone: state.dropzones.singleDropzone,
   };
 };
 const mapDispatch = (dispatch) => {
@@ -107,11 +123,9 @@ const mapDispatch = (dispatch) => {
     getSingleLoad: (dropzoneId, loadId) =>
       dispatch(thunk_fetchSingleLoad(dropzoneId, loadId)), //WORKING//
 
-      /////////////////BELOW IS FOR ADMINS/////////////////////////////
+    /////////////////BELOW IS FOR ADMINS/////////////////////////////
 
-      getSingleUser: (id) => dispatch(Thunk_fetchUser(id)),
-      
-
+    getSingleUser: (id) => dispatch(Thunk_fetchUser(id)),
   };
 };
 

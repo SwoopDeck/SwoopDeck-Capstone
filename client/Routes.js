@@ -1,4 +1,3 @@
-
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
@@ -29,7 +28,8 @@ import DropzoneLoadList from './components/DropzoneLoadList';
 import LoadDetailsDZ from './components/LoadDetailsDZ';
 import PaymentForm from './components/stripe/PaymentForm';
 import Cart from './components/stripe/Cart';
-
+import EditJumpRecord from './components/EditJumpRecord';
+import ContactUs from './components/ContactUs';
 
 /**
  * COMPONENT
@@ -78,24 +78,18 @@ class Routes extends Component {
         <Route exact path="/" component={AllJumps} />
         <Route exact path="/home" component={Home} />
         <Route path="/alljumps" component={AllJumps} />
-        <Route path="/jumps/:jumpId" component={SingleJump} />
+        <Route exact path="/jumps/:userId/:jumpId" component={SingleJump} />
         <Route path="/add" component={AddJump} />
         <Route path="/viewProfile" component={UserProfile} />
-
         <Route path="/:dropzoneId/loads" component={JoinLoad} />
         <Route path="/join/dropzone" component={JoinDropzone} />
         <Route path="/users/edit/:id" component={EditUser} />
-
         <Route exact path="/payment" component={PaymentForm} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/allchartsclass/:id" component={AllChartsClass} />
-
-     
-
-
-        <Route exact path="/allchartsclass/:id" component={AllChartsClass} />
+        <Route exact path="/edit/:jumpId" component={EditJumpRecord} />
+        <Route exact path="/contact" component={ContactUs} />
         <Route path="*" component={ErrorPage} />
-
       </Switch>
     );
 
@@ -134,7 +128,7 @@ class Routes extends Component {
         <Route exact path="/" component={Login} />
         <Route path="/login" component={Login} />
         <Route path="/example" component={Example} />
-        <Route path="/signup" component={CreateUser} />
+        <Route exact path="/signup" component={CreateUser} />
 
         {/* ERROR PAGE ROUTE MUST BE THE LAST ROUTE */}
 

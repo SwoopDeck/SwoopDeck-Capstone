@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {
-  models: { Load },
+  models: { Load, User, JumpRecords},
 } = require('../db');
 
 //grab the LOADS per DROPZONE
@@ -67,24 +67,53 @@ router.get('/:dropzoneId/:loadId', async (req, res, next) => {
 
 //Update the LOAD by load id
 
-//GET 'api/loads/:dropzoneId/:loadId'
-router.put('/:dropzoneId/:loadId', async (req, res, next) => {
+//GET 'api/loads/:loadId/:userId'
+router.put('/:loadId/:userId', async (req, res, next) => {
   try {
-    let singleLoad = await Load.findOne({
+ 
+    //find the jumper on the load through the jumprecords table
+    let removedJumper = await JumpRecords.findOne({
       where: {
-        id: req.params.loadId,
-        dropzoneId: req.params.dropzoneId,
+        loadId: req.params.loadId,
+        userId: req.params.userId
+      }
+    })
+    //update the jumprecords table for loadId to NULL
+    removedJumper.update({loadId: null})
+    ///pull all jumpers on load ====> WITHOUT the selected userID
+    const userJumps = await JumpRecords.findAll({
+      where: {
+        loadId: req.params.loadId,
       },
     });
-    singleLoad.update({ ...singleLoad, ...req.body });
+   
+    let jumperNames = [];
+    for (let i = 0; i < userJumps.length; i++) {
+      let userId = userJumps[i].userId;
+      let user = await User.findByPk(userId);
+      jumperNames.push(user);
+    }
+    res.send(jumperNames);
+  } catch (err) {
+    next(err);
+  }
+});
 
-    // let loads = await Load.findAll({
-    //   where: {
-    //     dropzoneId: req.params.dropzoneId,
-    //   },
-    // });
+//Update the LOAD STATUS by load id
 
-    res.send(singleLoad);
+//GET 'api/loads/:loadId/*'
+router.put('/:loadId/*', async (req, res, next) => {
+  try {
+    console.log('express route hit', req.params.loadId, req.params.status);
+    let loadUpdate = await Load.findOne({
+      where: {
+        id: req.params.loadId,
+      },
+    });
+    // let currentStatus = req.params.status === 'On%20Time' ? 'On Time' : req.params.status
+    console.log(currentStatus)
+    //loadUpdate.update({status: currentStatus})
+    res.send(loadUpdate);
   } catch (err) {
     next(err);
   }
@@ -117,10 +146,8 @@ router.delete('/:dropzoneId/:loadId', async (req, res, next) => {
     await Load.destroy({
       where: {
         id: req.params.loadId,
-        dropzoneId: req.params.dropzoneId,
       },
     });
-
     let loads = await Load.findAll({
       where: {
         dropzoneId: req.params.dropzoneId,

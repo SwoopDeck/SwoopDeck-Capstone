@@ -9,7 +9,11 @@ export class CreateUser extends React.Component {
     this.state = {
       firstName: '',
       lastName: '',
+      address: '',
       email: '',
+      licenseNumber: '',
+      emergencyContact: '',
+      emergencyPhoneNumber:'',
       password: '',
     };
     this.handleChange = this.handleChange.bind(this);
@@ -23,9 +27,9 @@ export class CreateUser extends React.Component {
     });
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    this.props.createUser(this.state);
+  handleSubmit() {
+    this.props.newUser(this.state);
+    this.props.history.push('/')
   }
   render() {
     return (
@@ -90,8 +94,63 @@ export class CreateUser extends React.Component {
                   />
                 </label>
               </div>
+
+                <div className="input-container">
+                <label className="labelName">
+                  <input
+                    className="input"
+                    type="text"
+                    name="address"
+                    placeholder="Address"
+                    onChange={this.handleChange}
+                    value={this.state.address}
+                  />
+                </label>
+              </div>
+              <div className="input-container">
+                <label className="labelName">
+                  <input
+                    className="input"
+                    type="text"
+                    name="licenseNumber"
+                    placeholder="License Number"
+                    onChange={this.handleChange}
+                    value={this.state.licenseNumber}
+                  />
+                </label>
+              </div>
+
+              <div className="input-container">
+                <label className="labelName">
+                  <input
+                    className="input"
+                    type="text"
+                    name="emergencyContact"
+                    placeholder="Emergency Contact"
+                    onChange={this.handleChange}
+                    value={this.state.emergencyContact}
+                  />
+                </label>
+              </div>
+
+
+              <div className="input-container">
+                <label className="labelName">
+                  <input
+                    className="input"
+                    type="text"
+                    name="emergencyPhoneNumber"
+                    placeholder="Emergency Phone Number"
+                    onChange={this.handleChange}
+                    value={this.state.emergencyPhoneNumber}
+                  />
+                </label>
+              </div>
+              
               <div>
-                <button className="button submit-btn buttonShadow" type="submit">
+                <button className="button submit-btn buttonShadow"
+                onClick={this.handleSubmit}
+                >
                   Submit
                 </button>
               </div>
@@ -104,10 +163,55 @@ export class CreateUser extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch, { history }) => {
+const mapState = (state) => {
   return {
-    createUser: (props) => dispatch(createUser(props, history)),
+    jumpRecords: state.jumpRecords,
+    users: state.users.allUsers,
+    dropzones: state.dropzones.allDropzones,
+    loads: state.loads,
+    singleUser: state.users.singleUser,
+    singleDropzone: state.dropzones.singleDropzone
   };
 };
 
-export default connect(null, mapDispatchToProps)(CreateUser);
+const mapDispatch = (dispatch) => {
+  return {
+    editJumpRecord: (jump, userId, jumpId) =>
+      dispatch(Thunk_updateJump(jump, userId, jumpId)), //WORKING//
+    getJumpRecords: (userId) => dispatch(Thunk_fetchAllJumpRecords(userId)), //WORKING//
+    deleteJumpRecord: (userId, jumpId) =>
+      dispatch(Thunk_deleteJump(userId, jumpId)), //WOKRING//
+    addJumpRecord: (jump, id) => dispatch(Thunk_createJump(jump, id)), //WORKING//
+    getSingleJumpRecord: (userId, jumpId) =>
+      dispatch(Thunk_fetchSingleJump(userId, jumpId)), //WORKING//
+
+    ////////ABOVE is for USER TABLE//////BELOW IS FOR DROPZONE//////////////////////////
+
+    editDropzone: (dropzoneId, dropzone) =>
+      dispatch(thunk_updateDropzone(dropzoneId, dropzone)), //WOKRING//
+    getDropzones: () => dispatch(thunk_fetchAllDropzones()), //WOKRING//
+    deleteDropzone: (dropzoneId) => dispatch(thunk_deleteDropzone(dropzoneId)), //WOKRING//
+    addDropzone: (DROPZONE) => dispatch(thunk_createDropzone(DROPZONE)), //WORKING//
+    getSingleDropzone: (dropzoneId) =>
+      dispatch(thunk_fetchSingleDropzone(dropzoneId)), //WORKING//
+
+    /////////ABOVE IS FOR DROPZONE////////BELOW IS FOR LOADS/////////////////////////////
+
+    editLoad: (dropzoneId, loadId, LOAD) =>
+      dispatch(thunk_updateLoad(dropzoneId, loadId, LOAD)), //WORKING//
+    getLoads: (dropzoneId) => dispatch(thunk_fetchAllLoads(dropzoneId)), //WORKING//
+    deleteLoad: (dropzoneId, loadId) =>
+      dispatch(thunk_deleteLoad(dropzoneId, loadId)), //WORKING//
+    addLoad: (LOAD, dropzoneId) => dispatch(thunk_createLoad(LOAD, dropzoneId)), //WORKING//
+    getSingleLoad: (dropzoneId, loadId) =>
+      dispatch(thunk_fetchSingleLoad(dropzoneId, loadId)), //WORKING//
+
+    ////////////////////ABOVE IS FOR LOADS///////////BELOW IS FOR USER/////////////
+
+    getSingleUser: (id) => dispatch(Thunk_fetchUser(id)),
+    editUser: (userId, userData) => dispatch(Thunk_updateUser(userId, userData)),
+    newUser: (user) => dispatch(createUser(user)),
+  };
+};
+
+export default connect(mapState, mapDispatch)(CreateUser);

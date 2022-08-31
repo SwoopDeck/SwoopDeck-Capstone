@@ -31,15 +31,15 @@ export class AddJump extends React.Component {
     super();
     this.state = {
       jumpNumber: "",
-      // location: '', //LOCATION IS NO LONGER IN OUR DB MODELS. LOCATION MUST BE RETRIEVED THROUGH THE JumpRecord THRU-TABLE
+      jumpDate: "",
       aircraft: "",
       equipment: "",
       exitAltitude: 14000,
       pullAltitude: 4000,
       freeFallTime: 60,
-      jumpers: "Solo",
+      jumpers: 1,
       description: "",
-      jumpType: "Belly",
+      jumpType: "belly",
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -62,40 +62,40 @@ export class AddJump extends React.Component {
           Select jump type
         </h1>
         <div className="select-jump-type-container" onClick={this.handleChange}>
-          <button className="jump-type" name="jumpType" value="Belly">
+          <button className="jump-type" name="jumpType" value="belly">
             Belly
           </button>
-          <button className="jump-type" name="jumpType" value="Angle">
+          <button className="jump-type" name="jumpType" value="angle">
             Angle
           </button>
-          <button className="jump-type" name="jumpType" value="Head up">
+          <button className="jump-type" name="jumpType" value="head up">
             Head up
           </button>
-          <button className="jump-type" name="jumpType" value="Head down">
+          <button className="jump-type" name="jumpType" value="head down">
             Head down
           </button>
-          <button className="jump-type" name="jumpType" value="Formation">
+          <button className="jump-type" name="jumpType" value="formation">
             Formation
           </button>
-          <button className="jump-type" name="jumpType" value="FreeFly">
+          <button className="jump-type" name="jumpType" value="freefly">
             FreeFly
           </button>
-          <button className="jump-type" name="jumpType" value="High altitude">
+          <button className="jump-type" name="jumpType" value="high altitude">
             High altitude
           </button>
-          <button className="jump-type" name="jumpType" value="AFF">
+          <button className="jump-type" name="jumpType" value="aff">
             AFF
           </button>
-          <button className="jump-type" name="jumpType" value="Balloon">
+          <button className="jump-type" name="jumpType" value="balloon">
             Balloon
           </button>
-          <button className="jump-type" name="jumpType" value="Heli">
+          <button className="jump-type" name="jumpType" value="heli">
             Heli
           </button>
-          <button className="jump-type" name="jumpType" value="High pull">
+          <button className="jump-type" name="jumpType" value="high pull">
             High pull
           </button>
-          <button className="jump-type" name="jumpType" value="CRW">
+          <button className="jump-type" name="jumpType" value="crw">
             CRW
           </button>
         </div>
@@ -113,12 +113,12 @@ export class AddJump extends React.Component {
             />
           </div>
           <div className="jump-form-div">
-            <label> Location</label>
+            <label> JUMP DATE</label>
             <input
               className="jump-info-field"
-              type="text"
-              name="location"
-              value={this.state.location}
+              type="date"
+              name="jumpDate"
+              value={this.state.jumpDate}
               onChange={this.handleChange}
             />
           </div>
@@ -182,11 +182,11 @@ export class AddJump extends React.Component {
                 className="category-list"
               >
                 {/* <option value={jumpers}></option> */}
-                <option value={"Solo"}>Solo</option>
-                <option value={"2-way"}>2-way</option>
-                <option value={"3-way"}>3-way</option>
-                <option value={"4-way"}>4-way</option>
-                <option value={"5+"}>5+</option>
+                <option value={1}>Solo</option>
+                <option value={2}>2-way</option>
+                <option value={3}>3-way</option>
+                <option value={4}>4-way</option>
+                <option value={5}>5+</option>
               </select>
             </div>
 
@@ -249,10 +249,10 @@ export class AddJump extends React.Component {
             className="add-jump-btn"
             onClick={(evt) => {
               evt.preventDefault();
-              this.props.add({ ...this.state }, this.props.users.id);
+              this.props.addJumpRecord({ ...this.state }, this.props.user.id);
               this.setState({
                 jumpNumber: "",
-                location: "",
+                jumpDate: "",
                 aircraft: "",
                 equipment: "",
                 exitAltitude: 14000,
@@ -272,13 +272,15 @@ export class AddJump extends React.Component {
     );
   }
 }
-
 const mapState = (state) => {
   return {
     jumpRecords: state.jumpRecords,
-    userss: state.auth,
-    dropzones: state.dropzones,
+    user: state.auth,
+    users: state.users.allUsers,
+    dropzones: state.dropzones.allDropzones,
     loads: state.loads,
+    singleUser: state.users.singleUser,
+    singleDropzone: state.dropzones.singleDropzone
   };
 };
 const mapDispatch = (dispatch) => {

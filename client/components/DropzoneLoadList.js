@@ -34,6 +34,7 @@ export class DropzoneLoadList extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.removeLoad = this.removeLoad.bind(this);
   }
   componentDidMount() {
     const dropzoneId = this.props.users.dropzoneId;
@@ -49,6 +50,11 @@ export class DropzoneLoadList extends React.Component {
   handleClick(evt) {
     let loadId = evt.target.id;
     this.props.history.push(`/:dropzoneId/loads/${loadId}`);
+  }
+
+  removeLoad(dropzoneId, loadId){
+    console.log('dz,load', dropzoneId, loadId)
+    this.props.deleteLoad(dropzoneId, loadId)
   }
 
   render() {
@@ -86,6 +92,9 @@ export class DropzoneLoadList extends React.Component {
             <p>Slots Filled: {load.slotsFilled} </p>
             <button type="button" id={load.id} onClick={this.handleClick}>
               View Details
+            </button>
+            <button type="button" id={load.id} onClick={() => this.removeLoad(this.props.users.dropzoneId, load.id)}>
+             Remove Load
             </button>
           </div>
         ))}
