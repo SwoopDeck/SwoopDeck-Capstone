@@ -41,8 +41,9 @@ export class AllJumps extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
   }
-  componentDidMount() {
-
+  
+  async componentDidMount() {
+    await this.props.getJumpRecords();
   }
 
   handleChange(evt) {
@@ -59,11 +60,13 @@ export class AllJumps extends React.Component {
     }
 
     //GETS USER'S MOST RECENT 5 JUMPS
-    let jumps = this.props.jumpRecords || [];
-    jumps.sort((a, b) => {
-      return a.jumpNumber - b.jumpNumber;
-    });
-    let recentFiveJumps = jumps.slice(0, 5);
+    let userId = this.props.users.id
+
+    let jumps = [this.props.jumpRecords][0] || [];
+    // jumps.sort((a, b) => {
+    //   return a.jumpNumber - b.jumpNumber;
+    // });
+    // let recentFiveJumps = jumps.slice(0, 5);
 
     //PAGINATION FUNCTIONS
     // let numOfPages = Math.ceil(jumps.length / 5);
@@ -83,8 +86,9 @@ export class AllJumps extends React.Component {
     //   console.log(evt.target.name);
     // }
 
-    let userId = this.props.users.id
+  
 
+    console.log(jumps)
 
     return (
       <div className="flex-right">
