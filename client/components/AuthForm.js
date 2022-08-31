@@ -41,9 +41,14 @@ const AuthForm = props => {
             <p className="text">Don't have an account?</p>
             <Link to="/signup">
               <button className="buttonShadow" type="submit">
-                Create new account
+                Create New Account
               </button>
             </Link>
+            <Link to="/signupDropzone">
+            <button className="buttonShadow" type="submit">
+                Request New Dropzone
+              </button>
+              </Link>
           </div>
         </div>
         {error && <div> {error} </div>}
