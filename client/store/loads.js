@@ -197,7 +197,7 @@ export const reformLoad = (LOAD) => {
 //UPDATE A SINGLE LOADS RECORD
 export const reformLoadStatus = (LOAD) => {
   return {
-    type: UPDATE_LOAD,
+    type: UPDATE_LOAD_STATUS,
     LOAD,
   };
 };
@@ -257,10 +257,10 @@ export const thunk_updateLoad = (userId, loadId) => {
 };
 
 //THUNK: UPDATE A SINGLE LOADS STATUS
-export const thunk_updateLoadStatus = (status, loadId) => {
+export const thunk_updateLoadStatus = (condition, loadId) => {
   return async (dispatch) => {
     const { data } = await axios.put(
-      `/api/loads/${loadId}/${status}`);
+      `/api/loads/status/${loadId}`, condition);
     dispatch(reformLoadStatus(data));
   };
 };
@@ -309,13 +309,10 @@ export default function loadsReducer(state = initialState, action) {
     case UPDATE_LOAD:
       return {
         ...state,
-        allLOADS: [...state.allLoads, action.LOAD],
+        allLoads: [...state.allLoads, action.LOAD],
       };
       case UPDATE_LOAD_STATUS:
-      return {
-        ...state,
-        allLOADS: [...state.allLoads, action.LOAD],
-      };
+      return{ ...state, singleLoad: action.LOAD };
     case DELETE_LOAD:
       // return {
       //   ...state,

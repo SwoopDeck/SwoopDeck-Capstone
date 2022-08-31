@@ -58,14 +58,13 @@ export class LoadDetailsDZ extends React.Component {
   }
 
   changeStatus(status, loadId){
-    console.log(status, loadId)
     this.props.editLoadStatus(status, loadId)
   }
 
 
   render() {
     const allLoads = this.props.loads;
-    console.log(this.props.jumpRecords);
+    console.log(this.props);
     const jumpers = this.props.jumpRecords.map((user, idx) => {
       return (
         <div key={idx}>
@@ -102,10 +101,11 @@ export class LoadDetailsDZ extends React.Component {
             <option name="closed">Closed</option>
             <option name="canceled">Canceled</option>
           </select>
-        <button type="button" onClick={()=> this.changeStatus(this.state.status,this.props.match.params.loadId)}>Update Status</button>
+          <button type="button" onClick={()=> this.changeStatus({status:this.state.status},this.props.match.params.loadId)}>Update Status</button>
         <Link to="/:dropzoneId/todaysLoads">
           <button type="button">Back to Today's Loads</button>
         </Link>
+        
       </div>
     );
   }
