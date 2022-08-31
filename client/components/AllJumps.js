@@ -68,7 +68,7 @@ export class AllJumps extends React.Component {
                 </div>
               </div>
               <div className="frame-527">
-                <button className="buttons">
+                <button className="add-btn">
                   <img
                     className="icon"
                     src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e84f46d0125081c2cb8ad/img/-icon@2x.svg"
@@ -76,12 +76,12 @@ export class AllJumps extends React.Component {
                   <div className="button">Add</div>
                 </button>
               </div>
-              <img
+              {/* <img
                 className="line-15"
                 src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e84f46d0125081c2cb8ad/img/line-15@1x.svg"
-              />
+              /> */}
             </div>
-            <div className="frame-523">
+            {/* <div className="frame-523">
               <div className="frame-524">
                 <div className="frame-522">
                   <div className="overview manrope-semi-bold-mirage-16px">
@@ -94,53 +94,69 @@ export class AllJumps extends React.Component {
                 className="line-16"
                 src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e6d34d90b3a5e2f76143d/img/line-16@2x.svg"
               />
-            </div>
+            </div> */}
           </div>
           <div className="frame-530">
-            <div className="search-bar border-1px-mystic">
-              <img
+            <input
+              className="search-bar border-1px-mystic search"
+              type="search"
+              placeholder="Search"
+            >
+              {/* <img
                 className="icon"
                 src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e6d34d90b3a5e2f76143d/img/icons@2x.svg"
               />
-              <div className="search">Search</div>
-            </div>
-            <div className="buttons-1">
+              <div className="search">Search</div> */}
+            </input>
+            <button className="buttons-1 filter-btn">
               <img
                 className="icon"
                 src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e84f46d0125081c2cb8ad/img/-icon-1@2x.svg"
               />
               <div className="button-1">Filter</div>
-            </div>
+            </button>
           </div>
-
-
-{/* //////////////////////// Manual TABLE COMMENTED OUT //////////////////////// */}
-
-          {/* <table style={{display: 'flexBox'}}>
-            <tr>
-              <th style={{margin: '1rem'}}>JUMP NUMBER</th>
-              <th style={{margin: '1rem'}}>DATE</th>
-              <th style={{margin: '1rem'}}>LOCATION</th>
-              <th style={{margin: '1rem'}}>JUMP TICKET</th>
-              <th style={{margin: '1rem'}}>STYLE</th>
-            </tr>
-            {jumps.reverse().map((jump, index) => {
-              return (
-                <tr key={index}>
-                  <td>{jump.jumpNumber}</td>
-                  <td>access date</td>
-                  <td>access dropzone name</td>
-                  <td>{jump.exitAltitude > 7000 ? 'Full Altitude' : `Hop 'n Pop`}</td>
-                  <td>{jump.jumpType}</td>
-                </tr>
-              )
-            })}
-           
-          </table> */}
 
           {/* //////////////////////// Manual TABLE COMMENTED OUT //////////////////////// */}
 
-          <table className="table-1">
+          <table>
+            <thead>
+              <tr>
+                <th>JUMP NUMBER</th>
+                <th>DATE</th>
+                <th>LOCATION</th>
+                <th>JUMP TYPE</th>
+                <th>STYLE</th>
+                <th>ACTION</th>
+              </tr>
+            </thead>
+            <tbody>
+              {jumps.reverse().map((jump, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{jump.jumpNumber}</td>
+                    <td>access date</td>
+                    <td>access dropzone name</td>
+                    <td>
+                      {jump.exitAltitude > 7000
+                        ? "Full Altitude"
+                        : `Hop 'n Pop`}
+                    </td>
+                    <td>{jump.jumpType}</td>
+                    <td style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+                      <button className='edit-btn'><i className="fa-solid fa-pen-to-square"/></button>
+                      <button className="edit-btn" style={{margin: '1rem 1rem'}}><i className="fa-solid fa-eye"/></button>
+                      {/* <button style={{backgroundColor: 'red'}}><i className="fa-solid fa-trash-can"/></button> */}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+
+          {/* //////////////////////// Manual TABLE COMMENTED OUT //////////////////////// */}
+
+          {/* <table className="table-1">
             <tr className="column-1">
               <th className="head border-1px-mystic">
                 <th className="jump-number manrope-semi-bold-storm-gray-14px">
@@ -258,18 +274,17 @@ export class AllJumps extends React.Component {
 
 
             </tr>
-          </table> 
+          </table>  */}
         </div>
 
-         <div>
+        <div>
           {jumps.length === 0 ? (
             <h2>You haven't made any skydives!</h2>
           ) : (
             <span />
           )}
 
-
-{/* //////////////////////// ORIGINAL JUMP RECORD CARDS //////////////////////// */}
+          {/* //////////////////////// ORIGINAL JUMP RECORD CARDS //////////////////////// */}
 
           {/* <div className="right-bottom-column" id="jumps">
             <div className="right-bottom-column-left-side">

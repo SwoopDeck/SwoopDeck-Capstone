@@ -1,0 +1,40 @@
+table {
+    display: flexbox;
+    table-layout: fixed;
+    width: 100%;
+    min-width: 800px;
+    border-collapse: collapse;
+}
+
+thead th{
+    position: sticky;
+    top: 0;
+    color: slategray;
+    font-size: 1rem;
+}
+
+tbody{}
+
+tr:hover td {
+    color: #658fff;
+    background-color: #eef3f9;
+}
+
+th, td {
+    border-bottom: 1px solid #dddd;
+    padding: 10px 20px;
+    text-align: center;
+    transition-duration: .1s;
+}
+
+td {
+    padding: 8px 0;
+}
+
+.edit-btn:hover {
+        background-color: #336dff;
+}
+
+::-webkit-scrollbar {
+    box-shadow: inset 0 0 6px rgba(0,0,0,0,.3)
+}

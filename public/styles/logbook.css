@@ -24,8 +24,8 @@
   gap: 32px;
   height: 100vh;
   min-height: 830px;
-  min-width: 1211px;
-  padding: 64px 40px;
+  min-width: 850px;
+  padding: 2rem 2rem;
   width: 100%;
 }
 
@@ -61,7 +61,7 @@
   gap: 12px;
 }
 
-.buttons {
+.add-btn {
   align-items: center;
   background-color: #658fff;
   border-radius: 4px;
@@ -74,7 +74,7 @@
   transition-duration: .2s;
 }
 
-.buttons:hover {
+.add-btn:hover {
     background-color: #336dff;
 }
 
@@ -176,12 +176,14 @@
 .line-16 {
   height: 2px;
   min-width: 108px;
+  background-color: #658fff;
+  color: #658fff;
 }
 
 .frame-530 {
   align-items: flex-start;
   align-self: stretch;
-  background-color: #f7f8f9;
+  background-color: #eef3f9;
   border-radius: 4px;
   display: flex;
   justify-content: space-between;
@@ -228,13 +230,14 @@
   font-family: var(--font-family-manrope);
   font-size: var(--font-size-s);
   font-weight: 400;
-  letter-spacing: 0;
+  /* letter-spacing: 0;
   margin-right: -620px;
-  width: 1005px;
+  width: 1005px; */
 }
 
 .table-1 {
   align-items: flex-start;
+  /* table-layout: auto; */
   align-self: stretch;
   background-color: var(--white);
   border-radius: 4px;
@@ -540,4 +543,10 @@
   margin-top: -5.33px;
   min-width: 81px;
   text-align: center;
+}
+
+
+.filter-btn:hover {
+  background-color: #ffff;
+  color:#658fff
 }
