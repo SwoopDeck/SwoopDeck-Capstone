@@ -10,7 +10,7 @@ const SET_SINGLE_DROPZONE = 'SET_SINGLE_DROPZONE';
 
 /* ACTION CREATORS */
 
-//SET ALL DROPZONES RECORDS
+// SET ALL DROPZONES RECORDS
 export const setAllDropzones = (DROPZONES) => {
   return {
     type: SET_DROPZONES,
@@ -43,10 +43,11 @@ export const reformDropzone = (DROPZONE) => {
 };
 
 //DELETE A SINGLE DROPZONE
-export const removeDropzone = (DROPZONE) => {
+export const removeDropzone = (dropzoneId) => {
+  console.log('hit action creator');
   return {
     type: DELETE_DROPZONE,
-    DROPZONE,
+    dropzoneId,
   };
 };
 
@@ -88,11 +89,11 @@ export const thunk_fetchSingleDropzone = (id) => async (dispatch) => {
 // //THUNK: UPDATE A SINGLE DROPZONE
 export const thunk_updateDropzone = (id, DROPZONE) => async (dispatch) => {
   try {
-  const {data} = await axios.put(`/api/dropzones/${id}`, DROPZONE)
-  dispatch(reformDropzone(data));
+    const { data } = await axios.put(`/api/dropzones/${id}`, DROPZONE);
+    dispatch(reformDropzone(data));
   } catch (err) {
-        console.log(err);
-      }
+    console.log(err);
+  }
 };
 
 //THUNK: ADD A NEW DROPZONE
@@ -111,6 +112,7 @@ export const thunk_createDropzone = (DROPZONE) => {
 export const thunk_deleteDropzone = (dropzoneId) => {
   return async (dispatch) => {
     try {
+      console.log('hit thunk');
       const { data } = await axios.delete(`/api/dropzones/${dropzoneId}`);
       dispatch(removeDropzone(data));
     } catch (err) {
@@ -139,12 +141,15 @@ export default function dropzonesReducer(state = initialState, action) {
         allDropzones: [...state.allDropzones, action.DROPZONE],
       };
     case DELETE_DROPZONE:
+      console.log('hit reducer');
       return {
         ...state,
         allDropzones: state.allDropzones.filter(
-          (dropzones) => dropzones.id !== action.DROPZONE.id
+          (dropzones) => dropzones.id !== action.dropzoneId
         ),
       };
+    // return { ...state, singleDropzone: action.DROPZONE };
+    // return { ...state, allDropzones: action.DROPZONES };
     default:
       return state;
   }
