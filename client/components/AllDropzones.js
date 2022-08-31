@@ -100,10 +100,10 @@ export class AllDropzones extends React.Component {
           <table>
             <thead>
               <tr>
-                <th>NAME</th>
-                <th>ADDRESS</th>
-                <th>PHONE NUMBER</th>
-                <th>ACTION</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone Number </th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -118,7 +118,7 @@ export class AllDropzones extends React.Component {
                         {/* <button className='edit-btn'><i className="fa-solid fa-pen-to-square"/></button> */}
                         <button className="edit-btn" style={{margin: '1rem 1rem'}}><i className="fa-solid fa-eye"/></button>
                         </Link>
-                      <button style={{backgroundColor: 'red'}}><i className="fa-solid fa-trash-can"/></button>
+                      <button className='delete-btn' style={{backgroundColor: 'red'}}><i className="fa-solid fa-trash-can"/></button>
                     </td>
                   </tr>
                 );

@@ -104,6 +104,9 @@ export class AllUsers extends React.Component {
                 return (
                   <tr key={index}>
                     <td>{user.firstName} {user.lastName}</td>
+                    {/* {user.role === 'Skydiver' ? 
+                    <td className='skydiver-role'>{user.role}</td> :
+                    <td className='dz-role'>{user.role}</td>} */}
                     <td>{user.role}</td>
                     <td>{user.phoneNumber}</td>
                     <td>{user.email}</td>
