@@ -48,7 +48,7 @@ class Routes extends Component {
         <Route exact path="/users" component={AllUsers} />
         <Route exact path="/dropzones" component={AllDropzones} />
         <Route exact path="/" component={AllJumps} />
-        <Route exact path="/home" component={AllJumps} />
+        <Route exact path="/home" component={Home} />
         {/* <Redirect to="/home" /> */}
         {/* <Route exact path='/login' component={ Login } /> */}
         <Route path="/alljumps" component={AllJumps} />
@@ -76,7 +76,7 @@ class Routes extends Component {
       <Switch>
         {/* Routes if logged in but not Admin */}
         <Route exact path="/" component={AllJumps} />
-        <Route exact path="/home" component={AllJumps} />
+        <Route exact path="/home" component={Home} />
         <Route path="/alljumps" component={AllJumps} />
         <Route path="/jumps/:jumpId" component={SingleJump} />
         <Route path="/add" component={AddJump} />
@@ -103,6 +103,7 @@ class Routes extends Component {
       <Switch>
         {/* DROPZONE ONLY ROUTES*/}
         <Route path="/pastloads" component={PastLoads} />
+        <Route exact path="/home" component={Home} />
 
         <Route
           exact
