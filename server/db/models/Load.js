@@ -16,6 +16,10 @@ const Load = db.define('loads', {
     },
   },
 
+  departureTime: {
+    type: Sequelize.STRING,
+  },
+
   slots: {
     type: Sequelize.INTEGER,
   },

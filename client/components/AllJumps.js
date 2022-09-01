@@ -33,7 +33,7 @@ export class AllJumps extends React.Component {
     super(props);
 
 
-    //FOR PAGINATION
+    //FOR PAGINATIONp
     // this.state = {
     //   pageNum: 0,
     // };
@@ -45,6 +45,7 @@ export class AllJumps extends React.Component {
   componentDidMount() {
     let userId = this.props.users.id
     this.props.getJumpRecords(userId);
+    this.props.getDropzones();
   }
 
   handleChange(evt) {
@@ -63,11 +64,26 @@ export class AllJumps extends React.Component {
     //GETS USER'S MOST RECENT 5 JUMPS
 
     let jumps = [this.props.jumpRecords][0] || [];
-    // jumps.sort((a, b) => {
-    //   return a.jumpNumber - b.jumpNumber;
-    // });
-    // let recentFiveJumps = jumps.slice(0, 5);
+    let dropzones = this.props.dropzones.allDropzones || [];
+    // console.log('dropzones',dropzones)
 
+    jumps.sort((a, b) => {
+      return b.createdAt - a.createdAt;
+    });
+
+   
+
+    let numbersArr = []
+    for (let i = 0; i < jumps.length; i++) {
+      numbersArr.push(i + 1)
+    }
+
+    console.log(jumps)
+    console.log(numbersArr)
+
+
+    let recentFiveJumps = jumps.slice(0, 6);
+    console.log(recentFiveJumps.reverse())
     //PAGINATION FUNCTIONS
     // let numOfPages = Math.ceil(jumps.length / 5);
     // let pagesArr = [];
@@ -85,10 +101,6 @@ export class AllJumps extends React.Component {
     //   page = evt.target.name;
     //   console.log(evt.target.name);
     // }
-
-  
-
-    console.log(jumps)
 
     return (
       <div className="flex-right">
@@ -147,11 +159,27 @@ export class AllJumps extends React.Component {
             </thead>
             <tbody>
               {jumps.reverse().map((jump, index) => {
+                let currentDropzone = {};
+                let currentNumber = 0
+                for (let i = 0; i < dropzones.length; i++) {
+                  if (dropzones[i].id === jump.dropzoneId) {
+                    currentDropzone = dropzones[i]
+                  }
+                }
+
+                // for (let i = 0; i < numbersArr.length; i++) {
+                //   if (numbersArr.indexOf(numbersArr[i]) === index + 1) {
+                //     currentNumber = numbersArr[i]
+                //   }
+                // }
+
                 return (
                   <tr key={index}>
                     <td>{jump.jumpNumber}</td>
-                    <td>access date</td>
-                    <td>access dropzone name</td>
+
+                    {/* <td>{currentNumber}</td> */}
+                    <td>{jump.jumpDate}</td>
+                    <td>{currentDropzone.name}</td>
                     <td>
                       {jump.exitAltitude > 7000
                         ? "Full Altitude"
@@ -159,9 +187,9 @@ export class AllJumps extends React.Component {
                     </td>
                     <td>{jump.jumpType}</td>
                     <td style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
-                      <button className='edit-btn'><i className="fa-solid fa-pen-to-square"/></button>
+                      <button className='edit-btn' title="edit"><i className="fa-solid fa-pen-to-square"/></button>
                       <Link to={`/jumps/${jump.id}`}>
-                      <button className="edit-btn" style={{margin: '1rem 1rem'}}><i className="fa-solid fa-eye"/></button>
+                      <button className="edit-btn" title="view" style={{margin: '1rem 1rem'}}><i className="fa-solid fa-eye"/></button>
                       </Link>
                       {/* <button style={{backgroundColor: 'red'}}><i className="fa-solid fa-trash-can"/></button> */}
                     </td>

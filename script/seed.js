@@ -507,6 +507,13 @@ async function seed() {
   await jump20.setLoad(2);
 
   await jump1.setDropzone(1);
+  await jump2.setDropzone(1);
+  await jump3.setDropzone(2);
+  await jump4.setDropzone(3);
+  await jump5.setDropzone(1);
+  await jump6.setDropzone(1);
+  await jump7.setDropzone(2);
+  await jump8.setDropzone(3);
 }
 
 /*

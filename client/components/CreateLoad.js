@@ -34,6 +34,7 @@ export class CreateLoad extends React.Component {
       aircraft: '',
       slots: '0',
       status: 'on time',
+      departureTime: '0',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -70,6 +71,8 @@ export class CreateLoad extends React.Component {
     const createMinutes = minutes.getMinutes();
     //GETTING DATE & TIME INFO
 
+
+
     const dropzoneId = this.props.user.dropzoneId;
     const load = {
       ...this.state,
@@ -86,6 +89,7 @@ export class CreateLoad extends React.Component {
       aircraft: '',
       slots: '0',
       status: 'on time',
+      departureTime: '0',
     });
   }
 
@@ -110,7 +114,13 @@ export class CreateLoad extends React.Component {
             placeholder="10"
             onChange={handleChange}
           />
-
+          <label htmlFor="departureTime">Departure Time</label>
+          <input
+            type="text"
+            name="departureTime"
+            placeholder="Departure Time"
+            onChange={handleChange}
+          />
           <label htmlFor="status">Status</label>
           <select name="status" onChange={handleChange}>
             <option name="on time">On Time</option>

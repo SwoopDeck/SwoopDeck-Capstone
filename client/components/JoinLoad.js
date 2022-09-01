@@ -75,7 +75,7 @@ export class JoinLoad extends React.Component {
 
     const loadsArr = this.props.loads || [];
     const todaysLoads = loadsArr.filter((load) => {
-      let loadDate = load.date.slice(0, 10);
+      let loadDate = load.date.slice(0, 9);
 
       if (loadDate === todaysDate) {
         return load;
@@ -116,7 +116,7 @@ export class JoinLoad extends React.Component {
         {todaysLoads.map((load, idx) => {
           return (
             <div key={idx}>
-              <h2>Departure Time: NEED TO ADD IN MODEL</h2>
+              <h2>Departure Time: {load.departureTime}</h2>
               <p>Aircraft: {load.aircraft} </p>
               <p>Total Slots: {load.slots} </p>
               {/* TEMPORARY 'SLOTS FILLED'... SHOULD BE 'AVAILABLE SLOTS' AND RENDER THE REMAINING SLOTS */}
