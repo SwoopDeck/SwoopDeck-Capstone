@@ -47,7 +47,7 @@ class Routes extends Component {
         {/* Routes if logged in and Admin */}
         <Route exact path="/users" component={AllUsers} />
         <Route exact path="/dropzones" component={AllDropzones} />
-        <Route exact path="/" component={AllJumps} />
+        <Route exact path="/" component={Home} />
         <Route exact path="/home" component={Home} />
         {/* <Redirect to="/home" /> */}
         {/* <Route exact path='/login' component={ Login } /> */}

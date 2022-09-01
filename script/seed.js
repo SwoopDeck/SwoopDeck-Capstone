@@ -307,6 +307,7 @@ async function seed() {
     email: 'chris@gmail.com',
     password: '123',
     address: '2 Coding Blvd',
+    phoneNumber: '3307773562',
     licenseNumber: 202020,
     isAdmin: false,
   });
@@ -317,6 +318,7 @@ async function seed() {
     email: 'brian@gmail.com',
     password: '123',
     address: '3 Coding Blvd',
+    phoneNumber: '4405553562',
     licenseNumber: 303030,
     isAdmin: false,
   });
@@ -327,6 +329,7 @@ async function seed() {
     email: 'christopher@gmail.com',
     password: '123',
     address: '4 Coding Blvd',
+    phoneNumber: '5504443562',
     licenseNumber: 404040,
     isAdmin: false,
   });
@@ -337,6 +340,7 @@ async function seed() {
     email: 'cole@gmail.com',
     password: '123',
     address: '4 Coding Blvd',
+    phoneNumber: '7703333562',
     licenseNumber: 505050,
     isAdmin: false,
   });
