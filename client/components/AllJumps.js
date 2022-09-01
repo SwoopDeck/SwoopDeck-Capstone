@@ -42,8 +42,9 @@ export class AllJumps extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
   
-  async componentDidMount() {
-    await this.props.getJumpRecords();
+  componentDidMount() {
+    let userId = this.props.users.id
+    this.props.getJumpRecords(userId);
   }
 
   handleChange(evt) {
@@ -60,7 +61,6 @@ export class AllJumps extends React.Component {
     }
 
     //GETS USER'S MOST RECENT 5 JUMPS
-    let userId = this.props.users.id
 
     let jumps = [this.props.jumpRecords][0] || [];
     // jumps.sort((a, b) => {
