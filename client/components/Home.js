@@ -10,6 +10,9 @@ import PieChart from "./PieChart";
 import DoughnutChart from "./DoughnutChart";
 import CountUp from "react-countup";
 import ReactSpeedometer from "react-d3-speedometer";
+
+import SplitFlapDisplay from "react-split-flap-display";
+import { FlapDisplay, Presets } from "react-split-flap-effect";
 import {
   Thunk_fetchAllJumpRecords,
   Thunk_fetchSingleJump,
@@ -38,6 +41,8 @@ export class Home extends React.Component {
     this.state = {
       chartData: this.props.jumpRecords,
     };
+    this.addTime = this.addTime.bind(this);
+    this.totalDistance = this.totalDistance.bind(this);
   }
   componentDidMount() {
     let userId = this.props.user.id;
@@ -45,11 +50,34 @@ export class Home extends React.Component {
     console.log("..........", this.props);
   }
 
+  addTime() {
+    let freeFallTime = [];
+    let jumpRecords = this.props.jumpRecords;
+    for (let i = 0; i < jumpRecords.length; i++) {
+      freeFallTime.push(jumpRecords[i].freeFallTime);
+    }
+    let totalFreeFallTime = 0;
+    for (let i = 0; i < freeFallTime.length; i++) {
+      totalFreeFallTime = totalFreeFallTime + freeFallTime[i];
+    }
+    return totalFreeFallTime;
+  }
+  totalDistance(array) {
+    let distance = 0;
+    for (let i = 0; i < array.length; i++) {
+      distance = distance + array[i].exitAltitude - array[i].pullAltitude;
+    }
+    return distance;
+  }
+
   render() {
     let jumps = this.props.jumpRecords || [];
 
-    console.log("TESTTTTT", this.props.userId);
+    console.log(this.props.jumpRecords);
 
+    let totalTime = this.addTime();
+    let totalDistance = this.totalDistance(jumps);
+    console.log(totalDistance);
     const userId = {
       labels: jumps.map((data) => data.jumpNumber),
       datasets: [
@@ -121,43 +149,90 @@ export class Home extends React.Component {
     };
 
     return (
-      // <div className="flex-right">
-      //   <div className="right-top-column">
-      <div className="chartBox">
-        <div className="chart">
-          <div className="chart">
-            <BarChart chartData={userId} />
+      <>
+        <div className="flex-right">
+          <div className="box">
+            Total Freefall Time:
+            <h1>
+              <CountUp end={totalTime} />
+              <h2 className="speedometer">
+                <ReactSpeedometer
+                  maxValue={1000}
+                  value={totalTime}
+                  needleColor="grey"
+                  startColor="green"
+                  segments={5}
+                  endColor="blue"
+                />
+              </h2>
+            </h1>
           </div>
-          <div className="chart" style={{ width: 100 }}>
-            <LineChart chartData={userExit} />
+
+          <div className="box">
+            total jumps:
+            <h1>
+              <CountUp end={jumps.length} />
+            </h1>
+            Total Freefall distance:
+            <h1>
+              <CountUp end={totalDistance} />
+            </h1>
           </div>
-          <div className="chart" style={{ width: 100 }}>
+          <div className="box">
+            <div style={{ width: 300 }}>
+              <LineChart chartData={userExit} />
+            </div>
+            <div style={{ width: 300 }}>
+              <BarChart chartData={userId} />
+            </div>
+          </div>
+
+          {/* <div className="chartBox">
+            <div className="chart">
+              <div className="chart">
+                <BarChart chartData={userId} />
+              </div>
+              <div className="chart" style={{ width: 100 }}>
+                <LineChart chartData={userExit} />
+              </div> */}
+          {/* <div className="chart" style={{ width: 100 }}>
             <PieChart chartData={pullAltitude} />
           </div>
           <div className="chart" style={{ width: 100 }}>
             <DoughnutChart chartData={pullAltitude} />
-          </div>
-          <h1 className="chart" style={{ width: 100 }}>
-            Average freefall time:
-            <CountUp end={60} />
-          </h1>
-          <h1>{this.props.jumpRecords.userId}</h1>
-          <div style={{ width: 100 }}>
-            <h2>
-              <ReactSpeedometer
-                maxValue={100}
-                value={60}
-                needleColor="grey"
-                startColor="green"
-                segments={10}
-                endColor="blue"
-              />
-            </h2>
+          </div> */}
+          {/* <h1 className="chart" style={{ width: 100 }}>
+                Average freefall time:
+                <CountUp end={60} />
+              </h1>
+              <h1>{this.props.jumpRecords.userId}</h1>
+              <div style={{ width: 100 }}>
+                <h2>
+                  <ReactSpeedometer
+                    maxValue={100}
+                    value={60}
+                    needleColor="grey"
+                    startColor="green"
+                    segments={10}
+                    endColor="blue"
+                  />
+                </h2>
+              </div> */}
+          {/* </div>
+          </div> */}
+        </div>
+        <div className="boxright">
+          {" "}
+          <FlapDisplay
+            chars={Presets.ALPHANUM + ",!"}
+            length={19}
+            value={"SWOOPDECK DASHBOARD"}
+          />
+          <div>
+            <AllJumps />
           </div>
         </div>
-      </div>
-      //   </div>
-      // </div>
+      </>
     );
   }
 }
