@@ -36,7 +36,7 @@
       },
       {
         "title": "Edit account",
-        "path": "/editAccount"
+        "path": "/users/edit"
       }
     ]
   },
