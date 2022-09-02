@@ -187,8 +187,10 @@ export class AllJumps extends React.Component {
                     </td>
                     <td>{jump.jumpType}</td>
                     <td style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+                      <Link to={`/edit/${jump.id}`}>
                       <button className='edit-btn' title="edit"><i className="fa-solid fa-pen-to-square"/></button>
-                      <Link to={`/jumps/${jump.id}`}>
+                      </Link>
+                      <Link to={`/jumps/${this.props.users.id}/${jump.id}`}>
                       <button className="edit-btn" title="view" style={{margin: '1rem 1rem'}}><i className="fa-solid fa-eye"/></button>
                       </Link>
                       {/* <button style={{backgroundColor: 'red'}}><i className="fa-solid fa-trash-can"/></button> */}
