@@ -1,7 +1,7 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { me } from "../store/auth";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { me } from '../store/auth';
 
 import {
   Thunk_fetchAllJumpRecords,
@@ -32,18 +32,16 @@ export class AllJumps extends React.Component {
   constructor(props) {
     super(props);
 
-
     //FOR PAGINATIONp
     // this.state = {
     //   pageNum: 0,
     // };
 
-
     this.handleChange = this.handleChange.bind(this);
   }
-  
+
   componentDidMount() {
-    let userId = this.props.users.id
+    let userId = this.props.users.id;
     this.props.getJumpRecords(userId);
     this.props.getDropzones();
   }
@@ -52,8 +50,6 @@ export class AllJumps extends React.Component {
     this.setState({
       [evt.target.name]: evt.target.value,
     });
-
-
   }
 
   render() {
@@ -67,23 +63,21 @@ export class AllJumps extends React.Component {
     let dropzones = this.props.dropzones.allDropzones || [];
     // console.log('dropzones',dropzones)
 
-    jumps.sort((a, b) => {
-      return b.createdAt - a.createdAt;
+    let sortedArr = jumps.sort((a, b) => {
+      return a.jumpNumber - b.jumpNumber;
     });
 
-   
+    // let numbersArr = [];
+    // for (let i = 0; i < jumps.length; i++) {
+    //   numbersArr.push(i + 1);
+    // }
+    // numbersArr.reverse();
 
-    let numbersArr = []
-    for (let i = 0; i < jumps.length; i++) {
-      numbersArr.push(i + 1)
-    }
-
-    console.log(jumps)
-    console.log(numbersArr)
-
+    console.log('jumps', jumps);
+    // console.log(numbersArr);
 
     let recentFiveJumps = jumps.slice(0, 6);
-    console.log(recentFiveJumps.reverse())
+    console.log('sorted', sortedArr);
     //PAGINATION FUNCTIONS
     // let numOfPages = Math.ceil(jumps.length / 5);
     // let pagesArr = [];
@@ -102,6 +96,18 @@ export class AllJumps extends React.Component {
     //   console.log(evt.target.name);
     // }
 
+    //////FOR JUMPNUM (SHOULD WORK WITH PAGINATION TOO)//////
+    /*
+    - Use pointers like in a linked list;
+    
+    - Order array of jumps from most recent date to least recent
+    - Loop through entire jumps array left to right
+    - Create a holder variable that is set to array.length - 1 'jumpNum = array.length - 1'
+    - On first iteration, subtract current index from jumpNum 'jumpNum - currentIndex'
+    - Should give us accurate jump numbers
+
+    */
+
     return (
       <div className="flex-right">
         <div className="table screen">
@@ -114,17 +120,16 @@ export class AllJumps extends React.Component {
                 </div>
               </div>
               <Link to={`/add`}>
-              <div className="frame-527">
-                <button className="add-btn">
-                  <img
-                    className="icon"
-                    src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e84f46d0125081c2cb8ad/img/-icon@2x.svg"
-                  />
-                  <div className="button">Add</div>
-                </button>
-              </div>
+                <div className="frame-527">
+                  <button className="add-btn">
+                    <img
+                      className="icon"
+                      src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e84f46d0125081c2cb8ad/img/-icon@2x.svg"
+                    />
+                    <div className="button">Add</div>
+                  </button>
+                </div>
               </Link>
-
             </div>
           </div>
           <div className="frame-530">
@@ -132,9 +137,7 @@ export class AllJumps extends React.Component {
               className="search-bar border-1px-mystic search"
               type="search"
               placeholder="Search"
-            >
-
-            </input>
+            ></input>
             <button className="buttons-1 filter-btn">
               <img
                 className="icon"
@@ -160,36 +163,52 @@ export class AllJumps extends React.Component {
             <tbody>
               {jumps.reverse().map((jump, index) => {
                 let currentDropzone = {};
-                let currentNumber = 0
+                let currentNumber = jumps.length - index;
                 for (let i = 0; i < dropzones.length; i++) {
                   if (dropzones[i].id === jump.dropzoneId) {
-                    currentDropzone = dropzones[i]
+                    currentDropzone = dropzones[i];
                   }
                 }
 
-                // for (let i = 0; i < numbersArr.length; i++) {
-                //   if (numbersArr.indexOf(numbersArr[i]) === index + 1) {
-                //     currentNumber = numbersArr[i]
+                // for (let i = numbersArr.length - 1; i > 0; i--) {
+                //   if (index === 0) {
+                //     currentNumber = 1;
+                //   } else if (numbersArr.indexOf(numbersArr[i]) === index) {
+                //     currentNumber = numbersArr[i] + 1;
                 //   }
                 // }
 
                 return (
                   <tr key={index}>
-                    <td>{jump.jumpNumber}</td>
+                    <td>{currentNumber}</td>
 
                     {/* <td>{currentNumber}</td> */}
                     <td>{jump.jumpDate}</td>
                     <td>{currentDropzone.name}</td>
                     <td>
                       {jump.exitAltitude > 7000
-                        ? "Full Altitude"
+                        ? 'Full Altitude'
                         : `Hop 'n Pop`}
                     </td>
                     <td>{jump.jumpType}</td>
-                    <td style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
-                      <button className='edit-btn' title="edit"><i className="fa-solid fa-pen-to-square"/></button>
+                    <td
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      <button className="edit-btn" title="edit">
+                        <i className="fa-solid fa-pen-to-square" />
+                      </button>
                       <Link to={`/jumps/${jump.id}`}>
-                      <button className="edit-btn" title="view" style={{margin: '1rem 1rem'}}><i className="fa-solid fa-eye"/></button>
+                        <button
+                          className="edit-btn"
+                          title="view"
+                          style={{ margin: '1rem 1rem' }}
+                        >
+                          <i className="fa-solid fa-eye" />
+                        </button>
                       </Link>
                       {/* <button style={{backgroundColor: 'red'}}><i className="fa-solid fa-trash-can"/></button> */}
                     </td>
@@ -200,12 +219,9 @@ export class AllJumps extends React.Component {
           </table>
 
           {/* //////////////////////// Manual TABLE COMMENTED OUT //////////////////////// */}
-
         </div>
 
-
-          
-              {/* <form onChange={this.handleChange}>
+        {/* <form onChange={this.handleChange}>
                 <select>
                   {pagesArr.map((pageNum) => {
                     return (
@@ -220,7 +236,7 @@ export class AllJumps extends React.Component {
                   })}
                 </select>
               </form> */}
-            </div> 
+      </div>
     );
   }
 }
