@@ -23,6 +23,7 @@ import {
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
+  thunk_adminFetchAllLoads,
 } from '../store/loads';
 
 /**
@@ -44,6 +45,7 @@ export class AllJumps extends React.Component {
     let userId = this.props.users.id;
     this.props.getJumpRecords(userId);
     this.props.getDropzones();
+    this.props.getAllAdminLoads();
   }
 
   handleChange(evt) {
@@ -64,7 +66,7 @@ export class AllJumps extends React.Component {
     // console.log('dropzones',dropzones)
 
     let sortedArr = jumps.sort((a, b) => {
-      return a.jumpNumber - b.jumpNumber;
+      return a.id - b.id;
     });
 
     // let numbersArr = [];
@@ -108,6 +110,7 @@ export class AllJumps extends React.Component {
 
     */
 
+    console.log('adminLoads', this.props.loads.allLoads);
     return (
       <div className="flex-right">
         <div className="table screen">
@@ -169,21 +172,35 @@ export class AllJumps extends React.Component {
                     currentDropzone = dropzones[i];
                   }
                 }
+                let dateSplice = '';
+                for (let i = 0; i < jump.jumpDate.length; i++) {
+                  let datesArr = jump.jumpDate.split(' ');
+                  // console.log('sdfjasdf', datesArr);
+                  dateSplice = datesArr[0].toString();
+                }
 
-                // for (let i = numbersArr.length - 1; i > 0; i--) {
-                //   if (index === 0) {
-                //     currentNumber = 1;
-                //   } else if (numbersArr.indexOf(numbersArr[i]) === index) {
-                //     currentNumber = numbersArr[i] + 1;
-                //   }
-                // }
+                let loadTime = '';
+                let currentLoad = {};
+                for (let i = 0; i < this.props.loads.allLoads.length; i++) {
+                  let load = this.props.loads.allLoads[i];
+                  currentLoad = load;
+                  if (load.id === jump.loadId) {
+                    loadTime = currentLoad.departureTime;
+                  }
+                }
+
+                // console.log('dateSplice', jump.jumpDate.slice(0, 9));
 
                 return (
                   <tr key={index}>
                     <td>{currentNumber}</td>
 
                     {/* <td>{currentNumber}</td> */}
-                    <td>{jump.jumpDate}</td>
+                    <td>
+                      {loadTime !== null
+                        ? `${dateSplice} at ${loadTime}`
+                        : `${dateSplice}`}
+                    </td>
                     <td>{currentDropzone.name}</td>
                     <td>
                       {jump.exitAltitude > 7000
@@ -279,6 +296,7 @@ const mapDispatch = (dispatch) => {
     addLoad: (LOAD, dropzoneId) => dispatch(thunk_createLoad(LOAD, dropzoneId)), //WORKING//
     getSingleLoad: (dropzoneId, loadId) =>
       dispatch(thunk_fetchSingleLoad(dropzoneId, loadId)), //WORKING//
+    getAllAdminLoads: () => dispatch(thunk_adminFetchAllLoads()),
   };
 };
 

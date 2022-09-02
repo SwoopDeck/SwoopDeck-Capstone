@@ -20,6 +20,7 @@ import {
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
+  thunk_updateLoadSlotsFilled,
 } from '../store/loads';
 
 /**
@@ -72,7 +73,7 @@ export class JoinLoad extends React.Component {
     const createDay = day.getDate();
 
     const todaysDate = `${createYear}-${createDay}-${createMonth} `;
-
+    console.log(this.props.loads);
     const loadsArr = this.props.loads || [];
     const todaysLoads = loadsArr.filter((load) => {
       let loadDate = load.date.slice(0, 9);
@@ -94,13 +95,22 @@ export class JoinLoad extends React.Component {
 
     const confirmLoad = (evt) => {
       this.setState({ selected: false, display: 'inline-block' });
+      this.props.editLoadSlots(
+        this.props.singleLoad.dropzoneId,
+        this.props.singleLoad.id
+      );
       let currentJump = {
         aircraft: this.props.singleLoad.aircraft,
         jumpDate: this.props.singleLoad.date,
         loadId: this.props.singleLoad.id,
         dropzoneId: this.props.singleLoad.dropzoneId,
       };
-      console.log('Current Jump Date Type', typeof currentJump.date);
+
+      // let updatedLoad = this.props.singleLoad;
+      // updatedLoad.slotsFilled++;
+      // console.log('load', updatedLoad);
+
+      // console.log('after', this.props.singleLoad);
       this.props.addJumpRecord(currentJump, this.props.user.id);
     };
 
@@ -122,7 +132,7 @@ export class JoinLoad extends React.Component {
               {/* TEMPORARY 'SLOTS FILLED'... SHOULD BE 'AVAILABLE SLOTS' AND RENDER THE REMAINING SLOTS */}
               <p>
                 Slots Filled:
-                {load.slotsFilled === null ? 0 : load.slotsFilled}
+                {load.slotsFilled}
               </p>
               {/* TEMPORARY 'SLOTS FILLED'... SHOULD BE 'AVAILABLE SLOTS' AND RENDER THE REMAINING SLOTS */}
               <p>Status: {load.status}</p>
@@ -206,8 +216,12 @@ const mapDispatch = (dispatch) => {
 
     /////////ABOVE IS FOR DROPZONE////////BELOW IS FOR LOADS/////////////////////////////
 
-    editLoad: (dropzoneId, loadId, LOAD) =>
-      dispatch(thunk_updateLoad(dropzoneId, loadId, LOAD)), //WORKING//
+    /* 
+editLoad: (dropzoneId, loadId, LOAD) =>
+       dispatch(thunk_updateLoad(dropzoneId, loadId, LOAD)),
+ */
+    editLoadSlots: (dropzoneId, loadId) =>
+      dispatch(thunk_updateLoadSlotsFilled(dropzoneId, loadId)),
     getLoads: (dropzoneId) => dispatch(thunk_fetchAllLoads(dropzoneId)), //WORKING//
     deleteLoad: (dropzoneId, loadId) =>
       dispatch(thunk_deleteLoad(dropzoneId, loadId)), //WORKING//

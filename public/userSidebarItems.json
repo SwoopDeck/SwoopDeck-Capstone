@@ -31,12 +31,8 @@
     "icon": "bi-person-fill",
     "children": [
       {
-        "title": "View account",
-        "path": "/viewAccount"
-      },
-      {
         "title": "Edit account",
-        "path": "/editAccount"
+        "path": "/users/edit"
       }
     ]
   },
