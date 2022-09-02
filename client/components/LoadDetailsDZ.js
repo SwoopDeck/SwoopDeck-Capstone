@@ -33,7 +33,7 @@ export class LoadDetailsDZ extends React.Component {
     super(props);
     this.state = {
       loadsdata: this.props.loads,
-      status: 'On Time'
+      status: 'On Time',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -53,14 +53,13 @@ export class LoadDetailsDZ extends React.Component {
     });
   }
 
-  removeJumper(userId, loadId){
-    this.props.editLoad(userId, loadId)
+  removeJumper(userId, loadId) {
+    this.props.editLoad(userId, loadId);
   }
 
-  changeStatus(status, loadId){
-    this.props.editLoadStatus(status, loadId)
+  changeStatus(status, loadId) {
+    this.props.editLoadStatus(status, loadId);
   }
-
 
   render() {
     const allLoads = this.props.loads;
@@ -74,7 +73,14 @@ export class LoadDetailsDZ extends React.Component {
           </h4>
           <h4>LICENSE #: {user.licenseNumber}</h4>
           <h4>EMAIL: {user.email}</h4>
-          <button type="button" onClick={()=> this.removeJumper(user.id,this.props.match.params.loadId)}>Remove From Load</button>
+          <button
+            type="button"
+            onClick={() =>
+              this.removeJumper(user.id, this.props.match.params.loadId)
+            }
+          >
+            Remove From Load
+          </button>
         </div>
       );
     });
@@ -85,7 +91,7 @@ export class LoadDetailsDZ extends React.Component {
         <br />
         <h2>LOAD AIRCRAFT: {this.props.singleLoad.aircraft}</h2>
         <br />
-        <h2>EXPECTED DEPARTURE TIME: need to add</h2>
+        <h2>EXPECTED DEPARTURE TIME: {this.props.singleLoad.departureTime}</h2>
         <br />
         <h2>LOAD STATUS: {this.props.singleLoad.status}</h2>
         <br />
@@ -95,17 +101,26 @@ export class LoadDetailsDZ extends React.Component {
         <br />
         <br />
         <label htmlFor="status">Status</label>
-          <select name="status" onChange={this.handleChange}>
-            <option name="on time">On Time</option>
-            <option name="delayed">Delayed</option>
-            <option name="closed">Closed</option>
-            <option name="canceled">Canceled</option>
-          </select>
-          <button type="button" onClick={()=> this.changeStatus({status:this.state.status},this.props.match.params.loadId)}>Update Status</button>
+        <select name="status" onChange={this.handleChange}>
+          <option name="on time">On Time</option>
+          <option name="delayed">Delayed</option>
+          <option name="closed">Closed</option>
+          <option name="canceled">Canceled</option>
+        </select>
+        <button
+          type="button"
+          onClick={() =>
+            this.changeStatus(
+              { status: this.state.status },
+              this.props.match.params.loadId
+            )
+          }
+        >
+          Update Status
+        </button>
         <Link to="/:dropzoneId/todaysLoads">
           <button type="button">Back to Today's Loads</button>
         </Link>
-        
       </div>
     );
   }
@@ -145,9 +160,8 @@ const mapDispatch = (dispatch) => {
 
     /////////ABOVE IS FOR DROPZONE////////BELOW IS FOR LOADS/////////////////////////////
 
-    editLoad: (userId, loadId) =>
-      dispatch(thunk_updateLoad(userId, loadId)), //WORKING//
-      editLoadStatus: (status, loadId) =>
+    editLoad: (userId, loadId) => dispatch(thunk_updateLoad(userId, loadId)), //WORKING//
+    editLoadStatus: (status, loadId) =>
       dispatch(thunk_updateLoadStatus(status, loadId)), //WORKING//
     getLoads: (dropzoneId) => dispatch(thunk_fetchAllLoads(dropzoneId)), //WORKING//
     deleteLoad: (dropzoneId, loadId) =>

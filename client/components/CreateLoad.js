@@ -59,7 +59,7 @@ export class CreateLoad extends React.Component {
     const createYear = year.getFullYear();
 
     const month = new Date();
-    const createMonth = month.getMonth();
+    const createMonth = month.getMonth() + 1;
 
     const day = new Date();
     const createDay = day.getDate();
@@ -71,14 +71,13 @@ export class CreateLoad extends React.Component {
     const createMinutes = minutes.getMinutes();
     //GETTING DATE & TIME INFO
 
-
-
     const dropzoneId = this.props.user.dropzoneId;
     const load = {
       ...this.state,
       isFull: false,
       date: `${createYear}-${createDay}-${createMonth} at ${createHour}:${createMinutes}`,
       dropzoneId: dropzoneId,
+      slotsFilled: 0,
       // slots: this.state.slots,
     };
     this.props.addLoad(load, dropzoneId);
@@ -156,7 +155,6 @@ const mapState = (state) => {
 //     singleDropzone: state.dropzones.singleDropzone,
 //   };
 // };
-
 
 const mapDispatch = (dispatch) => {
   return {

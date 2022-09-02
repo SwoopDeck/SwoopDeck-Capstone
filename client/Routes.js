@@ -30,6 +30,7 @@ import PaymentForm from './components/stripe/PaymentForm';
 import Cart from './components/stripe/Cart';
 import EditJumpRecord from './components/EditJumpRecord';
 import ContactUs from './components/ContactUs';
+import LoadDetailsUser from './components/LoadDetailsUser';
 
 /**
  * COMPONENT
@@ -82,13 +83,19 @@ class Routes extends Component {
         <Route path="/add" component={AddJump} />
         <Route path="/viewProfile" component={UserProfile} />
         <Route path="/:dropzoneId/loads" component={JoinLoad} />
-        <Route path="/join/dropzone" component={JoinDropzone} />
+        <Route exact path="/join/dropzone" component={JoinDropzone} />
         <Route path="/users/edit/:id" component={EditUser} />
         <Route exact path="/payment" component={PaymentForm} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/allchartsclass/:id" component={AllChartsClass} />
         <Route exact path="/edit/:jumpId" component={EditJumpRecord} />
         <Route exact path="/contact" component={ContactUs} />
+
+        <Route
+          exact
+          path="/load/:dropzoneId/:loadId/details"
+          component={LoadDetailsUser}
+        />
         <Route path="*" component={ErrorPage} />
       </Switch>
     );

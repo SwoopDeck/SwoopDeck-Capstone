@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {
-  models: { Load, User, JumpRecords},
+  models: { Load, User, JumpRecords },
 } = require('../db');
 
 //grab the LOADS per DROPZONE
@@ -13,6 +13,22 @@ router.get('/:dropzoneId', async (req, res, next) => {
         dropzoneId: req.params.dropzoneId,
       },
     });
+    loads.sort((a, b) => {
+      return a.id - b.id;
+    });
+
+    res.send(loads);
+  } catch (err) {
+    next(err);
+  }
+});
+
+//grab ALL LOADS
+
+//GET 'api/loads'
+router.get('/', async (req, res, next) => {
+  try {
+    let loads = await Load.findAll();
 
     res.send(loads);
   } catch (err) {
@@ -67,7 +83,7 @@ router.get('/:dropzoneId/:loadId', async (req, res, next) => {
 
 //Update the LOAD STATUS by load id
 
-//GET 'api/loads/status/:loadId'
+//PUT 'api/loads/status/:loadId'
 router.put('/status/:loadId', async (req, res, next) => {
   try {
     let loadUpdate = await Load.findOne({
@@ -75,7 +91,7 @@ router.put('/status/:loadId', async (req, res, next) => {
         id: req.params.loadId,
       },
     });
-    let newStatus = await loadUpdate.update({status: req.body.status})
+    let newStatus = await loadUpdate.update({ status: req.body.status });
     res.send(newStatus);
   } catch (err) {
     next(err);
@@ -87,23 +103,22 @@ router.put('/status/:loadId', async (req, res, next) => {
 // //GET 'api/loads/:loadId/:userId'
 router.put('/:loadId/:userId', async (req, res, next) => {
   try {
- 
     //find the jumper on the load through the jumprecords table
     let removedJumper = await JumpRecords.findOne({
       where: {
         loadId: req.params.loadId,
-        userId: req.params.userId
-      }
-    })
+        userId: req.params.userId,
+      },
+    });
     //update the jumprecords table for loadId to NULL
-    removedJumper.update({loadId: null})
+    removedJumper.update({ loadId: null });
     ///pull all jumpers on load ====> WITHOUT the selected userID
     const userJumps = await JumpRecords.findAll({
       where: {
         loadId: req.params.loadId,
       },
     });
-   
+
     let jumperNames = [];
     for (let i = 0; i < userJumps.length; i++) {
       let userId = userJumps[i].userId;
@@ -116,7 +131,34 @@ router.put('/:loadId/:userId', async (req, res, next) => {
   }
 });
 
+//UPDATING A LOADS SLOTFILLED COUNTER
+//PUT 'api/loads/slotFilled/:dropzoneId/:loadId'
+router.put('/slotFilled/:dropzoneId/:loadId', async (req, res, next) => {
+  try {
+    //find the jumper on the load through the jumprecords table
+    let currentJumpers = await JumpRecords.findAll({
+      where: {
+        loadId: req.params.loadId,
+      },
+    });
+    //finding the current load
+    let currentLoad = await Load.findOne({
+      where: {
+        id: req.params.loadId,
+      },
+    });
+    //number of jumpers on the load
+    let loadNumber = currentJumpers.length + 1;
 
+    //update the selected load
+    currentLoad.update({ slotsFilled: loadNumber });
+    //send back the altered load
+    console.log(currentLoad);
+    res.send(currentLoad);
+  } catch (err) {
+    next(err);
+  }
+});
 
 //Creating a LOAD for a DROPZONE
 //GET 'api/loads/:dropzoneId/create'

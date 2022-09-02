@@ -154,13 +154,23 @@ import axios from 'axios';
 /* ACTION TYPES */
 
 let SET_LOADS = 'SET_LOADS';
+let SET_ADMIN_LOADS = 'SET_ADMIN_LOADS';
 let DELETE_LOAD = 'DELETE_LOAD';
+let UPDATE_LOAD_SLOTS_FILLED = 'UPDATE_LOAD_SLOTS_FILLED';
 let UPDATE_LOAD = 'UPDATE_LOAD';
 let UPDATE_LOAD_STATUS = 'UPDATE_LOAD_STATUS';
 let ADD_LOAD = 'ADD_LOAD';
 const SET_SINGLE_LOAD = 'SET_SINGLE_LOAD';
 
 /* ACTION CREATORS */
+
+//SET ADMIN LOADS (EVERY LOAD)
+export const adminSetAllLoads = (LOADS) => {
+  return {
+    type: SET_LOADS,
+    LOADS,
+  };
+};
 
 //SET ALL LOADS RECORDS
 export const setAllLoads = (LOADS) => {
@@ -195,6 +205,15 @@ export const reformLoad = (LOAD) => {
 };
 
 //UPDATE A SINGLE LOADS RECORD
+export const reformLoadSlotsFilled = (LOAD) => {
+  console.log(LOAD);
+  return {
+    type: UPDATE_LOAD_SLOTS_FILLED,
+    LOAD,
+  };
+};
+
+//UPDATE A SINGLE LOADS RECORD
 export const reformLoadStatus = (LOAD) => {
   return {
     type: UPDATE_LOAD_STATUS,
@@ -224,12 +243,22 @@ export const removeLoad = (LOADS) => {
 //     }
 //   };
 
-////////////////////////////////////////
+/////////////////FETCH ALL OF A DROPZONES LOADS/////////////////////
 
 export const thunk_fetchAllLoads = (dropzoneId) => async (dispatch) => {
   try {
     const { data } = await axios.get(`/api/loads/${dropzoneId}`);
     dispatch(setAllLoads(data));
+  } catch (err) {
+    console.log(err);
+  }
+};
+/////////////////FETCH ALL LOADS/////////////////////
+
+export const thunk_adminFetchAllLoads = () => async (dispatch) => {
+  try {
+    const { data } = await axios.get(`/api/loads/`);
+    dispatch(adminSetAllLoads(data));
   } catch (err) {
     console.log(err);
   }
@@ -250,17 +279,25 @@ export const thunk_fetchSingleLoad = (dropzoneId, loadId) => {
 //THUNK: UPDATE A SINGLE LOADS JUMPER LIST
 export const thunk_updateLoad = (userId, loadId) => {
   return async (dispatch) => {
-    const { data } = await axios.put(
-      `/api/loads/${loadId}/${userId}`);
+    const { data } = await axios.put(`/api/loads/${loadId}/${userId}`);
     dispatch(reformLoad(data));
+  };
+};
+
+//THUNK: UPDATE A SINGLE LOAD SLOT FILLED
+export const thunk_updateLoadSlotsFilled = (dropzoneId, loadId) => {
+  return async (dispatch) => {
+    const { data } = await axios.put(
+      `/api/loads/slotFilled/${dropzoneId}/${loadId}`
+    );
+    dispatch(reformLoadSlotsFilled(data));
   };
 };
 
 //THUNK: UPDATE A SINGLE LOADS STATUS
 export const thunk_updateLoadStatus = (condition, loadId) => {
   return async (dispatch) => {
-    const { data } = await axios.put(
-      `/api/loads/status/${loadId}`, condition);
+    const { data } = await axios.put(`/api/loads/status/${loadId}`, condition);
     dispatch(reformLoadStatus(data));
   };
 };
@@ -302,6 +339,8 @@ export default function loadsReducer(state = initialState, action) {
   switch (action.type) {
     case SET_LOADS:
       return { ...state, allLoads: action.LOADS };
+    case SET_ADMIN_LOADS:
+      return { ...state, allLoads: action.LOADS };
     case SET_SINGLE_LOAD:
       return { ...state, singleLoad: action.LOAD };
     case ADD_LOAD:
@@ -311,8 +350,22 @@ export default function loadsReducer(state = initialState, action) {
         ...state,
         allLoads: [...state.allLoads, action.LOAD],
       };
-      case UPDATE_LOAD_STATUS:
-      return{ ...state, singleLoad: action.LOAD };
+    case UPDATE_LOAD_STATUS:
+      return { ...state, singleLoad: action.LOAD };
+    case UPDATE_LOAD_SLOTS_FILLED:
+      console.log('reducer state', state);
+      return {
+        ...state,
+        allLoads: [...state.allLoads, action.LOAD],
+      };
+    // return {
+    //   ...state.allLoads,
+    //   allLoads: [
+    //     state.allLoads.map((LOAD) =>
+    //       LOAD.id == action.LOAD.id ? action.LOAD : LOAD
+    //     ),
+    //   ],
+    // };
     case DELETE_LOAD:
       // return {
       //   ...state,
