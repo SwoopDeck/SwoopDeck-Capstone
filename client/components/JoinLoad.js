@@ -67,7 +67,7 @@ export class JoinLoad extends React.Component {
 
     const month = new Date();
     const createMonth = month.getMonth();
-
+console.log(createMonth)
     const day = new Date();
     const createDay = day.getDate();
 
@@ -75,8 +75,9 @@ export class JoinLoad extends React.Component {
 
     const loadsArr = this.props.loads || [];
     const todaysLoads = loadsArr.filter((load) => {
-      let loadDate = load.date.slice(0, 10);
-
+      ///need to shorten the string length from 10 to 9
+      let loadDate = load.date.slice(0, 9);
+console.log(loadDate)
       if (loadDate === todaysDate) {
         return load;
       }

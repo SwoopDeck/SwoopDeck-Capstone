@@ -65,17 +65,18 @@ export class DropzoneLoadList extends React.Component {
     const createYear = year.getFullYear();
 
     const month = new Date();
-    const createMonth = month.getMonth();
+    const createMonth = month.getMonth() + 1;
 
     const day = new Date();
     const createDay = day.getDate();
 
     const todaysDate = `${createYear}-${createDay}-${createMonth} `;
-
+console.log(todaysDate)
     const loadsArr = this.props.loads || [];
     const todaysLoads = loadsArr.filter((load) => {
-      let loadDate = load.date.slice(0, 10);
-
+      //HAD TO CORRECT FROM 10 to 9
+      let loadDate = load.date.slice(0, 9);
+      console.log(loadDate)
       if (loadDate === todaysDate) {
         return load;
       }
