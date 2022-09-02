@@ -105,7 +105,7 @@ export class LoadDetailsDZ extends React.Component {
           <option name="on time">On Time</option>
           <option name="delayed">Delayed</option>
           <option name="closed">Closed</option>
-          {/* <option name="canceled">Canceled</option> */}
+
         </select>
         <button
           type="button"
