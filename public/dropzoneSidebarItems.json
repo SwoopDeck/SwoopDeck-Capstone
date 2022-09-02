@@ -18,7 +18,7 @@
       },
       {
         "title": "Past loads",
-        "path": "/:dropzoneId/loads"
+        "path": "/pastloads"
       }
     ]
   },

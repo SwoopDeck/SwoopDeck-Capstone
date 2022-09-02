@@ -83,8 +83,10 @@ class Routes extends Component {
         <Route path="/add" component={AddJump} />
         <Route path="/viewProfile" component={UserProfile} />
         <Route path="/:dropzoneId/loads" component={JoinLoad} />
+
         <Route exact path="/join/dropzone" component={JoinDropzone} />
-        <Route path="/users/edit/:id" component={EditUser} />
+        <Route path="/users/edit" component={EditUser} />
+
         <Route exact path="/payment" component={PaymentForm} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/allchartsclass/:id" component={AllChartsClass} />

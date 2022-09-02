@@ -47,7 +47,7 @@ class SingleUser extends React.Component {
   }
 
   render() {
-    const { id, firstName, lastName, address, email, licenseNumber, role } =
+    const { id, firstName, lastName, address, email, licenseNumber, role, emergencyContact, emergencyPhoneNumber} =
       this.props.singleUser;
 
     return (
@@ -59,6 +59,8 @@ class SingleUser extends React.Component {
           <p>Email: {email} </p>
           <p>Address: {address} </p>
           <p>Role: {role} </p>
+          <p>Emergency Contact: {emergencyContact} </p>
+          <p>Emergency Phone Number: {emergencyPhoneNumber} </p>
           {role === 'Skydiver' ? <p>UPSA#: {licenseNumber} </p> : <></>}
           <button
             onClick={() => {

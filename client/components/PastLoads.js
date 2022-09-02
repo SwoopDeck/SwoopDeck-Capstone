@@ -28,11 +28,17 @@ import {
 export class PastLoads extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      loadsdata: this.props.loads,
+    };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.removeLoad = this.removeLoad.bind(this);
   }
   componentDidMount() {
-    
+    const dropzoneId = this.props.users.dropzoneId;
+   this.props.getLoads(dropzoneId);
   }
 
   handleChange(evt) {
@@ -41,21 +47,48 @@ export class PastLoads extends React.Component {
     });
   }
 
+  handleClick(evt) {
+    let loadId = evt.target.id;
+    this.props.history.push(`/:dropzoneId/loads/${loadId}`);
+  }
+
+  removeLoad(dropzoneId, loadId){
+    console.log('dz,load', dropzoneId, loadId)
+    this.props.deleteLoad(dropzoneId, loadId)
+  }
+
   render() {
+   
+    const todaysLoads = this.props.loads
     return (
       <div>
-        <h1>TEST</h1>
+        <h2>Today's Loads:</h2>
+        {todaysLoads.map((load) => (
+          <div key={load.id}>
+            <p>Date: {load.date}</p>
+            <p>Aircraft: {load.aircraft}</p>
+            <p>Slots: {load.slots} </p>
+            <p>Slots Filled: {load.slotsFilled} </p>
+            <button type="button" id={load.id} onClick={this.handleClick}>
+              View Details
+            </button>
+            <button type="button" id={load.id} onClick={() => this.removeLoad(this.props.users.dropzoneId, load.id)}>
+             Remove Load
+            </button>
+          </div>
+        ))}
       </div>
     );
-   
   }
 }
 const mapState = (state) => {
   return {
     jumpRecords: state.jumpRecords,
+
     users: state.auth,
-    dropzones: state.dropzones,
-    loads: state.loads,
+    dropzones: state.dropzones.allDropzones,
+    loads: state.loads.allLoads,
+    singleLoad: state.loads.singleLoad,
   };
 };
 const mapDispatch = (dispatch) => {
@@ -91,5 +124,6 @@ const mapDispatch = (dispatch) => {
       dispatch(thunk_fetchSingleLoad(dropzoneId, loadId)), //WORKING//
   };
 };
+
 
 export default connect(mapState, mapDispatch)(PastLoads);
