@@ -38,6 +38,11 @@ const User = db.define('user', {
     // allowNull: false,
   },
 
+  phoneNumber: {
+    type: Sequelize.STRING,
+    // allowNull: false,
+  },
+
   address: {
     type: Sequelize.STRING,
     validate: {

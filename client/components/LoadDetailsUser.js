@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import {
   Thunk_fetchAllJumpRecords,
   Thunk_fetchSingleJump,
   Thunk_updateJump,
   Thunk_deleteJump,
   Thunk_createJump,
+  Thunk_fetchAllJumpersOnLoad,
 } from '../store/jumpRecords';
 import {
   thunk_fetchSingleDropzone,
@@ -20,26 +22,30 @@ import {
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
+  thunk_updateLoadStatus,
   thunk_updateLoadSlotsFilled,
 } from '../store/loads';
 
 /**
  * REACT COMPONENT
  */
-export class JoinLoad extends React.Component {
+export class LoadDetailsUser extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      selected: false,
-      display: 'inline-block',
+      loadsdata: this.props.loads,
+      status: 'On Time',
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.removeJumper = this.removeJumper.bind(this);
+    this.changeStatus = this.changeStatus.bind(this);
   }
   componentDidMount() {
-    console.log(this.props.match.params.dropzoneId);
-    this.props.getLoads(this.props.match.params.dropzoneId);
+    const loadId = this.props.match.params.loadId;
+    const dropzoneId = this.props.match.params.dropzoneId;
+    this.props.getSingleLoad(dropzoneId, loadId);
+    this.props.getAllJumpersOnLoad(this.props.match.params.loadId);
   }
 
   handleChange(evt) {
@@ -48,38 +54,35 @@ export class JoinLoad extends React.Component {
     });
   }
 
+  removeJumper(userId, loadId) {
+    this.props.editLoad(userId, loadId);
+  }
+
+  changeStatus(status, loadId) {
+    this.props.editLoadStatus(status, loadId);
+  }
+
   render() {
-    const year = new Date();
-    const createYear = year.getFullYear();
-
-    const month = new Date();
-    const createMonth = month.getMonth() + 1;
-
-    const day = new Date();
-    const createDay = day.getDate();
-
-    const todaysDate = `${createYear}-${createDay}-${createMonth} `;
-    console.log('in componenet', this.props.loads);
-    const loadsArr = this.props.loads || [];
-    const todaysLoads = loadsArr.filter((load) => {
-      let loadDate = load.date.slice(0, 9);
-
-      if (loadDate === todaysDate) {
-        return load;
-      }
+    const allLoads = this.props.loads;
+    console.log(this.props);
+    const jumpers = this.props.jumpRecords.map((user, idx) => {
+      return (
+        <div key={idx}>
+          <br />
+          <h4>
+            NAME: {user.firstName} {user.lastName}
+          </h4>
+          <h4>LICENSE #: {user.licenseNumber}</h4>
+        </div>
+      );
     });
-
-    const selectLoad = (evt) => {
-      // this.props.getSingleLoad(evt.target.value, evt.target.id);
-      // this.setState({ selected: true, display: 'none' });
-    };
-
     const confirmLoad = (evt) => {
-      this.setState({ selected: false, display: 'inline-block' });
       this.props.editLoadSlots(
         this.props.singleLoad.dropzoneId,
         this.props.singleLoad.id
       );
+      console.log('single load', this.props.singleLoad);
+      console.log('single user', this.props.user);
       let currentJump = {
         aircraft: this.props.singleLoad.aircraft,
         jumpDate: this.props.singleLoad.date,
@@ -87,94 +90,53 @@ export class JoinLoad extends React.Component {
         dropzoneId: this.props.singleLoad.dropzoneId,
       };
 
-      this.props.addJumpRecord(currentJump, this.props.user.id);
-      this.props.history.push('/home');
+      this.props.addJumpRecord(currentJump, this.props.users.id);
+      // this.props.history.push('/home');
+      this.props.getLoads(this.props.match.params.dropzoneId);
     };
-
-    const deSelect = (evt) => {
-      this.setState({ selected: false, display: 'inline-block' });
-    };
-
-    console.log('todaysLoads', todaysLoads);
-    let buttons = (
+    return (
       <div>
-        {this.state.selected ? (
-          <div>
-            <button
-              type="button"
-              onClick={confirmLoad}
-              display={this.state.display}
-            >
-              Confirm
-            </button>
-            <button
-              type="button"
-              onClick={deSelect}
-              display={this.state.display}
-            >
-              Cancel
-            </button>
-          </div>
-        ) : (
-          <div></div>
-        )}
+        <h2>LOAD ID: {this.props.singleLoad.id}</h2>
+        <br />
+        <h2>LOAD AIRCRAFT: {this.props.singleLoad.aircraft}</h2>
+        <br />
+        <h2>EXPECTED DEPARTURE TIME: {this.props.singleLoad.departureTime}</h2>
+        <br />
+        <h2>
+          AVAILABLE SLOTS:
+          {this.props.singleLoad.slots - this.props.singleLoad.slotsFilled}
+        </h2>
+        <br />
+        <h2>LOAD STATUS: {this.props.singleLoad.status}</h2>
+        <br />
+        {/* <h2>JUMPERS</h2>
+        <h2>----------------</h2>
+        <div> {jumpers}</div> */}
+        <br />
+        <br />
+        <Link to={`/${this.props.singleLoad.dropzoneId}/loads`}>
+          <button type="button" onClick={confirmLoad}>
+            Confirm
+          </button>
+        </Link>
+
+        <Link to={`/${this.props.singleLoad.dropzoneId}/loads`}>
+          <button type="button">Back to Today's Loads</button>
+        </Link>
       </div>
     );
-    const allLoads = (
-      <div>
-        <h1>Select Your Load</h1>
-        <h1>--------------------------------</h1>
-        {todaysLoads.map((load, idx) => {
-          // const clickerHelper = (evt) => {
-          //   this.props.getSingleLoad(evt.target.value, evt.target.id);
-          //   this.setState({ selected: true, display: 'inline-block' });
-          // };
-          return (
-            <div key={idx}>
-              <h2>Departure Time: {load.departureTime}</h2>
-              <p>Aircraft: {load.aircraft} </p>
-              <p>Total Slots: {load.slots} </p>
-
-              <p>Available Slots: {load.slots - load.slotsFilled}</p>
-
-              <p>Status: {load.status}</p>
-              {/* {load.slots !== load.slotsFilled ? ( */}
-              <button
-                type="button"
-                style={{ display: this.state.display }}
-                id={load.id}
-                value={this.props.match.params.dropzoneId}
-                onClick={() => {
-                  this.props.history.push(
-                    `/load/${load.dropzoneId}/${load.id}/details`
-                  );
-                }}
-              >
-                Select Load
-              </button>
-              {/* ) : (
-                <p>This Load is Full</p>
-              )} */}
-              {buttons}
-            </div>
-          );
-        })}
-      </div>
-    );
-    return <div>{allLoads}</div>;
   }
 }
 const mapState = (state) => {
   return {
     jumpRecords: state.jumpRecords,
 
-    user: state.auth,
+    users: state.auth,
     dropzones: state.dropzones.allDropzones,
     loads: state.loads.allLoads,
     singleLoad: state.loads.singleLoad,
   };
 };
-
 const mapDispatch = (dispatch) => {
   return {
     editJumpRecord: (jump, userId, jumpId) =>
@@ -185,6 +147,8 @@ const mapDispatch = (dispatch) => {
     addJumpRecord: (jump, id) => dispatch(Thunk_createJump(jump, id)), //WORKING//
     getSingleJumpRecord: (userId, jumpId) =>
       dispatch(Thunk_fetchSingleJump(userId, jumpId)), //WORKING//
+    getAllJumpersOnLoad: (loadId) =>
+      dispatch(Thunk_fetchAllJumpersOnLoad(loadId)),
 
     ////////ABOVE is for USER TABLE//////BELOW IS FOR DROPZONE//////////////////////////
 
@@ -213,4 +177,4 @@ editLoad: (dropzoneId, loadId, LOAD) =>
   };
 };
 
-export default connect(mapState, mapDispatch)(JoinLoad);
+export default connect(mapState, mapDispatch)(LoadDetailsUser);

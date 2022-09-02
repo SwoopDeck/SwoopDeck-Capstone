@@ -16,6 +16,10 @@ const Load = db.define('loads', {
     },
   },
 
+  departureTime: {
+    type: Sequelize.STRING,
+  },
+
   slots: {
     type: Sequelize.INTEGER,
   },
@@ -28,8 +32,8 @@ const Load = db.define('loads', {
     type: Sequelize.BOOLEAN,
   },
   status: {
-    // type: Sequelize.ENUM("On Time", 'Delayed', 'Closed', 'Cancelled'),
-    type: Sequelize.STRING
+    type: Sequelize.ENUM("On Time", 'Delayed', 'Closed'),
+    // type: Sequelize.STRING
   },
 });
 

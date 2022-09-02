@@ -34,6 +34,7 @@ export class CreateLoad extends React.Component {
       aircraft: '',
       slots: '0',
       status: 'on time',
+      departureTime: '0',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -58,7 +59,7 @@ export class CreateLoad extends React.Component {
     const createYear = year.getFullYear();
 
     const month = new Date();
-    const createMonth = month.getMonth();
+    const createMonth = month.getMonth() + 1;
 
     const day = new Date();
     const createDay = day.getDate();
@@ -76,6 +77,7 @@ export class CreateLoad extends React.Component {
       isFull: false,
       date: `${createYear}-${createDay}-${createMonth} at ${createHour}:${createMinutes}`,
       dropzoneId: dropzoneId,
+      slotsFilled: 0,
       // slots: this.state.slots,
     };
     this.props.addLoad(load, dropzoneId);
@@ -86,6 +88,7 @@ export class CreateLoad extends React.Component {
       aircraft: '',
       slots: '0',
       status: 'on time',
+      departureTime: '0',
     });
   }
 
@@ -110,7 +113,13 @@ export class CreateLoad extends React.Component {
             placeholder="10"
             onChange={handleChange}
           />
-
+          <label htmlFor="departureTime">Departure Time</label>
+          <input
+            type="text"
+            name="departureTime"
+            placeholder="Departure Time"
+            onChange={handleChange}
+          />
           <label htmlFor="status">Status</label>
           <select name="status" onChange={handleChange}>
             <option name="on time">On Time</option>
@@ -146,7 +155,6 @@ const mapState = (state) => {
 //     singleDropzone: state.dropzones.singleDropzone,
 //   };
 // };
-
 
 const mapDispatch = (dispatch) => {
   return {

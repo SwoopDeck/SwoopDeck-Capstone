@@ -34,6 +34,7 @@ export class TodaysLoads extends React.Component {
   componentDidMount() {
     const dropzoneId = this.props.user.dropzoneId;
     this.props.getLoads(dropzoneId);
+    console.log(this.props.loads);
   }
 
   handleChange(evt) {
@@ -47,7 +48,7 @@ export class TodaysLoads extends React.Component {
     const createYear = year.getFullYear();
 
     const month = new Date();
-    const createMonth = month.getMonth();
+    const createMonth = month.getMonth() + 1;
 
     const day = new Date();
     const createDay = day.getDate();
@@ -56,11 +57,13 @@ export class TodaysLoads extends React.Component {
 
     const loadsArr = this.props.loads || [];
     const todaysLoads = loadsArr.filter((load) => {
-      let loadDate = load.date.slice(0, 10);
+      let loadDate = load.date.slice(0, 9);
 
       if (loadDate === todaysDate) {
         return load;
       }
+      console.log(todaysLoads);
+      console.log('asldkfjalsefjasdfl', this.props.loads);
     });
     return (
       <div>
