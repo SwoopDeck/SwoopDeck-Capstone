@@ -13,6 +13,9 @@ router.get('/:dropzoneId', async (req, res, next) => {
         dropzoneId: req.params.dropzoneId,
       },
     });
+    loads.sort((a, b) => {
+      return a.id - b.id;
+    });
 
     res.send(loads);
   } catch (err) {
@@ -145,7 +148,7 @@ router.put('/slotFilled/:dropzoneId/:loadId', async (req, res, next) => {
       },
     });
     //number of jumpers on the load
-    let loadNumber = currentJumpers.length;
+    let loadNumber = currentJumpers.length + 1;
 
     //update the selected load
     currentLoad.update({ slotsFilled: loadNumber });

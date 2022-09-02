@@ -52,9 +52,9 @@ export class DropzoneLoadList extends React.Component {
     this.props.history.push(`/:dropzoneId/loads/${loadId}`);
   }
 
-  removeLoad(dropzoneId, loadId){
-    console.log('dz,load', dropzoneId, loadId)
-    this.props.deleteLoad(dropzoneId, loadId)
+  removeLoad(dropzoneId, loadId) {
+    console.log('dz,load', dropzoneId, loadId);
+    this.props.deleteLoad(dropzoneId, loadId);
   }
 
   render() {
@@ -65,7 +65,7 @@ export class DropzoneLoadList extends React.Component {
     const createYear = year.getFullYear();
 
     const month = new Date();
-    const createMonth = month.getMonth();
+    const createMonth = month.getMonth() + 1;
 
     const day = new Date();
     const createDay = day.getDate();
@@ -93,8 +93,14 @@ export class DropzoneLoadList extends React.Component {
             <button type="button" id={load.id} onClick={this.handleClick}>
               View Details
             </button>
-            <button type="button" id={load.id} onClick={() => this.removeLoad(this.props.users.dropzoneId, load.id)}>
-             Remove Load
+            <button
+              type="button"
+              id={load.id}
+              onClick={() =>
+                this.removeLoad(this.props.users.dropzoneId, load.id)
+              }
+            >
+              Remove Load
             </button>
           </div>
         ))}

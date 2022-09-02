@@ -353,6 +353,7 @@ export default function loadsReducer(state = initialState, action) {
     case UPDATE_LOAD_STATUS:
       return { ...state, singleLoad: action.LOAD };
     case UPDATE_LOAD_SLOTS_FILLED:
+      console.log('reducer state', state);
       return {
         ...state,
         allLoads: [...state.allLoads, action.LOAD],
