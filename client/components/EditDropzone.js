@@ -1,42 +1,42 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link , useHistory} from 'react-router-dom'
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 import {
   Thunk_fetchAllJumpRecords,
   Thunk_fetchSingleJump,
   Thunk_updateJump,
   Thunk_deleteJump,
   Thunk_createJump,
-} from '../store/jumpRecords';
+} from "../store/jumpRecords";
 import {
   thunk_fetchSingleDropzone,
   thunk_updateDropzone,
   thunk_createDropzone,
   thunk_deleteDropzone,
   thunk_fetchAllDropzones,
-} from '../store/dropzones.js';
+} from "../store/dropzones.js";
 import {
   thunk_fetchAllLoads,
   thunk_createLoad,
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
-} from '../store/loads';
+} from "../store/loads";
 import { Thunk_fetchUser, Thunk_updateUser } from "../store/allusers";
 
 export class EditDropzone extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      address: '',
-      phoneNumber: '',
+      name: "",
+      address: "",
+      phoneNumber: "",
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
-    this.props.getSingleDropzone(this.props.match.params.id)
+    this.props.getSingleDropzone(this.props.match.params.id);
   }
 
   handleChange(evt) {
@@ -46,20 +46,115 @@ export class EditDropzone extends Component {
   }
 
   render() {
-    const {id, name, address, phoneNumber } = this.props.singleDropzone
-  
-    console.log(this.props.singleDropzone)
-    
+    const { id, name, address, phoneNumber } = this.props.singleDropzone;
+
+    console.log(this.props.singleDropzone);
+
     return (
-      <div>
-        <div>Current:</div>
+      <div className="flex-right">
+        <form>
+          <div className="basic-info-group">
+            <div className="edit-account-title-container">
+              <div className="frame-528">
+                <div className="frame-526">
+                  <p id="titleLog">{name}</p>
+                  <div className="view-all-past-skydiving-jump-logs">
+                    Edit dropzone account
+                  </div>
+                </div>
+                <div className="frame-527">
+                  <button id="cancel-btn">Cancel</button>
+                  <button className="save-btn"
+                  onClick={(evt) => {
+                    evt.preventDefault();
+                    this.props.editDropzone(id, { ...this.state });
+                    this.props.getSingleDropzone(this.props.match.params.id);
+                    this.setState({
+                      name: "",
+                      address: "",
+                      email: "",
+                      phoneNumber: "",
+                    });
+      
+                    this.props.history.push(`/dropzones/${id}`);
+                  }}>Save</button>
+                </div>
+              </div>
+            </div>
+            <div className="rectangle-21"></div>
+            <div className="flex-row-1">
+              <div className="flex-col-left">
+                <div className="first-name manrope-normal-shark-14px">NAME</div>
+
+                <input
+                  className="search-bar border-1px-mystic search"
+                  type="text"
+                  name="name"
+                  placeholder={name}
+                  value={this.state.name}
+                  onChange={this.handleChange}
+                />
+
+                <div className="frame-1">
+                  <div className="frame-2">
+                    <div className="email manrope-normal-shark-14px">
+                      ADDRESS
+                    </div>
+                  </div>
+                </div>
+                <input
+                  className="search-bar border-1px-mystic search"
+                  type="text"
+                  name="address"
+                  placeholder={address}
+                  value={this.state.address}
+                  onChange={this.handleChange}
+                />
+                <input
+                  className="search-bar border-1px-mystic search"
+                  style={{margin: '1rem 0'}}
+                  type="text"
+                  placeholder="State"
+                />
+                <input
+                  className="search-bar border-1px-mystic search"
+                  type="text"
+                  placeholder="Zip Code"
+                />
+              </div>
+
+              <div className="flex-col-right">
+                <div className="first-name manrope-normal-shark-14px">
+                  PHONE NUMBER
+                </div>
+
+                <input
+                  className="search-bar border-1px-mystic search"
+                  type="text"
+                  name="phoneNumber"
+                  placeholder={phoneNumber}
+                  value={this.state.phoneNumber}
+                  onChange={this.handleChange}
+                />
+
+              </div>
+            </div>
+          </div>
+        </form>
+
+
+
+
+
+{/* //////////////////////////// ORIGINAL FORM BELOW //////////////////////////// */}
+
+        {/* <div>Current:</div>
         <div>NAME: {name}</div>
         <div>ADDRESS: {address}</div>
         <div>PHONE NUMBER: {phoneNumber}</div>
-        
-        
+
         <h1>Edit User</h1>
-            <form id="edit-user">
+        <form id="edit-user">
           <div>NAME:</div>
           <input
             type="text"
@@ -67,16 +162,16 @@ export class EditDropzone extends Component {
             placeholder={name}
             value={this.state.name}
             onChange={this.handleChange}
-            style={{ margin: '25px' }}
+            style={{ margin: "25px" }}
           />
-           <div>ADDRESS:</div>
+          <div>ADDRESS:</div>
           <input
             type="text"
             name="address"
             placeholder={address}
             value={this.state.address}
             onChange={this.handleChange}
-            style={{ margin: '25px' }}
+            style={{ margin: "25px" }}
           />
           <div>PHONE NUMBER:</div>
           <input
@@ -85,26 +180,28 @@ export class EditDropzone extends Component {
             placeholder={phoneNumber}
             value={this.state.phoneNumber}
             onChange={this.handleChange}
-            style={{ margin: '25px' }}
+            style={{ margin: "25px" }}
           />
-          
+
           <button
             onClick={(evt) => {
               evt.preventDefault();
               this.props.editDropzone(id, { ...this.state });
-              this.props.getSingleDropzone(this.props.match.params.id)
+              this.props.getSingleDropzone(this.props.match.params.id);
               this.setState({
-                name: '',
-                address: '',
-                email: '',
+                name: "",
+                address: "",
+                email: "",
               });
-                
-                this.props.history.push(`/dropzones/${id}`);
-                
-              }
-            }
-          >EDIT DROPZONE PROFILE</button>
-        </form> 
+
+              this.props.history.push(`/dropzones/${id}`);
+            }}
+          >
+            EDIT DROPZONE PROFILE
+          </button>
+        </form> */}
+
+        {/* //////////////////////////// ORIGINAL FORM ABOVE //////////////////////////// */}
       </div>
     );
   }
@@ -126,7 +223,7 @@ const mapState = (state) => {
     dropzones: state.dropzones.allDropzones,
     loads: state.loads,
     singleUser: state.users.singleUser,
-    singleDropzone: state.dropzones.singleDropzone
+    singleDropzone: state.dropzones.singleDropzone,
   };
 };
 
@@ -165,8 +262,8 @@ const mapDispatch = (dispatch) => {
     ////////////////////ABOVE IS FOR LOADS///////////BELOW IS FOR USER/////////////
 
     getSingleUser: (id) => dispatch(Thunk_fetchUser(id)),
-    editUser: (userId, userData) => dispatch(Thunk_updateUser(userId, userData))
-
+    editUser: (userId, userData) =>
+      dispatch(Thunk_updateUser(userId, userData)),
   };
 };
 

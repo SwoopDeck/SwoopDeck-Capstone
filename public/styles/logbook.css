@@ -68,6 +68,7 @@
   display: flex;
   gap: 10px;
   height: 44px;
+  width: 90px;
   justify-content: center;
   padding: 8px 16px;
   border: none;

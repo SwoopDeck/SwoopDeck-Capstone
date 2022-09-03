@@ -7,40 +7,26 @@
 
   {
     "title": "Join A Load",
-    "icon": "",
+    "icon": "bi bi-airplane",
     "path": "/join/dropzone"
   },
 
   {
     "title": "Logbook",
     "icon": "bi-journal-text",
-    "children": [
-      {
-        "title": "View logbook",
-        "path": "/alljumps"
-      },
-      {
-        "title": "Add new jump",
-        "path": "/add"
-      }
-    ]
+    "path": "/alljumps"
   },
 
   {
     "title": "Account",
     "icon": "bi-person-fill",
-    "children": [
-      {
-        "title": "Edit account",
-        "path": "/users/edit"
-      }
-    ]
+    "path": "/users/edit"
   },
 
   {
     "title": "Github",
     "icon": "bi-github",
-    "path": "/#"
+    "path": "https://github.com/SwoopDeck/SwoopDeck-Capstone"
   },
 
   {

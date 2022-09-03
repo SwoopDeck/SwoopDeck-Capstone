@@ -72,6 +72,8 @@ export class CreateLoad extends React.Component {
     //GETTING DATE & TIME INFO
 
     const dropzoneId = this.props.user.dropzoneId;
+console.log(this.props.user)
+
     const load = {
       ...this.state,
       isFull: false,
@@ -81,6 +83,7 @@ export class CreateLoad extends React.Component {
       // slots: this.state.slots,
     };
     this.props.addLoad(load, dropzoneId);
+
   }
 
   clearFields() {
@@ -122,10 +125,10 @@ export class CreateLoad extends React.Component {
           />
           <label htmlFor="status">Status</label>
           <select name="status" onChange={handleChange}>
-            <option name="on time">On Time</option>
-            <option name="delayed">Delayed</option>
-            <option name="closed">Closed</option>
-            <option name="canceled">Canceled</option>
+            <option name="On Time">On Time</option>
+            <option name="Delayed">Delayed</option>
+            <option name="Closed">Closed</option>
+            {/* <option name="canceled">Canceled</option> */}
           </select>
           <button type="button" onClick={createLoad}>
             Submit
@@ -138,7 +141,6 @@ export class CreateLoad extends React.Component {
 const mapState = (state) => {
   return {
     jumpRecords: state.jumpRecords,
-
     user: state.auth,
     dropzones: state.dropzones.allDropzones,
     loads: state.loads,

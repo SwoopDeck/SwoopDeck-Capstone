@@ -6,28 +6,18 @@
   },
   {
     "title": "Dropzones",
-    "icon": "",
+    "icon": "bi bi-bullseye",
     "path": "/dropzones"
   },
   {
     "title": "Users",
-    "icon": "",
+    "icon": "bi bi-people",
     "path": "/users"
   },
 
   {
     "title": "Account",
-    "icon": "bi-person-fill",
-    "children": [
-      {
-        "title": "View account",
-        "path": "/viewAccount"
-      },
-      {
-        "title": "Edit account",
-        "path": "/editAccount"
-      }
-    ]
+    "icon": "bi-person-fill"
   },
 
   {

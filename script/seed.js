@@ -2532,7 +2532,7 @@ async function seed() {
   });
 
   // DUMMY DATA TO ASSIGN A DROPZONE TO A USER
-  const nigelUser = await User.findByPk(6);
+  const nigelUser = await User.findByPk(7);
   const sdsd = await Dropzone.findByPk(3);
 
   await nigelUser.setDropzone(sdsd);

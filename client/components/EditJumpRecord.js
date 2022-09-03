@@ -278,7 +278,7 @@ console.log(jump)
             this.props.history.push('/alljumps')
           }}
         >
-          Edit Logbook
+          Save
         </button>
       </form>
     </div>

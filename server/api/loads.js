@@ -167,6 +167,7 @@ router.post('/:dropzoneId/create', async (req, res, next) => {
     //req.body contains all necessary info to fill data table
     await Load.create(req.body);
 
+    console.log(req.body)
     let loads = await Load.findAll({
       where: {
         dropzoneId: req.params.dropzoneId,

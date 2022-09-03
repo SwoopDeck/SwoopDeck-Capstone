@@ -1,28 +1,28 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import {
   Thunk_fetchAllJumpRecords,
   Thunk_fetchSingleJump,
   Thunk_updateJump,
   Thunk_deleteJump,
   Thunk_createJump,
-} from '../store/jumpRecords';
+} from "../store/jumpRecords";
 import {
   thunk_fetchSingleDropzone,
   thunk_updateDropzone,
   thunk_createDropzone,
   thunk_deleteDropzone,
   thunk_fetchAllDropzones,
-} from '../store/dropzones.js';
+} from "../store/dropzones.js";
 import {
   thunk_fetchAllLoads,
   thunk_createLoad,
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
-} from '../store/loads';
-import { Thunk_fetchUsers, Thunk_updateUser } from '../store/allusers';
+} from "../store/loads";
+import { Thunk_fetchUsers, Thunk_updateUser } from "../store/allusers";
 
 /**
  * REACT COMPONENT
@@ -48,12 +48,9 @@ export class AllUsers extends React.Component {
     const allUsers = this.props.users || [];
 
     return (
-      <div className='flex-right'>
+      <div className="flex-right">
 
-
-
-
-      <div className="table screen">
+        <div className="table screen">
           <div className="frame-529">
             <div className="frame-528">
               <div className="frame-526">
@@ -87,7 +84,6 @@ export class AllUsers extends React.Component {
             </button>
           </div>
 
-          {/* //////////////////////// MANUAL TABLE //////////////////////// */}
 
           <table>
             <thead>
@@ -104,15 +100,13 @@ export class AllUsers extends React.Component {
                 return (
                   <tr key={index}>
                     <td>{user.firstName} {user.lastName}</td>
-                    {/* {user.role === 'Skydiver' ? 
-                    <td className='skydiver-role'>{user.role}</td> :
-                    <td className='dz-role'>{user.role}</td>} */}
+                   
                     <td>{user.role}</td>
                     <td>{user.phoneNumber}</td>
                     <td>{user.email}</td>
                     <td style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
                       <Link to={`/users/${user.id}`} >
-                        {/* <button className='edit-btn'><i className="fa-solid fa-pen-to-square"/></button> */}
+                      
                         <button className="edit-btn" style={{margin: '1rem 1rem'}}><i className="fa-solid fa-eye"/></button>
                         </Link>
                       <button style={{backgroundColor: 'red'}}><i className="fa-solid fa-trash-can"/></button>
@@ -123,11 +117,6 @@ export class AllUsers extends React.Component {
             </tbody>
           </table>
         </div>
-
-
-
-
-
       </div>
     );
   }
@@ -140,7 +129,7 @@ const mapState = (state) => {
     dropzones: state.dropzones.allDropzones,
     loads: state.loads,
     singleUser: state.users.singleUser,
-    singleDropzone: state.dropzones.singleDropzone
+    singleDropzone: state.dropzones.singleDropzone,
   };
 };
 
@@ -176,13 +165,11 @@ const mapDispatch = (dispatch) => {
     getSingleLoad: (dropzoneId, loadId) =>
       dispatch(thunk_fetchSingleLoad(dropzoneId, loadId)), //WORKING//
 
-      /////////ABOVE IS FOR DROPZONE////////BELOW IS FOR ADMIN/////////////////////////////
+    /////////ABOVE IS FOR DROPZONE////////BELOW IS FOR ADMIN/////////////////////////////
 
-      getUsers: () => dispatch(Thunk_fetchUsers()),
-      // editUser: (userId) => dispatch(Thunk_updateUser(userId)),
-      // deleteUser: (userId) => dispatch(Thunk_deleteUser(userId)),
-
-
+    getUsers: () => dispatch(Thunk_fetchUsers()),
+    // editUser: (userId) => dispatch(Thunk_updateUser(userId)),
+    // deleteUser: (userId) => dispatch(Thunk_deleteUser(userId)),
   };
 };
 
