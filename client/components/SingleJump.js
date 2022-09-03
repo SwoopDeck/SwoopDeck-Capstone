@@ -156,11 +156,11 @@ color: '#336dff'}}>Belly</button>
     Back to logbook
   </button>
   </Link>
-  <Link to={`/edit/${singleJump.id}`}  style={{width: '50%'}}>
+  {/* <Link to={`/edit/${singleJump.id}`}  style={{width: '50%'}}>
   <button className="add-jump-btn">
    Edit this Jump
   </button>
-  </Link>
+  </Link> */}
   <Link to={`/alljumps`}  style={{width: '50%'}}>
   <button className="add-jump-btn"  onClick={this.deleteJumpRecord}>
    Delete this Jump

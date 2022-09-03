@@ -125,7 +125,8 @@ class Routes extends Component {
         />
 
         <Route path="/createload" component={CreateLoad} />
-        <Route path="/dropzoneProfile" component={DropzoneProfile} />
+        {/* <Route path="/dropzoneProfile" component={DropzoneProfile} /> */}
+        <Route exact path="/dropzones/:id" component={SingleDropzone} />
         {/* ERROR PAGE ROUTE MUST BE THE LAST ROUTE */}
         <Route path="*" component={ErrorPage} />
       </Switch>

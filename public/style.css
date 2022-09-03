@@ -7,12 +7,14 @@
 @import './styles/logbook.css';
 @import './styles/table.css';
 @import './styles/charts.css';
+@import './styles/account.css';
 
+@import url("https://fonts.googleapis.com/css?family=Manrope:400,700,600");
 
 
 
 body {
-  font-family: sans-serif;
+  font-family: "manrope";
 }
 
 .main {
@@ -34,10 +36,10 @@ nav a {
 }
 
 
-form div {
+/* form div {
   margin: 1em;
   display: inline-block;
-}
+} */
 
 button {
   align-items: center;

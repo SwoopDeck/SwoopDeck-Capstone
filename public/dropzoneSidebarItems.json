@@ -6,7 +6,7 @@
   },
   {
     "title": "Manifest",
-    "icon": "",
+    "icon": "bi bi-airplane",
     "children": [
       {
         "title": "Create load",
@@ -25,16 +25,7 @@
   {
     "title": "Account",
     "icon": "bi-person-fill",
-    "children": [
-      {
-        "title": "View account",
-        "path": "/viewAccount"
-      },
-      {
-        "title": "Edit account",
-        "path": "/editAccount"
-      }
-    ]
+    "path": "/dropzoneprofile"
   },
 
   {

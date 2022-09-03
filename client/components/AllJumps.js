@@ -215,10 +215,13 @@ export class AllJumps extends React.Component {
                         justifyContent: 'center',
                       }}
                     >
+                      <Link to={`/edit/${jump.id}`}>
+                      
                       <button className="edit-btn" title="edit">
                         <i className="fa-solid fa-pen-to-square" />
                       </button>
-                      <Link to={`/jumps/${jump.id}`}>
+                      </Link>
+                      <Link to={`/jumps/${jump.userId}/${jump.id}`}>
                         <button
                           className="edit-btn"
                           title="view"

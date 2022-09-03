@@ -1,44 +1,3 @@
-// import React from 'react';
-// import { useDispatch } from 'react-redux';
-// import { connect } from 'react-redux';
-// import items from '../../public/sidebarItems.json';
-// import SidebarItem from './SidebarItem';
-// import { logout } from '../store';
-// import { Link } from 'react-router-dom';
-
-// export const Sidebar = (props) => {
-//   console.log('sidebar props', props);
-//   const dispatch = useDispatch();
-//   return (
-//     <div className="main">
-//       <div className="sidebar">
-//         <div className="user-avatar"></div>
-//         <div className="user-name">
-//           {props.user.firstName} {props.user.lastName}
-//         </div>
-//         <hr></hr>
-//         {items.map((item, index) => (
-//           <SidebarItem key={index} item={item} />
-//         ))}
-
-//         <i className="bi bi-box-arrow-right">
-//           <button className="logout-btn" onClick={() => dispatch(logout())}>
-//             Logout
-//           </button>
-//         </i>
-//       </div>
-//     </div>
-//   );
-// };
-
-// const mapStateToProps = (state) => ({
-//   user: state.auth,
-// });
-
-// const mapDispatchToProps = {};
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
-
 import React from 'react';
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -74,6 +33,9 @@ import {
 export const Sidebar = (props) => {
   if (props.users.isAdmin) {
     const dispatch = useDispatch();
+
+    
+
     return (
       <div className="main">
         <div className="sidebar">
@@ -102,8 +64,7 @@ export const Sidebar = (props) => {
     return (
       <div className="main">
         <div className="sidebar">
-            {/* <img src='https://media.istockphoto.com/vectors/user-icon-vector-male-person-symbol-profile-circle-avatar-sign-in-vector-id951316156?k=6&m=951316156&s=170667a&w=0&h=Lf8_Zfmf8Sp2K0wrD6AHmpuClZRAofkkEWUCHyP427w='/> */}
-          <div className="user-avatar">
+          <div className="user-avatar img">
           </div>
           <div className="user-name">
             {props.users.firstName} {props.users.lastName}
