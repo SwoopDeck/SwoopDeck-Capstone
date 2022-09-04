@@ -126,6 +126,7 @@
   min-height: 420px;
   padding: 17px 38px;
   width: 799px;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
 }
 
 .overlap-group3-item {
@@ -347,6 +348,7 @@
   flex-direction: column;
   gap: 11px;
   padding: 15px;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
 }
 
 .bottom {
@@ -501,6 +503,7 @@
   position: relative;
   top: -1px;
   width: 801px;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
 }
 
 .overlap-group7 {
