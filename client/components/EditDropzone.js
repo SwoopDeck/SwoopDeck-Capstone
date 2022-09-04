@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from 'react-router'
 import { connect } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import {
@@ -37,6 +38,7 @@ export class EditDropzone extends Component {
 
   componentDidMount() {
     this.props.getSingleDropzone(this.props.match.params.id);
+    this.props.getDropzones() || [];
   }
 
   handleChange(evt) {
@@ -44,6 +46,7 @@ export class EditDropzone extends Component {
       [evt.target.name]: evt.target.value,
     });
   }
+
 
   render() {
     const { id, name, address, phoneNumber } = this.props.singleDropzone;
@@ -63,7 +66,12 @@ export class EditDropzone extends Component {
                   </div>
                 </div>
                 <div className="frame-527">
-                  <button id="cancel-btn">Cancel</button>
+
+                  <button id="cancel-btn"
+                  onClick={() => {
+                    this.props.getDropzones();
+                    this.props.history.push(`/dropzones`)}}>Cancel</button>
+
                   <button className="save-btn"
                   onClick={(evt) => {
                     evt.preventDefault();

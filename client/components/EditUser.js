@@ -73,7 +73,11 @@ export class EditJump extends Component {
                 </div>
               </div>
               <div className="frame-527">
-              <button id="cancel-btn">
+              <button id="cancel-btn"
+              onClick={() => {
+                // this.props.getUsers();
+                this.props.history.push(`/users`);
+              }}>
                   Cancel
                 </button>
                 <button className="save-btn"

@@ -125,9 +125,9 @@ console.log(this.props.user)
           />
           <label htmlFor="status">Status</label>
           <select name="status" onChange={handleChange}>
-            <option name="On Time">On Time</option>
-            <option name="Delayed">Delayed</option>
-            <option name="Closed">Closed</option>
+            <option name="on time">On Time</option>
+            <option name="delayed">Delayed</option>
+            <option name="closed">Closed</option>
             {/* <option name="canceled">Canceled</option> */}
           </select>
           <button type="button" onClick={createLoad}>
