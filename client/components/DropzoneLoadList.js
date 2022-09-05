@@ -140,6 +140,7 @@ export class DropzoneLoadList extends React.Component {
                         className="edit-btn"
                         style={{ margin: "1rem 1rem" }}
                         id={load.id}
+                        title='view details'
                         onClick={this.handleClick}
                       >
                         <i className="fa-solid fa-eye" />
@@ -149,6 +150,7 @@ export class DropzoneLoadList extends React.Component {
                         className="delete-btn"
                         style={{ backgroundColor: "red" }}
                         id={load.id}
+                        title='delete load'
                         onClick={() =>
                           this.removeLoad(this.props.users.dropzoneId, load.id)
                         }
