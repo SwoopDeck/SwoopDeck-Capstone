@@ -265,7 +265,7 @@ function DropzoneDashboard() {
                     </p>
                   </div>
                   <div className="button-primary-with-small-icon-right">
-                    <div className="frame-1">
+                    <div className="frame-10">
                       <div className="button-name valign-text-middle">
                         See All Transactions
                       </div>
