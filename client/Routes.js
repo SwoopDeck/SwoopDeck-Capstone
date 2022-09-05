@@ -32,6 +32,7 @@ import EditJumpRecord from './components/EditJumpRecord';
 import ContactUs from './components/ContactUs';
 import LoadDetailsUser from './components/LoadDetailsUser';
 import AdminDashboard from './components/AdminDashboard';
+import DropzoneDashboard from './components/DropzoneDashboard';
 
 /**
  * COMPONENT
@@ -107,7 +108,8 @@ class Routes extends Component {
       <Switch>
         {/* DROPZONE ONLY ROUTES*/}
         <Route path="/pastloads" component={PastLoads} />
-        <Route exact path="/home" component={Home} />
+        <Route exact path="/" component={DropzoneDashboard} />
+        <Route exact path="/home" component={DropzoneDashboard} />
 
         <Route
           exact

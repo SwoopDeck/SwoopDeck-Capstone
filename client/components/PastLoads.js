@@ -119,6 +119,7 @@ export class PastLoads extends React.Component {
                         className="edit-btn"
                         style={{ margin: "1rem 1rem" }}
                         id={load.id}
+                        title='view details'
                         onClick={this.handleClick}
                       >
                         <i className="fa-solid fa-eye" />
