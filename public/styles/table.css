@@ -34,7 +34,7 @@ tr:hover td {
 th,
 
 td {
-  border-bottom: 0.5px solid #dddd;
+  border-bottom: 0.7px solid #dddd;
   padding: 10px 20px;
   text-align: center;
   transition-duration: 0.1s;

@@ -156,7 +156,9 @@ export class LoadDetailsDZ extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {this.props.jumpRecords.map((user, index) => {
+              {this.props.jumpRecords.length ? 
+              
+              this.props.jumpRecords.map((user, index) => {
                 return (
                   <tr key={index}>
                     <td>{user.firstName} {user.lastName}</td>
@@ -164,7 +166,12 @@ export class LoadDetailsDZ extends React.Component {
                     <td>{user.email}</td>
                   </tr>
                 );
-              })}
+              }) : 
+                <tr>
+                  <td></td>
+                <td>There are currently no passengers on this manifest</td>
+                <td></td>
+                </tr>}
             </tbody>
           </table>
         </div>

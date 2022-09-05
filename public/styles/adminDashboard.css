@@ -23,7 +23,7 @@
 
 .container-screen {
   align-items: flex-start;
-  background-color: #F6F9FF;
+  background-color: #Ffffff;
   border: 1px none;
   display: flex;
   flex-direction: column;
@@ -39,7 +39,7 @@
   align-items: flex-start;
   /* table-layout: auto; */
   align-self: stretch;
-  background-color: #F6F9FF;
+  background-color: #Ffffff;
   border-radius: 4px;
   display: flex;
   flex: 1;

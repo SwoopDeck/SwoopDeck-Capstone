@@ -300,12 +300,12 @@ function DropzoneDashboard() {
                       1,43,382
                     </div>
                   </div>
-                  <div className="overlap-group">
-                    {/* <img
+                  {/* <div className="overlap-group">
+                    <img
                       className="elements-line-gorizontal"
                       src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/6316430df11c17b54f51f346/img/elements---line---gorizontal-7@2x.svg"
-                    /> */}
-                  </div>
+                    />
+                  </div> */}
                 </div>
                 <div className="overlap-group4-item">
                   <div className="flex-row">
@@ -332,12 +332,12 @@ function DropzoneDashboard() {
                       45,211
                     </div>
                   </div>
-                  <div className="overlap-group">
-                    {/* <img
+                  {/* <div className="overlap-group">
+                    <img
                       className="elements-line-gorizontal-2"
                       src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/6316430df11c17b54f51f346/img/elements---line---gorizontal-3@2x.svg"
-                    /> */}
-                  </div>
+                    />
+                  </div> */}
                 </div>
                 <div className="overlap-group4-item">
                   <div className="flex-row">
