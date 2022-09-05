@@ -25,7 +25,7 @@ function DropzoneDashboard() {
                 <div className="text plusjakartasans-bold-eerie-black-16px">
                   Sales Report
                 </div>
-                <div className="overlap-group2">
+                <div className="overlap-20">
                   <div className="sales-report-lines">
                     <img
                       className="line-95"
@@ -53,7 +53,7 @@ function DropzoneDashboard() {
                       className="bg"
                       src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/6316430df11c17b54f51f346/img/bg@1x.svg"
                     />
-                    <div className="flex-row-2">
+                    <div className="flex-row-20">
                       <div className="feb plusjakartasans-medium-trout-13px">
                         Feb
                       </div>
@@ -111,7 +111,7 @@ function DropzoneDashboard() {
                     <div className="ellipse-8-1"></div>
                     <div className="pending">Pending</div>
                   </div>
-                  <div className="x2-1">
+                  <div className="z2-1">
                     <div className="account-882 plusjakartasans-bold-eerie-black-13px">
                       Account&nbsp;&nbsp;****882
                     </div>
@@ -142,7 +142,7 @@ function DropzoneDashboard() {
                       Completed
                     </div>
                   </div>
-                  <div className="x2">
+                  <div className="z2">
                     <p className="visa-card-4831 plusjakartasans-bold-eerie-black-13px">
                       Visa card&nbsp;&nbsp;**** 4831
                     </p>
@@ -171,7 +171,7 @@ function DropzoneDashboard() {
                     <div className="ellipse-8-1"></div>
                     <div className="pending">Pending</div>
                   </div>
-                  <div className="x2-1">
+                  <div className="z2-1">
                     <div className="account-882 plusjakartasans-bold-eerie-black-13px">
                       Account&nbsp;&nbsp;****882
                     </div>
@@ -260,7 +260,7 @@ function DropzoneDashboard() {
                     <div className="transactions plusjakartasans-bold-eerie-black-16px">
                       Transactions
                     </div>
-                    <p className="lorem-ipsum-dolor-si plusjakartasans-normal-sonic-silver-13px">
+                    <p className="lorem-ipsum-dolor-si jakartasans-normal-sonic-silver-13px">
                       Lorem ipsum dolor sit amet, consectetur adipis.
                     </p>
                   </div>
@@ -360,7 +360,7 @@ function DropzoneDashboard() {
                 <div className="recent-customers plusjakartasans-bold-eerie-black-16px">
                   Recent Customers
                 </div>
-                <p className="lorem-ipsum-dolor-sit-ametis plusjakartasans-normal-sonic-silver-13px">
+                <p className="lorem-ipsum-dolor-sit-ametis jakartasans-normal-sonic-silver-13px">
                   Lorem ipsum dolor sit ametis.
                 </p>
                 <div className="customer-1">
@@ -368,7 +368,7 @@ function DropzoneDashboard() {
                     <div className="name-1 plusjakartasans-bold-eerie-black-13px">
                       Jenny Wilson
                     </div>
-                    <div className="examplecom plusjakartasans-normal-sonic-silver-13px">
+                    <div className="examplecom jakartasans-normal-sonic-silver-13px">
                       w.lawson@example.com
                     </div>
                   </div>
@@ -376,17 +376,17 @@ function DropzoneDashboard() {
                     <div className="price-6 plusjakartasans-medium-eerie-black-13px">
                       $11,234
                     </div>
-                    <div className="name-2 plusjakartasans-normal-sonic-silver-13px">
+                    <div className="name-2 jakartasans-normal-sonic-silver-13px">
                       Austin
                     </div>
                   </div>
                 </div>
                 <div className="x3-3">
-                  <div className="title-1-1">
+                  <div className="title-1-10">
                     <div className="name-3 plusjakartasans-bold-eerie-black-13px">
                       Devon Lane
                     </div>
-                    <div className="examplecom plusjakartasans-normal-sonic-silver-13px">
+                    <div className="examplecom jakartasans-normal-sonic-silver-13px">
                       dat.roberts@example.com
                     </div>
                   </div>
@@ -394,17 +394,17 @@ function DropzoneDashboard() {
                     <div className="price-7 plusjakartasans-medium-eerie-black-13px">
                       $11,159
                     </div>
-                    <div className="place-1 plusjakartasans-normal-sonic-silver-13px">
+                    <div className="place-10 jakartasans-normal-sonic-silver-13px">
                       New York
                     </div>
                   </div>
                 </div>
                 <div className="overlap-group6-item">
-                  <div className="title-1-2">
+                  <div className="title-1-20">
                     <div className="name-4 plusjakartasans-bold-eerie-black-13px">
                       Jane Cooper
                     </div>
-                    <div className="examplecom plusjakartasans-normal-sonic-silver-13px">
+                    <div className="examplecom jakartasans-normal-sonic-silver-13px">
                       jgraham@example.com
                     </div>
                   </div>
@@ -412,17 +412,17 @@ function DropzoneDashboard() {
                     <div className="price-8 plusjakartasans-medium-eerie-black-13px">
                       $10,483
                     </div>
-                    <div className="place-2 plusjakartasans-normal-sonic-silver-13px">
+                    <div className="place-20 jakartasans-normal-sonic-silver-13px">
                       Toledo
                     </div>
                   </div>
                 </div>
                 <div className="overlap-group6-item">
-                  <div className="title-1-3">
+                  <div className="title-1-30">
                     <div className="name-5 plusjakartasans-bold-eerie-black-13px">
                       Dianne Russell
                     </div>
-                    <div className="examplecom plusjakartasans-normal-sonic-silver-13px">
+                    <div className="examplecom jakartasans-normal-sonic-silver-13px">
                       curtis.d@example.com
                     </div>
                   </div>
@@ -430,7 +430,7 @@ function DropzoneDashboard() {
                     <div className="price-9 plusjakartasans-medium-eerie-black-13px">
                       $9,084
                     </div>
-                    <div className="place-3 plusjakartasans-normal-sonic-silver-13px">
+                    <div className="place-30 jakartasans-normal-sonic-silver-13px">
                       Naperville
                     </div>
                   </div>
@@ -481,7 +481,7 @@ function DropzoneDashboard() {
                     </div>
                   </div>
                   <div className="growth">
-                    <div className="x36-1">- 14%</div>
+                    <div className="x36-10">- 14%</div>
                     <img
                       className="icon-outlinearrow"
                       src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/6314fda93cda19c4344df2f6/img/icon-outline-arrow-down@2x.svg"

@@ -181,7 +181,7 @@ function AdminDashboard() {
             </div>
             <div className="x2">
               <div className="title-1">
-                <div className="name plusjakartasans-bold-eerie-black-13px">
+                <div className="named plusjakartasans-bold-eerie-black-13px">
                   Brian Lee
                 </div>
                 <div className="examplecom plusjakartasans-normal-sonic-silver-13px">
@@ -194,7 +194,7 @@ function AdminDashboard() {
             </div>
             <div className="overlap-group3-item">
               <div className="title-1-1">
-                <div className="name plusjakartasans-bold-eerie-black-13px">
+                <div className="named plusjakartasans-bold-eerie-black-13px">
                   Christopher Ruiz
                 </div>
                 <div className="examplecom plusjakartasans-normal-sonic-silver-13px">
@@ -207,7 +207,7 @@ function AdminDashboard() {
             </div>
             <div className="overlap-group3-item">
               <div className="title-1-2">
-                <div className="name plusjakartasans-bold-eerie-black-13px">
+                <div className="named plusjakartasans-bold-eerie-black-13px">
                   Cole Berman
                 </div>
                 <div className="examplecom plusjakartasans-normal-sonic-silver-13px">
@@ -220,7 +220,7 @@ function AdminDashboard() {
             </div>
             <div className="x5">
               <div className="title-1-3">
-                <div className="name plusjakartasans-bold-eerie-black-13px">
+                <div className="named plusjakartasans-bold-eerie-black-13px">
                   Chris Tomshack
                 </div>
                 <div className="examplecom plusjakartasans-normal-sonic-silver-13px">
