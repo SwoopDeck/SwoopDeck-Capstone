@@ -86,41 +86,95 @@ export class LoadDetailsDZ extends React.Component {
     });
 
     return (
-      <div>
-        <h2>LOAD ID: {this.props.singleLoad.id}</h2>
-        <br />
-        <h2>LOAD AIRCRAFT: {this.props.singleLoad.aircraft}</h2>
-        <br />
-        <h2>EXPECTED DEPARTURE TIME: {this.props.singleLoad.departureTime}</h2>
-        <br />
-        <h2>LOAD STATUS: {this.props.singleLoad.status}</h2>
-        <br />
-        <h2>JUMPERS</h2>
-        <h2>----------------</h2>
-        <div> {jumpers}</div>
-        <br />
-        <br />
-        <label htmlFor="status">Status</label>
-        <select name="status" onChange={this.handleChange}>
-          <option name="on time">On Time</option>
-          <option name="delayed">Delayed</option>
-          <option name="closed">Closed</option>
+      <div className='flex-right'>
+<div className="single-load-table">
+          <div className="frame-529">
+            <div className="frame-528">
+              <div className="frame-526">
+                <p id="titleLog">Load {this.props.singleLoad.id}</p>
+                <div className="view-all-past-skydiving-jump-logs">
+                  Load Details
+                </div>
+              </div>
+              <div className="frame-527">
+                <Link to="/:dropzoneId/todaysLoads">
+                  <button className="add-btn" style={{ width: "200px" }}>
 
-        </select>
-        <button
-          type="button"
-          onClick={() =>
-            this.changeStatus(
-              { status: this.state.status },
-              this.props.match.params.loadId
-            )
-          }
-        >
-          Update Status
-        </button>
-        <Link to="/:dropzoneId/todaysLoads">
-          <button type="button">Back to Today's Loads</button>
-        </Link>
+                    <div className="button">Back to today's loads</div>
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Aircraft</th>
+                <th>Total Slots</th>
+                <th>Booked Slots </th>
+                <th>Load Status</th>
+              </tr>
+            </thead>
+            <tbody>
+                  <tr key={this.props.singleLoad.id}>
+                    <td>{this.props.singleLoad.date}</td>
+                    <td>{this.props.singleLoad.aircraft}</td>
+                    <td>{this.props.singleLoad.slots}</td>
+                    <td>{this.props.singleLoad.slotsFilled}</td>
+                    <td>{this.props.singleLoad.status}</td>
+                  </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+
+
+
+        <div className="single-load-jumpers-table">
+          <div className="frame-529">
+            <div className="frame-528">
+              <div className="frame-526">
+                <p id="titleLog"></p>
+                <div className="view-all-past-skydiving-jump-logs">
+                  Load Manifest
+                </div>
+              </div>
+              <div className="frame-527">
+              </div>
+            </div>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>License Number</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.props.jumpRecords.length ? 
+              
+              this.props.jumpRecords.map((user, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{user.firstName} {user.lastName}</td>
+                    <td>{user.licenseNumber}</td>
+                    <td>{user.email}</td>
+                  </tr>
+                );
+              }) : 
+                <tr>
+                  <td></td>
+                <td>There are currently no passengers on this manifest</td>
+                <td></td>
+                </tr>}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }

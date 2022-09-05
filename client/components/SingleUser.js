@@ -51,8 +51,183 @@ class SingleUser extends React.Component {
       this.props.singleUser;
 
     return (
-      <div>
-        <div key={id}>
+      <div className='flex-right'>
+
+
+
+
+<div className="basic-info-group">
+          <div className="edit-account-title-container">
+            <div className="frame-528">
+              <div className="frame-526">
+                <p id="titleLog">{firstName} {lastName}</p>
+                <div className="view-all-past-skydiving-jump-logs">
+                  View user details
+                </div>
+              </div>
+              <div className="frame-527">
+              <button id="cancel-btn"
+              onClick={() => {
+                this.props.getDropzones();
+                this.props.history.push(`/users`);
+              }}>
+                  Go back
+                </button>
+                <button className="save-btn"
+                onClick={() => {
+                  this.props.getSingleUser(this.props.match.params.id);
+                  this.props.history.push(`/users/edit/${id}`);
+                    
+                    // this.props.history.push(`/users/${id}`);
+                  }
+                }>
+                  Edit
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="rectangle-21"></div>
+          <div className="flex-row-1">
+            <div className="flex-col-left">
+              <div className="first-name manrope-normal-shark-14px">
+                FIRST NAME
+              </div>
+
+              <input
+              className="search-bar border-1px-mystic search"
+              type="text"
+            name="firstName"
+            placeholder={firstName}
+            // value={this.state.firstName}
+            onChange={this.handleChange}
+              />
+
+              <div className="frame-1">
+                <div className="frame-2">
+                  <div className="email manrope-normal-shark-14px">EMAIL</div>
+                </div>
+              </div>
+              <input
+              className="search-bar border-1px-mystic search"
+              type="text"
+            name="email"
+            placeholder={email}
+            // value={this.state.email}
+            onChange={this.handleChange}
+            />
+              <div className="frame-2-1">
+                <div className="frame-2">
+                  <div className="emergency-contact-full-name manrope-normal-shark-14px">
+                    EMERGENCY CONTACT (FULL NAME)
+                  </div>
+                </div>
+              </div>
+              <input
+              className="search-bar border-1px-mystic search"
+              type="text"
+            name="emergencyContact"
+            placeholder={emergencyContact}
+            // value={this.state.emergencyContact}
+            onChange={this.handleChange}
+            />
+            </div>
+
+
+
+
+            <div className="flex-col-right">
+              <div className="first-name manrope-normal-shark-14px">
+                LAST NAME
+              </div>
+
+              <input
+              className="search-bar border-1px-mystic search"
+              type="text"
+            name="lastName"
+            placeholder={lastName}
+            // value={this.state.lastName}
+            onChange={this.handleChange}
+            />
+
+              <div className="frame-1">
+                <div className="frame-2">
+                  <div className="email manrope-normal-shark-14px">ADDRESS</div>
+                </div>
+              </div>
+              <input
+              className="search-bar border-1px-mystic search"
+              type="text"
+            name="address"
+            placeholder={address}
+            // value={this.state.address}
+            onChange={this.handleChange}
+            />
+              <div className="frame-2-1">
+                <div className="frame-2">
+                  <div className="emergency-contact-full-name manrope-normal-shark-14px">
+                    EMERGENCY PHONE NUMBER
+                  </div>
+                </div>
+              </div>
+              <input
+              className="search-bar border-1px-mystic search"
+              type="text"
+            name="emergencyPhoneNumber"
+            placeholder={emergencyPhoneNumber}
+            // value={this.state.emergencyPhoneNumber}
+            onChange={this.handleChange}
+            />
+            </div>
+
+          </div>
+          <div className="overlap-group2">
+            <div className="uspa-membership manrope-bold-shark-18px">
+              USPA MEMBERSHIP
+            </div>
+            <div className="rectangle-23"></div>
+          </div>
+          <div className="flex-row-2">
+            <div className="flex-col-left">
+              <div className="first-name manrope-normal-shark-14px">
+                LICENSE NUMBER
+              </div>
+
+              <input
+              className="search-bar border-1px-mystic search"
+              type="text"
+            name="licenseNumber"
+            placeholder={licenseNumber}
+            // value={this.state.licenseNumber}
+            onChange={this.handleChange}
+            />
+
+              
+            </div>
+
+
+
+
+            <div className="flex-col-right">
+              <div className="first-name manrope-normal-shark-14px">
+                RATINGS
+              </div>
+
+              <input
+              className="search-bar border-1px-mystic search"
+              type="search"
+              placeholder="this field needs to be added to the database."/>
+
+              
+            </div>
+
+          </div>
+        </div>
+
+
+
+      {/* //////////////////////////// ORIGINAL FORM BELOW //////////////////////////// */}
+
+        {/* <div key={id}>
           <h2>
             {firstName} {lastName}
           </h2>
@@ -90,7 +265,9 @@ class SingleUser extends React.Component {
           </button>
           <hr />
           <hr />
-        </div>
+        </div> */}
+
+        {/* //////////////////////////// ORIGINAL FORM ABOVE //////////////////////////// */}
       </div>
     );
   }

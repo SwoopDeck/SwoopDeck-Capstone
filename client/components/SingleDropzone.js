@@ -31,6 +31,15 @@ import { Thunk_fetchUser } from '../store/allusers';
  * REACT COMPONENT
  */
 class SingleUser extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      address: "",
+      phoneNumber: "",
+    };
+  }
+  
   componentDidMount() {
     this.props.getSingleDropzone(this.props.match.params.id);
     // this.props.getDropzones();
@@ -40,8 +49,99 @@ class SingleUser extends React.Component {
     const { id, name, address, phoneNumber } = this.props.singleDropzone;
     // console.log('PROPS',this.props)
     return (
-      <div>
-        <div key={id}>
+      <div className='flex-right'>
+        
+        
+        
+        
+        
+        <div className="basic-info-group">
+            <div className="edit-account-title-container">
+              <div className="frame-528">
+                <div className="frame-526">
+                  <p id="titleLog">{name}</p>
+                  <div className="view-all-past-skydiving-jump-logs">
+                    View dropzone details
+                  </div>
+                </div>
+                <div className="frame-527">
+                  <button id="cancel-btn"
+                  onClick={() => {
+                    this.props.getDropzones();
+                    this.props.history.push(`/dropzones`);
+                  }}>Go back</button>
+                  <button className="save-btn"
+                  onClick={() => {
+                    this.props.getSingleDropzone(this.props.match.params.id);
+                    this.props.history.push(`/dropzones/edit/${id}`);
+                  }}>Edit</button>
+                </div>
+              </div>
+            </div>
+            <div className="rectangle-21"></div>
+            <div className="flex-row-1">
+              <div className="flex-col-left">
+                <div className="first-name manrope-normal-shark-14px">NAME</div>
+
+                <input
+                  className="search-bar border-1px-mystic search"
+                  type="text"
+                  name="name"
+                  placeholder={name}
+                  value={this.state.name}
+                  onChange={this.handleChange}
+                />
+
+                <div className="frame-1">
+                  <div className="frame-2">
+                    <div className="email manrope-normal-shark-14px">
+                      ADDRESS
+                    </div>
+                  </div>
+                </div>
+                <input
+                  className="search-bar border-1px-mystic search"
+                  type="text"
+                  name="address"
+                  placeholder={address}
+                  value={this.state.address}
+                  onChange={this.handleChange}
+                />
+                <input
+                  className="search-bar border-1px-mystic search"
+                  style={{margin: '1rem 0'}}
+                  type="text"
+                  placeholder="State"
+                />
+                <input
+                  className="search-bar border-1px-mystic search"
+                  type="text"
+                  placeholder="Zip Code"
+                />
+              </div>
+
+              <div className="flex-col-right">
+                <div className="first-name manrope-normal-shark-14px">
+                  PHONE NUMBER
+                </div>
+
+                <input
+                  className="search-bar border-1px-mystic search"
+                  type="text"
+                  name="phoneNumber"
+                  placeholder={phoneNumber}
+                  value={this.state.phoneNumber}
+                  onChange={this.handleChange}
+                />
+
+              </div>
+            </div>
+          </div>
+        
+        
+        {/* //////////////////////////// ORIGINAL FORM BELOW //////////////////////////// */}
+        
+        {/* <div key={id}>
           <h2>{name}</h2>
           <p>{address} </p>
           <p>{phoneNumber} </p>
@@ -74,7 +174,9 @@ class SingleUser extends React.Component {
           </button>
           <hr />
           <hr />
-        </div>
+        </div> */}
+
+        {/* //////////////////////////// ORIGINAL FORM ABOVE //////////////////////////// */}
       </div>
     );
   }

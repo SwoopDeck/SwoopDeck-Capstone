@@ -109,7 +109,13 @@ export class AllUsers extends React.Component {
                       
                         <button className="edit-btn" style={{margin: '1rem 1rem'}}><i className="fa-solid fa-eye"/></button>
                         </Link>
-                      <button style={{backgroundColor: 'red'}}><i className="fa-solid fa-trash-can"/></button>
+                      <button 
+                      style={{backgroundColor: 'red'}}
+                      // onClick={() => {
+                      //   this.props.deleteUser(this.props.match.params.id);
+                      //   this.props.history.push(`/users`);
+                      // }}
+                      ><i className="fa-solid fa-trash-can"/></button>
                     </td>
                   </tr>
                 );

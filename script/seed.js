@@ -1360,7 +1360,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load2 = await Load.create({
@@ -1370,7 +1370,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load3 = await Load.create({
@@ -1380,7 +1380,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
   const load4 = await Load.create({
@@ -1390,7 +1390,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load5 = await Load.create({
@@ -1400,7 +1400,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
 
@@ -1411,7 +1411,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load7 = await Load.create({
@@ -1421,7 +1421,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load8 = await Load.create({
@@ -1431,7 +1431,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
   const load9 = await Load.create({
@@ -1441,7 +1441,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load10 = await Load.create({
@@ -1451,7 +1451,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
 
@@ -1462,7 +1462,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load12 = await Load.create({
@@ -1472,7 +1472,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load13 = await Load.create({
@@ -1482,7 +1482,7 @@ async function seed() {
     slots: 16,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
   const load14 = await Load.create({
@@ -1492,7 +1492,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load15 = await Load.create({
@@ -1502,7 +1502,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
 
@@ -1513,7 +1513,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load17 = await Load.create({
@@ -1523,7 +1523,7 @@ async function seed() {
     slots: 11,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load18 = await Load.create({
@@ -1533,7 +1533,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
   const load19 = await Load.create({
@@ -1543,7 +1543,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load20 = await Load.create({
@@ -1553,7 +1553,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
 
@@ -1593,7 +1593,7 @@ async function seed() {
     slots: 16,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load22 = await Load.create({
@@ -1603,7 +1603,7 @@ async function seed() {
     slots: 16,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load23 = await Load.create({
@@ -1613,7 +1613,7 @@ async function seed() {
     slots: 16,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
   const load24 = await Load.create({
@@ -1623,7 +1623,7 @@ async function seed() {
     slots: 16,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load25 = await Load.create({
@@ -1633,7 +1633,7 @@ async function seed() {
     slots: 16,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
 
@@ -1644,7 +1644,7 @@ async function seed() {
     slots: 16,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load27 = await Load.create({
@@ -1654,7 +1654,7 @@ async function seed() {
     slots: 16,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load28 = await Load.create({
@@ -1664,7 +1664,7 @@ async function seed() {
     slots: 16,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
   const load29 = await Load.create({
@@ -1674,7 +1674,7 @@ async function seed() {
     slots: 16,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load30 = await Load.create({
@@ -1684,7 +1684,7 @@ async function seed() {
     slots: 16,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
 
@@ -1695,7 +1695,7 @@ async function seed() {
     slots: 16,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load32 = await Load.create({
@@ -1705,7 +1705,7 @@ async function seed() {
     slots: 16,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load33 = await Load.create({
@@ -1715,7 +1715,7 @@ async function seed() {
     slots: 16,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
   const load34 = await Load.create({
@@ -1725,7 +1725,7 @@ async function seed() {
     slots: 16,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load35 = await Load.create({
@@ -1735,7 +1735,7 @@ async function seed() {
     slots: 16,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
 
@@ -1746,7 +1746,7 @@ async function seed() {
     slots: 16,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load37 = await Load.create({
@@ -1756,7 +1756,7 @@ async function seed() {
     slots: 16,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load38 = await Load.create({
@@ -1766,7 +1766,7 @@ async function seed() {
     slots: 16,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
   const load39 = await Load.create({
@@ -1776,7 +1776,7 @@ async function seed() {
     slots: 16,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load40 = await Load.create({
@@ -1786,7 +1786,7 @@ async function seed() {
     slots: 16,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
 
@@ -1826,7 +1826,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load42 = await Load.create({
@@ -1836,7 +1836,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load43 = await Load.create({
@@ -1846,7 +1846,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
   const load44 = await Load.create({
@@ -1856,7 +1856,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load45 = await Load.create({
@@ -1866,7 +1866,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
 
@@ -1877,7 +1877,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load47 = await Load.create({
@@ -1887,7 +1887,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load48 = await Load.create({
@@ -1897,7 +1897,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
   const load49 = await Load.create({
@@ -1907,7 +1907,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load50 = await Load.create({
@@ -1917,7 +1917,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
 
@@ -1928,7 +1928,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load52 = await Load.create({
@@ -1938,7 +1938,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load53 = await Load.create({
@@ -1948,7 +1948,7 @@ async function seed() {
     slots: 16,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
   const load54 = await Load.create({
@@ -1958,7 +1958,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load55 = await Load.create({
@@ -1968,7 +1968,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
 
@@ -1979,7 +1979,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load57 = await Load.create({
@@ -1989,7 +1989,7 @@ async function seed() {
     slots: 11,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load58 = await Load.create({
@@ -1999,7 +1999,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
   const load59 = await Load.create({
@@ -2009,7 +2009,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load60 = await Load.create({
@@ -2019,7 +2019,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
 
@@ -2058,7 +2058,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load62 = await Load.create({
@@ -2068,7 +2068,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load63 = await Load.create({
@@ -2078,7 +2078,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
   const load64 = await Load.create({
@@ -2088,7 +2088,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load65 = await Load.create({
@@ -2098,7 +2098,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
 
@@ -2109,7 +2109,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load67 = await Load.create({
@@ -2119,7 +2119,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load68 = await Load.create({
@@ -2129,7 +2129,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
   const load69 = await Load.create({
@@ -2139,7 +2139,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load70 = await Load.create({
@@ -2149,7 +2149,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
 
@@ -2160,7 +2160,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load72 = await Load.create({
@@ -2170,7 +2170,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load73 = await Load.create({
@@ -2180,7 +2180,7 @@ async function seed() {
     slots: 16,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
   const load74 = await Load.create({
@@ -2190,7 +2190,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load75 = await Load.create({
@@ -2200,7 +2200,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
 
@@ -2211,7 +2211,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load77 = await Load.create({
@@ -2221,7 +2221,7 @@ async function seed() {
     slots: 11,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load78 = await Load.create({
@@ -2231,7 +2231,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
   const load79 = await Load.create({
@@ -2241,7 +2241,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load80 = await Load.create({
@@ -2251,7 +2251,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
 
@@ -2290,7 +2290,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load82 = await Load.create({
@@ -2300,7 +2300,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load83 = await Load.create({
@@ -2310,7 +2310,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
   const load84 = await Load.create({
@@ -2320,7 +2320,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load85 = await Load.create({
@@ -2330,7 +2330,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
 
@@ -2341,7 +2341,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load87 = await Load.create({
@@ -2351,7 +2351,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load88 = await Load.create({
@@ -2361,7 +2361,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
   const load89 = await Load.create({
@@ -2371,7 +2371,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load90 = await Load.create({
@@ -2381,7 +2381,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
 
@@ -2392,7 +2392,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load92 = await Load.create({
@@ -2402,7 +2402,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load93 = await Load.create({
@@ -2412,7 +2412,7 @@ async function seed() {
     slots: 16,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
   const load94 = await Load.create({
@@ -2422,7 +2422,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load95 = await Load.create({
@@ -2432,7 +2432,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
 
@@ -2443,7 +2443,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load97 = await Load.create({
@@ -2453,7 +2453,7 @@ async function seed() {
     slots: 11,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load98 = await Load.create({
@@ -2463,7 +2463,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
   const load99 = await Load.create({
@@ -2473,7 +2473,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
   });
 
   const load100 = await Load.create({
@@ -2483,7 +2483,7 @@ async function seed() {
     slots: 12,
     slotsFilled: 0,
     isFull: false,
-    status: 'On Time',
+    status: 'on time',
     dropzoneId: 2,
   });
 

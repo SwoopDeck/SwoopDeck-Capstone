@@ -31,6 +31,8 @@ import Cart from './components/stripe/Cart';
 import EditJumpRecord from './components/EditJumpRecord';
 import ContactUs from './components/ContactUs';
 import LoadDetailsUser from './components/LoadDetailsUser';
+import AdminDashboard from './components/AdminDashboard';
+import DropzoneDashboard from './components/DropzoneDashboard';
 
 /**
  * COMPONENT
@@ -48,8 +50,8 @@ class Routes extends Component {
         {/* Routes if logged in and Admin */}
         <Route exact path="/users" component={AllUsers} />
         <Route exact path="/dropzones" component={AllDropzones} />
-        <Route exact path="/" component={Home} />
-        <Route exact path="/home" component={Home} />
+        <Route exact path="/" component={AdminDashboard} />
+        <Route path="/home" component={AdminDashboard} />
         {/* <Redirect to="/home" /> */}
         {/* <Route exact path='/login' component={ Login } /> */}
         <Route path="/alljumps" component={AllJumps} />
@@ -106,7 +108,8 @@ class Routes extends Component {
       <Switch>
         {/* DROPZONE ONLY ROUTES*/}
         <Route path="/pastloads" component={PastLoads} />
-        <Route exact path="/home" component={Home} />
+        <Route exact path="/" component={DropzoneDashboard} />
+        <Route exact path="/home" component={DropzoneDashboard} />
 
         <Route
           exact
