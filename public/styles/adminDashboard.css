@@ -276,7 +276,7 @@
 }
 
 .see-all-customers {
-  color: #141418;
+  color: #202124;
   font-family: var(--font-family-plus_jakarta_sans);
   font-size: var(--font-size-xxs);
   font-weight: 700;
@@ -287,7 +287,13 @@
   text-align: right;
   white-space: nowrap;
   width: 140px;
+  transition-duration: .2s;
 }
+
+.see-all-customers:hover {
+  font-size: 11.2px;
+}
+
 
 .recently-created-accounts {
   align-self: flex-start;
@@ -330,14 +336,16 @@
 
 .stats-card-1 {
   align-items: flex-start;
-  background-color: var(--white);
+  /* background-color: var(--white); */
   /* border: 1px solid; */
-  border-color: var(--mercury);
+  /* border-color: var(--mercury); */
   border-radius: 10px;
   display: flex;
   height: 91px;
   min-width: 284px;
   padding: 0 2px;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+
 }
 
 .card-1 {
@@ -348,7 +356,7 @@
   flex-direction: column;
   gap: 11px;
   padding: 15px;
-  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+  /* box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px; */
 }
 
 .bottom {
@@ -437,13 +445,15 @@
   align-items: flex-start;
   background-color: var(--white);
   /* border: 1px solid; */
-  border-color: var(--mercury);
+  /* border-color: var(--mercury); */
   border-radius: 10px;
   display: flex;
   height: 91px;
   margin-left: 25px;
   min-width: 284px;
   padding: 0 2px;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+
 }
 
 .x36 {
