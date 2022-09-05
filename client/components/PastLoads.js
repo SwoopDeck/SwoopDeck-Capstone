@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   Thunk_fetchAllJumpRecords,
@@ -61,8 +62,97 @@ export class PastLoads extends React.Component {
    
     const todaysLoads = this.props.loads
     return (
-      <div>
-        <h2>Past Loads:</h2>
+      <div className='flex-right'>
+
+
+
+
+<div className="table screen">
+          <div className="frame-529">
+            <div className="frame-528">
+              <div className="frame-526">
+                <p id="titleLog">Past Loads</p>
+                <div className="view-all-past-skydiving-jump-logs">
+                  View all previous loads
+                </div>
+              </div>
+              <div className="frame-527">
+                  <Link to='/createload'>
+                <button className="add-btn"
+                style={{width: '155px'}}>
+                  <img
+                    className="icon"
+                    src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e84f46d0125081c2cb8ad/img/-icon@2x.svg"
+                  />
+
+                  <div className="button">Create Load</div>
+                </button>
+                  </Link>
+              </div>
+            </div>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Aircraft</th>
+                <th>Available Slots</th>
+                <th>Total Slots</th>
+                <th>Booked Slots </th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {todaysLoads.map((load, index) => {
+                let availableSlots = load.slots - load.slotsFilled;
+                return (
+                  <tr key={index}>
+                    <td>{load.date}</td>
+                    <td>{load.aircraft}</td>
+                    <td>{availableSlots}</td>
+                    <td>{load.slots}</td>
+                    <td>{load.slotsFilled}</td>
+                    <td
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "center",
+                      }}
+                    >
+                      {/* <button className='edit-btn'><i className="fa-solid fa-pen-to-square"/></button> */}
+                      <button
+                        className="edit-btn"
+                        style={{ margin: "1rem 1rem" }}
+                        id={load.id}
+                        onClick={this.handleClick}
+                      >
+                        <i className="fa-solid fa-eye" />
+                      </button>
+
+                      {/* <button
+                        className="delete-btn"
+                        style={{ backgroundColor: "red" }}
+                        id={load.id}
+                        onClick={() =>
+                          this.removeLoad(this.props.users.dropzoneId, load.id)
+                        }
+                      >
+                        <i className="fa-solid fa-trash-can" />
+                      </button> */}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+
+
+
+
+
+        {/* <h2>Past Loads:</h2>
         {todaysLoads.map((load) => (
           <div key={load.id}>
             <p>Date: {load.date}</p>
@@ -76,7 +166,7 @@ export class PastLoads extends React.Component {
              Remove Load
             </button>
           </div>
-        ))}
+        ))} */}
       </div>
     );
   }

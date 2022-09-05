@@ -90,7 +90,7 @@ export class DropzoneLoadList extends React.Component {
               <div className="frame-526">
                 <p id="titleLog">Today's Loads</p>
                 <div className="view-all-past-skydiving-jump-logs">
-                  {`${todaysDate}`}
+                  View loads for {`${todaysDate}`}
                 </div>
               </div>
               <div className="frame-527">

@@ -106,7 +106,7 @@ export class CreateLoad extends React.Component {
                 <div className="frame-526">
                   <p id="titleLog">Create A Load</p>
                   <div className="view-all-past-skydiving-jump-logs">
-                    establish load details below
+                    Establish load details below
                   </div>
                 </div>
                 <div className="frame-527">
