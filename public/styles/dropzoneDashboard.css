@@ -396,7 +396,7 @@
   min-width: 798px;
   padding: 19px 25px;
   position: absolute;
-  top: 249px;
+  top: 78px;
 }
 
 .netflix {
@@ -601,7 +601,7 @@
   min-width: 798px;
   padding: 19px 25px;
   position: absolute;
-  top: 334px;
+  top: 250px;
 }
 
 .amazon-prime {
@@ -703,7 +703,7 @@
   width: 8px;
 }
 
-.overlap-group1 {
+.overlap-group10 {
   align-items: flex-start;
   background-color: var(--white);
   border: 1px solid;
@@ -733,6 +733,10 @@
   position: absolute;
   top: 35px;
   width: 170px;
+
+  margin-left: 1rem;
+  margin-top: 5rem;
+
 }
 
 .name {
@@ -750,10 +754,10 @@
 }
 
 .price-1 {
-  left: 60px;
+  left: 50px;
   letter-spacing: 0;
   line-height: 22px;
-  position: absolute;
+  /* position: absolute; */
   text-align: center;
   top: 26px;
   white-space: nowrap;
@@ -765,17 +769,21 @@
   position: absolute;
   top: 117px;
   width: 1px;
+  margin-left: 1rem;
+    margin-top: 5rem;
 }
 
-.graph {
+.graph1 {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
   left: 0;
-  min-height: 229px;
+  /* min-height: 229px; */
   position: absolute;
   top: 0;
   width: 772px;
+  margin-left: 1rem;
+    margin-top: 5rem;
 }
 
 .flex-row-20 {
@@ -787,7 +795,7 @@
   min-width: 741px;
 }
 
-.plusjakartasans-medium-trout-13px {
+.plusjakartasans-medium-trout-13px2 {
   color: var(--trout);
   font-family: var(--font-family-plus_jakarta_sans);
   font-size: var(--font-size-xxs2);
@@ -795,7 +803,11 @@
   font-weight: 500;
 }
 
-.flex-row-item {
+.x2-2 {
+margin-left: 5.5rem;
+}
+
+.flex-row-item-15 {
   letter-spacing: 0;
   line-height: 21px;
   margin-left: 42px;
@@ -805,7 +817,7 @@
   white-space: nowrap;
 }
 
-.flex-row-item-2 {
+.flex-row-item-20 {
   letter-spacing: 0;
   line-height: 21px;
   margin-left: 42px;
@@ -815,7 +827,7 @@
   white-space: nowrap;
 }
 
-.flex-row-item-1 {
+.flex-row-item-10 {
   letter-spacing: 0;
   line-height: 21px;
   margin-left: 42px;
@@ -863,7 +875,7 @@
   white-space: nowrap;
 }
 
-.bg {
+.bg1 {
   height: 189px;
   width: 748px;
 }
@@ -874,9 +886,11 @@
   flex-direction: column;
   left: 0;
   min-height: 160px;
-  position: absolute;
+  position: relative;
   top: 30px;
   width: 748px;
+  margin-left: 1rem;
+  margin-top: 2rem;
 }
 
 .line-95 {
@@ -891,7 +905,7 @@
   width: 748px;
 }
 
-.ellipse-11 {
+.ellipse-21 {
   background-color: var(--ocean-blue-pearl);
   border: 2px solid;
   border-color: var(--white);
@@ -901,6 +915,8 @@
   position: absolute;
   top: 105px;
   width: 14px;
+  margin-left: 1rem;
+    margin-top: 5rem;
 }
 
 .text {
@@ -1070,7 +1086,7 @@
   width: 185px;
 }
 
-.name-1 {
+.name-31 {
   letter-spacing: 0;
   line-height: 22px;
   min-height: 22px;
@@ -1329,7 +1345,7 @@
   width: 59px;
 }
 
-.title-1 {
+.title-111 {
   letter-spacing: 0;
   line-height: 21px;
   min-height: 21px;

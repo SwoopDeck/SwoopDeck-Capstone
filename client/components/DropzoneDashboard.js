@@ -21,7 +21,7 @@ function DropzoneDashboard() {
         <div className="dz-body">
           <div className="flex-row-10">
             <div className="overlap-group-container">
-              <div className="overlap-group1">
+              <div className="overlap-group10">
                 <div className="text plusjakartasans-bold-eerie-black-16px">
                   Sales Report
                 </div>
@@ -48,46 +48,46 @@ function DropzoneDashboard() {
                       src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/6316430df11c17b54f51f346/img/line-91@1x.svg"
                     />
                   </div>
-                  <div className="graph">
+                  <div className="graph1">
                     <img
-                      className="bg"
+                      className="bg1"
                       src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/6316430df11c17b54f51f346/img/bg@1x.svg"
                     />
                     <div className="flex-row-20">
-                      <div className="feb plusjakartasans-medium-trout-13px">
+                      <div className="feb plusjakartasans-medium-trout-13px2">
                         Feb
                       </div>
-                      <div className="place plusjakartasans-medium-trout-13px">
+                      <div className="place plusjakartasans-medium-trout-13px2">
                         Mar
                       </div>
-                      <div className="apr plusjakartasans-medium-trout-13px">
+                      <div className="apr plusjakartasans-medium-trout-13px2">
                         Apr
                       </div>
-                      <div className="flex-row-item plusjakartasans-medium-trout-13px">
+                      <div className="flex-row-item plusjakartasans-medium-trout-13px2">
                         May
                       </div>
-                      <div className="flex-row-item-1 plusjakartasans-medium-trout-13px">
+                      <div className="flex-row-item-10 plusjakartasans-medium-trout-13px2">
                         Jun
                       </div>
-                      <div className="jul plusjakartasans-medium-trout-13px">
+                      <div className="jul plusjakartasans-medium-trout-13px2">
                         Jul
                       </div>
-                      <div className="flex-row-item-2 plusjakartasans-medium-trout-13px">
+                      <div className="flex-row-item-20 plusjakartasans-medium-trout-13px2">
                         Aug
                       </div>
-                      <div className="flex-row-item plusjakartasans-medium-trout-13px">
+                      <div className="flex-row-item-20 plusjakartasans-medium-trout-13px2">
                         Sep
                       </div>
-                      <div className="flex-row-item-2 plusjakartasans-medium-trout-13px">
+                      <div className="flex-row-item-20 plusjakartasans-medium-trout-13px2">
                         Oct
                       </div>
-                      <div className="flex-row-item-2 plusjakartasans-medium-trout-13px">
+                      <div className="flex-row-item-20 plusjakartasans-medium-trout-13px2">
                         Nov
                       </div>
-                      <div className="flex-row-item plusjakartasans-medium-trout-13px">
+                      <div className="flex-row-item plusjakartasans-medium-trout-13px2">
                         Dec
                       </div>
-                      <div className="flex-row-item-1 plusjakartasans-medium-trout-13px">
+                      <div className="flex-row-item-15 plusjakartasans-medium-trout-13px2">
                         Jan
                       </div>
                     </div>
@@ -96,7 +96,7 @@ function DropzoneDashboard() {
                     className="sales-report-y-axis-line"
                     src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/6316430df11c17b54f51f346/img/sales-report-y-axis-line@2x.svg"
                   />
-                  <div className="ellipse-11"></div>
+                  <div className="ellipse-21"></div>
                   <div className="overlap-group-1">
                     <div className="price-1 plusjakartasans-bold-eerie-black-13px">
                       $45,591
@@ -301,15 +301,15 @@ function DropzoneDashboard() {
                     </div>
                   </div>
                   <div className="overlap-group">
-                    <img
+                    {/* <img
                       className="elements-line-gorizontal"
                       src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/6316430df11c17b54f51f346/img/elements---line---gorizontal-7@2x.svg"
-                    />
+                    /> */}
                   </div>
                 </div>
                 <div className="overlap-group4-item">
                   <div className="flex-row">
-                    <div className="title-1 plusjakartasans-medium-eerie-black-13px">
+                    <div className="title-111 plusjakartasans-medium-eerie-black-13px">
                       Referral
                     </div>
                     <div className="digits-1 plusjakartasans-medium-eerie-black-13px">
@@ -317,10 +317,10 @@ function DropzoneDashboard() {
                     </div>
                   </div>
                   <div className="overlap-group2-1">
-                    <img
+                    {/* <img
                       className="elements-line-gorizontal-1"
                       src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/6316430df11c17b54f51f346/img/elements---line---gorizontal-5@2x.svg"
-                    />
+                    /> */}
                   </div>
                 </div>
                 <div className="overlap-group4-item">
@@ -333,10 +333,10 @@ function DropzoneDashboard() {
                     </div>
                   </div>
                   <div className="overlap-group">
-                    <img
+                    {/* <img
                       className="elements-line-gorizontal-2"
                       src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/6316430df11c17b54f51f346/img/elements---line---gorizontal-3@2x.svg"
-                    />
+                    /> */}
                   </div>
                 </div>
                 <div className="overlap-group4-item">
@@ -349,10 +349,10 @@ function DropzoneDashboard() {
                     </div>
                   </div>
                   <div className="overlap-group">
-                    <img
+                    {/* <img
                       className="elements-line-gorizontal-3"
                       src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/6316430df11c17b54f51f346/img/elements---line---gorizontal-1@2x.svg"
-                    />
+                    /> */}
                   </div>
                 </div>
               </div>
@@ -365,7 +365,7 @@ function DropzoneDashboard() {
                 </p>
                 <div className="customer-1">
                   <div className="customer-name">
-                    <div className="name-1 plusjakartasans-bold-eerie-black-13px">
+                    <div className="name-31 plusjakartasans-bold-eerie-black-13px">
                       Jenny Wilson
                     </div>
                     <div className="examplecom jakartasans-normal-sonic-silver-13px">
