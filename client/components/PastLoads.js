@@ -62,7 +62,7 @@ export class PastLoads extends React.Component {
     const todaysLoads = this.props.loads
     return (
       <div>
-        <h2>Today's Loads:</h2>
+        <h2>Past Loads:</h2>
         {todaysLoads.map((load) => (
           <div key={load.id}>
             <p>Date: {load.date}</p>

@@ -118,7 +118,12 @@ export class AllDropzones extends React.Component {
                         {/* <button className='edit-btn'><i className="fa-solid fa-pen-to-square"/></button> */}
                         <button className="edit-btn" style={{margin: '1rem 1rem'}}><i className="fa-solid fa-eye"/></button>
                         </Link>
-                      <button className='delete-btn' style={{backgroundColor: 'red'}}><i className="fa-solid fa-trash-can"/></button>
+                      <button className='delete-btn'
+                      style={{backgroundColor: 'red'}}
+                      // onClick={() => {
+                      //   this.props.deleteDropzone(id);
+                      // }}
+                      ><i className="fa-solid fa-trash-can"/></button>
                     </td>
                   </tr>
                 );

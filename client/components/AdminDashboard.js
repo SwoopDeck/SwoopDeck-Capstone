@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+// Animated-number-react (https://codesandbox.io/s/1z7nw5rnp3?file=/src/index.js:421-476) --> can be used for animating the numbers upon initial page rendering //
 
 function AdminDashboard() {
   return (

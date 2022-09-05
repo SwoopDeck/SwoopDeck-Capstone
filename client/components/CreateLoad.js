@@ -1,19 +1,19 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 import {
   Thunk_fetchAllJumpRecords,
   Thunk_fetchSingleJump,
   Thunk_updateJump,
   Thunk_deleteJump,
   Thunk_createJump,
-} from '../store/jumpRecords';
+} from "../store/jumpRecords";
 import {
   thunk_fetchSingleDropzone,
   thunk_updateDropzone,
   thunk_createDropzone,
   thunk_deleteDropzone,
   thunk_fetchAllDropzones,
-} from '../store/dropzones.js';
+} from "../store/dropzones.js";
 import {
   thunk_fetchAllLoads,
   thunk_createLoad,
@@ -21,8 +21,8 @@ import {
   thunk_fetchSingleLoad,
   thunk_updateLoad,
   addLoad,
-} from '../store/loads';
-import { Thunk_fetchUsers, Thunk_fetchUser } from '../store/allusers';
+} from "../store/loads";
+import { Thunk_fetchUsers, Thunk_fetchUser } from "../store/allusers";
 /**
  * REACT COMPONENT
  */
@@ -31,10 +31,10 @@ export class CreateLoad extends React.Component {
     super(props);
 
     this.state = {
-      aircraft: '',
-      slots: '0',
-      status: 'on time',
-      departureTime: '0',
+      aircraft: "",
+      slots: "0",
+      status: "on time",
+      departureTime: "0",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -72,7 +72,7 @@ export class CreateLoad extends React.Component {
     //GETTING DATE & TIME INFO
 
     const dropzoneId = this.props.user.dropzoneId;
-console.log(this.props.user)
+    console.log(this.props.user);
 
     const load = {
       ...this.state,
@@ -83,15 +83,14 @@ console.log(this.props.user)
       // slots: this.state.slots,
     };
     this.props.addLoad(load, dropzoneId);
-
   }
 
   clearFields() {
     this.setState({
-      aircraft: '',
-      slots: '0',
-      status: 'on time',
-      departureTime: '0',
+      aircraft: "",
+      slots: "0",
+      status: "on time",
+      departureTime: "0",
     });
   }
 
@@ -99,8 +98,108 @@ console.log(this.props.user)
     const { handleChange, clearFields, createLoad } = this;
 
     return (
-      <div>
-        <h1>Create New Load</h1>
+      <div className="flex-right">
+        <form>
+          <div className="basic-info-group">
+            <div className="edit-account-title-container">
+              <div className="frame-528">
+                <div className="frame-526">
+                  <p id="titleLog">Create A Load</p>
+                  <div className="view-all-past-skydiving-jump-logs">
+                    establish load details below
+                  </div>
+                </div>
+                <div className="frame-527">
+                  <button
+                    id="cancel-btn"
+                    onClick={() => {
+                      this.props.history.push(`/home`);
+                    }}
+                  >
+                    Cancel
+                  </button>
+
+                  <button
+                    className="save-btn"
+                    onClick={createLoad}
+                  >
+                    Save
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="rectangle-21"></div>
+            <div className="flex-row-1">
+              <div className="flex-col-left">
+                <div className="first-name manrope-normal-shark-14px">Aircraft Type</div>
+
+                <input
+                  className="search-bar border-1px-mystic search"
+                  type="text"
+                  name="aircraft"
+            placeholder="Aircraft"
+            onChange={handleChange}
+                />
+
+                <div className="frame-1">
+                  <div className="frame-2">
+                    <div className="email manrope-normal-shark-14px"
+                    style={{width: '100px'}}>
+                      Available Slots
+                    </div>
+                  </div>
+                </div>
+                <input
+                  className="search-bar border-1px-mystic search"
+                  type="text"
+                  name="slots"
+                  placeholder="10"
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className="flex-col-right">
+                <div className="first-name manrope-normal-shark-14px">
+                  Departure Time
+                </div>
+
+                <input
+                  className="search-bar border-1px-mystic search"
+                  type="text"
+                  name="departureTime"
+                  placeholder="Departure Time"
+                  onChange={handleChange}
+                />
+
+                <div className="frame-1">
+                  <div className="frame-2">
+                    <div className="email manrope-normal-shark-14px">
+                      Load Status
+                    </div>
+                  </div>
+                </div>
+
+
+              <select 
+              className="search-bar border-1px-mystic search"
+              name="status"
+              onChange={handleChange}
+              style={{padding: '.5rem'}}
+              >
+                <option name="on time">On Time</option>
+                <option name="delayed">Delayed</option>
+                <option name="closed">Closed</option>
+              </select>
+                
+              </div>
+
+            </div>
+          </div>
+        </form>
+
+        {/* //////////////////////////// ORIGINAL FORM BELOW //////////////////////////// */}
+
+        {/* <h1>Create New Load</h1>
         <form>
           <label htmlFor="aircraft">Aircraft Type</label>
           <input
@@ -128,12 +227,13 @@ console.log(this.props.user)
             <option name="on time">On Time</option>
             <option name="delayed">Delayed</option>
             <option name="closed">Closed</option>
-            {/* <option name="canceled">Canceled</option> */}
           </select>
           <button type="button" onClick={createLoad}>
             Submit
           </button>
-        </form>
+        </form> */}
+
+        {/* //////////////////////////// ORIGINAL FORM ABOVE //////////////////////////// */}
       </div>
     );
   }
