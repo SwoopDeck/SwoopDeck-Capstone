@@ -92,7 +92,7 @@ th:only-child {
   display: flex;
   flex-direction: column;
   gap: 32px;
-min-height: 650px;
+  min-height: 650px;
   min-width: 850px;
   padding: 2rem 2rem;
   width: 100%;
