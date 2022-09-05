@@ -188,7 +188,7 @@ function DropzoneDashboard() {
                     </div>
                   </div>
                   <div className="netflix plusjakartasans-medium-sonic-silver-13px">
-                    Netflix
+                    Tandem
                   </div>
                   <img
                     className="icon-outlinedots-horizontal-1"
@@ -217,7 +217,7 @@ function DropzoneDashboard() {
                     </div>
                   </div>
                   <div className="amazon-prime plusjakartasans-medium-sonic-silver-13px">
-                    Amazon Prime
+                    Tandem
                   </div>
                   <img
                     className="icon-outlinedots-horizontal-2"
@@ -248,7 +248,7 @@ function DropzoneDashboard() {
                     </div>
                   </div>
                   <div className="facebook plusjakartasans-medium-sonic-silver-13px">
-                    Facebook
+                    Rental
                   </div>
                   <img
                     className="icon-outlinedots-horizontal-3"

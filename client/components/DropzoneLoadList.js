@@ -120,7 +120,8 @@ export class DropzoneLoadList extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {todaysLoads.map((load, index) => {
+              {todaysLoads.length ?
+              todaysLoads.map((load, index) => {
                 let availableSlots = load.slots - load.slotsFilled;
                 return (
                   <tr key={index}>
@@ -160,7 +161,14 @@ export class DropzoneLoadList extends React.Component {
                     </td>
                   </tr>
                 );
-              })}
+              }) : 
+              <tr>
+                <td></td>
+                <td></td>
+                <td>No loads have been created yet today</td>
+                <td></td>
+                <td></td>
+                </tr>}
             </tbody>
           </table>
         </div>
