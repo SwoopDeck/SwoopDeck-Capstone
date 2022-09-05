@@ -1,27 +1,27 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import {
   Thunk_fetchAllJumpRecords,
   Thunk_fetchSingleJump,
   Thunk_updateJump,
   Thunk_deleteJump,
   Thunk_createJump,
-} from '../store/jumpRecords';
+} from "../store/jumpRecords";
 import {
   thunk_fetchSingleDropzone,
   thunk_updateDropzone,
   thunk_createDropzone,
   thunk_deleteDropzone,
   thunk_fetchAllDropzones,
-} from '../store/dropzones.js';
+} from "../store/dropzones.js";
 import {
   thunk_fetchAllLoads,
   thunk_createLoad,
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
-} from '../store/loads';
+} from "../store/loads";
 
 /**
  * REACT COMPONENT
@@ -39,7 +39,7 @@ export class PastLoads extends React.Component {
   }
   componentDidMount() {
     const dropzoneId = this.props.users.dropzoneId;
-   this.props.getLoads(dropzoneId);
+    this.props.getLoads(dropzoneId);
   }
 
   handleChange(evt) {
@@ -53,21 +53,16 @@ export class PastLoads extends React.Component {
     this.props.history.push(`/:dropzoneId/loads/${loadId}`);
   }
 
-  removeLoad(dropzoneId, loadId){
-    console.log('dz,load', dropzoneId, loadId)
-    this.props.deleteLoad(dropzoneId, loadId)
+  removeLoad(dropzoneId, loadId) {
+    console.log("dz,load", dropzoneId, loadId);
+    this.props.deleteLoad(dropzoneId, loadId);
   }
 
   render() {
-   
-    const todaysLoads = this.props.loads
+    const todaysLoads = this.props.loads;
     return (
-      <div className='flex-right'>
-
-
-
-
-<div className="table screen">
+      <div className="flex-right">
+        <div className="table screen">
           <div className="frame-529">
             <div className="frame-528">
               <div className="frame-526">
@@ -77,17 +72,16 @@ export class PastLoads extends React.Component {
                 </div>
               </div>
               <div className="frame-527">
-                  <Link to='/createload'>
-                <button className="add-btn"
-                style={{width: '155px'}}>
-                  <img
-                    className="icon"
-                    src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e84f46d0125081c2cb8ad/img/-icon@2x.svg"
-                  />
+                <Link to="/createload">
+                  <button className="add-btn" style={{ width: "155px" }}>
+                    <img
+                      className="icon"
+                      src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e84f46d0125081c2cb8ad/img/-icon@2x.svg"
+                    />
 
-                  <div className="button">Create Load</div>
-                </button>
-                  </Link>
+                    <div className="button">Create Load</div>
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -147,10 +141,6 @@ export class PastLoads extends React.Component {
             </tbody>
           </table>
         </div>
-
-
-
-
 
         {/* <h2>Past Loads:</h2>
         {todaysLoads.map((load) => (
@@ -214,6 +204,5 @@ const mapDispatch = (dispatch) => {
       dispatch(thunk_fetchSingleLoad(dropzoneId, loadId)), //WORKING//
   };
 };
-
 
 export default connect(mapState, mapDispatch)(PastLoads);
