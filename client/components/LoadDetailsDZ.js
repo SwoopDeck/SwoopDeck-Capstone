@@ -153,6 +153,7 @@ export class LoadDetailsDZ extends React.Component {
                 <th>Name</th>
                 <th>License Number</th>
                 <th>Email</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -164,6 +165,27 @@ export class LoadDetailsDZ extends React.Component {
                     <td>{user.firstName} {user.lastName}</td>
                     <td>{user.licenseNumber}</td>
                     <td>{user.email}</td>
+                    <td
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "center",
+                      }}
+                    >
+                    <button
+                        className="delete-btn"
+                        style={{ backgroundColor: "red" }}
+                        id={user.id}
+                        title='delete user'
+                        onClick={() =>
+                          this.removeJumper(user.id, this.props.match.params.loadId)
+                        }
+                      >
+                        <i className="fa-solid fa-trash-can" />
+                      </button>
+                      </td>
+
+
                   </tr>
                 );
               }) : 

@@ -24,7 +24,7 @@ router.get('/:id/jumps/', async (req, res, next) => {
 //GET api/jumprecords/loadList/:loadId
 router.get('/loadlist/:loadId', async (req, res, next) => {
   try {
-    console.log('express route hit');
+    // console.log('express route hit');
     const userJumps = await JumpRecord.findAll({
       where: {
         loadId: req.params.loadId,
@@ -94,7 +94,15 @@ router.put('/:id/:jumpId/', async (req, res, next) => {
 //POST /api/jumprecords/:id/create
 router.post('/:id/create/', async (req, res, next) => {
   try {
-    console.log(req.body)
+    let existingJumpRecord = await JumpRecord.findOne({
+      where: {
+        id: req.params.id,
+        loadId: req.body.loadId
+      }
+    })
+    console.log('CONSOLE LOG THE EXISTING JUMPRECORD', existingJumpRecord)
+    if (existingJumpRecord == null){
+    console.log('after if statement')
     await JumpRecord.create({
       // ...req.body,jumpNumber: req.body.number,
       jumpNumber: req.body.jumpNumber,
@@ -115,6 +123,11 @@ router.post('/:id/create/', async (req, res, next) => {
       where: { userId: req.params.id },
     });
     res.send(userJumps);
+  }
+  else {
+    console.log('else statement')
+    res.send()}
+
   } catch (e) {
     next(e);
   }
