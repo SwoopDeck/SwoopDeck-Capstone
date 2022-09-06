@@ -35,7 +35,7 @@ import {
   thunk_updateLoad,
 } from "../store/loads";
 
-export class Home extends React.Component {
+export class UserDashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -284,4 +284,4 @@ const mapDispatch = (dispatch) => {
 
 // export default connect(mapState)(Home);
 
-export default connect(mapState, mapDispatch)(Home);
+export default connect(mapState, mapDispatch)(UserDashboard);

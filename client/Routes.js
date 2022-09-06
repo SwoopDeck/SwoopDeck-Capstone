@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Login, Signup } from './components/AuthForm';
-import Home from './components/Home';
+// import Home from './components/Home';
 import { me } from './store';
 import AllJumps from './components/AllJumps';
 import SingleJump from './components/SingleJump';
@@ -33,6 +33,7 @@ import ContactUs from './components/ContactUs';
 import LoadDetailsUser from './components/LoadDetailsUser';
 import AdminDashboard from './components/AdminDashboard';
 import DropzoneDashboard from './components/DropzoneDashboard';
+import UserDashboard from './components/UserDashboard';
 
 /**
  * COMPONENT
@@ -78,8 +79,8 @@ class Routes extends Component {
     let userRoutes = (
       <Switch>
         {/* Routes if logged in but not Admin */}
-        <Route exact path="/" component={AllJumps} />
-        <Route exact path="/home" component={Home} />
+        <Route exact path="/" component={UserDashboard} />
+        <Route exact path="/home" component={UserDashboard} />
         <Route path="/alljumps" component={AllJumps} />
         <Route exact path="/jumps/:userId/:jumpId" component={SingleJump} />
         <Route path="/add" component={AddJump} />
