@@ -11,6 +11,7 @@ let ADD_JUMP = 'ADD_JUMP';
 let ADD_JUMP_MANUAL = 'ADD_JUMP_MANUAL';
 const SET_SINGLE_JUMP = 'SET_SINGLE_JUMP';
 let SET_ALL_JUMPERS_ON_LOAD = 'SET_ALL_JUMPERS_ON_LOAD';
+let UPDATE_LOAD = 'UPDATE_LOAD';
 
 /* ACTION CREATORS */
 
@@ -61,6 +62,14 @@ export const reformJump = (JUMP) => {
   return {
     type: UPDATE_JUMP,
     JUMP,
+  };
+};
+
+//UPDATE A SINGLE LOADS RECORD
+export const reformLoad = (LOAD) => {
+  return {
+    type: UPDATE_LOAD,
+    LOAD,
   };
 };
 
@@ -146,6 +155,14 @@ export const Thunk_updateJump = (JUMP, id, jumpId) => {
   };
 };
 
+//THUNK: UPDATE A SINGLE LOADS JUMPER LIST
+export const thunk_updateLoad = (userId, loadId) => {
+  return async (dispatch) => {
+    await axios.put(`/api/loads/${loadId}/${userId}`);
+    dispatch(reformLoad(userId));
+  };
+};
+
 //THUNK: DELETE A SINGLE JUMP RECORD
 export const Thunk_deleteJump = (id, jumpId) => {
   return async (dispatch) => {
@@ -174,6 +191,9 @@ export default function jumpRecordsReducer(state = initialState, action) {
       return action.JUMP;  
     case UPDATE_JUMP:
       return action.JUMP;
+      case UPDATE_LOAD:
+        console.log(action.LOAD)
+        return state.filter((jumper)=> jumper.id !== action.LOAD)
     // return state.map((record) =>
     //   record.id === action.JUMP.id ? action.record : record
     // );

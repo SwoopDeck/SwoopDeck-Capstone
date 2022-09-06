@@ -8,6 +8,7 @@ import {
   Thunk_deleteJump,
   Thunk_createJump,
   Thunk_fetchAllJumpersOnLoad,
+  thunk_updateLoad,
 } from '../store/jumpRecords';
 import {
   thunk_fetchSingleDropzone,
@@ -21,7 +22,7 @@ import {
   thunk_createLoad,
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
-  thunk_updateLoad,
+  
   thunk_updateLoadStatus,
 } from '../store/loads';
 
@@ -45,6 +46,7 @@ export class LoadDetailsDZ extends React.Component {
     const dropzoneId = this.props.users.dropzoneId;
     this.props.getSingleLoad(dropzoneId, loadId);
     this.props.getAllJumpersOnLoad(this.props.match.params.loadId);
+    
   }
 
   handleChange(evt) {

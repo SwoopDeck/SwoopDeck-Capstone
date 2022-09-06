@@ -111,14 +111,13 @@ router.put('/:loadId/:userId', async (req, res, next) => {
       },
     });
     //update the jumprecords table for loadId to NULL
-    removedJumper.update({ loadId: null });
+    removedJumper.destroy();
     ///pull all jumpers on load ====> WITHOUT the selected userID
     const userJumps = await JumpRecords.findAll({
       where: {
         loadId: req.params.loadId,
       },
     });
-
     let jumperNames = [];
     for (let i = 0; i < userJumps.length; i++) {
       let userId = userJumps[i].userId;
