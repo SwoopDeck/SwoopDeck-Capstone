@@ -189,10 +189,10 @@ export const setSingleLoad = (LOAD) => {
 };
 
 //ADD SINGLE LOADS RECORD
-export const addLoad = (LOAD) => {
+export const addLoad = (LOADS) => {
   return {
     type: ADD_LOAD,
-    LOAD,
+    LOADS,
   };
 };
 
@@ -344,7 +344,7 @@ export default function loadsReducer(state = initialState, action) {
     case SET_SINGLE_LOAD:
       return { ...state, singleLoad: action.LOAD };
     case ADD_LOAD:
-      return { ...state, singleLoad: action.LOAD };
+      return { ...state, allLoads: action.LOADS};
     case UPDATE_LOAD:
       return {
         ...state,

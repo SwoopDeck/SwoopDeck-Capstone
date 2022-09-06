@@ -84,7 +84,7 @@ export class CreateLoad extends React.Component {
       // slots: this.state.slots,
     };
     this.props.addLoad(load, dropzoneId);
-    this.props.getLoads(dropzoneId);
+    // this.props.getLoads(dropzoneId);
     this.props.history.push('/:dropzoneId/todaysLoads')
   }
 
@@ -121,14 +121,14 @@ export class CreateLoad extends React.Component {
                   >
                     Cancel
                   </button>
-                  
+                  {/* <Link to={`/:dropzoneId/todaysLoads`}> */}
                   <button
                     className="save-btn"
                     onClick={createLoad}
                   >
                     Save
                   </button>
-                     
+                  {/* </Link>  */}
                 </div>
               </div>
             </div>
