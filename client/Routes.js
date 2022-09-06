@@ -33,6 +33,7 @@ import ContactUs from './components/ContactUs';
 import LoadDetailsUser from './components/LoadDetailsUser';
 import AdminDashboard from './components/AdminDashboard';
 import DropzoneDashboard from './components/DropzoneDashboard';
+import AdminCreateUser from './components/AdminCreateUser';
 
 /**
  * COMPONENT
@@ -62,7 +63,8 @@ class Routes extends Component {
         <Route exact path="/dropzones/:id" component={SingleDropzone} />
 
         <Route exact path="/dropzones/edit/:id" component={EditDropzone} />
-        <Route exact path="/users/edit/:id" component={EditUser} />
+        <Route path="/users/edit/:id" component={EditUser} />
+        <Route exact path="/user/add" component={AdminCreateUser} />
 
         <Route exact path="/:dropzoneId/loads" component={DropzoneLoadList} />
         <Route path="/:dropzoneId/loads/:loadId" component={LoadDetailsDZ} />

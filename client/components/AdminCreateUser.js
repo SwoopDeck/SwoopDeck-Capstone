@@ -22,32 +22,43 @@ import {
   thunk_fetchSingleLoad,
   thunk_updateLoad,
 } from '../store/loads';
-import { Thunk_fetchUser, Thunk_updateUser } from '../store/allusers';
+import {
+  Thunk_fetchUser,
+  Thunk_updateUser,
+  createUser,
+} from '../store/allusers';
 
-export class EditJump extends Component {
+export class AdminCreateUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
       firstName: '',
       lastName: '',
       email: '',
-      //   password: '',
+      password: '',
       address: '',
       licenseNumber: '',
+      phoneNumber: '',
       emergencyContact: '',
-      emergencyPhoneNumber: null,
+      emergencyPhoneNumber: '',
+      isDropzone: false,
+      isAdmin: false,
+      dropzoneId: undefined,
+      role: undefined,
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
-    this.props.getSingleUser(this.props.match.params.id);
+    // this.props.getSingleUser(this.props.match.params.id);
   }
 
   handleChange(evt) {
     this.setState({
       [evt.target.name]: evt.target.value,
     });
+    console.log(evt.target.name);
+    console.log(evt.target.value);
   }
 
   render() {
@@ -72,11 +83,9 @@ export class EditJump extends Component {
             <div className="edit-account-title-container">
               <div className="frame-528">
                 <div className="frame-526">
-                  <p id="titleLog">
-                    {firstName} {lastName}
-                  </p>
+                  <p id="titleLog">Create New User</p>
                   <div className="view-all-past-skydiving-jump-logs">
-                    Edit user account
+                    New user details
                   </div>
                 </div>
                 <div className="frame-527">
@@ -93,20 +102,22 @@ export class EditJump extends Component {
                     className="save-btn"
                     onClick={(evt) => {
                       evt.preventDefault();
-                      this.props.editUser(id, { ...this.state });
+                      //   console.log(this.state);
+                      this.props.createUser({ ...this.state });
                       this.props.getSingleUser(this.props.match.params.id);
                       this.setState({
                         firstName: '',
                         lastName: '',
                         email: '',
-                        // password: '',
+                        password: '',
                         address: '',
                         licenseNumber: '',
+                        phoneNumber: '',
                         emergencyContact: '',
                         emergencyPhoneNumber: null,
                       });
 
-                      this.props.history.push(`/users/${id}`);
+                      this.props.history.push(`/users`);
                     }}
                   >
                     Save
@@ -116,7 +127,7 @@ export class EditJump extends Component {
             </div>
             <div className="rectangle-21"></div>
             <div className="flex-row-1">
-              <div className="flex-col-left">
+              <div className="flex-col-left" id="add-user-flex-left-id">
                 <div className="first-name manrope-normal-shark-14px">
                   FIRST NAME
                 </div>
@@ -143,6 +154,21 @@ export class EditJump extends Component {
                   value={this.state.email}
                   onChange={this.handleChange}
                 />
+                <div className="frame-1">
+                  <div className="frame-2">
+                    <div className="email manrope-normal-shark-14px">
+                      PASSWORD
+                    </div>
+                  </div>
+                </div>
+                <input
+                  className="search-bar border-1px-mystic search"
+                  type="text"
+                  name="password"
+                  placeholder={email}
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                />
                 <div className="frame-2-1">
                   <div className="frame-2">
                     <div className="emergency-contact-full-name manrope-normal-shark-14px">
@@ -160,7 +186,7 @@ export class EditJump extends Component {
                 />
               </div>
 
-              <div className="flex-col-right">
+              <div className="flex-col-right" id="add-user-flex-left-id">
                 <div className="first-name manrope-normal-shark-14px">
                   LAST NAME
                 </div>
@@ -185,14 +211,30 @@ export class EditJump extends Component {
                   className="search-bar border-1px-mystic search"
                   type="text"
                   name="address"
-                  placeholder={address}
                   value={this.state.address}
+                  onChange={this.handleChange}
+                />
+                <div className="frame-1">
+                  <div className="frame-2">
+                    <div
+                      className="email manrope-normal-shark-14px"
+                      style={{ width: '125px' }}
+                    >
+                      PHONE NUMBER
+                    </div>
+                  </div>
+                </div>
+                <input
+                  className="search-bar border-1px-mystic search"
+                  type="text"
+                  name="phoneNumber"
+                  value={this.state.phoneNumber}
                   onChange={this.handleChange}
                 />
                 <div className="frame-2-1">
                   <div className="frame-2">
                     <div className="emergency-contact-full-name manrope-normal-shark-14px">
-                      EMERGENCY PHONE NUMBER
+                      EMERGENCY CONTACT PHONE NUMBER
                     </div>
                   </div>
                 </div>
@@ -212,7 +254,7 @@ export class EditJump extends Component {
               </div>
               <div className="rectangle-23"></div>
             </div>
-            <div className="flex-row-2">
+            <div className="flex-row-2" style={{ marginBottom: '-230px' }}>
               <div className="flex-col-left">
                 <div className="first-name manrope-normal-shark-14px">
                   LICENSE NUMBER
@@ -238,6 +280,141 @@ export class EditJump extends Component {
                   type="search"
                   placeholder="this field needs to be added to the database."
                 />
+              </div>
+            </div>
+            <div className="overlap-group2">
+              <div
+                className="uspa-membership manrope-bold-shark-18px"
+                style={{ width: '400px' }}
+              >
+                USPA MEMBERSHIP DROPZONE ACCOUNT
+              </div>
+              <div className="rectangle-23"></div>
+            </div>
+            <div className="flex-row-2" style={{ marginBottom: '-230px' }}>
+              <div className="flex-col-left">
+                <div className="first-name manrope-normal-shark-14px">
+                  DROPZONE ID
+                </div>
+
+                <input
+                  className="search-bar border-1px-mystic search"
+                  type="text"
+                  name="dropzoneId"
+                  value={this.state.dropzoneId}
+                  onChange={this.handleChange}
+                />
+              </div>
+
+              <div className="flex-col-right">
+                <div className="frame-1">
+                  <div className="frame-2">
+                    <div className="email manrope-normal-shark-14px">
+                      Is This Use A Dropzone Manager?
+                    </div>
+                  </div>
+                </div>
+
+                <select
+                  className="search-bar border-1px-mystic search"
+                  name="isDropzone"
+                  onChange={this.handleChange}
+                  style={{ padding: '.5rem' }}
+                >
+                  <option name="isDropzone" value="false">
+                    No
+                  </option>
+                  <option name="isDropzone" value="true">
+                    Yes
+                  </option>
+                </select>
+                <button
+                  className="save-btn"
+                  style={{ width: '200px' }}
+                  onClick={(evt) => {
+                    evt.preventDefault();
+                    this.props.createUser({ ...this.state });
+                    // this.props.getSingleUser(this.props.match.params.id);
+                    this.setState({
+                      ...this.state,
+                      firstName: '',
+                      lastName: '',
+                      email: '',
+                      password: '',
+                      address: '',
+                      licenseNumber: '',
+                      phoneNumber: '',
+                      emergencyContact: '',
+                      emergencyPhoneNumber: null,
+                      isDropzone: '',
+                      dropzoneId: undefined,
+                    });
+                    console.log('isDropzone', this.state.isDropzone);
+
+                    this.props.history.push(`/users`);
+                  }}
+                >
+                  Create Dropzone Account
+                </button>
+              </div>
+            </div>
+            <div className="overlap-group2">
+              <div className="uspa-membership manrope-bold-shark-18px">
+                ADMIN ACCOUNT
+              </div>
+              <div className="rectangle-23"></div>
+            </div>
+            <div className="flex-row-2">
+              <div className="flex-col-right">
+                <div className="frame-1">
+                  <div className="frame-2">
+                    <div className="email manrope-normal-shark-14px">
+                      Make This User An Admin
+                    </div>
+                  </div>
+                </div>
+
+                <select
+                  className="search-bar border-1px-mystic search"
+                  name="isAdmin"
+                  onChange={this.handleChange}
+                  style={{ padding: '.5rem' }}
+                >
+                  <option name="isAdmin" value="false">
+                    No
+                  </option>
+                  <option name="isAdmin" value="true">
+                    Yes
+                  </option>
+                </select>
+              </div>
+              <div className="flex-col-left">
+                <button
+                  className="save-btn"
+                  style={{ width: '200px' }}
+                  onClick={(evt) => {
+                    evt.preventDefault();
+                    this.props.createUser({ ...this.state });
+                    // this.props.getSingleUser(this.props.match.params.id);
+                    this.setState({
+                      firstName: '',
+                      lastName: '',
+                      email: '',
+                      password: '',
+                      address: '',
+                      licenseNumber: '',
+                      phoneNumber: '',
+                      emergencyContact: '',
+                      emergencyPhoneNumber: null,
+                      isAdmin: '',
+                      dropzoneId: null,
+                    });
+
+                    this.props.history.push(`/users`);
+                  }}
+                >
+                  Save Admin User
+                </button>
               </div>
             </div>
           </div>
@@ -295,7 +472,8 @@ const mapDispatch = (dispatch) => {
     getSingleUser: (id) => dispatch(Thunk_fetchUser(id)),
     editUser: (userId, userData) =>
       dispatch(Thunk_updateUser(userId, userData)),
+    createUser: (user) => dispatch(createUser(user)),
   };
 };
 
-export default connect(mapState, mapDispatch)(EditJump);
+export default connect(mapState, mapDispatch)(AdminCreateUser);
