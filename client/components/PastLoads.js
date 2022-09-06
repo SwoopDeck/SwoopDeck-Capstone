@@ -115,6 +115,7 @@ export class PastLoads extends React.Component {
                       }}
                     >
                       {/* <button className='edit-btn'><i className="fa-solid fa-pen-to-square"/></button> */}
+                      <Link to={`/:dropzoneId/loads/${load.id}`}>
                       <button
                         className="edit-btn"
                         style={{ margin: "1rem 1rem" }}
@@ -124,7 +125,7 @@ export class PastLoads extends React.Component {
                       >
                         <i className="fa-solid fa-eye" />
                       </button>
-
+                      </Link>
                       {/* <button
                         className="delete-btn"
                         style={{ backgroundColor: "red" }}
