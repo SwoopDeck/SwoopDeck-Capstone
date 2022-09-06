@@ -120,9 +120,9 @@ export class AllDropzones extends React.Component {
                         </Link>
                       <button className='delete-btn'
                       style={{backgroundColor: 'red'}}
-                      // onClick={() => {
-                      //   this.props.deleteDropzone(id);
-                      // }}
+                      onClick={() => {
+                        this.props.deleteDropzone(dropzone.id);
+                      }}
                       ><i className="fa-solid fa-trash-can"/></button>
                     </td>
                   </tr>
