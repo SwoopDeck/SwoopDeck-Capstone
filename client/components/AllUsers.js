@@ -22,7 +22,7 @@ import {
   thunk_fetchSingleLoad,
   thunk_updateLoad,
 } from "../store/loads";
-import { Thunk_fetchUsers, Thunk_updateUser } from "../store/allusers";
+import { Thunk_fetchUsers, Thunk_deleteUser } from "../store/allusers";
 
 /**
  * REACT COMPONENT
@@ -111,10 +111,10 @@ export class AllUsers extends React.Component {
                         </Link>
                       <button 
                       style={{backgroundColor: 'red'}}
-                      // onClick={() => {
-                      //   this.props.deleteUser(this.props.match.params.id);
-                      //   this.props.history.push(`/users`);
-                      // }}
+                      onClick={() => {
+                        this.props.deleteUser(user.id);
+                        this.props.history.push(`/users`);
+                      }}
                       ><i className="fa-solid fa-trash-can"/></button>
                     </td>
                   </tr>
@@ -175,7 +175,7 @@ const mapDispatch = (dispatch) => {
 
     getUsers: () => dispatch(Thunk_fetchUsers()),
     // editUser: (userId) => dispatch(Thunk_updateUser(userId)),
-    // deleteUser: (userId) => dispatch(Thunk_deleteUser(userId)),
+    deleteUser: (userId) => dispatch(Thunk_deleteUser(userId)),
   };
 };
 
