@@ -100,6 +100,7 @@ export class AllDropzones extends React.Component {
           <table>
             <thead>
               <tr>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Address</th>
                 <th>Phone Number </th>
@@ -110,6 +111,7 @@ export class AllDropzones extends React.Component {
               {allDropzones.map((dropzone, index) => {
                 return (
                   <tr key={index}>
+                    <td>{dropzone.id}</td>
                     <td>{dropzone.name}</td>
                     <td>{dropzone.address}</td>
                     <td>{dropzone.phoneNumber}</td>
@@ -123,12 +125,12 @@ export class AllDropzones extends React.Component {
                       <Link to={`/dropzones/${dropzone.id}`}>
                         {/* <button className='edit-btn'><i className="fa-solid fa-pen-to-square"/></button> */}
 
-                       {/* <button className="edit-btn" style={{margin: '1rem 1rem'}}><i className="fa-solid fa-eye"/></button>
-                        </Link>
+                        {/* <button className="edit-btn" style={{margin: '1rem 1rem'}}><i className="fa-solid fa-eye"/></button>
+                       </Link>
                        <button className='delete-btn'
                        style={{backgroundColor: 'red'}}
                        onClick={() => {
-                       this.props.deleteDropzone(dropzone.id);
+                        this.props.deleteDropzone(dropzone.id);
                        }}
                        ><i className="fa-solid fa-trash-can"/></button> */}
 

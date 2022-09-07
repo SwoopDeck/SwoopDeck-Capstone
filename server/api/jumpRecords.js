@@ -47,13 +47,26 @@ router.get('/loadlist/:loadId', async (req, res, next) => {
 router.get('/:id/jumps/:jumpId', async (req, res, next) => {
   try {
     const jump = await JumpRecord.findAll({
-      include: {
-        model: User,
-        where: { id: req.params.id },
-      },
-      where: { id: req.params.jumpId },
+      where: { 
+      id: req.params.jumpId,
+      userId: req.params.id },
     });
-    res.json(jump);
+   
+    let dz = jump[0].dataValues.dropzoneId
+    
+    const dropzone = await Dropzone.findByPk(dz)
+    
+    let dzName = dropzone.dataValues.name
+
+
+    // const jump = await JumpRecord.findAll({
+    //   include: {
+    //     model: User,
+    //     where: { id: req.params.id },
+    //   },
+    //   where: { id: req.params.jumpId },
+    // });
+    res.json([{...jump[0].dataValues, dropzoneName: dzName}]);
   } catch (err) {
     next(err);
   }
