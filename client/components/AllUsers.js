@@ -21,13 +21,12 @@ import {
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
-//////////////////merge conflict///////
+
 } from "../store/loads";
-import { Thunk_fetchUsers, Thunk_deleteUser } from "../store/allusers";
-////////////////////below is main/////////
-} from '../store/loads';
+import { Thunk_deleteUser } from "../store/allusers";
+
 import { Thunk_fetchUsers, Thunk_updateUser } from '../store/allusers';
-/////////////above is main///////////////
+
 
 /**
  * REACT COMPONENT

@@ -311,10 +311,10 @@ export class AdminCreateUser extends Component {
               </div>
 
               <div className="flex-col-right">
-                <div className="frame-1">
+                <div className="frame-1" style={{marginTop: '-1.55rem'}}>
                   <div className="frame-2">
-                    <div className="email manrope-normal-shark-14px">
-                      Is This Use A Dropzone Manager?
+                    <div className="email manrope-normal-shark-14px" style={{width: '230px'}}>
+                      Is This User A Dropzone Manager?
                     </div>
                   </div>
                 </div>
@@ -334,7 +334,7 @@ export class AdminCreateUser extends Component {
                 </select>
                 <button
                   className="save-btn"
-                  style={{ width: '200px' }}
+                  style={{ width: '200px', marginLeft: '7rem', marginTop: '5rem' }}
                   onClick={(evt) => {
                     evt.preventDefault();
 
@@ -368,11 +368,11 @@ export class AdminCreateUser extends Component {
               </div>
               <div className="rectangle-23"></div>
             </div>
-            <div className="flex-row-2">
-              <div className="flex-col-right">
+            <div className="flex-row-2" style={{marginTop: '-65px'}}>
+              <div className="flex-col-right" style={{margin: '60px 1.5rem'}}>
                 <div className="frame-1">
                   <div className="frame-2">
-                    <div className="email manrope-normal-shark-14px">
+                    <div className="email manrope-normal-shark-14px" style={{width: '170px'}}>
                       Make This User An Admin
                     </div>
                   </div>
@@ -392,7 +392,7 @@ export class AdminCreateUser extends Component {
                   </option>
                 </select>
               </div>
-              <div className="flex-col-left">
+              <div className="flex-col-left" style={{margin: '0 14.5rem'}}>
                 <button
                   className="save-btn"
                   style={{ width: '200px' }}
