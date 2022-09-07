@@ -22,22 +22,44 @@
   flex-grow: 1;
   width: calc(25%-4px);
   height: calc(15%-4px);
-  background: rgb(162, 165, 162);
+  /* background: rgb(162, 165, 162); */
+  margin: 2px;
+  border: 1px solid #e4e4e7;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+  padding: 1rem;
+  /* background-image: linear-gradient(rgb(67, 109, 199), white); */
+}
+
+.box-total-freefall {
+  display: flexbox;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  width: 350px;
   margin: 2px;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  background-image: linear-gradient(rgb(67, 109, 199), white);
+}
+
+.total-freefall-time-title {
+  font-size: 2rem;
+  margin: 1rem 0;
+  color: #202124;
+  font-family: manrope;
 }
 .speedometer {
   justify-content: center;
   height: 200px;
   width: 200px;
+  margin-right: 7.2rem; 
 }
 .boxright {
   flex-grow: 3;
   flex-direction: column;
-  width: calc(25%-4px);
-  height: calc(15%-4px);
+  /* width: calc(25%-4px);
+  height: calc(15%-4px); */
   margin: 2px;
 }
 
