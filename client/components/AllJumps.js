@@ -192,7 +192,7 @@ export class AllJumps extends React.Component {
                 // console.log('dateSplice', jump.jumpDate.slice(0, 9));
 
                 return (
-                  <tr key={index}>
+                  <tr key={index} style={{ lineHeight: '20px' }}>
                     <td>{currentNumber}</td>
 
                     {/* <td>{currentNumber}</td> */}
@@ -216,10 +216,9 @@ export class AllJumps extends React.Component {
                       }}
                     >
                       <Link to={`/edit/${jump.id}`}>
-                      
-                      <button className="edit-btn" title="edit">
-                        <i className="fa-solid fa-pen-to-square" />
-                      </button>
+                        <button className="edit-btn" title="edit">
+                          <i className="fa-solid fa-pen-to-square" />
+                        </button>
                       </Link>
                       <Link to={`/jumps/${jump.userId}/${jump.id}`}>
                         <button
