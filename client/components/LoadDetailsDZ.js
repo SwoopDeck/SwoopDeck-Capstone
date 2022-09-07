@@ -8,6 +8,7 @@ import {
   Thunk_deleteJump,
   Thunk_createJump,
   Thunk_fetchAllJumpersOnLoad,
+  thunk_updateLoad,
 } from '../store/jumpRecords';
 import {
   thunk_fetchSingleDropzone,
@@ -21,7 +22,7 @@ import {
   thunk_createLoad,
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
-  thunk_updateLoad,
+  
   thunk_updateLoadStatus,
 } from '../store/loads';
 
@@ -45,6 +46,7 @@ export class LoadDetailsDZ extends React.Component {
     const dropzoneId = this.props.users.dropzoneId;
     this.props.getSingleLoad(dropzoneId, loadId);
     this.props.getAllJumpersOnLoad(this.props.match.params.loadId);
+
   }
 
   handleChange(evt) {
@@ -62,6 +64,17 @@ export class LoadDetailsDZ extends React.Component {
   }
 
   render() {
+    const year = new Date();
+    const createYear = year.getFullYear();
+
+    const month = new Date();
+    const createMonth = month.getMonth() + 1;
+
+    const day = new Date();
+    const createDay = day.getDate();
+
+    const todaysDate = `${createYear}-${createDay}-${createMonth} `;
+
     const allLoads = this.props.loads;
     console.log(this.props);
     const jumpers = this.props.jumpRecords.map((user, idx) => {
@@ -153,6 +166,7 @@ export class LoadDetailsDZ extends React.Component {
                 <th>Name</th>
                 <th>License Number</th>
                 <th>Email</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -164,6 +178,31 @@ export class LoadDetailsDZ extends React.Component {
                     <td>{user.firstName} {user.lastName}</td>
                     <td>{user.licenseNumber}</td>
                     <td>{user.email}</td>
+                    <td
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "center",
+                      }}
+                    >
+                    {this.props.singleLoad.date.slice(0,9) == todaysDate ? (<button
+                        className="delete-btn"
+                        style={{ backgroundColor: "red" }}
+                        id={user.id}
+                        title='delete user'
+                        onClick={() =>
+                          this.removeJumper(user.id, this.props.match.params.loadId)
+                        }
+                      >
+                        <i className="fa-solid fa-trash-can" />
+                      </button>): 
+                      <Link to={`/users/${user.id}`} >
+                      
+                        <button className="edit-btn" style={{margin: '1rem 1rem'}}><i className="fa-solid fa-eye"/></button>
+                        </Link>}
+                      </td>
+
+
                   </tr>
                 );
               }) : 

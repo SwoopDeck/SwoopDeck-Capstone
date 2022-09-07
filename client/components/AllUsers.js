@@ -21,8 +21,13 @@ import {
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
+//////////////////merge conflict///////
+} from "../store/loads";
+import { Thunk_fetchUsers, Thunk_deleteUser } from "../store/allusers";
+////////////////////below is main/////////
 } from '../store/loads';
 import { Thunk_fetchUsers, Thunk_updateUser } from '../store/allusers';
+/////////////above is main///////////////
 
 /**
  * REACT COMPONENT
@@ -117,7 +122,21 @@ export class AllUsers extends React.Component {
                     <td>{role}</td>
                     <td>{user.phoneNumber}</td>
                     <td>{user.email}</td>
-                    <td
+
+                    <td style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+                      <Link to={`/users/${user.id}`} >
+                      
+                        <button className="edit-btn" style={{margin: '1rem 1rem'}}><i className="fa-solid fa-eye"/></button>
+                        </Link>
+                      <button 
+                      style={{backgroundColor: 'red'}}
+                      onClick={() => {
+                        this.props.deleteUser(user.id);
+                        this.props.history.push(`/users`);
+                      }}
+                      ><i className="fa-solid fa-trash-can"/></button>
+
+                 {/*  THIS IS MAIN///// <td
                       style={{
                         display: 'flex',
                         flexDirection: 'row',
@@ -140,7 +159,8 @@ export class AllUsers extends React.Component {
                         // }}
                       >
                         <i className="fa-solid fa-trash-can" />
-                      </button>
+                      </button>  THIS IS MAIN //// */}
+
                     </td>
                   </tr>
                 );
@@ -200,7 +220,7 @@ const mapDispatch = (dispatch) => {
 
     getUsers: () => dispatch(Thunk_fetchUsers()),
     // editUser: (userId) => dispatch(Thunk_updateUser(userId)),
-    // deleteUser: (userId) => dispatch(Thunk_deleteUser(userId)),
+    deleteUser: (userId) => dispatch(Thunk_deleteUser(userId)),
   };
 };
 
