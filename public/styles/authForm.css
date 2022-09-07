@@ -109,7 +109,8 @@
   .login a {
       text-decoration: none;
       color: rgb(160, 160, 160);
-      font-size: 12px;
+      color: #ffff;
+      font-size: 14px;
   }
   
   .login .text {
@@ -126,4 +127,8 @@
 
   .labelName {
     margin: 0;
+  }
+
+  .loader {
+    color: #ffff;
   }
