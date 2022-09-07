@@ -1,6 +1,6 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   Thunk_fetchAllJumpRecords,
   Thunk_fetchSingleJump,
@@ -8,14 +8,14 @@ import {
   Thunk_deleteJump,
   Thunk_createJump,
   Thunk_fetchAllJumpersOnLoad,
-} from '../store/jumpRecords';
+} from "../store/jumpRecords";
 import {
   thunk_fetchSingleDropzone,
   thunk_updateDropzone,
   thunk_createDropzone,
   thunk_deleteDropzone,
   thunk_fetchAllDropzones,
-} from '../store/dropzones.js';
+} from "../store/dropzones.js";
 import {
   thunk_fetchAllLoads,
   thunk_createLoad,
@@ -24,7 +24,7 @@ import {
   thunk_updateLoad,
   thunk_updateLoadStatus,
   thunk_updateLoadSlotsFilled,
-} from '../store/loads';
+} from "../store/loads";
 
 /**
  * REACT COMPONENT
@@ -34,7 +34,7 @@ export class LoadDetailsUser extends React.Component {
     super(props);
     this.state = {
       loadsdata: this.props.loads,
-      status: 'On Time',
+      status: "On Time",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -81,8 +81,8 @@ export class LoadDetailsUser extends React.Component {
         this.props.singleLoad.dropzoneId,
         this.props.singleLoad.id
       );
-      console.log('single load', this.props.singleLoad);
-      console.log('single user', this.props.user);
+      console.log("single load", this.props.singleLoad);
+      console.log("single user", this.props.user);
       let currentJump = {
         aircraft: this.props.singleLoad.aircraft,
         jumpDate: this.props.singleLoad.date,
@@ -94,35 +94,68 @@ export class LoadDetailsUser extends React.Component {
       // this.props.history.push('/home');
       this.props.getLoads(this.props.match.params.dropzoneId);
     };
-    return (
-      <div>
-        <h2>LOAD ID: {this.props.singleLoad.id}</h2>
-        <br />
-        <h2>LOAD AIRCRAFT: {this.props.singleLoad.aircraft}</h2>
-        <br />
-        <h2>EXPECTED DEPARTURE TIME: {this.props.singleLoad.departureTime}</h2>
-        <br />
-        <h2>
-          AVAILABLE SLOTS:
-          {this.props.singleLoad.slots - this.props.singleLoad.slotsFilled}
-        </h2>
-        <br />
-        <h2>LOAD STATUS: {this.props.singleLoad.status}</h2>
-        <br />
-        {/* <h2>JUMPERS</h2>
-        <h2>----------------</h2>
-        <div> {jumpers}</div> */}
-        <br />
-        <br />
-        <Link to={`/${this.props.singleLoad.dropzoneId}/loads`}>
-          <button type="button" onClick={confirmLoad}>
-            Confirm
-          </button>
-        </Link>
 
-        <Link to={`/${this.props.singleLoad.dropzoneId}/loads`}>
-          <button type="button">Back to Today's Loads</button>
-        </Link>
+    return (
+      <div className="flex-right">
+        <div className="table screen">
+          <div className="frame-529">
+            <div className="frame-528">
+              <div className="frame-526">
+                <p id="titleLog">Select A Load</p>
+                <div className="view-all-past-skydiving-jump-logs">
+                  All available loads
+                </div>
+              </div>
+
+              <div className="frame-527">
+                <Link to={`/${this.props.singleLoad.dropzoneId}/loads`}>
+                  <button className="add-btn" style={{ width: "200px" }}>
+                    <div className="button">Back to today's loads</div>
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Departure Time</th>
+                <th>Available Slots</th>
+                <th>Status</th>
+                <th>ACTION</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{this.props.singleLoad.departureTime}</td>
+                <td>
+                  {this.props.singleLoad.slots -
+                    this.props.singleLoad.slotsFilled}
+                </td>
+                <td>{this.props.singleLoad.status}</td>
+
+                <td
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Link to={`/join/dropzone`}>
+                    <button
+                      className="edit-btn"
+                      style={{ margin: "1rem 1rem" }}
+                      onClick={confirmLoad}
+                    >
+                      Confirm
+                    </button>
+                  </Link>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }

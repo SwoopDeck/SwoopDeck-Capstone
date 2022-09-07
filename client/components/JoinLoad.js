@@ -1,19 +1,20 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import {
   Thunk_fetchAllJumpRecords,
   Thunk_fetchSingleJump,
   Thunk_updateJump,
   Thunk_deleteJump,
   Thunk_createJump,
-} from '../store/jumpRecords';
+} from "../store/jumpRecords";
 import {
   thunk_fetchSingleDropzone,
   thunk_updateDropzone,
   thunk_createDropzone,
   thunk_deleteDropzone,
   thunk_fetchAllDropzones,
-} from '../store/dropzones.js';
+} from "../store/dropzones.js";
 import {
   thunk_fetchAllLoads,
   thunk_createLoad,
@@ -21,7 +22,7 @@ import {
   thunk_fetchSingleLoad,
   thunk_updateLoad,
   thunk_updateLoadSlotsFilled,
-} from '../store/loads';
+} from "../store/loads";
 
 /**
  * REACT COMPONENT
@@ -32,7 +33,7 @@ export class JoinLoad extends React.Component {
 
     this.state = {
       selected: false,
-      display: 'inline-block',
+      display: "inline-block",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -59,7 +60,7 @@ export class JoinLoad extends React.Component {
     const createDay = day.getDate();
 
     const todaysDate = `${createYear}-${createDay}-${createMonth} `;
-    console.log('in componenet', this.props.loads);
+    console.log("in componenet", this.props.loads);
     const loadsArr = this.props.loads || [];
     const todaysLoads = loadsArr.filter((load) => {
       let loadDate = load.date.slice(0, 9);
@@ -75,7 +76,7 @@ export class JoinLoad extends React.Component {
     };
 
     const confirmLoad = (evt) => {
-      this.setState({ selected: false, display: 'inline-block' });
+      this.setState({ selected: false, display: "inline-block" });
       this.props.editLoadSlots(
         this.props.singleLoad.dropzoneId,
         this.props.singleLoad.id
@@ -88,14 +89,14 @@ export class JoinLoad extends React.Component {
       };
 
       this.props.addJumpRecord(currentJump, this.props.user.id);
-      this.props.history.push('/home');
+      this.props.history.push("/home");
     };
 
     const deSelect = (evt) => {
-      this.setState({ selected: false, display: 'inline-block' });
+      this.setState({ selected: false, display: "inline-block" });
     };
 
-    console.log('todaysLoads', todaysLoads);
+    console.log("todaysLoads", todaysLoads);
     let buttons = (
       <div>
         {this.state.selected ? (
@@ -120,48 +121,83 @@ export class JoinLoad extends React.Component {
         )}
       </div>
     );
-    const allLoads = (
-      <div>
-        <h1>Select Your Load</h1>
-        <h1>--------------------------------</h1>
-        {todaysLoads.map((load, idx) => {
-          // const clickerHelper = (evt) => {
-          //   this.props.getSingleLoad(evt.target.value, evt.target.id);
-          //   this.setState({ selected: true, display: 'inline-block' });
-          // };
-          return (
-            <div key={idx}>
-              <h2>Departure Time: {load.departureTime}</h2>
-              <p>Aircraft: {load.aircraft} </p>
-              <p>Total Slots: {load.slots} </p>
 
-              <p>Available Slots: {load.slots - load.slotsFilled}</p>
-
-              <p>Status: {load.status}</p>
-              {/* {load.slots !== load.slotsFilled ? ( */}
-              <button
-                type="button"
-                style={{ display: this.state.display }}
-                id={load.id}
-                value={this.props.match.params.dropzoneId}
-                onClick={() => {
-                  this.props.history.push(
-                    `/load/${load.dropzoneId}/${load.id}/details`
-                  );
-                }}
-              >
-                Select Load
-              </button>
-              {/* ) : (
-                <p>This Load is Full</p>
-              )} */}
-              {buttons}
+    return (
+      <div className="flex-right">
+        <div className="table screen">
+          <div className="frame-529">
+            <div className="frame-528">
+              <div className="frame-526">
+                <p id="titleLog">Select A Load</p>
+                <div className="view-all-past-skydiving-jump-logs">
+                  All available loads
+                </div>
+              </div>
+              <div className="frame-527">
+                <Link to={`/join/dropzone`}>
+                  <button className="add-btn" style={{ width: "200px" }}>
+                    <div className="button">Back to today's loads</div>
+                  </button>
+                </Link>
+              </div>
             </div>
-          );
-        })}
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Departure Time</th>
+                <th>Available Slots</th>
+                <th>Status</th>
+                <th>ACTION</th>
+              </tr>
+            </thead>
+            <tbody>
+              {todaysLoads.length ? (
+                todaysLoads.map((load, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{load.departureTime}</td>
+                      <td>{load.slots - load.slotsFilled}</td>
+                      <td>{load.status}</td>
+
+                      <td
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <button
+                          className="edit-btn"
+                          style={{ margin: "1rem 1rem" }}
+                          id={load.id}
+                          value={this.props.match.params.dropzoneId}
+                          onClick={() => {
+                            this.props.history.push(
+                              `/load/${load.dropzoneId}/${load.id}/details`
+                            );
+                          }}
+                        >
+                          Select
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })
+              ) : (
+                <tr>
+                  <td></td>
+                  <td>There are no available loads today</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
-    return <div>{allLoads}</div>;
   }
 }
 const mapState = (state) => {
