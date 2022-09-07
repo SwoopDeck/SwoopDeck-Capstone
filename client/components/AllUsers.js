@@ -23,9 +23,12 @@ import {
   thunk_updateLoad,
 
 } from "../store/loads";
-import { Thunk_deleteUser } from "../store/allusers";
 
-import { Thunk_fetchUsers, Thunk_updateUser } from '../store/allusers';
+import { Thunk_fetchUsers, Thunk_deleteUser } from "../store/allusers";
+
+
+import { Thunk_updateUser } from '../store/allusers';
+
 
 
 /**

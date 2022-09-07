@@ -124,7 +124,7 @@ export class AllDropzones extends React.Component {
                     >
                       <Link to={`/dropzones/${dropzone.id}`}>
                         {/* <button className='edit-btn'><i className="fa-solid fa-pen-to-square"/></button> */}
-{/* //////////////////////////////// merge conflict/////////////// */}
+
                         {/* <button className="edit-btn" style={{margin: '1rem 1rem'}}><i className="fa-solid fa-eye"/></button>
                        </Link>
                        <button className='delete-btn'
@@ -133,7 +133,7 @@ export class AllDropzones extends React.Component {
                         this.props.deleteDropzone(dropzone.id);
                        }}
                        ><i className="fa-solid fa-trash-can"/></button> */}
-{/* //////////////////////////////////main is below//////////////////// */}
+
                         <button
                           className="edit-btn"
                           style={{ margin: '1rem 1rem' }}
@@ -144,13 +144,13 @@ export class AllDropzones extends React.Component {
                       <button
                         className="delete-btn"
                         style={{ backgroundColor: 'red' }}
-                        // onClick={() => {
-                        //   this.props.deleteDropzone(id);
-                        // }}
+                        onClick={() => {
+                          this.props.deleteDropzone(dropzone.id);
+                        }}
                       >
                         <i className="fa-solid fa-trash-can" />
                       </button>
-{/* /////////////////////////main branch is above////////// */}
+
                     </td>
                   </tr>
                 );
