@@ -34,9 +34,11 @@ export class AllJumps extends React.Component {
     super(props);
 
     //FOR PAGINATIONp
-    // this.state = {
-    //   pageNum: 0,
-    // };
+    this.state = {
+      page: 1,
+      startIdx: 0,
+      endIdx: 6,
+    };
 
     this.handleChange = this.handleChange.bind(this);
   }
@@ -54,7 +56,26 @@ export class AllJumps extends React.Component {
     });
   }
 
+  renderHelper = (pageNum) => {
+    let end = pageNum * 6;
+    let start = end - 6;
+    console.log('before', this.state.startIdx, this.state.endIdx);
+    this.setState({ endIdx: pageNum * 6 });
+    this.setState({ startIdx: start });
+
+    console.log('this.state after render helper', this.state);
+  };
+
+  dropdownChange = (evt) => {
+    let num = evt.target.value;
+    let number = Number(num);
+    this.setState({ page: number });
+    this.renderHelper(number);
+  };
+
   render() {
+    console.log(this.state);
+
     function alertMessage() {
       alert('This feature is not yet available!');
     }
@@ -68,34 +89,38 @@ export class AllJumps extends React.Component {
     let sortedArr = jumps.sort((a, b) => {
       return a.id - b.id;
     });
-
-    // let numbersArr = [];
-    // for (let i = 0; i < jumps.length; i++) {
-    //   numbersArr.push(i + 1);
-    // }
-    // numbersArr.reverse();
+    sortedArr.reverse();
+    let numbersArr = [];
+    for (let i = 0; i < jumps.length; i++) {
+      numbersArr.push(i + 1);
+    }
 
     console.log('jumps', jumps);
     // console.log(numbersArr);
+    // let page = 1;
+    // let startIdx = 0;
+    // let endIdx = 6;
 
-    let recentFiveJumps = jumps.slice(0, 6);
+    let recentSixJumps = jumps.slice(this.state.startIdx, this.state.endIdx);
     console.log('sorted', sortedArr);
     //PAGINATION FUNCTIONS
-    // let numOfPages = Math.ceil(jumps.length / 5);
-    // let pagesArr = [];
-    // for (let i = 0; i < numOfPages; i++) {
-    //   pagesArr.push(i + 1);
-    // }
-    // let startIdx = 0;
-    // let endIdx = 0;
+    let numOfPages = Math.ceil(jumps.length / 6);
+    let pagesArr = [];
+    for (let i = 0; i < numOfPages; i++) {
+      pagesArr.push(i + 1);
+    }
+
     // function renderHelper(pageNum) {
-    //   endIdx = pageNum * 5 - 1;
-    //   startIdx = endIdx - 4;
+    //   endIdx = pageNum * 7 - 1;
+    //   startIdx = endIdx - 6;
     // }
-    // let page = 1;
+
     // function dropdownChange(evt) {
-    //   page = evt.target.name;
-    //   console.log(evt.target.name);
+    //   console.log('before', startIdx, endIdx);
+    //   page = evt.target.value;
+    //   let pageNum = Number(page);
+    //   renderHelper(pageNum);
+    //   console.log('after', startIdx, endIdx);
     // }
 
     //////FOR JUMPNUM (SHOULD WORK WITH PAGINATION TOO)//////
@@ -164,7 +189,7 @@ export class AllJumps extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {jumps.reverse().map((jump, index) => {
+              {recentSixJumps.map((jump, index) => {
                 let currentDropzone = {};
                 let currentNumber = jumps.length - index;
                 for (let i = 0; i < dropzones.length; i++) {
@@ -192,8 +217,8 @@ export class AllJumps extends React.Component {
                 // console.log('dateSplice', jump.jumpDate.slice(0, 9));
 
                 return (
-                  <tr key={index}>
-                    <td>{currentNumber}</td>
+                  <tr key={index} style={{ lineHeight: '20px' }}>
+                    <td>{jump.jumpNumber}</td>
 
                     {/* <td>{currentNumber}</td> */}
                     <td>
@@ -216,10 +241,9 @@ export class AllJumps extends React.Component {
                       }}
                     >
                       <Link to={`/edit/${jump.id}`}>
-                      
-                      <button className="edit-btn" title="edit">
-                        <i className="fa-solid fa-pen-to-square" />
-                      </button>
+                        <button className="edit-btn" title="edit">
+                          <i className="fa-solid fa-pen-to-square" />
+                        </button>
                       </Link>
                       <Link to={`/jumps/${jump.userId}/${jump.id}`}>
                         <button
@@ -237,6 +261,25 @@ export class AllJumps extends React.Component {
               })}
             </tbody>
           </table>
+          <div
+            id="pagination"
+            style={{ display: 'flex', flexDirection: 'row', marginLeft: '40%' }}
+          >
+            <p style={{ width: '164px', marginRight: '-79px' }}>Select Page</p>
+            <select
+              onChange={this.dropdownChange}
+              style={{
+                borderRadius: '10px',
+                marginLeft: '47%',
+                width: '4rem',
+                padding: '1px 8px',
+              }}
+            >
+              {pagesArr.map((page) => {
+                return <option value={Number(page)}>{page}</option>;
+              })}
+            </select>
+          </div>
 
           {/* //////////////////////// Manual TABLE COMMENTED OUT //////////////////////// */}
         </div>
