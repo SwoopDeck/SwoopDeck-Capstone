@@ -11,13 +11,11 @@
 @import './styles/dropzoneDashboard.css';
 @import './styles/table.css';
 @import './styles/userDashboard.css';
-
-@import url("https://fonts.googleapis.com/css?family=Manrope:400,700,600");
-
-
+@import './styles/contactUs.css';
+@import url('https://fonts.googleapis.com/css?family=Manrope:400,700,600');
 
 body {
-  font-family: "manrope";
+  font-family: 'manrope';
 }
 
 .main {
@@ -38,7 +36,6 @@ nav a {
   margin: 1em;
 }
 
-
 /* form div {
   margin: 1em;
   display: inline-block;
@@ -47,17 +44,17 @@ nav a {
 button {
   align-items: center;
   cursor: pointer;
-    background-color: #658fff;
-    color: #ffff;
-    border-radius: 4px;
-    display: flex;
-    /* gap: 10px; */
-    /* height: 44px; */
-    margin: 1rem 0;
-    justify-content: center;
-    padding: 6px 12px;
-    border: none;
-    transition-duration: .2s;
+  background-color: #658fff;
+  color: #ffff;
+  border-radius: 4px;
+  display: flex;
+  /* gap: 10px; */
+  /* height: 44px; */
+  margin: 1rem 0;
+  justify-content: center;
+  padding: 6px 12px;
+  border: none;
+  transition-duration: 0.2s;
 }
 
 /* button:hover {
@@ -142,4 +139,3 @@ h1,
 h3 {
   text-align: center;
 }
-
