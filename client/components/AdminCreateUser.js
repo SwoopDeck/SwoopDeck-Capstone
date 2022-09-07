@@ -45,12 +45,16 @@ export class AdminCreateUser extends Component {
       isAdmin: false,
       dropzoneId: undefined,
       role: undefined,
+
+      invalidDzId:
+        "Create this user's dropzone profile before adding the facilitie's account holder",
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
     // this.props.getSingleUser(this.props.match.params.id);
+    this.props.getDropzones();
   }
 
   handleChange(evt) {
@@ -333,6 +337,7 @@ export class AdminCreateUser extends Component {
                   style={{ width: '200px' }}
                   onClick={(evt) => {
                     evt.preventDefault();
+
                     this.props.createUser({ ...this.state });
                     // this.props.getSingleUser(this.props.match.params.id);
                     this.setState({
@@ -349,7 +354,6 @@ export class AdminCreateUser extends Component {
                       isDropzone: '',
                       dropzoneId: undefined,
                     });
-                    console.log('isDropzone', this.state.isDropzone);
 
                     this.props.history.push(`/users`);
                   }}
