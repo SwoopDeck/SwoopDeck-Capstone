@@ -56,12 +56,8 @@ export class AllDropzones extends React.Component {
     console.log('chris', this.props.dropzones[0]);
 
     return (
-      <div className='flex-right'>
-
-
-
-
-<div className="table screen">
+      <div className="flex-right">
+        <div className="table screen">
           <div className="frame-529">
             <div className="frame-528">
               <div className="frame-526">
@@ -71,13 +67,16 @@ export class AllDropzones extends React.Component {
                 </div>
               </div>
               <div className="frame-527">
-                <button className="add-btn">
-                  <img
-                    className="icon"
-                    src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e84f46d0125081c2cb8ad/img/-icon@2x.svg"
-                  />
-                  <div className="button">Add</div>
-                </button>
+                <Link to="/dropzone/add">
+                  <button className="add-btn">
+                    <img
+                      className="icon"
+                      src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e84f46d0125081c2cb8ad/img/-icon@2x.svg"
+                    />
+
+                    <div className="button">Add</div>
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -85,7 +84,8 @@ export class AllDropzones extends React.Component {
             <input
               className="search-bar border-1px-mystic search"
               type="search"
-              placeholder="Search"/>
+              placeholder="Search"
+            />
             <button className="buttons-1 filter-btn">
               <img
                 className="icon"
@@ -113,17 +113,31 @@ export class AllDropzones extends React.Component {
                     <td>{dropzone.name}</td>
                     <td>{dropzone.address}</td>
                     <td>{dropzone.phoneNumber}</td>
-                    <td style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
-                      <Link to={`/dropzones/${dropzone.id}`} >
+                    <td
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      <Link to={`/dropzones/${dropzone.id}`}>
                         {/* <button className='edit-btn'><i className="fa-solid fa-pen-to-square"/></button> */}
-                        <button className="edit-btn" style={{margin: '1rem 1rem'}}><i className="fa-solid fa-eye"/></button>
-                        </Link>
-                      <button className='delete-btn'
-                      style={{backgroundColor: 'red'}}
-                      // onClick={() => {
-                      //   this.props.deleteDropzone(id);
-                      // }}
-                      ><i className="fa-solid fa-trash-can"/></button>
+                        <button
+                          className="edit-btn"
+                          style={{ margin: '1rem 1rem' }}
+                        >
+                          <i className="fa-solid fa-eye" />
+                        </button>
+                      </Link>
+                      <button
+                        className="delete-btn"
+                        style={{ backgroundColor: 'red' }}
+                        // onClick={() => {
+                        //   this.props.deleteDropzone(id);
+                        // }}
+                      >
+                        <i className="fa-solid fa-trash-can" />
+                      </button>
                     </td>
                   </tr>
                 );
@@ -131,10 +145,6 @@ export class AllDropzones extends React.Component {
             </tbody>
           </table>
         </div>
-
-
-
-
 
         {/* <h2>All Dropzones:</h2>
         {allDropzones.map((dropzone) => (
@@ -149,11 +159,6 @@ export class AllDropzones extends React.Component {
             <hr />
           </div>
         ))} */}
-
-
-
-
-
       </div>
     );
   }
