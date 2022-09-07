@@ -52,7 +52,7 @@ export class DropzoneLoadList extends React.Component {
     // let loadId = evt.target.id;
     // console.log(loadId)
     // console.log(evt.target.id)
-    // this.props.history.push(`/:dropzoneId/loads/${loadId}`)
+    // this.props.history.push(`/dropzoneId/loads/${loadId}`)
   }
 
   removeLoad(dropzoneId, loadId) {
@@ -139,7 +139,7 @@ export class DropzoneLoadList extends React.Component {
                       }}
                     >
                       {/* <button className='edit-btn'><i className="fa-solid fa-pen-to-square"/></button> */}
-                      <Link to={`/:dropzoneId/loads/${load.id}`}>
+                      <Link to={`/dropzoneId/loads/${load.id}`}>
                       <button
                         className="edit-btn"
                         style={{ margin: "1rem 1rem" }}

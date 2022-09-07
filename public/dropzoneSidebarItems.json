@@ -14,7 +14,7 @@
       },
       {
         "title": "Todays loads",
-        "path": "/:dropzoneId/todaysLoads"
+        "path": "/dropzoneId/todaysLoads"
       },
       {
         "title": "Past loads",
