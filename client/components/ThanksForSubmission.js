@@ -5,7 +5,7 @@ export default class ThanksForSubmission extends Component {
   render() {
     return (
       <div id="thanks-container">
-        <div>
+        <div className='submission-thanks-container'>
           <h1 id="submission-thanks">
             Thank you for your submission! A SwoopDeck representative will reach
             out to you shortly via email.

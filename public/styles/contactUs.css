@@ -143,7 +143,7 @@
 }
 
 .contact-form-button-container {
-  align-items: flex-start;
+  align-items: center;
   align-self: stretch;
   border: 1px none;
   display: flex;
@@ -152,7 +152,7 @@
 }
 
 .contact-form-button-interior {
-  align-items: flex-start;
+  align-items: center;
   align-self: stretch;
 
   border-radius: 8px;
@@ -193,23 +193,26 @@
   padding: 22px 217px;
   font-size: large;
   animation: fadeOut 300ms;
+  border-radius: 10px;
+  background-color: rgb(87, 126, 219);
+  height: 45px;
+  padding: 12px;
+  width: 260px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin: 20px auto;
+  transition: .2s;
+  margin-left: 7rem;
 }
 
 .contact-form-button:hover {
-  align-items: center;
-  background-color: #93b8ed;
-  border-color: transparent;
-  border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  display: flex;
-  flex: 1;
-  gap: 8px;
-  justify-content: center;
-  overflow: hidden;
-  padding: 22px 217px;
-  font-size: large;
-  animation: fadeIn 300ms;
+
+  background-color: #3A6DD8;
 }
+
 
 .text-2 {
   color: var(--white);
@@ -489,18 +492,48 @@
 }
 
 #thank-you-button {
-  background-color: #4482d7;
-  position: absolute;
-  right: 47.3%;
+
+
+
   height: 42px;
+  align-items: center;
+  background-color: rgb(87, 126, 219);
+  border-color: transparent;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  display: flex;
+  flex: 1;
+  gap: 8px;
+  justify-content: center;
+  overflow: hidden;
+  /* padding: 22px 217px; */
+  font-size: large;
+  animation: fadeOut 300ms;
+  border-radius: 10px;
+
+  height: 45px;
+  padding: 12px;
+  width: 260px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin: 70px auto;
+  transition: .2s;
+
   /* top: 30%; */
 }
 
 #thank-you-button:hover {
-  background-color: #93b8ed;
+  background-color: #3a6dd8;
   position: absolute;
-  right: 47.3%;
-  height: 42px;
-  /* top: 30%; */
-  animation: fadeIn 300ms;
+
+}
+
+.submission-thanks-container {
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
