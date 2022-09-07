@@ -41,8 +41,9 @@ export class UserDashboard extends React.Component {
     this.state = {
       chartData: this.props.jumpRecords,
     };
-    this.addTime = this.addTime.bind(this);
+    // this.addTime = this.addTime.bind(this);
     this.totalDistance = this.totalDistance.bind(this);
+    this.totalJumps = this.totalJumps.bind(this);
   }
   componentDidMount() {
     let userId = this.props.user.id;
@@ -50,18 +51,9 @@ export class UserDashboard extends React.Component {
     console.log("..........", this.props);
   }
 
-  addTime() {
-    let freeFallTime = [];
-    let jumpRecords = this.props.jumpRecords;
-    for (let i = 0; i < jumpRecords.length; i++) {
-      freeFallTime.push(jumpRecords[i].freeFallTime);
-    }
-    let totalFreeFallTime = 0;
-    for (let i = 0; i < freeFallTime.length; i++) {
-      totalFreeFallTime = totalFreeFallTime + freeFallTime[i];
-    }
-    return totalFreeFallTime;
-  }
+
+
+
   totalDistance(array) {
     let distance = 0;
     for (let i = 0; i < array.length; i++) {
@@ -70,12 +62,44 @@ export class UserDashboard extends React.Component {
     return distance;
   }
 
+  totalJumps() {
+    let totalJumps = this.props.jumpRecords.length;
+    return totalJumps
+  //   let jumpRecords = this.props.jumpRecords;
+
+  //   for (let i = 0; i < jumpRecords.length; i++) {
+  //     totalJumps + i;
+  //   }
+  //   return totalJumps;
+  }
+
   render() {
+
+    let hours = 0;
+
+   let addTime = () => {
+      let freeFallTime = [];
+      let jumpRecords = this.props.jumpRecords;
+      for (let i = 0; i < jumpRecords.length; i++) {
+        freeFallTime.push(jumpRecords[i].freeFallTime);
+      }
+      let totalFreeFallTime = 0;
+      for (let i = 0; i < freeFallTime.length; i++) {
+        totalFreeFallTime = totalFreeFallTime + freeFallTime[i];
+      }
+      let minutes = totalFreeFallTime / 60;
+      let timeInHours = Math.floor(minutes / 60);
+      hours += timeInHours;
+      return minutes;
+    }
+
+
     let jumps = this.props.jumpRecords || [];
 
     console.log(this.props.jumpRecords);
 
-    let totalTime = this.addTime();
+    let totalJumps = this.totalJumps();
+    let totalTime = addTime();
     let totalDistance = this.totalDistance(jumps);
     console.log(totalDistance);
     const userId = {
@@ -109,7 +133,7 @@ export class UserDashboard extends React.Component {
           label: "Exit Altitude",
           data: jumps.map((data) => data.exitAltitude),
 
-          backgroundColor: ["purple", "purple"],
+          backgroundColor: ["#336dff", "#336dff"],
 
           borderWidth: 2,
           options: {
@@ -117,7 +141,7 @@ export class UserDashboard extends React.Component {
               legend: {
                 display: true,
                 labels: {
-                  color: "rgb(255, 99, 132)",
+                  color: "#336dff",
                 },
               },
             },
@@ -148,13 +172,67 @@ export class UserDashboard extends React.Component {
       ],
     };
 
+    let userName = `${this.props.user.firstName} ${this.props.user.lastName}`;
+
     return (
       <>
-        <div className="flex-right">
-          <div className="box">
-            Total Freefall Time:
+        <div className="user-dashboard-container">
+          <div>
+
+          </div>
+        {/* <div>
+          {" "}
+          <FlapDisplay
+            chars={Presets.ALPHANUM + ",!"}
+            length={19}
+            value={"SWOOPDECK DASHBOARD"}
+          />
+          </div> */}
+
+              <div style={{alignSelf: 'flex-start', paddingLeft: '.5rem'}}>
+                <span className="manrope-bold-shark-18px">Hey,</span>
+                <span className="spans1">&nbsp;</span>
+                <span className="manrope-bold-shark-18px">{userName}</span>
+                <span className="spans3"> - here’s what’s happening in your skydiving journey</span>
+              </div>
+
+          
+        <div className="boxright">
+
+        <div className="freefall-stats-container">
+          <div className="freefall-stats-card-1">
+            <div className="freefall-stats-title">Total FreeFall Time</div>
+            <div className="freefall-stats-card-bottom">
+              <div style={{fontSize: '2.5rem', color: '#336dff', fontWeight: 'bold'}}><CountUp end={hours}/></div>
+              <div className="stats-card-time">hours</div>
+              <div style={{fontSize: '2.5rem', color: '#336dff', fontWeight: 'bold'}}><CountUp end={totalTime}/></div>
+              <div className="stats-card-time">minutes</div>
+            </div>
+          </div>
+          <div className="freefall-stats-card-2">
+            <div className="freefall-stats-title">Total Jumps</div>
+            <div className="freefall-stats-card-bottom">
+              <div style={{fontSize: '2.5rem', color: '#336dff', fontWeight: 'bold'}}><CountUp end={totalJumps}/></div>
+              <div className="stats-card-time">Skydives</div>
+            </div>
+          </div>
+          <div className="freefall-stats-card-2">
+            <div className="freefall-stats-title">Total FreeFall Distance</div>
+            <div className="freefall-stats-card-bottom">
+              <div style={{fontSize: '2.5rem', color: '#336dff', fontWeight: 'bold'}}><CountUp end={totalDistance}/></div>
+              <div className="stats-card-time">Feet</div>
+            </div>
+          </div>
+        </div>
+
+
+
+          <div>
+
+          {/* <div className="box-total-freefall">
+            <div className="total-freefall-time-title">Total Freefall Time</div>
             <h1>
-              <CountUp end={totalTime} />
+              <CountUp end={totalTime}/>
               <h2 className="speedometer">
                 <ReactSpeedometer
                   maxValue={1000}
@@ -166,9 +244,9 @@ export class UserDashboard extends React.Component {
                 />
               </h2>
             </h1>
-          </div>
+          </div> */}
 
-          <div className="box">
+          {/* <div className="box">
             total jumps:
             <h1>
               <CountUp end={jumps.length} />
@@ -177,15 +255,20 @@ export class UserDashboard extends React.Component {
             <h1>
               <CountUp end={totalDistance} />
             </h1>
-          </div>
+          </div> */}
+
+
+          
           <div className="box">
-            <div style={{ width: 300 }}>
+            <div>
               <LineChart chartData={userExit} />
             </div>
-            <div style={{ width: 300 }}>
+            {/* <div style={{ width: 300 }}>
               <BarChart chartData={userId} />
-            </div>
+            </div> */}
           </div>
+          </div>
+        </div>
 
           {/* <div className="chartBox">
             <div className="chart">
@@ -220,17 +303,6 @@ export class UserDashboard extends React.Component {
               </div> */}
           {/* </div>
           </div> */}
-        </div>
-        <div className="boxright">
-          {" "}
-          <FlapDisplay
-            chars={Presets.ALPHANUM + ",!"}
-            length={19}
-            value={"SWOOPDECK DASHBOARD"}
-          />
-          <div>
-            <AllJumps />
-          </div>
         </div>
       </>
     );

@@ -27,11 +27,5 @@
     "title": "Github",
     "icon": "bi-github",
     "path": "https://github.com/SwoopDeck/SwoopDeck-Capstone"
-  },
-
-  {
-    "title": "About",
-    "icon": "bi-paperclip",
-    "path": "/#"
   }
 ]
