@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Login, Signup } from './components/AuthForm';
-import Home from './components/Home';
+// import Home from './components/Home';
 import { me } from './store';
 import AllJumps from './components/AllJumps';
 import SingleJump from './components/SingleJump';
@@ -34,6 +34,12 @@ import LoadDetailsUser from './components/LoadDetailsUser';
 import AdminDashboard from './components/AdminDashboard';
 import DropzoneDashboard from './components/DropzoneDashboard';
 
+import AdminCreateUser from './components/AdminCreateUser';
+import AdminCreateDropzone from './components/AdminCreateDropzone';
+
+import UserDashboard from './components/UserDashboard';
+
+
 /**
  * COMPONENT
  */
@@ -62,7 +68,9 @@ class Routes extends Component {
         <Route exact path="/dropzones/:id" component={SingleDropzone} />
 
         <Route exact path="/dropzones/edit/:id" component={EditDropzone} />
-        <Route exact path="/users/edit/:id" component={EditUser} />
+        <Route path="/users/edit/:id" component={EditUser} />
+        <Route exact path="/user/add" component={AdminCreateUser} />
+        <Route exact path="/dropzone/add" component={AdminCreateDropzone} />
 
         <Route exact path="/:dropzoneId/loads" component={DropzoneLoadList} />
         <Route path="/:dropzoneId/loads/:loadId" component={LoadDetailsDZ} />
@@ -78,8 +86,8 @@ class Routes extends Component {
     let userRoutes = (
       <Switch>
         {/* Routes if logged in but not Admin */}
-        <Route exact path="/" component={AllJumps} />
-        <Route exact path="/home" component={Home} />
+        <Route exact path="/" component={UserDashboard} />
+        <Route exact path="/home" component={UserDashboard} />
         <Route path="/alljumps" component={AllJumps} />
         <Route exact path="/jumps/:userId/:jumpId" component={SingleJump} />
         <Route path="/add" component={AddJump} />

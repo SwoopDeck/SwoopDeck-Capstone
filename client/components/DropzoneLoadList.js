@@ -168,7 +168,7 @@ export class DropzoneLoadList extends React.Component {
               <tr>
                 <td></td>
                 <td></td>
-                <td>No loads have been created yet today</td>
+                <td>No loads have been created today</td>
                 <td></td>
                 <td></td>
                 </tr>}

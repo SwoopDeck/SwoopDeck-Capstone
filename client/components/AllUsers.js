@@ -1,28 +1,33 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import {
   Thunk_fetchAllJumpRecords,
   Thunk_fetchSingleJump,
   Thunk_updateJump,
   Thunk_deleteJump,
   Thunk_createJump,
-} from "../store/jumpRecords";
+} from '../store/jumpRecords';
 import {
   thunk_fetchSingleDropzone,
   thunk_updateDropzone,
   thunk_createDropzone,
   thunk_deleteDropzone,
   thunk_fetchAllDropzones,
-} from "../store/dropzones.js";
+} from '../store/dropzones.js';
 import {
   thunk_fetchAllLoads,
   thunk_createLoad,
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
+//////////////////merge conflict///////
 } from "../store/loads";
 import { Thunk_fetchUsers, Thunk_deleteUser } from "../store/allusers";
+////////////////////below is main/////////
+} from '../store/loads';
+import { Thunk_fetchUsers, Thunk_updateUser } from '../store/allusers';
+/////////////above is main///////////////
 
 /**
  * REACT COMPONENT
@@ -49,7 +54,6 @@ export class AllUsers extends React.Component {
 
     return (
       <div className="flex-right">
-
         <div className="table screen">
           <div className="frame-529">
             <div className="frame-528">
@@ -60,13 +64,15 @@ export class AllUsers extends React.Component {
                 </div>
               </div>
               <div className="frame-527">
-                <button className="add-btn">
-                  <img
-                    className="icon"
-                    src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e84f46d0125081c2cb8ad/img/-icon@2x.svg"
-                  />
-                  <div className="button">Add</div>
-                </button>
+                <Link to="/user/add">
+                  <button className="add-btn">
+                    <img
+                      className="icon"
+                      src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e84f46d0125081c2cb8ad/img/-icon@2x.svg"
+                    />
+                    <div className="button">Add</div>
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -74,7 +80,8 @@ export class AllUsers extends React.Component {
             <input
               className="search-bar border-1px-mystic search"
               type="search"
-              placeholder="Search"/>
+              placeholder="Search"
+            />
             <button className="buttons-1 filter-btn">
               <img
                 className="icon"
@@ -83,7 +90,6 @@ export class AllUsers extends React.Component {
               <div className="button-1">Filter</div>
             </button>
           </div>
-
 
           <table>
             <thead>
@@ -97,13 +103,26 @@ export class AllUsers extends React.Component {
             </thead>
             <tbody>
               {allUsers.map((user, index) => {
+                let role = '';
+                if (user.isAdmin) {
+                  role = 'Admin';
+                }
+                if (user.isDropzone) {
+                  role = 'Dropzone';
+                }
+                if (user.isDropzone === false && user.isAdmin === false) {
+                  role = 'Skydiver';
+                }
                 return (
                   <tr key={index}>
-                    <td>{user.firstName} {user.lastName}</td>
-                   
-                    <td>{user.role}</td>
+                    <td>
+                      {user.firstName} {user.lastName}
+                    </td>
+
+                    <td>{role}</td>
                     <td>{user.phoneNumber}</td>
                     <td>{user.email}</td>
+
                     <td style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
                       <Link to={`/users/${user.id}`} >
                       
@@ -116,6 +135,32 @@ export class AllUsers extends React.Component {
                         this.props.history.push(`/users`);
                       }}
                       ><i className="fa-solid fa-trash-can"/></button>
+
+                 {/*  THIS IS MAIN///// <td
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      <Link to={`/users/${user.id}`}>
+                        <button
+                          className="edit-btn"
+                          style={{ margin: '1rem 1rem' }}
+                        >
+                          <i className="fa-solid fa-eye" />
+                        </button>
+                      </Link>
+                      <button
+                        style={{ backgroundColor: 'red' }}
+                        // onClick={() => {
+                        //   this.props.deleteUser(this.props.match.params.id);
+                        //   this.props.history.push(`/users`);
+                        // }}
+                      >
+                        <i className="fa-solid fa-trash-can" />
+                      </button>  THIS IS MAIN //// */}
+
                     </td>
                   </tr>
                 );

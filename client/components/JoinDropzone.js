@@ -50,25 +50,104 @@ export class JoinDropzone extends React.Component {
   render() {
     const { selectDropzone } = this;
     const dropzones = this.props.dropzones || [];
-    console.log(dropzones);
-    const allDropzones = (
-      <div>
-        <h1>Select Your Dropzone</h1>
-        <h1>--------------------------------</h1>
-        {dropzones.map((dropzone, idx) => {
-          return (
-            <div key={idx}>
-              <h2>Dropzone: {dropzone.name}</h2>
-              <h3>Address: {dropzone.address}</h3>
-              <button type="button" id={dropzone.id} onClick={selectDropzone}>
-                Select Dropzone
-              </button>
+    // console.log(dropzones);
+    // const allDropzones = (
+    //   <div>
+    //     <h1>Select Your Dropzone</h1>
+    //     <h1>--------------------------------</h1>
+    //     {dropzones.map((dropzone, idx) => {
+    //       return (
+    //         <div key={idx}>
+    //           <h2>Dropzone: {dropzone.name}</h2>
+    //           <h3>Address: {dropzone.address}</h3>
+    //           <button type="button" id={dropzone.id} onClick={selectDropzone}>
+    //             Select Dropzone
+    //           </button>
+    //         </div>
+    //       );
+    //     })}
+    //   </div>
+    // );
+    // return <div>{allDropzones}</div>;
+
+    return (
+      <div className='flex-right'>
+
+
+
+
+
+<div className="table screen">
+          <div className="frame-529">
+            <div className="frame-528">
+              <div className="frame-526">
+                <p id="titleLog">Select A Dropzone</p>
+                <div className="view-all-past-skydiving-jump-logs">
+                  All available dropzones
+                </div>
+              </div>
+              {/* <div className="frame-527">
+                <button className="add-btn">
+                  <img
+                    className="icon"
+                    src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e84f46d0125081c2cb8ad/img/-icon@2x.svg"
+                  />
+                  <div className="button">Add</div>
+                </button>
+              </div> */}
             </div>
-          );
-        })}
+          </div>
+          {/* <div className="frame-530">
+            <input
+              className="search-bar border-1px-mystic search"
+              type="search"
+              placeholder="Search"/>
+            <button className="buttons-1 filter-btn">
+              <img
+                className="icon"
+                src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e84f46d0125081c2cb8ad/img/-icon-1@2x.svg"
+              />
+              <div className="button-1">Filter</div>
+            </button>
+          </div> */}
+
+
+          <table>
+            <thead>
+              <tr>
+                <th>NAME</th>
+                <th>Address</th>
+                <th>ACTION</th>
+              </tr>
+            </thead>
+            <tbody>
+              {dropzones.map((dropzone, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{dropzone.name}</td>
+                    <td>{dropzone.address}</td>
+
+                    <td style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+                      {/* <Link to={`/users/${user.id}`} > */}
+                      
+                        <button className="edit-btn" style={{margin: '1rem 1rem'}} id={dropzone.id} onClick={selectDropzone}>Select</button>
+                        {/* </Link> */}
+                      {/* <button 
+                      style={{backgroundColor: 'red'}}
+                      onClick={() => {
+                        this.props.deleteUser(this.props.match.params.id);
+                        this.props.history.push(`/users`);
+                      }}
+                      ><i className="fa-solid fa-trash-can"/></button> */}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
-    return <div>{allDropzones}</div>;
   }
 }
 const mapState = (state) => {

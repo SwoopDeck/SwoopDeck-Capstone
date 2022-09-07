@@ -141,8 +141,8 @@ export class CreateLoad extends React.Component {
                   className="search-bar border-1px-mystic search"
                   type="text"
                   name="aircraft"
-            placeholder="Aircraft"
-            onChange={handleChange}
+                placeholder="Aircraft"
+                onChange={handleChange}
                 />
 
                 <div className="frame-1">
