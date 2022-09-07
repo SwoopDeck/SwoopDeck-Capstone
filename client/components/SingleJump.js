@@ -48,6 +48,7 @@ class SingleJump extends React.Component {
     );
   }
   render() {
+    console.log(this.props.jumpRecords)
     let jumpId = this.props.match.params.jumpId;
     let jump = this.props.jumpRecords;
     let singleJump = jump[0] || {};
@@ -94,8 +95,8 @@ class SingleJump extends React.Component {
                   className="search-bar border-1px-mystic search"
                   type="text"
                   name="location"
-                  value={singleJump.location}
-                  placeholder={singleJump.location}
+                  value={singleJump.dropzoneName}
+                  placeholder={singleJump.dropzoneName}
                   // onChange={this.handleChange}
                 />
 
@@ -137,7 +138,7 @@ class SingleJump extends React.Component {
                 <select
                   className="search-bar border-1px-mystic search"
                   name="jumpType"
-                  // onChange={this.handleChange}
+                  onChange={this.handleChange}
                   style={{ padding: '.5rem' }}
                 >
                   <option name="jumpType" value="belly">
@@ -191,7 +192,8 @@ class SingleJump extends React.Component {
 
                 <div className="frame-1">
                   <div className="frame-2">
-                    <div className="email manrope-normal-shark-14px">
+                    <div className="email manrope-normal-shark-14px"
+                    style={{width: '110px'}}>
                       PULL ALTITUDE
                     </div>
                   </div>

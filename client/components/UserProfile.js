@@ -21,6 +21,7 @@ import {
   thunk_fetchSingleLoad,
   thunk_updateLoad,
 } from '../store/loads';
+import { Thunk_fetchUser, Thunk_updateUser } from '../store/allusers';
 
 
 /**
@@ -43,7 +44,7 @@ export class UserProfile extends Component {
   }
 
   componentDidMount() {
-    // this.props.getSingleUser(this.props.match.params.id);
+    this.props.getSingleUser(this.props.users.id);
   }
 
   handleChange(evt) {
@@ -54,18 +55,16 @@ export class UserProfile extends Component {
 
   render() {
 
-    // const {
-    //   id,
-    //   firstName,
-    //   lastName,
-    //   address,
-    //   email,
-    //   licenseNumber,
-    //   emergencyContact,
-    //   emergencyPhoneNumber,
-    // } = this.props.singleUser;
-
-    console.log(this.props.singleUser);
+    const {
+      id,
+      firstName,
+      lastName,
+      address,
+      email,
+      licenseNumber,
+      emergencyContact,
+      emergencyPhoneNumber,
+    } = this.props.users;
 
   return (
     <div className="flex-right">
@@ -75,8 +74,7 @@ export class UserProfile extends Component {
               <div className="frame-528">
                 <div className="frame-526">
                   <p id="titleLog">
-                    {/* {firstName} {lastName} */}
-                    Account
+                    {firstName} {lastName}
                   </p>
                   <div className="view-all-past-skydiving-jump-logs">
                     Edit your account details
@@ -97,7 +95,7 @@ export class UserProfile extends Component {
                     onClick={(evt) => {
                       evt.preventDefault();
                       this.props.editUser(id, { ...this.state });
-                      this.props.getSingleUser(this.props.match.params.id);
+                      this.props.getSingleUser(this.props.users.id);
                       this.setState({
                         firstName: '',
                         lastName: '',
@@ -109,7 +107,7 @@ export class UserProfile extends Component {
                         emergencyPhoneNumber: null,
                       });
 
-                      this.props.history.push(`/users/${id}`);
+                      this.props.history.push(`/home`);
                     }}
                   >
                     Save
@@ -128,8 +126,8 @@ export class UserProfile extends Component {
                   className="search-bar border-1px-mystic search"
                   type="text"
                   name="firstName"
-                  // placeholder={firstName}
-                  // value={this.state.firstName}
+                  placeholder={firstName}
+                  value={this.state.firstName}
                   onChange={this.handleChange}
                 />
 
@@ -142,8 +140,8 @@ export class UserProfile extends Component {
                   className="search-bar border-1px-mystic search"
                   type="text"
                   name="email"
-                  // placeholder={email}
-                  // value={this.state.email}
+                  placeholder={email}
+                  value={this.state.email}
                   onChange={this.handleChange}
                 />
                 <div className="frame-2-1">
@@ -157,8 +155,8 @@ export class UserProfile extends Component {
                   className="search-bar border-1px-mystic search"
                   type="text"
                   name="emergencyContact"
-                  // placeholder={emergencyContact}
-                  // value={this.state.emergencyContact}
+                  placeholder={emergencyContact}
+                  value={this.state.emergencyContact}
                   onChange={this.handleChange}
                 />
               </div>
@@ -172,8 +170,8 @@ export class UserProfile extends Component {
                   className="search-bar border-1px-mystic search"
                   type="text"
                   name="lastName"
-                  // placeholder={lastName}
-                  // value={this.state.lastName}
+                  placeholder={lastName}
+                  value={this.state.lastName}
                   onChange={this.handleChange}
                 />
 
@@ -188,8 +186,8 @@ export class UserProfile extends Component {
                   className="search-bar border-1px-mystic search"
                   type="text"
                   name="address"
-                  // placeholder={address}
-                  // value={this.state.address}
+                  placeholder={address}
+                  value={this.state.address}
                   onChange={this.handleChange}
                 />
                 <div className="frame-2-1">
@@ -225,8 +223,8 @@ export class UserProfile extends Component {
                   className="search-bar border-1px-mystic search"
                   type="text"
                   name="licenseNumber"
-                  // placeholder={licenseNumber}
-                  // value={this.state.licenseNumber}
+                  placeholder={licenseNumber}
+                  value={this.state.licenseNumber}
                   onChange={this.handleChange}
                 />
               </div>
@@ -290,7 +288,12 @@ const mapDispatch = (dispatch) => {
     addLoad: (LOAD, dropzoneId) => dispatch(thunk_createLoad(LOAD, dropzoneId)), //WORKING//
     getSingleLoad: (dropzoneId, loadId) =>
       dispatch(thunk_fetchSingleLoad(dropzoneId, loadId)), //WORKING//
+
+      //////////////////////////////////////
+      getSingleUser: (id) => dispatch(Thunk_fetchUser(id)),
+    editUser: (userId, userData) =>
+      dispatch(Thunk_updateUser(userId, userData)),
   };
 };
 
-export default connect(mapState, null)(UserProfile)
+export default connect(mapState, mapDispatch)(UserProfile)

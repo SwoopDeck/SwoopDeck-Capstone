@@ -27,9 +27,6 @@ export class EditJumpRecord extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      jumpNumber: "",
-      jumpDate: "",
-      aircraft: "",
       equipment: "",
       exitAltitude: 14000,
       pullAltitude: 4000,
@@ -58,8 +55,9 @@ export class EditJumpRecord extends Component {
   }
 
   render() {
+
     let jump = this.props.jumpRecords[0] || {};
-console.log(jump)
+console.log(this.props)
     return (
       <div className="flex-right">
         <form>
@@ -89,7 +87,7 @@ console.log(jump)
                             evt.preventDefault();
                             this.props.editJumpRecord({ ...this.state }, this.props.user.id, this.props.match.params.jumpId);
                             this.setState({
-                              jumpNumber: "",
+                              // jumpNumber: jump.jumpNumber,
                               jumpDate: "",
                               aircraft: "",
                               equipment: "",
@@ -116,8 +114,8 @@ console.log(jump)
                   className="search-bar border-1px-mystic search"
                   type="text"
                   name="location"
-                  value={this.state.location}
-                  placeholder={jump.location}
+                  value={jump.dropzoneName}
+                  placeholder={jump.dropzoneName}
                   onChange={this.handleChange}
                 />
 
