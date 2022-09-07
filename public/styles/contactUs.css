@@ -478,3 +478,29 @@
   background-size: 100%;
   background-image: url(../assets/SwoopLog.png);
 }
+
+#thanks-container {
+  margin-top: 12rem;
+  margin-bottom: 32rem;
+  text-align: center;
+  font-size: 30px;
+  line-height: 60px;
+  color: cornflowerblue;
+}
+
+#thank-you-button {
+  background-color: #4482d7;
+  position: absolute;
+  right: 47.3%;
+  height: 42px;
+  /* top: 30%; */
+}
+
+#thank-you-button:hover {
+  background-color: #93b8ed;
+  position: absolute;
+  right: 47.3%;
+  height: 42px;
+  /* top: 30%; */
+  animation: fadeIn 300ms;
+}

@@ -261,11 +261,25 @@ export class AllJumps extends React.Component {
               })}
             </tbody>
           </table>
-          <select onChange={this.dropdownChange}>
-            {pagesArr.map((page) => {
-              return <option value={Number(page)}>{page}</option>;
-            })}
-          </select>
+          <div
+            id="pagination"
+            style={{ display: 'flex', flexDirection: 'row', marginLeft: '40%' }}
+          >
+            <p style={{ width: '164px', marginRight: '-79px' }}>Select Page</p>
+            <select
+              onChange={this.dropdownChange}
+              style={{
+                borderRadius: '10px',
+                marginLeft: '47%',
+                width: '4rem',
+                padding: '1px 8px',
+              }}
+            >
+              {pagesArr.map((page) => {
+                return <option value={Number(page)}>{page}</option>;
+              })}
+            </select>
+          </div>
 
           {/* //////////////////////// Manual TABLE COMMENTED OUT //////////////////////// */}
         </div>
