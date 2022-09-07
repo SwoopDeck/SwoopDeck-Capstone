@@ -305,6 +305,7 @@ export class AdminCreateUser extends Component {
                   className="search-bar border-1px-mystic search"
                   type="text"
                   name="dropzoneId"
+                  placeholder='Dropzone ID must already exist'
                   value={this.state.dropzoneId}
                   onChange={this.handleChange}
                 />

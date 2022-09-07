@@ -100,6 +100,7 @@ export class AllDropzones extends React.Component {
           <table>
             <thead>
               <tr>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Address</th>
                 <th>Phone Number </th>
@@ -110,6 +111,7 @@ export class AllDropzones extends React.Component {
               {allDropzones.map((dropzone, index) => {
                 return (
                   <tr key={index}>
+                    <td>{dropzone.id}</td>
                     <td>{dropzone.name}</td>
                     <td>{dropzone.address}</td>
                     <td>{dropzone.phoneNumber}</td>
