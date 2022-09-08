@@ -129,6 +129,7 @@ export class LoadDetailsUser extends React.Component {
               <tr>
                 <th>Departure Time</th>
                 <th>Available Slots</th>
+                <th>Aircraft</th>
                 <th>Status</th>
                 <th>ACTION</th>
               </tr>
@@ -140,6 +141,7 @@ export class LoadDetailsUser extends React.Component {
                   {this.props.singleLoad.slots -
                     this.props.singleLoad.slotsFilled}
                 </td>
+                <td>{this.props.singleLoad.aircraft}</td>
                 <td>{this.props.singleLoad.status}</td>
 
                 <td

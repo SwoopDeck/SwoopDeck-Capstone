@@ -84,6 +84,7 @@ export class DropzoneLoadList extends React.Component {
       }
     });
 
+    console.log(this.props)
     return (
       <div className="flex-right">
         <div className="table screen">
@@ -115,6 +116,7 @@ export class DropzoneLoadList extends React.Component {
             <thead>
               <tr>
                 <th>Aircraft</th>
+                <th>Departure Time</th>
                 <th>Available Slots</th>
                 <th>Total Slots</th>
                 <th>Booked Slots </th>
@@ -128,6 +130,7 @@ export class DropzoneLoadList extends React.Component {
                 return (
                   <tr key={index}>
                     <td>{load.aircraft}</td>
+                    <td>{load.departureTime}</td>
                     <td>{availableSlots}</td>
                     <td>{load.slots}</td>
                     <td>{load.slotsFilled}</td>
