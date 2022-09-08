@@ -37,7 +37,7 @@ export class AllJumps extends React.Component {
     this.state = {
       page: 1,
       startIdx: 0,
-      endIdx: 6,
+      endIdx: 8,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -57,10 +57,10 @@ export class AllJumps extends React.Component {
   }
 
   renderHelper = (pageNum) => {
-    let end = pageNum * 6;
-    let start = end - 6;
+    let end = pageNum * 8;
+    let start = end - 8;
     console.log('before', this.state.startIdx, this.state.endIdx);
-    this.setState({ endIdx: pageNum * 6 });
+    this.setState({ endIdx: pageNum * 8 });
     this.setState({ startIdx: start });
 
     console.log('this.state after render helper', this.state);
@@ -104,7 +104,7 @@ export class AllJumps extends React.Component {
     let recentSixJumps = jumps.slice(this.state.startIdx, this.state.endIdx);
     console.log('sorted', sortedArr);
     //PAGINATION FUNCTIONS
-    let numOfPages = Math.ceil(jumps.length / 6);
+    let numOfPages = Math.ceil(jumps.length / 8);
     let pagesArr = [];
     for (let i = 0; i < numOfPages; i++) {
       pagesArr.push(i + 1);

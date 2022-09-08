@@ -1,27 +1,27 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import {
   Thunk_fetchAllJumpRecords,
   Thunk_fetchSingleJump,
   Thunk_updateJump,
   Thunk_deleteJump,
   Thunk_createJump,
-} from "../store/jumpRecords";
+} from '../store/jumpRecords';
 import {
   thunk_fetchSingleDropzone,
   thunk_updateDropzone,
   thunk_createDropzone,
   thunk_deleteDropzone,
   thunk_fetchAllDropzones,
-} from "../store/dropzones.js";
+} from '../store/dropzones.js';
 import {
   thunk_fetchAllLoads,
   thunk_createLoad,
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
-} from "../store/loads";
+} from '../store/loads';
 
 /**
  * REACT COMPONENT
@@ -31,6 +31,9 @@ export class PastLoads extends React.Component {
     super(props);
     this.state = {
       loadsdata: this.props.loads,
+      page: 1,
+      startIdx: 0,
+      endIdx: 10,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -54,12 +57,43 @@ export class PastLoads extends React.Component {
   }
 
   removeLoad(dropzoneId, loadId) {
-    console.log("dz,load", dropzoneId, loadId);
+    console.log('dz,load', dropzoneId, loadId);
     this.props.deleteLoad(dropzoneId, loadId);
   }
 
+  renderHelper = (pageNum) => {
+    let end = pageNum * 10;
+    let start = end - 10;
+    console.log('before', this.state.startIdx, this.state.endIdx);
+    this.setState({ endIdx: pageNum * 10 });
+    this.setState({ startIdx: start });
+  };
+
+  dropdownChange = (evt) => {
+    let num = evt.target.value;
+    let number = Number(num);
+    this.setState({ page: number });
+    this.renderHelper(number);
+  };
+
   render() {
     const todaysLoads = this.props.loads;
+
+    let sortedArr = todaysLoads.sort((a, b) => {
+      return a.date - b.date;
+    });
+
+    let recentSixLoads = sortedArr.slice(
+      this.state.startIdx,
+      this.state.endIdx
+    );
+
+    let numOfPages = Math.ceil(todaysLoads.length / 10);
+    let pagesArr = [];
+    for (let i = 0; i < numOfPages; i++) {
+      pagesArr.push(i + 1);
+    }
+
     return (
       <div className="flex-right">
         <div className="table screen">
@@ -73,7 +107,7 @@ export class PastLoads extends React.Component {
               </div>
               <div className="frame-527">
                 <Link to="/createload">
-                  <button className="add-btn" style={{ width: "155px" }}>
+                  <button className="add-btn" style={{ width: '155px' }}>
                     <img
                       className="icon"
                       src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e84f46d0125081c2cb8ad/img/-icon@2x.svg"
@@ -98,7 +132,7 @@ export class PastLoads extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {todaysLoads.map((load, index) => {
+              {recentSixLoads.reverse().map((load, index) => {
                 let availableSlots = load.slots - load.slotsFilled;
                 return (
                   <tr key={index}>
@@ -109,22 +143,22 @@ export class PastLoads extends React.Component {
                     <td>{load.slotsFilled}</td>
                     <td
                       style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "center",
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'center',
                       }}
                     >
                       {/* <button className='edit-btn'><i className="fa-solid fa-pen-to-square"/></button> */}
                       <Link to={`/:dropzoneId/loads/${load.id}`}>
-                      <button
-                        className="edit-btn"
-                        style={{ margin: "1rem 1rem" }}
-                        id={load.id}
-                        title='view details'
-                        onClick={this.handleClick}
-                      >
-                        <i className="fa-solid fa-eye" />
-                      </button>
+                        <button
+                          className="edit-btn"
+                          style={{ margin: '1rem 1rem' }}
+                          id={load.id}
+                          title="view details"
+                          onClick={this.handleClick}
+                        >
+                          <i className="fa-solid fa-eye" />
+                        </button>
                       </Link>
                       {/* <button
                         className="delete-btn"
@@ -142,6 +176,25 @@ export class PastLoads extends React.Component {
               })}
             </tbody>
           </table>
+          <div
+            id="pagination"
+            style={{ display: 'flex', flexDirection: 'row', marginLeft: '40%' }}
+          >
+            <p style={{ width: '164px', marginRight: '-79px' }}>Select Page</p>
+            <select
+              onChange={this.dropdownChange}
+              style={{
+                borderRadius: '10px',
+                marginLeft: '47%',
+                width: '4rem',
+                padding: '1px 8px',
+              }}
+            >
+              {pagesArr.map((page) => {
+                return <option value={Number(page)}>{page}</option>;
+              })}
+            </select>
+          </div>
         </div>
 
         {/* <h2>Past Loads:</h2>

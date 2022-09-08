@@ -38,7 +38,8 @@ export const Sidebar = (props) => {
       <div className="main">
         <div className="sidebar">
           {/* <div className="user-avatar"></div> */}
-          <img src="..public/assets/SwoopLog.png" />
+          <div className="user-avatar img"></div>
+
           <div className="user-name">
             {props.users.firstName} {props.users.lastName}
           </div>
