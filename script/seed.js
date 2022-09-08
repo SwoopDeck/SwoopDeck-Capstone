@@ -2515,7 +2515,191 @@ async function seed() {
 
 
 
+  const year = new Date();
+  const createYear = year.getFullYear();
 
+  const month = new Date();
+  const createMonth = month.getMonth() + 1;
+
+  const day = new Date();
+  const createDay = day.getDate();
+
+  function singleToDoubleDigit(input){
+    return input.length !== 2 ? `0${input}` : `${input}`
+  }
+
+  let currentDay = singleToDoubleDigit(createDay)
+  let currentMonth= singleToDoubleDigit(createMonth)
+
+  const todaysDate = `${createYear}-${createDay}-${createMonth}`;
+
+
+  const today1 = await Load.create({
+    date: todaysDate,
+    aircraft: 'Kodiak',
+    departureTime: '3:00pm',
+    slots: 12,
+    slotsFilled: 0,
+    isFull: false,
+    status: 'on time',
+    dropzoneId: 1,
+  });
+  const today11 = await Load.create({
+    date: todaysDate,
+    aircraft: 'Kodiak',
+    departureTime: '4:00pm',
+    slots: 14,
+    slotsFilled: 0,
+    isFull: false,
+    status: 'on time',
+    dropzoneId: 1,
+  });
+  const today111 = await Load.create({
+    date: todaysDate,
+    aircraft: 'Kodiak',
+    departureTime: '5:00pm',
+    slots: 15,
+    slotsFilled: 0,
+    isFull: false,
+    status: 'on time',
+    dropzoneId: 1,
+  });
+  const today2 = await Load.create({
+    date: todaysDate,
+    aircraft: 'Caravan',
+    departureTime: '4:00pm',
+    slots: 12,
+    slotsFilled: 0,
+    isFull: false,
+    status: 'on time',
+    dropzoneId: 2,
+  });
+  const today22 = await Load.create({
+    date: todaysDate,
+    aircraft: 'Caravan',
+    departureTime: '7:00pm',
+    slots: 16,
+    slotsFilled: 0,
+    isFull: false,
+    status: 'on time',
+    dropzoneId: 2,
+  });
+  const today222 = await Load.create({
+    date: todaysDate,
+    aircraft: 'Caravan',
+    departureTime: '1:00pm',
+    slots: 18,
+    slotsFilled: 0,
+    isFull: false,
+    status: 'on time',
+    dropzoneId: 2,
+  });
+  const today3  = await Load.create({
+    date: todaysDate,
+    aircraft: 'King Air',
+    departureTime: '3:00pm',
+    slots: 15,
+    slotsFilled: 0,
+    isFull: false,
+    status: 'on time',
+    dropzoneId: 3,
+  });
+  const today33  = await Load.create({
+    date: todaysDate,
+    aircraft: 'King Air',
+    departureTime: '5:00pm',
+    slots: 12,
+    slotsFilled: 0,
+    isFull: false,
+    status: 'on time',
+    dropzoneId: 3,
+  });
+  const today333  = await Load.create({
+    date: todaysDate,
+    aircraft: 'King Air',
+    departureTime: '6:00pm',
+    slots: 12,
+    slotsFilled: 0,
+    isFull: false,
+    status: 'on time',
+    dropzoneId: 3,
+  });
+  const today4 = await Load.create({
+    date: todaysDate,
+    aircraft: 'Cessna',
+    departureTime: '6:00pm',
+    slots: 12,
+    slotsFilled: 0,
+    isFull: false,
+    status: 'on time',
+    dropzoneId: 4,
+  });
+  const today44 = await Load.create({
+    date: todaysDate,
+    aircraft: 'Cessna',
+    departureTime: '1:00pm',
+    slots: 12,
+    slotsFilled: 0,
+    isFull: false,
+    status: 'on time',
+    dropzoneId: 4,
+  });
+  const today444 = await Load.create({
+    date: todaysDate,
+    aircraft: 'Cessna',
+    departureTime: '10:00pm',
+    slots: 12,
+    slotsFilled: 0,
+    isFull: false,
+    status: 'on time',
+    dropzoneId: 4,
+  });
+  const today5 = await Load.create({
+    date: todaysDate,
+    aircraft: 'Twin Otter',
+    departureTime: '7:00pm',
+    slots: 12,
+    slotsFilled: 0,
+    isFull: false,
+    status: 'on time',
+    dropzoneId: 5,
+  });
+  const today55 = await Load.create({
+    date: todaysDate,
+    aircraft: 'Twin Otter',
+    departureTime: '2:00pm',
+    slots: 12,
+    slotsFilled: 0,
+    isFull: false,
+    status: 'on time',
+    dropzoneId: 5,
+  });
+  const today555 = await Load.create({
+    date: todaysDate,
+    aircraft: 'Twin Otter',
+    departureTime: '3:00pm',
+    slots: 12,
+    slotsFilled: 0,
+    isFull: false,
+    status: 'on time',
+    dropzoneId: 5,
+  });
+
+  await DZ1.addLoad(today1);
+  await DZ1.addLoad(today11);
+  await DZ1.addLoad(today111);
+  await DZ2.addLoad(today2);
+  await DZ2.addLoad(today22);
+  await DZ2.addLoad(today222);
+  await DZ3.addLoad(today3);
+  await DZ3.addLoad(today33);
+  await DZ3.addLoad(today333);
+  await DZ4.addLoad(today4);
+  await DZ4.addLoad(today44);
+  await DZ4.addLoad(today444);
+  await DZ5.addLoad(today5);
+  await DZ5.addLoad(today55);
+  await DZ5.addLoad(today555);
 
   // DUMMY DROPZONE WITH USER.CREATE
   const Nigel = await User.create({
@@ -2531,6 +2715,8 @@ async function seed() {
     role: 'Dropzone',
   });
 
+
+ 
   // DUMMY DATA TO ASSIGN A DROPZONE TO A USER
   const nigelUser = await User.findByPk(7);
   const sdsd = await Dropzone.findByPk(3);
