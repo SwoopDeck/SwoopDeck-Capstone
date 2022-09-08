@@ -2,6 +2,9 @@
   "name": "swoopdeck",
   "version": "2.0.0",
   "description": "Some boilerplate code to get you started - get shakin'!",
+  "engines": {
+    "node": "16.x"
+  },
   "main": "index.js",
   "scripts": {
     "build": "webpack",
@@ -17,7 +20,7 @@
     "test:dev:models": "npm run test:dev -- --grep=model",
     "test:dev:routes": "npm run test:dev -- --grep=route"
   },
-  "author": "Chris Tomshack & Brian Lee",
+  "author": "Chris Tomshack & Brian Lee & Cole Berman",
   "license": "MIT",
   "dependencies": {
     "@emailjs/browser": "^3.7.0",
@@ -41,7 +44,7 @@
     "pg": "^8.5.1",
     "react-chartjs-2": "^4.3.1",
     "react-countup": "^6.3.1",
-    "react-d3-speedometer": "^1.0.2",
+    
     "react-js-pagination": "^3.0.3",
     "react-split-flap-display": "^0.4.1",
     "react-split-flap-effect": "^1.0.0",
