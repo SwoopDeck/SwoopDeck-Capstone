@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function DropzoneDashboard() {
   return (
@@ -8,12 +8,13 @@ function DropzoneDashboard() {
           <div className="dz-title-div">
             <div className="dz-title-div2">
               <div className="hey-dropzone-name">
-                <span className="manrope-bold-shark-18px">Hey</span>
-                <span className="span1">&nbsp;</span>
                 <span className="manrope-bold-shark-18px">
-                  {"{"}dropzone name{"}"}
+                  Dropzone Dashboard
                 </span>
-                <span className="span3"> - here’s what’s happening this month</span>
+                <span className="span3">
+                  {' '}
+                  - here’s what’s happening this month
+                </span>
               </div>
             </div>
           </div>
@@ -106,7 +107,7 @@ function DropzoneDashboard() {
                 </div>
               </div>
               <div className="transaction-title-container">
-              <div className="transaction-title-2-1">
+                <div className="transaction-title-2-1">
                   <div className="overlap-group-3">
                     <div className="ellipse-8-1"></div>
                     <div className="pending">Pending</div>

@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   Thunk_fetchAllJumpRecords,
   Thunk_fetchSingleJump,
@@ -22,7 +22,6 @@ import {
   thunk_updateLoad,
 } from '../store/loads';
 import { Thunk_fetchUser, Thunk_updateUser } from '../store/allusers';
-
 
 /**
  * REACT COMPONENT
@@ -54,7 +53,6 @@ export class UserProfile extends Component {
   }
 
   render() {
-
     const {
       id,
       firstName,
@@ -66,8 +64,8 @@ export class UserProfile extends Component {
       emergencyPhoneNumber,
     } = this.props.users;
 
-  return (
-    <div className="flex-right">
+    return (
+      <div className="flex-right">
         <form>
           <div className="basic-info-group">
             <div className="edit-account-title-container">
@@ -85,7 +83,7 @@ export class UserProfile extends Component {
                     id="cancel-btn"
                     onClick={() => {
                       // this.props.getUsers();
-                      this.props.history.push(`/users`);
+                      this.props.history.push(`/`);
                     }}
                   >
                     Cancel
@@ -244,8 +242,8 @@ export class UserProfile extends Component {
           </div>
         </form>
       </div>
-  )
-}
+    );
+  }
 }
 
 const mapState = (state) => {
@@ -289,11 +287,11 @@ const mapDispatch = (dispatch) => {
     getSingleLoad: (dropzoneId, loadId) =>
       dispatch(thunk_fetchSingleLoad(dropzoneId, loadId)), //WORKING//
 
-      //////////////////////////////////////
-      getSingleUser: (id) => dispatch(Thunk_fetchUser(id)),
+    //////////////////////////////////////
+    getSingleUser: (id) => dispatch(Thunk_fetchUser(id)),
     editUser: (userId, userData) =>
       dispatch(Thunk_updateUser(userId, userData)),
   };
 };
 
-export default connect(mapState, mapDispatch)(UserProfile)
+export default connect(mapState, mapDispatch)(UserProfile);
