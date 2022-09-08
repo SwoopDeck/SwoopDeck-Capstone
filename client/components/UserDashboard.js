@@ -9,7 +9,7 @@ import LineChart from "./LineChart";
 import PieChart from "./PieChart";
 import DoughnutChart from "./DoughnutChart";
 import CountUp from "react-countup";
-import ReactSpeedometer from "react-d3-speedometer";
+
 
 import SplitFlapDisplay from "react-split-flap-display";
 import { FlapDisplay, Presets } from "react-split-flap-effect";
@@ -233,7 +233,7 @@ export class UserDashboard extends React.Component {
             <div className="total-freefall-time-title">Total Freefall Time</div>
             <h1>
               <CountUp end={totalTime}/>
-              <h2 className="speedometer">
+        
                 <ReactSpeedometer
                   maxValue={1000}
                   value={totalTime}
@@ -291,7 +291,7 @@ export class UserDashboard extends React.Component {
               <h1>{this.props.jumpRecords.userId}</h1>
               <div style={{ width: 100 }}>
                 <h2>
-                  <ReactSpeedometer
+         
                     maxValue={100}
                     value={60}
                     needleColor="grey"
