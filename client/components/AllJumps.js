@@ -87,7 +87,7 @@ export class AllJumps extends React.Component {
     // console.log('dropzones',dropzones)
 
     let sortedArr = jumps.sort((a, b) => {
-      return a.id - b.id;
+      return a.jumpNumber - b.jumpNumber;
     });
     sortedArr.reverse();
     let numbersArr = [];
@@ -95,7 +95,7 @@ export class AllJumps extends React.Component {
       numbersArr.push(i + 1);
     }
 
-    console.log('jumps', jumps);
+    console.log('jumps', sortedArr);
     // console.log(numbersArr);
     // let page = 1;
     // let startIdx = 0;

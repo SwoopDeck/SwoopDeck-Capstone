@@ -46,6 +46,7 @@ export class LoadDetailsUser extends React.Component {
     const dropzoneId = this.props.match.params.dropzoneId;
     this.props.getSingleLoad(dropzoneId, loadId);
     this.props.getAllJumpersOnLoad(this.props.match.params.loadId);
+    this.props.getJumpRecords(this.props.users.id)
   }
 
   handleChange(evt) {
@@ -64,7 +65,7 @@ export class LoadDetailsUser extends React.Component {
 
   render() {
     const allLoads = this.props.loads;
-    console.log(this.props);
+    console.log('jumpRecords',this.props.jumpRecords);
     const jumpers = this.props.jumpRecords.map((user, idx) => {
       return (
         <div key={idx}>
@@ -81,14 +82,20 @@ export class LoadDetailsUser extends React.Component {
         this.props.singleLoad.dropzoneId,
         this.props.singleLoad.id
       );
-      console.log("single load", this.props.singleLoad);
-      console.log("single user", this.props.user);
+    
+      let jumpNum = this.props.jumpRecords.length 
+      // let mostRecentJumpNumber = 
+      // let newJumpNum = Number(mostRecentJumpNumber)
+      console.log('test',jumpNum)
+      console.log('type',typeof jumpNum)
       let currentJump = {
         aircraft: this.props.singleLoad.aircraft,
         jumpDate: this.props.singleLoad.date,
         loadId: this.props.singleLoad.id,
         dropzoneId: this.props.singleLoad.dropzoneId,
+        jumpNumber: jumpNum + 1
       };
+      console.log('currentJump', currentJump)
 
       this.props.addJumpRecord(currentJump, this.props.users.id);
       // this.props.history.push('/home');
