@@ -37,7 +37,7 @@ const AuthForm = props => {
               type="password"
               required
             />
-            <button className="loader" ><Link to="/alljumps">Sign in</Link></button>
+            <button className="loader" ><Link to="/">Sign in</Link></button>
             <p className="text">Don't have an account?</p>
             <Link to="/signup">
               <button className="buttonShadow" type="submit">
