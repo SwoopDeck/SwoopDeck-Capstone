@@ -34,12 +34,12 @@ export const Sidebar = (props) => {
   if (props.users.isAdmin) {
     const dispatch = useDispatch();
 
-    
-
     return (
       <div className="main">
         <div className="sidebar">
-          <div className="user-avatar"></div>
+          {/* <div className="user-avatar"></div> */}
+          <div className="user-avatar img"></div>
+
           <div className="user-name">
             {props.users.firstName} {props.users.lastName}
           </div>
@@ -64,8 +64,7 @@ export const Sidebar = (props) => {
     return (
       <div className="main">
         <div className="sidebar">
-          <div className="user-avatar img">
-          </div>
+          <div className="user-avatar img"></div>
           <div className="user-name">
             {props.users.firstName} {props.users.lastName}
           </div>
@@ -73,7 +72,7 @@ export const Sidebar = (props) => {
           {userItems.map((item, index) => (
             <SidebarItem key={index} item={item} />
           ))}
-          
+
           <i className="bi bi-box-arrow-right">
             <button className="logout-btn" onClick={() => dispatch(logout())}>
               Logout

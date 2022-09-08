@@ -38,7 +38,7 @@ import AdminCreateUser from './components/AdminCreateUser';
 import AdminCreateDropzone from './components/AdminCreateDropzone';
 
 import UserDashboard from './components/UserDashboard';
-
+import ThanksForSubmission from './components/ThanksForSubmission';
 
 /**
  * COMPONENT
@@ -155,6 +155,7 @@ class Routes extends Component {
         <Route exact path="/contact" component={ContactUs} />
         <Route exact path="/payment" component={PaymentForm} />
         <Route exact path="/cart" component={Cart} />
+        <Route exact path="/thankYou" component={ThanksForSubmission} />
 
         <Route path="*" component={ErrorPage} />
       </Switch>

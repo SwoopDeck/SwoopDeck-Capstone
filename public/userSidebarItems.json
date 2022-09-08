@@ -20,7 +20,7 @@
   {
     "title": "Account",
     "icon": "bi-person-fill",
-    "path": "/users/edit"
+    "path": "/viewprofile"
   },
 
   {

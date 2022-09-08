@@ -29,6 +29,11 @@ import {
 export class AllDropzones extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      page: 1,
+      startIdx: 0,
+      endIdx: 10,
+    };
 
     this.handleChange = this.handleChange.bind(this);
   }
@@ -50,8 +55,38 @@ export class AllDropzones extends React.Component {
     });
   }
 
+  renderHelper = (pageNum) => {
+    let end = pageNum * 8;
+    let start = end - 8;
+    console.log('before', this.state.startIdx, this.state.endIdx);
+    this.setState({ endIdx: pageNum * 8 });
+    this.setState({ startIdx: start });
+  };
+
+  dropdownChange = (evt) => {
+    let num = evt.target.value;
+    let number = Number(num);
+    this.setState({ page: number });
+    this.renderHelper(number);
+  };
+
   render() {
     const allDropzones = this.props.dropzones;
+
+    let sortedArr = allDropzones.sort((a, b) => {
+      return a.id - b.id;
+    });
+
+    let recentEightDropzones = sortedArr.slice(
+      this.state.startIdx,
+      this.state.endIdx
+    );
+
+    let numOfPages = Math.ceil(allDropzones.length / 8);
+    let pagesArr = [];
+    for (let i = 0; i < numOfPages; i++) {
+      pagesArr.push(i + 1);
+    }
 
     console.log('chris', this.props.dropzones[0]);
 
@@ -100,6 +135,7 @@ export class AllDropzones extends React.Component {
           <table>
             <thead>
               <tr>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Address</th>
                 <th>Phone Number </th>
@@ -107,9 +143,10 @@ export class AllDropzones extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {allDropzones.map((dropzone, index) => {
+              {recentEightDropzones.map((dropzone, index) => {
                 return (
                   <tr key={index}>
+                    <td>{dropzone.id}</td>
                     <td>{dropzone.name}</td>
                     <td>{dropzone.address}</td>
                     <td>{dropzone.phoneNumber}</td>
@@ -123,12 +160,12 @@ export class AllDropzones extends React.Component {
                       <Link to={`/dropzones/${dropzone.id}`}>
                         {/* <button className='edit-btn'><i className="fa-solid fa-pen-to-square"/></button> */}
 
-                       {/* <button className="edit-btn" style={{margin: '1rem 1rem'}}><i className="fa-solid fa-eye"/></button>
-                        </Link>
+                        {/* <button className="edit-btn" style={{margin: '1rem 1rem'}}><i className="fa-solid fa-eye"/></button>
+                       </Link>
                        <button className='delete-btn'
                        style={{backgroundColor: 'red'}}
                        onClick={() => {
-                       this.props.deleteDropzone(dropzone.id);
+                        this.props.deleteDropzone(dropzone.id);
                        }}
                        ><i className="fa-solid fa-trash-can"/></button> */}
 
@@ -148,13 +185,31 @@ export class AllDropzones extends React.Component {
                       >
                         <i className="fa-solid fa-trash-can" />
                       </button>
-
                     </td>
                   </tr>
                 );
               })}
             </tbody>
           </table>
+          <div
+            id="pagination"
+            style={{ display: 'flex', flexDirection: 'row', marginLeft: '40%' }}
+          >
+            <p style={{ width: '164px', marginRight: '-79px' }}>Select Page</p>
+            <select
+              onChange={this.dropdownChange}
+              style={{
+                borderRadius: '10px',
+                marginLeft: '47%',
+                width: '4rem',
+                padding: '1px 8px',
+              }}
+            >
+              {pagesArr.map((page) => {
+                return <option value={Number(page)}>{page}</option>;
+              })}
+            </select>
+          </div>
         </div>
 
         {/* <h2>All Dropzones:</h2>
