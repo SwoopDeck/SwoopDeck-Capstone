@@ -1249,7 +1249,7 @@ margin-left: 5.5rem;
 
 .overlap-group {
   align-items: flex-start;
-  background-image: url(https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/6316430df11c17b54f51f346/img/elements---line---gorizontal@2x.svg);
+  /* background-image: url(https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/6316430df11c17b54f51f346/img/elements---line---gorizontal@2x.svg); */
   background-size: 100% 100%;
   display: flex;
   margin-top: 7px;

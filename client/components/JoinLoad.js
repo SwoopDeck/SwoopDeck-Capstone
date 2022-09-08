@@ -39,8 +39,9 @@ export class JoinLoad extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
   componentDidMount() {
-    console.log(this.props.match.params.dropzoneId);
+    // console.log(this.props.match.params.dropzoneId);
     this.props.getLoads(this.props.match.params.dropzoneId);
+    this.props.getJumpRecords(this.props.user.id)
   }
 
   handleChange(evt) {
@@ -50,6 +51,9 @@ export class JoinLoad extends React.Component {
   }
 
   render() {
+
+
+   
     const year = new Date();
     const createYear = year.getFullYear();
 
@@ -81,11 +85,17 @@ export class JoinLoad extends React.Component {
         this.props.singleLoad.dropzoneId,
         this.props.singleLoad.id
       );
+      let jumpNumsArr = this.props.jumpRecords.sort((a, b) => a.jumpNumber - b.jumpNumber).map((jump) => {
+        return jump.jumpNumber
+      })
+      let mostRecentJumpNumber = jumpNumsArr[jumpNumsArr.length - 1] + 1
+      console.log('test',mostRecentJumpNumber)
       let currentJump = {
         aircraft: this.props.singleLoad.aircraft,
         jumpDate: this.props.singleLoad.date,
         loadId: this.props.singleLoad.id,
         dropzoneId: this.props.singleLoad.dropzoneId,
+        jumpNumber: mostRecentJumpNumber
       };
 
       this.props.addJumpRecord(currentJump, this.props.user.id);
