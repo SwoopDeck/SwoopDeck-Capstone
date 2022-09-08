@@ -158,6 +158,7 @@ export class JoinLoad extends React.Component {
               <tr>
                 <th>Departure Time</th>
                 <th>Available Slots</th>
+                <th>Aircraft</th>
                 <th>Status</th>
                 <th>ACTION</th>
               </tr>
@@ -169,6 +170,7 @@ export class JoinLoad extends React.Component {
                     <tr key={index}>
                       <td>{load.departureTime}</td>
                       <td>{load.slots - load.slotsFilled}</td>
+                      <td>{load.aircraft}</td>
                       <td>{load.status}</td>
 
                       <td
