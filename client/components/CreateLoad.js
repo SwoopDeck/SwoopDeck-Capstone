@@ -23,7 +23,7 @@ import {
   thunk_updateLoad,
   addLoad,
 } from "../store/loads";
-import { Thunk_fetchUsers, Thunk_fetchUser } from "../store/allusers";
+import { Thunk_fetchUsers, Thunk_fetchUser } from "../store/allUsers";
 /**
  * REACT COMPONENT
  */

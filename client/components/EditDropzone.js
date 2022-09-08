@@ -23,7 +23,7 @@ import {
   thunk_fetchSingleLoad,
   thunk_updateLoad,
 } from "../store/loads";
-import { Thunk_fetchUser, Thunk_updateUser } from "../store/allusers";
+import { Thunk_fetchUser, Thunk_updateUser } from "../store/allUsers";
 
 export class EditDropzone extends Component {
   constructor(props) {
