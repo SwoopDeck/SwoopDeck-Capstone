@@ -2,7 +2,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/SwoopDeck/SwoopDeck-Capstone">
-    <img src="./client/assets/SwoopLog.png" alt="Logo" width="80" height="80">
+    <img src="/SwoopLog.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">SwoopDeck</h3>
