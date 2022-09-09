@@ -77,14 +77,15 @@ export class DropzoneLoadList extends React.Component {
 
     const loadsArr = this.props.loads || [];
     const todaysLoads = loadsArr.filter((load) => {
-      let loadDate = load.date.slice(0, 9);
+      let loadDate = load.date.includes('a')
+        ? load.date.slice(0, -9)
+        : load.date;
 
       if (loadDate === todaysDate) {
         return load;
       }
     });
 
-    console.log(this.props);
     return (
       <div className="flex-right">
         <div className="table screen">
@@ -123,7 +124,6 @@ export class DropzoneLoadList extends React.Component {
               </tr>
             </thead>
             <tbody>
-
               {todaysLoads.length ? (
                 todaysLoads.map((load, index) => {
                   let availableSlots = load.slots - load.slotsFilled;
@@ -140,7 +140,6 @@ export class DropzoneLoadList extends React.Component {
                           flexDirection: 'row',
                           justifyContent: 'center',
                         }}
-
                       >
                         {/* <button className='edit-btn'><i className="fa-solid fa-pen-to-square"/></button> */}
                         <Link to={`/:dropzoneId/loads/${load.id}`}>
