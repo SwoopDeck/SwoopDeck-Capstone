@@ -121,7 +121,7 @@ class Routes extends Component {
 
         <Route
           exact
-          path="/dropzoneId/todaysLoads"
+          path="/:dropzoneId/todaysLoads"
           component={DropzoneLoadList}
         />
         {/*<Route path="/createload" component={CreateLoad} />
