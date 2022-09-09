@@ -63,7 +63,7 @@ export class JoinLoad extends React.Component {
     const day = new Date();
     const createDay = day.getDate();
 
-    const todaysDate = `${createYear}-${createDay}-${createMonth} `;
+    const todaysDate = `${createYear}-${createDay}-${createMonth}`;
     console.log("in componenet", this.props.loads);
     const loadsArr = this.props.loads || [];
     const todaysLoads = loadsArr.filter((load) => {

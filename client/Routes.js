@@ -72,8 +72,8 @@ class Routes extends Component {
         <Route exact path="/user/add" component={AdminCreateUser} />
         <Route exact path="/dropzone/add" component={AdminCreateDropzone} />
 
-        <Route exact path="/:dropzoneId/loads" component={DropzoneLoadList} />
-        <Route path="/:dropzoneId/loads/:loadId" component={LoadDetailsDZ} />
+        <Route exact path="/dropzoneId/loads" component={DropzoneLoadList} />
+        <Route path="/dropzoneId/loads/:loadId" component={LoadDetailsDZ} />
 
         <Route exact path="/payment" component={PaymentForm} />
         <Route exact path="/cart" component={Cart} />
@@ -105,7 +105,7 @@ class Routes extends Component {
 
         <Route
           exact
-          path="/load/:dropzoneId/:loadId/details"
+          path="/load/dropzoneId/:loadId/details"
           component={LoadDetailsUser}
         />
         <Route path="*" component={ErrorPage} />
@@ -121,17 +121,17 @@ class Routes extends Component {
 
         <Route
           exact
-          path="/:dropzoneId/todaysLoads"
+          path="/dropzoneId/todaysLoads"
           component={DropzoneLoadList}
         />
         {/*<Route path="/createload" component={CreateLoad} />
         <Route path="/dropzoneProfile" component={DropzoneProfile} />
         <Route path="/dropzoneLoadList" component={DropzoneLoadList} /> */}
 
-        {/* <Route exact path="/:dropzoneId/loads" component={TodaysLoads} /> */}
+        {/* <Route exact path="/dropzoneId/loads" component={TodaysLoads} /> */}
         <Route
           exact
-          path="/:dropzoneId/loads/:loadId"
+          path="/dropzoneId/loads/:loadId"
           component={LoadDetailsDZ}
         />
 

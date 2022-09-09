@@ -52,7 +52,7 @@ export class DropzoneLoadList extends React.Component {
     // let loadId = evt.target.id;
     // console.log(loadId)
     // console.log(evt.target.id)
-    // this.props.history.push(`/:dropzoneId/loads/${loadId}`)
+    // this.props.history.push(`/dropzoneId/loads/${loadId}`)
   }
 
   removeLoad(dropzoneId, loadId) {
@@ -73,7 +73,7 @@ export class DropzoneLoadList extends React.Component {
     const day = new Date();
     const createDay = day.getDate();
 
-    const todaysDate = `${createYear}-${createDay}-${createMonth} `;
+    const todaysDate = `${createYear}-${createDay}-${createMonth}`;
 
     const loadsArr = this.props.loads || [];
     const todaysLoads = loadsArr.filter((load) => {
@@ -123,6 +123,7 @@ export class DropzoneLoadList extends React.Component {
               </tr>
             </thead>
             <tbody>
+
               {todaysLoads.length ? (
                 todaysLoads.map((load, index) => {
                   let availableSlots = load.slots - load.slotsFilled;
@@ -139,6 +140,7 @@ export class DropzoneLoadList extends React.Component {
                           flexDirection: 'row',
                           justifyContent: 'center',
                         }}
+
                       >
                         {/* <button className='edit-btn'><i className="fa-solid fa-pen-to-square"/></button> */}
                         <Link to={`/:dropzoneId/loads/${load.id}`}>

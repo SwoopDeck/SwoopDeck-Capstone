@@ -53,12 +53,12 @@ export class TodaysLoads extends React.Component {
     const day = new Date();
     const createDay = day.getDate();
 
-    const todaysDate = `${createYear}-${createDay}-${createMonth} `;
+    const todaysDate = `${createYear}-${createDay}-${createMonth}`;
 
     const loadsArr = this.props.loads || [];
     const todaysLoads = loadsArr.filter((load) => {
       let loadDate = load.date.slice(0, 9);
-
+      console.log(loadDate)
       if (loadDate === todaysDate) {
         return load;
       }

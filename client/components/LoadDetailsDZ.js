@@ -110,7 +110,7 @@ export class LoadDetailsDZ extends React.Component {
                 </div>
               </div>
               <div className="frame-527">
-                <Link to="/:dropzoneId/todaysLoads">
+                <Link to="/dropzoneId/todaysLoads">
                   <button className="add-btn" style={{ width: "200px" }}>
 
                     <div className="button">Back to today's loads</div>
