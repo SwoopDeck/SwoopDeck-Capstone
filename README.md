@@ -77,9 +77,9 @@
 <!-- ROADMAP -->
 ## Roadmap - Upcoming Features
 
-- [ ] Stripe connectivity - Provide dropzones the ability to manage a store with dashboard financials updating in real-time, as well as the ability to establish and sell various jump tickets, products, services, and gear.
-- [ ] Online Bookings - non-licenses guests will be able to visit a dropzone's website and book tandem skydives for future dates.
-- [ ] Mobile App - Licensed skydivers will be able to login to their account on iOS & Android, view info about their skydiving journey, and join flight manifests created by the dropzone they are at.
+- [ ] **Stripe connectivity** - Provide dropzones the ability to manage a store with dashboard financials updating in real-time, as well as the ability to establish and sell various jump tickets, products, services, and gear.
+- [ ] **Online Bookings** - non-licensed guests will be able to visit a dropzone's website and book tandem skydives for future dates.
+- [ ] **Mobile App** - Licensed skydivers will be able to login to their account on iOS & Android, view info about their skydiving journey, and join flight manifests created by the dropzone they are at.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
