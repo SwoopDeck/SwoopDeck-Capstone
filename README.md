@@ -106,14 +106,11 @@ This is an example of how to list things you need to use the software and how to
 
 
 <!-- ROADMAP -->
-## Roadmap
+## Roadmap - Upcoming Features
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
-
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+- [ ] Stripe connectivity - Provide dropzones the ability to manage a store with dashboard financials updating in real-time, as well as the ability to establish and sell various jump tickets, products, services, and gear.
+- [ ] Online Bookings - non-licenses guests will be able to visit a dropzone's website and book tandem skydives for future dates.
+- [ ] Mobile App - Licensed skydivers will be able to login to their account on iOS & Android, view info about their skydiving journey, and join flight manifests created by the dropzone they are at.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -149,10 +146,10 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Chris Tomshack - (https://www.linkedin.com/in/christomshack/)
-Cole Berman - (https://www.linkedin.com/in/cole-berman/)
-Brian Lee - (https://www.linkedin.com/in/christomshack/)
-Christopher Ruiz - (https://www.linkedin.com/in/christopher-ethan-ruiz/)
+* Chris Tomshack - (https://www.linkedin.com/in/christomshack/)
+* Cole Berman - (https://www.linkedin.com/in/cole-berman/)
+* Brian Lee - (https://www.linkedin.com/in/christomshack/)
+* Christopher Ruiz - (https://www.linkedin.com/in/christopher-ethan-ruiz/)
 
 Project Link: [https://github.com/SwoopDeck/SwoopDeck-Capstone](https://github.com/SwoopDeck/SwoopDeck-Capstone)
 
