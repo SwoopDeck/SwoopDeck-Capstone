@@ -64,12 +64,12 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 ### Built With
 
-* [![React][React.js]][https://reactjs.org/]
-* [![PostgreSQL][[React.js](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.d0C-8A3W1HBzcHqHoUmAzgHaHa%26pid%3DApi&f=1)]][https://www.postgresql.org/]
-* [![Express.js][Express.js]][https://expressjs.com/]
-* [![Sequelize][Sequelize]][https://sequelize.org/]
-* [![Node.js][Node.js]][https://nodejs.org/en/]
-* [![Heroku][Heroku]][https://www.heroku.com/]
+* React.js [https://reactjs.org/]
+* PostgreSQL [https://www.postgresql.org/]
+* Express.js [https://expressjs.com/]
+* Sequelize [https://sequelize.org/]
+* Node.js [https://nodejs.org/en/]
+* Heroku [https://www.heroku.com/]
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
