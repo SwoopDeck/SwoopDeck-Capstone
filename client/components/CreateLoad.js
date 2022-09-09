@@ -21,14 +21,12 @@ import {
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
-  addLoad,
-<<<<<<< HEAD
 } from '../store/loads';
-import { Thunk_fetchUsers, Thunk_fetchUser } from '../store/allusers';
-=======
-} from "../store/loads";
+
+
+
 import { Thunk_fetchUsers, Thunk_fetchUser } from "../store/allUsers";
->>>>>>> 1d41a58 (third try)
+
 /**
  * REACT COMPONENT
  */

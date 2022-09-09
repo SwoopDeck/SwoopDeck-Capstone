@@ -143,7 +143,7 @@ export class DropzoneLoadList extends React.Component {
                         }}
                       >
                         {/* <button className='edit-btn'><i className="fa-solid fa-pen-to-square"/></button> */}
-                        <Link to={`/:dropzoneId/loads/${load.id}`}>
+                        <Link to={`/dropzoneId/loads/${load.id}`}>
                           <button
                             className="edit-btn"
                             style={{ margin: '1rem 1rem' }}
