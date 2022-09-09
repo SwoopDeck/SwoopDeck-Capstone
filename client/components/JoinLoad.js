@@ -88,7 +88,7 @@ export class JoinLoad extends React.Component {
       let jumpNumsArr = this.props.jumpRecords.sort((a, b) => a.jumpNumber - b.jumpNumber).map((jump) => {
         return jump.jumpNumber
       })
-      let mostRecentJumpNumber = jumpNumsArr[jumpNumsArr.length - 1] + 1
+      let mostRecentJumpNumber = jumpNumsArr[jumpNumsArr.length + 1] 
       console.log('test',mostRecentJumpNumber)
       let currentJump = {
         aircraft: this.props.singleLoad.aircraft,
