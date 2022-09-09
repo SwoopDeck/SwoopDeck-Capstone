@@ -4,7 +4,7 @@ import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import auth from './auth';
 import jumpRecordsReducer from './jumpRecords';
-import usersReducer from './allusers';
+import usersReducer from './allUsers';
 import dropzonesReducer from './dropzones';
 import loadsReducer from './loads';
 
