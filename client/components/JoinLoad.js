@@ -89,7 +89,7 @@ export class JoinLoad extends React.Component {
         return jump.jumpNumber
       })
       let mostRecentJumpNumber = jumpNumsArr[jumpNumsArr.length + 1] 
-      console.log('test',mostRecentJumpNumber)
+      console.log('test',jumpNumsArr)
       let currentJump = {
         aircraft: this.props.singleLoad.aircraft,
         jumpDate: this.props.singleLoad.date,
@@ -113,7 +113,7 @@ export class JoinLoad extends React.Component {
           <div>
             <button
               type="button"
-              onClick={confirmLoad}
+              onClick={()=> confirmLoad}
               display={this.state.display}
             >
               Confirm
