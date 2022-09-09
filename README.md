@@ -8,7 +8,7 @@
 <h3 align="center">SwoopDeck</h3>
 
   <p align="center">
-    An application that provides real-world, programmatic solutions to the skydiving industry
+    An application that modernizes the skydiving industry by providing real-world, programmatic solutions to skydivers and skydiving drop zones worldwide
     <br />
     <a href="https://github.com/SwoopDeck/SwoopDeck-Capstone"><strong>Explore the docs »</strong></a>
     <br />
