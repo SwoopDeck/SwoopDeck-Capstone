@@ -67,7 +67,7 @@ export class JoinLoad extends React.Component {
     console.log("in componenet", this.props.loads);
     const loadsArr = this.props.loads || [];
     const todaysLoads = loadsArr.filter((load) => {
-      let loadDate = load.date.slice(0, 9);
+      let loadDate = load.date.slice(0, 8);
 
       if (loadDate === todaysDate) {
         return load;
