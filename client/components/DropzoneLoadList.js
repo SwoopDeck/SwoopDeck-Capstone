@@ -1,5 +1,5 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
   Thunk_fetchAllJumpRecords,
@@ -7,21 +7,21 @@ import {
   Thunk_updateJump,
   Thunk_deleteJump,
   Thunk_createJump,
-} from "../store/jumpRecords";
+} from '../store/jumpRecords';
 import {
   thunk_fetchSingleDropzone,
   thunk_updateDropzone,
   thunk_createDropzone,
   thunk_deleteDropzone,
   thunk_fetchAllDropzones,
-} from "../store/dropzones.js";
+} from '../store/dropzones.js';
 import {
   thunk_fetchAllLoads,
   thunk_createLoad,
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
-} from "../store/loads";
+} from '../store/loads';
 
 /**
  * REACT COMPONENT
@@ -56,14 +56,14 @@ export class DropzoneLoadList extends React.Component {
   }
 
   removeLoad(dropzoneId, loadId) {
-    console.log("dz,load", dropzoneId, loadId);
+    console.log('dz,load', dropzoneId, loadId);
     this.props.deleteLoad(dropzoneId, loadId);
   }
 
   render() {
     //const Allloads = this.props.loads;
     //may need a filter for just speicfic Dropzone
-    //need name that is asscoated with load
+
     const year = new Date();
     const createYear = year.getFullYear();
 
@@ -78,14 +78,15 @@ export class DropzoneLoadList extends React.Component {
     const loadsArr = this.props.loads || [];
     console.log(loadsArr)
     const todaysLoads = loadsArr.filter((load) => {
+
       let loadDate = load.date.slice(0, 8);
+
 
       if (loadDate === todaysDate) {
         return load;
       }
     });
 
-    console.log(this.props)
     return (
       <div className="flex-right">
         <div className="table screen">
@@ -98,17 +99,16 @@ export class DropzoneLoadList extends React.Component {
                 </div>
               </div>
               <div className="frame-527">
-                  <Link to='/createload'>
-                <button className="add-btn"
-                style={{width: '155px'}}>
-                  <img
-                    className="icon"
-                    src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e84f46d0125081c2cb8ad/img/-icon@2x.svg"
-                  />
+                <Link to="/createload">
+                  <button className="add-btn" style={{ width: '155px' }}>
+                    <img
+                      className="icon"
+                      src="https://anima-uploads.s3.amazonaws.com/projects/630e6c3ef11c17b54f51d1b7/releases/630e84f46d0125081c2cb8ad/img/-icon@2x.svg"
+                    />
 
-                  <div className="button">Create Load</div>
-                </button>
-                  </Link>
+                    <div className="button">Create Load</div>
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -125,57 +125,62 @@ export class DropzoneLoadList extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {todaysLoads.length ?
-              todaysLoads.map((load, index) => {
-                let availableSlots = load.slots - load.slotsFilled;
-                return (
-                  <tr key={index}>
-                    <td>{load.aircraft}</td>
-                    <td>{load.departureTime}</td>
-                    <td>{availableSlots}</td>
-                    <td>{load.slots}</td>
-                    <td>{load.slotsFilled}</td>
-                    <td
-                      style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "center",
-                      }}
-                    >
-                      {/* <button className='edit-btn'><i className="fa-solid fa-pen-to-square"/></button> */}
-                      <Link to={`/dropzoneId/loads/${load.id}`}>
-                      <button
-                        className="edit-btn"
-                        style={{ margin: "1rem 1rem" }}
-                        id={load.id}
-                        title='view details'
-                        // onClick={this.handleClick}
+              {todaysLoads.length ? (
+                todaysLoads.map((load, index) => {
+                  let availableSlots = load.slots - load.slotsFilled;
+                  return (
+                    <tr key={index}>
+                      <td>{load.aircraft}</td>
+                      <td>{load.departureTime}</td>
+                      <td>{availableSlots}</td>
+                      <td>{load.slots}</td>
+                      <td>{load.slotsFilled}</td>
+                      <td
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'row',
+                          justifyContent: 'center',
+                        }}
                       >
-                        <i className="fa-solid fa-eye" />
-                      </button>
-                      </Link>
-                      <button
-                        className="delete-btn"
-                        style={{ backgroundColor: "red" }}
-                        id={load.id}
-                        title='delete load'
-                        onClick={() =>
-                          this.removeLoad(this.props.users.dropzoneId, load.id)
-                        }
-                      >
-                        <i className="fa-solid fa-trash-can" />
-                      </button>
-                    </td>
-                  </tr>
-                );
-              }) : 
-              <tr>
-                <td></td>
-                <td></td>
-                <td>No loads have been created today</td>
-                <td></td>
-                <td></td>
-                </tr>}
+                        {/* <button className='edit-btn'><i className="fa-solid fa-pen-to-square"/></button> */}
+                        <Link to={`/:dropzoneId/loads/${load.id}`}>
+                          <button
+                            className="edit-btn"
+                            style={{ margin: '1rem 1rem' }}
+                            id={load.id}
+                            title="view details"
+                            // onClick={this.handleClick}
+                          >
+                            <i className="fa-solid fa-eye" />
+                          </button>
+                        </Link>
+                        <button
+                          className="delete-btn"
+                          style={{ backgroundColor: 'red' }}
+                          id={load.id}
+                          title="delete load"
+                          onClick={() =>
+                            this.removeLoad(
+                              this.props.users.dropzoneId,
+                              load.id
+                            )
+                          }
+                        >
+                          <i className="fa-solid fa-trash-can" />
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })
+              ) : (
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>No loads have been created today</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
