@@ -13,9 +13,9 @@
     <a href="https://github.com/SwoopDeck/SwoopDeck-Capstone"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://www.youtube.com/watch?v=OWcQnvvko5k">View Demo Video</a>
+    <a href="https://www.youtube.com/watch?v=OWcQnvvko5k">Demo Video</a>
     ·
-    <a href="https://testingswoops.herokuapp.com/login">Visit Demo App</a>
+    <a href="https://testingswoops.herokuapp.com/login">View Demo Application</a>
     ·
     <a href="https://github.com/SwoopDeck/SwoopDeck-Capstone/issues">Report A Bug</a>
   </p>
