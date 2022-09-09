@@ -151,7 +151,7 @@ export class LoadDetailsUser extends React.Component {
                     justifyContent: "center",
                   }}
                 >
-                  <Link to={`/join/dropzone`}>
+                  <Link to={`/alljumps`}>
                     <button
                       className="edit-btn"
                       style={{ margin: "1rem 1rem" }}
