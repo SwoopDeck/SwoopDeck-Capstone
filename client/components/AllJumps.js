@@ -1,30 +1,11 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { me } from '../store/auth';
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { me } from "../store/auth";
 
-import {
-  Thunk_fetchAllJumpRecords,
-  Thunk_fetchSingleJump,
-  Thunk_updateJump,
-  Thunk_deleteJump,
-  Thunk_createJump,
-} from '../store/jumpRecords';
-import {
-  thunk_fetchSingleDropzone,
-  thunk_updateDropzone,
-  thunk_createDropzone,
-  thunk_deleteDropzone,
-  thunk_fetchAllDropzones,
-} from '../store/dropzones.js';
-import {
-  thunk_fetchAllLoads,
-  thunk_createLoad,
-  thunk_deleteLoad,
-  thunk_fetchSingleLoad,
-  thunk_updateLoad,
-  thunk_adminFetchAllLoads,
-} from '../store/loads';
+import { Thunk_fetchAllJumpRecords } from "../store/jumpRecords";
+import { thunk_fetchAllDropzones } from "../store/dropzones.js";
+import { thunk_fetchAllLoads, thunk_adminFetchAllLoads } from "../store/loads";
 
 /**
  * REACT COMPONENT
@@ -33,7 +14,7 @@ export class AllJumps extends React.Component {
   constructor(props) {
     super(props);
 
-    //FOR PAGINATIONp
+    //FOR PAGINATION
     this.state = {
       page: 1,
       startIdx: 0,
@@ -59,11 +40,11 @@ export class AllJumps extends React.Component {
   renderHelper = (pageNum) => {
     let end = pageNum * 8;
     let start = end - 8;
-    console.log('before', this.state.startIdx, this.state.endIdx);
+    console.log("before", this.state.startIdx, this.state.endIdx);
     this.setState({ endIdx: pageNum * 8 });
     this.setState({ startIdx: start });
 
-    console.log('this.state after render helper', this.state);
+    console.log("this.state after render helper", this.state);
   };
 
   dropdownChange = (evt) => {
@@ -77,14 +58,13 @@ export class AllJumps extends React.Component {
     console.log(this.state);
 
     function alertMessage() {
-      alert('This feature is not yet available!');
+      alert("This feature is not yet available!");
     }
 
     //GETS USER'S MOST RECENT 5 JUMPS
 
     let jumps = [this.props.jumpRecords][0] || [];
     let dropzones = this.props.dropzones.allDropzones || [];
-    // console.log('dropzones',dropzones)
 
     let sortedArr = jumps.sort((a, b) => {
       return a.jumpNumber - b.jumpNumber;
@@ -95,14 +75,11 @@ export class AllJumps extends React.Component {
       numbersArr.push(i + 1);
     }
 
-    console.log('jumps', sortedArr);
-    // console.log(numbersArr);
-    // let page = 1;
-    // let startIdx = 0;
-    // let endIdx = 6;
+    console.log("jumps", sortedArr);
 
     let recentSixJumps = jumps.slice(this.state.startIdx, this.state.endIdx);
-    console.log('sorted', sortedArr);
+    console.log("sorted", sortedArr);
+
     //PAGINATION FUNCTIONS
     let numOfPages = Math.ceil(jumps.length / 8);
     let pagesArr = [];
@@ -110,32 +87,7 @@ export class AllJumps extends React.Component {
       pagesArr.push(i + 1);
     }
 
-    // function renderHelper(pageNum) {
-    //   endIdx = pageNum * 7 - 1;
-    //   startIdx = endIdx - 6;
-    // }
-
-    // function dropdownChange(evt) {
-    //   console.log('before', startIdx, endIdx);
-    //   page = evt.target.value;
-    //   let pageNum = Number(page);
-    //   renderHelper(pageNum);
-    //   console.log('after', startIdx, endIdx);
-    // }
-
-    //////FOR JUMPNUM (SHOULD WORK WITH PAGINATION TOO)//////
-    /*
-    - Use pointers like in a linked list;
-    
-    - Order array of jumps from most recent date to least recent
-    - Loop through entire jumps array left to right
-    - Create a holder variable that is set to array.length - 1 'jumpNum = array.length - 1'
-    - On first iteration, subtract current index from jumpNum 'jumpNum - currentIndex'
-    - Should give us accurate jump numbers
-
-    */
-
-    console.log('adminLoads', this.props.loads.allLoads);
+    console.log("adminLoads", this.props.loads.allLoads);
     return (
       <div className="flex-right">
         <div className="table screen">
@@ -175,8 +127,6 @@ export class AllJumps extends React.Component {
             </button>
           </div>
 
-          {/* //////////////////////// Manual TABLE COMMENTED OUT //////////////////////// */}
-
           <table>
             <thead>
               <tr>
@@ -197,14 +147,14 @@ export class AllJumps extends React.Component {
                     currentDropzone = dropzones[i];
                   }
                 }
-                let dateSplice = '';
+                let dateSplice = "";
                 for (let i = 0; i < jump.jumpDate.length; i++) {
-                  let datesArr = jump.jumpDate.split(' ');
-                  // console.log('sdfjasdf', datesArr);
+                  let datesArr = jump.jumpDate.split(" ");
+
                   dateSplice = datesArr[0].toString();
                 }
 
-                let loadTime = '';
+                let loadTime = "";
                 let currentLoad = {};
                 for (let i = 0; i < this.props.loads.allLoads.length; i++) {
                   let load = this.props.loads.allLoads[i];
@@ -214,13 +164,10 @@ export class AllJumps extends React.Component {
                   }
                 }
 
-                // console.log('dateSplice', jump.jumpDate.slice(0, 9));
-
                 return (
-                  <tr key={index} style={{ lineHeight: '20px' }}>
+                  <tr key={index} style={{ lineHeight: "20px" }}>
                     <td>{jump.jumpNumber}</td>
 
-                    {/* <td>{currentNumber}</td> */}
                     <td>
                       {loadTime !== null
                         ? `${dateSplice} at ${loadTime}`
@@ -229,15 +176,15 @@ export class AllJumps extends React.Component {
                     <td>{currentDropzone.name}</td>
                     <td>
                       {jump.exitAltitude > 7000
-                        ? 'Full Altitude'
+                        ? "Full Altitude"
                         : `Hop 'n Pop`}
                     </td>
                     <td>{jump.jumpType}</td>
                     <td
                       style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        justifyContent: 'center',
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "center",
                       }}
                     >
                       <Link to={`/edit/${jump.id}`}>
@@ -249,7 +196,7 @@ export class AllJumps extends React.Component {
                         <button
                           className="edit-btn"
                           title="view"
-                          style={{ margin: '1rem 1rem' }}
+                          style={{ margin: "1rem 1rem" }}
                         >
                           <i className="fa-solid fa-eye" />
                         </button>
@@ -263,16 +210,16 @@ export class AllJumps extends React.Component {
           </table>
           <div
             id="pagination"
-            style={{ display: 'flex', flexDirection: 'row', marginLeft: '40%' }}
+            style={{ display: "flex", flexDirection: "row", marginLeft: "40%" }}
           >
-            <p style={{ width: '164px', marginRight: '-79px' }}>Select Page</p>
+            <p style={{ width: "164px", marginRight: "-79px" }}>Select Page</p>
             <select
               onChange={this.dropdownChange}
               style={{
-                borderRadius: '10px',
-                marginLeft: '47%',
-                width: '4rem',
-                padding: '1px 8px',
+                borderRadius: "10px",
+                marginLeft: "47%",
+                width: "4rem",
+                padding: "1px 8px",
               }}
             >
               {pagesArr.map((page) => {
@@ -280,25 +227,7 @@ export class AllJumps extends React.Component {
               })}
             </select>
           </div>
-
-          {/* //////////////////////// Manual TABLE COMMENTED OUT //////////////////////// */}
         </div>
-
-        {/* <form onChange={this.handleChange}>
-                <select>
-                  {pagesArr.map((pageNum) => {
-                    return (
-                      <option
-                        name="pageNum"
-                        value={pageNum}
-                        onChange={this.handleChange}
-                      >
-                        {pageNum}
-                      </option>
-                    );
-                  })}
-                </select>
-              </form> */}
       </div>
     );
   }
@@ -313,37 +242,11 @@ const mapState = (state) => {
 };
 const mapDispatch = (dispatch) => {
   return {
-    editJumpRecord: (jump, userId, jumpId) =>
-      dispatch(Thunk_updateJump(jump, userId, jumpId)), //WORKING//
-    getJumpRecords: (userId) => dispatch(Thunk_fetchAllJumpRecords(userId)), //WORKING//
-    deleteJumpRecord: (userId, jumpId) =>
-      dispatch(Thunk_deleteJump(userId, jumpId)), //WOKRING//
-    addJumpRecord: (jump, id) => dispatch(Thunk_createJump(jump, id)), //WORKING//
-    getSingleJumpRecord: (userId, jumpId) =>
-      dispatch(Thunk_fetchSingleJump(userId, jumpId)), //WORKING//
-
-    ////////ABOVE is for USER TABLE//////BELOW IS FOR DROPZONE//////////////////////////
-
-    editDropzone: (dropzoneId, dropzone) =>
-      dispatch(thunk_updateDropzone(dropzoneId, dropzone)), //WOKRING//
-    getDropzones: () => dispatch(thunk_fetchAllDropzones()), //WOKRING//
-    deleteDropzone: (dropzoneId) => dispatch(thunk_deleteDropzone(dropzoneId)), //WOKRING//
-    addDropzone: (DROPZONE) => dispatch(thunk_createDropzone(DROPZONE)), //WORKING//
-    getSingleDropzone: (dropzoneId) =>
-      dispatch(thunk_fetchSingleDropzone(dropzoneId)), //WORKING//
-
-    /////////ABOVE IS FOR DROPZONE////////BELOW IS FOR LOADS/////////////////////////////
-
-    editLoad: (dropzoneId, loadId, LOAD) =>
-      dispatch(thunk_updateLoad(dropzoneId, loadId, LOAD)), //WORKING//
-    getLoads: (dropzoneId) => dispatch(thunk_fetchAllLoads(dropzoneId)), //WORKING//
-    deleteLoad: (dropzoneId, loadId) =>
-      dispatch(thunk_deleteLoad(dropzoneId, loadId)), //WORKING//
-    addLoad: (LOAD, dropzoneId) => dispatch(thunk_createLoad(LOAD, dropzoneId)), //WORKING//
-    getSingleLoad: (dropzoneId, loadId) =>
-      dispatch(thunk_fetchSingleLoad(dropzoneId, loadId)), //WORKING//
+    getJumpRecords: (userId) => dispatch(Thunk_fetchAllJumpRecords(userId)),
+    getDropzones: () => dispatch(thunk_fetchAllDropzones()),
     getAllAdminLoads: () => dispatch(thunk_adminFetchAllLoads()),
   };
 };
 
 export default connect(mapState, mapDispatch)(AllJumps);
+
