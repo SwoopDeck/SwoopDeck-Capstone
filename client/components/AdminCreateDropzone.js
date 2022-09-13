@@ -26,7 +26,7 @@ import {
   Thunk_fetchUser,
   Thunk_updateUser,
   createUser,
-} from '../store/allusers';
+} from '../store/allUsers';
 
 export class AdminCreateDropzone extends Component {
   constructor(props) {

@@ -25,7 +25,7 @@ import {
   thunk_fetchSingleLoad,
   thunk_updateLoad,
 } from '../store/loads';
-import { Thunk_fetchUser } from '../store/allusers';
+import { Thunk_fetchUser } from '../store/allUsers';
 
 /**
  * REACT COMPONENT

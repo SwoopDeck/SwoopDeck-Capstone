@@ -67,7 +67,7 @@ export class JoinLoad extends React.Component {
     console.log("in componenet", this.props.loads);
     const loadsArr = this.props.loads || [];
     const todaysLoads = loadsArr.filter((load) => {
-      let loadDate = load.date.slice(0, 9);
+      let loadDate = load.date.slice(0, 8);
 
       if (loadDate === todaysDate) {
         return load;
@@ -88,8 +88,8 @@ export class JoinLoad extends React.Component {
       let jumpNumsArr = this.props.jumpRecords.sort((a, b) => a.jumpNumber - b.jumpNumber).map((jump) => {
         return jump.jumpNumber
       })
-      let mostRecentJumpNumber = jumpNumsArr[jumpNumsArr.length - 1] + 1
-      console.log('test',mostRecentJumpNumber)
+      let mostRecentJumpNumber = jumpNumsArr[jumpNumsArr.length + 1] 
+      console.log('test',jumpNumsArr)
       let currentJump = {
         aircraft: this.props.singleLoad.aircraft,
         jumpDate: this.props.singleLoad.date,
@@ -113,7 +113,7 @@ export class JoinLoad extends React.Component {
           <div>
             <button
               type="button"
-              onClick={confirmLoad}
+              onClick={()=> confirmLoad}
               display={this.state.display}
             >
               Confirm

@@ -8,7 +8,7 @@ const JumpRecords = require('../server/db/models/JumpRecords');
 
 /* DUMMY JUMP RECORD DATA */
 const jumps = [
-   // User 1's jumps 
+   // User 1's jumps
   {
     jumpNumber: 1,
     jumpDate: '2022-07-15',
@@ -1220,10 +1220,6 @@ const jumps = [
     jumpType: 'angle',
   },
 ];
-
-
-  
-
 
 // DUMMY DROP ZONE DATA
 const dropZones = [
@@ -1253,11 +1249,6 @@ const dropZones = [
     phoneNumber: '8009991234',
   },
 ];
-
-
-
-  
-
 
 /**
  * seed - this function clears the database, updates tables to
@@ -1344,10 +1335,6 @@ async function seed() {
     licenseNumber: 505050,
     isAdmin: false,
   });
-
-
-  
-
 
   /////////////////// LOAD DUMMY DATA FOR ALL LOADS (DZ VIEW) ////////////////////
 
@@ -1557,7 +1544,6 @@ async function seed() {
     dropzoneId: 2,
   });
 
-
   const DZ1 = await Dropzone.findByPk(1);
   await DZ1.addLoad(load1);
   await DZ1.addLoad(load2);
@@ -1579,10 +1565,6 @@ async function seed() {
   await DZ1.addLoad(load18);
   await DZ1.addLoad(load19);
   await DZ1.addLoad(load20);
-
-
-
-
 
   /////////////////// SKYDIVE THE RANCH DUMMY LOADS (DZ VIEW) ////////////////////
 
@@ -1790,7 +1772,6 @@ async function seed() {
     dropzoneId: 2,
   });
 
-
   const DZ2 = await Dropzone.findByPk(2);
   await DZ2.addLoad(load21);
   await DZ2.addLoad(load22);
@@ -1812,10 +1793,6 @@ async function seed() {
   await DZ2.addLoad(load38);
   await DZ2.addLoad(load39);
   await DZ2.addLoad(load40);
-
-
-
-
 
   /////////////////// SKYDIVE SAN DIEGO DUMMY LOADS (DZ VIEW) ////////////////////
 
@@ -2023,7 +2000,6 @@ async function seed() {
     dropzoneId: 2,
   });
 
-
   const DZ3 = await Dropzone.findByPk(3);
   await DZ3.addLoad(load41);
   await DZ3.addLoad(load42);
@@ -2045,9 +2021,6 @@ async function seed() {
   await DZ3.addLoad(load58);
   await DZ3.addLoad(load59);
   await DZ3.addLoad(load60);
-
-
-
 
   /////////////////// CHICAGO SKYDIVING CENTER DUMMY LOADS (DZ VIEW) ////////////////////
 
@@ -2255,7 +2228,6 @@ async function seed() {
     dropzoneId: 2,
   });
 
-
   const DZ4 = await Dropzone.findByPk(4);
   await DZ4.addLoad(load61);
   await DZ4.addLoad(load62);
@@ -2277,9 +2249,6 @@ async function seed() {
   await DZ4.addLoad(load78);
   await DZ4.addLoad(load79);
   await DZ4.addLoad(load80);
-
-
-
 
   /////////////////// SKYDIVE SAN DIEGO DUMMY LOADS (DZ VIEW) ////////////////////
 
@@ -2487,7 +2456,6 @@ async function seed() {
     dropzoneId: 2,
   });
 
-
   const DZ5 = await Dropzone.findByPk(5);
   await DZ5.addLoad(load81);
   await DZ5.addLoad(load82);
@@ -2510,11 +2478,6 @@ async function seed() {
   await DZ5.addLoad(load99);
   await DZ5.addLoad(load100);
 
-
-
-
-
-
   const year = new Date();
   const createYear = year.getFullYear();
 
@@ -2532,7 +2495,6 @@ async function seed() {
   let currentMonth= singleToDoubleDigit(createMonth)
 
   const todaysDate = `${createYear}-${createDay}-${createMonth}`;
-
 
   const today1 = await Load.create({
     date: todaysDate,
@@ -2715,8 +2677,6 @@ async function seed() {
     role: 'Dropzone',
   });
 
-
- 
   // DUMMY DATA TO ASSIGN A DROPZONE TO A USER
   const nigelUser = await User.findByPk(7);
   const sdsd = await Dropzone.findByPk(3);
@@ -2737,11 +2697,7 @@ async function seed() {
     role: 'Dropzone',
   });
 
-
-
-
-
-  //////////////// USER 2 JUMPS (CHRIS) //////////////// 
+  //////////////// USER 2 JUMPS (CHRIS) ////////////////
   const jump1 = await JumpRecords.findByPk(1);
   const jump2 = await JumpRecords.findByPk(2);
   const jump3 = await JumpRecords.findByPk(3);
@@ -2826,11 +2782,7 @@ async function seed() {
   await jump19.setDropzone(1);
   await jump20.setDropzone(1);
 
-
-  
-
-
-  //////////////// USER 3 JUMPS (BRIAN) //////////////// 
+  //////////////// USER 3 JUMPS (BRIAN) ////////////////
   const jump21 = await JumpRecords.findByPk(21);
   const jump22 = await JumpRecords.findByPk(22);
   const jump23 = await JumpRecords.findByPk(23);
@@ -2915,11 +2867,7 @@ async function seed() {
   await jump39.setDropzone(2);
   await jump40.setDropzone(2);
 
-
-  
-
-
-  //////////////// USER 4 JUMPS (CHRISTOPHER) //////////////// 
+  //////////////// USER 4 JUMPS (CHRISTOPHER) ////////////////
   const jump41 = await JumpRecords.findByPk(41);
   const jump42 = await JumpRecords.findByPk(42);
   const jump43 = await JumpRecords.findByPk(43);
@@ -3004,11 +2952,7 @@ async function seed() {
   await jump59.setDropzone(3);
   await jump60.setDropzone(3);
 
-
-  
-
-
-  //////////////// USER 5 JUMPS (COLE) //////////////// 
+  //////////////// USER 5 JUMPS (COLE) ////////////////
   const jump61 = await JumpRecords.findByPk(61);
   const jump62 = await JumpRecords.findByPk(62);
   const jump63 = await JumpRecords.findByPk(63);
@@ -3093,10 +3037,7 @@ async function seed() {
   await jump79.setDropzone(4);
   await jump80.setDropzone(4);
 
-
-
-
-  //////////////// USER 6 JUMPS (SARAH) //////////////// 
+  //////////////// USER 6 JUMPS (SARAH) ////////////////
   const jump81 = await JumpRecords.findByPk(81);
   const jump82 = await JumpRecords.findByPk(82);
   const jump83 = await JumpRecords.findByPk(83);
@@ -3182,10 +3123,6 @@ async function seed() {
   await jump100.setDropzone(5);
 }
 
-
-  
-
-
 /*
  We've separated the `seed` function from the `runSeed` function.
  This way we can isolate the error handling and exit trapping.
@@ -3205,10 +3142,6 @@ async function runSeed() {
   }
 }
 
-
-  
-
-
 /*
   Execute the `seed` function, IF we ran this module directly (`node seed`).
   `Async` functions always return a promise, so we can use `catch` to handle
@@ -3220,3 +3153,4 @@ if (module === require.main) {
 
 // we export the seed function for testing purposes (see `./seed.spec.js`)
 module.exports = seed;
+

@@ -1,5 +1,5 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
   Thunk_fetchAllJumpRecords,
@@ -7,23 +7,26 @@ import {
   Thunk_updateJump,
   Thunk_deleteJump,
   Thunk_createJump,
-} from "../store/jumpRecords";
+} from '../store/jumpRecords';
 import {
   thunk_fetchSingleDropzone,
   thunk_updateDropzone,
   thunk_createDropzone,
   thunk_deleteDropzone,
   thunk_fetchAllDropzones,
-} from "../store/dropzones.js";
+} from '../store/dropzones.js';
 import {
   thunk_fetchAllLoads,
   thunk_createLoad,
   thunk_deleteLoad,
   thunk_fetchSingleLoad,
   thunk_updateLoad,
-  addLoad,
-} from "../store/loads";
-import { Thunk_fetchUsers, Thunk_fetchUser } from "../store/allusers";
+} from '../store/loads';
+
+
+
+import { Thunk_fetchUsers, Thunk_fetchUser } from "../store/allUsers";
+
 /**
  * REACT COMPONENT
  */
@@ -32,10 +35,10 @@ export class CreateLoad extends React.Component {
     super(props);
 
     this.state = {
-      aircraft: "",
-      slots: "0",
-      status: "on time",
-      departureTime: "0",
+      aircraft: '',
+      slots: '0',
+      status: 'on time',
+      departureTime: '0',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -85,15 +88,15 @@ export class CreateLoad extends React.Component {
     };
     this.props.addLoad(load, dropzoneId);
     // this.props.getLoads(dropzoneId);
-    this.props.history.push('/dropzoneId/todaysLoads')
+    this.props.history.push('/dropzoneId/todaysLoads');
   }
 
   clearFields() {
     this.setState({
-      aircraft: "",
-      slots: "0",
-      status: "on time",
-      departureTime: "0",
+      aircraft: '',
+      slots: '0',
+      status: 'on time',
+      departureTime: '0',
     });
   }
 
@@ -121,34 +124,34 @@ export class CreateLoad extends React.Component {
                   >
                     Cancel
                   </button>
-               
-                  <button
-                    className="save-btn"
-                    onClick={createLoad}
-                  >
+
+                  <button className="save-btn" onClick={createLoad}>
                     Save
                   </button>
-                 
                 </div>
               </div>
             </div>
             <div className="rectangle-21"></div>
             <div className="flex-row-1">
               <div className="flex-col-left">
-                <div className="first-name manrope-normal-shark-14px">Aircraft Type</div>
+                <div className="first-name manrope-normal-shark-14px">
+                  Aircraft Type
+                </div>
 
                 <input
                   className="search-bar border-1px-mystic search"
                   type="text"
                   name="aircraft"
-                placeholder="Aircraft"
-                onChange={handleChange}
+                  placeholder="Aircraft"
+                  onChange={handleChange}
                 />
 
                 <div className="frame-1">
                   <div className="frame-2">
-                    <div className="email manrope-normal-shark-14px"
-                    style={{width: '100px'}}>
+                    <div
+                      className="email manrope-normal-shark-14px"
+                      style={{ width: '100px' }}
+                    >
                       Available Slots
                     </div>
                   </div>
@@ -183,20 +186,17 @@ export class CreateLoad extends React.Component {
                   </div>
                 </div>
 
-
-              <select 
-              className="search-bar border-1px-mystic search"
-              name="status"
-              onChange={handleChange}
-              style={{padding: '.5rem'}}
-              >
-                <option name="on time">On Time</option>
-                <option name="delayed">Delayed</option>
-                <option name="closed">Closed</option>
-              </select>
-                
+                <select
+                  className="search-bar border-1px-mystic search"
+                  name="status"
+                  onChange={handleChange}
+                  style={{ padding: '.5rem' }}
+                >
+                  <option name="on time">On Time</option>
+                  <option name="delayed">Delayed</option>
+                  <option name="closed">Closed</option>
+                </select>
               </div>
-
             </div>
           </div>
         </form>

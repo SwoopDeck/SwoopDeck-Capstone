@@ -105,7 +105,7 @@ class Routes extends Component {
 
         <Route
           exact
-          path="/load/dropzoneId/:loadId/details"
+          path="/load/:dropzoneId/:loadId/details"
           component={LoadDetailsUser}
         />
         <Route path="*" component={ErrorPage} />
