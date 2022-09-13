@@ -1,46 +1,22 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
-import {
-  Thunk_fetchAllJumpRecords,
-  Thunk_fetchSingleJump,
-  Thunk_updateJump,
-  Thunk_deleteJump,
-  Thunk_createJump,
-} from '../store/jumpRecords';
-import {
-  thunk_fetchSingleDropzone,
-  thunk_updateDropzone,
-  thunk_createDropzone,
-  thunk_deleteDropzone,
-  thunk_fetchAllDropzones,
-} from '../store/dropzones.js';
-import {
-  thunk_fetchAllLoads,
-  thunk_createLoad,
-  thunk_deleteLoad,
-  thunk_fetchSingleLoad,
-  thunk_updateLoad,
-} from '../store/loads';
-import {
-  Thunk_fetchUser,
-  Thunk_updateUser,
-  createUser,
-} from '../store/allUsers';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
+import { thunk_fetchAllDropzones } from "../store/dropzones.js";
+import { Thunk_fetchUser, createUser } from "../store/allUsers";
 
 export class AdminCreateUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      address: '',
-      licenseNumber: '',
-      phoneNumber: '',
-      emergencyContact: '',
-      emergencyPhoneNumber: '',
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      address: "",
+      licenseNumber: "",
+      phoneNumber: "",
+      emergencyContact: "",
+      emergencyPhoneNumber: "",
       isDropzone: false,
       isAdmin: false,
       dropzoneId: undefined,
@@ -53,7 +29,6 @@ export class AdminCreateUser extends Component {
   }
 
   componentDidMount() {
-    // this.props.getSingleUser(this.props.match.params.id);
     this.props.getDropzones();
   }
 
@@ -66,7 +41,7 @@ export class AdminCreateUser extends Component {
   }
 
   render() {
-    // let jump = this.props.jump[0] || {};
+
     const {
       id,
       firstName,
@@ -110,14 +85,14 @@ export class AdminCreateUser extends Component {
                       this.props.createUser({ ...this.state });
                       this.props.getSingleUser(this.props.match.params.id);
                       this.setState({
-                        firstName: '',
-                        lastName: '',
-                        email: '',
-                        password: '',
-                        address: '',
-                        licenseNumber: '',
-                        phoneNumber: '',
-                        emergencyContact: '',
+                        firstName: "",
+                        lastName: "",
+                        email: "",
+                        password: "",
+                        address: "",
+                        licenseNumber: "",
+                        phoneNumber: "",
+                        emergencyContact: "",
                         emergencyPhoneNumber: null,
                       });
 
@@ -222,7 +197,7 @@ export class AdminCreateUser extends Component {
                   <div className="frame-2">
                     <div
                       className="email manrope-normal-shark-14px"
-                      style={{ width: '125px' }}
+                      style={{ width: "125px" }}
                     >
                       PHONE NUMBER
                     </div>
@@ -258,7 +233,7 @@ export class AdminCreateUser extends Component {
               </div>
               <div className="rectangle-23"></div>
             </div>
-            <div className="flex-row-2" style={{ marginBottom: '-230px' }}>
+            <div className="flex-row-2" style={{ marginBottom: "-230px" }}>
               <div className="flex-col-left">
                 <div className="first-name manrope-normal-shark-14px">
                   LICENSE NUMBER
@@ -289,13 +264,13 @@ export class AdminCreateUser extends Component {
             <div className="overlap-group2">
               <div
                 className="uspa-membership manrope-bold-shark-18px"
-                style={{ width: '400px' }}
+                style={{ width: "400px" }}
               >
                 USPA MEMBERSHIP DROPZONE ACCOUNT
               </div>
               <div className="rectangle-23"></div>
             </div>
-            <div className="flex-row-2" style={{ marginBottom: '-230px' }}>
+            <div className="flex-row-2" style={{ marginBottom: "-230px" }}>
               <div className="flex-col-left">
                 <div className="first-name manrope-normal-shark-14px">
                   DROPZONE ID
@@ -305,16 +280,19 @@ export class AdminCreateUser extends Component {
                   className="search-bar border-1px-mystic search"
                   type="text"
                   name="dropzoneId"
-                  placeholder='Dropzone ID must already exist'
+                  placeholder="Dropzone ID must already exist"
                   value={this.state.dropzoneId}
                   onChange={this.handleChange}
                 />
               </div>
 
               <div className="flex-col-right">
-                <div className="frame-1" style={{marginTop: '-1.55rem'}}>
+                <div className="frame-1" style={{ marginTop: "-1.55rem" }}>
                   <div className="frame-2">
-                    <div className="email manrope-normal-shark-14px" style={{width: '230px'}}>
+                    <div
+                      className="email manrope-normal-shark-14px"
+                      style={{ width: "230px" }}
+                    >
                       Is This User A Dropzone Manager?
                     </div>
                   </div>
@@ -324,7 +302,7 @@ export class AdminCreateUser extends Component {
                   className="search-bar border-1px-mystic search"
                   name="isDropzone"
                   onChange={this.handleChange}
-                  style={{ padding: '.5rem' }}
+                  style={{ padding: ".5rem" }}
                 >
                   <option name="isDropzone" value="false">
                     No
@@ -335,24 +313,28 @@ export class AdminCreateUser extends Component {
                 </select>
                 <button
                   className="save-btn"
-                  style={{ width: '200px', marginLeft: '7rem', marginTop: '5rem' }}
+                  style={{
+                    width: "200px",
+                    marginLeft: "7rem",
+                    marginTop: "5rem",
+                  }}
                   onClick={(evt) => {
                     evt.preventDefault();
 
                     this.props.createUser({ ...this.state });
-                    // this.props.getSingleUser(this.props.match.params.id);
+
                     this.setState({
                       ...this.state,
-                      firstName: '',
-                      lastName: '',
-                      email: '',
-                      password: '',
-                      address: '',
-                      licenseNumber: '',
-                      phoneNumber: '',
-                      emergencyContact: '',
+                      firstName: "",
+                      lastName: "",
+                      email: "",
+                      password: "",
+                      address: "",
+                      licenseNumber: "",
+                      phoneNumber: "",
+                      emergencyContact: "",
                       emergencyPhoneNumber: null,
-                      isDropzone: '',
+                      isDropzone: "",
                       dropzoneId: undefined,
                     });
 
@@ -369,11 +351,14 @@ export class AdminCreateUser extends Component {
               </div>
               <div className="rectangle-23"></div>
             </div>
-            <div className="flex-row-2" style={{marginTop: '-65px'}}>
-              <div className="flex-col-right" style={{margin: '60px 1.5rem'}}>
+            <div className="flex-row-2" style={{ marginTop: "-65px" }}>
+              <div className="flex-col-right" style={{ margin: "60px 1.5rem" }}>
                 <div className="frame-1">
                   <div className="frame-2">
-                    <div className="email manrope-normal-shark-14px" style={{width: '170px'}}>
+                    <div
+                      className="email manrope-normal-shark-14px"
+                      style={{ width: "170px" }}
+                    >
                       Make This User An Admin
                     </div>
                   </div>
@@ -383,7 +368,7 @@ export class AdminCreateUser extends Component {
                   className="search-bar border-1px-mystic search"
                   name="isAdmin"
                   onChange={this.handleChange}
-                  style={{ padding: '.5rem' }}
+                  style={{ padding: ".5rem" }}
                 >
                   <option name="isAdmin" value="false">
                     No
@@ -393,25 +378,25 @@ export class AdminCreateUser extends Component {
                   </option>
                 </select>
               </div>
-              <div className="flex-col-left" style={{margin: '0 14.5rem'}}>
+              <div className="flex-col-left" style={{ margin: "0 14.5rem" }}>
                 <button
                   className="save-btn"
-                  style={{ width: '200px' }}
+                  style={{ width: "200px" }}
                   onClick={(evt) => {
                     evt.preventDefault();
                     this.props.createUser({ ...this.state });
-                    // this.props.getSingleUser(this.props.match.params.id);
+
                     this.setState({
-                      firstName: '',
-                      lastName: '',
-                      email: '',
-                      password: '',
-                      address: '',
-                      licenseNumber: '',
-                      phoneNumber: '',
-                      emergencyContact: '',
+                      firstName: "",
+                      lastName: "",
+                      email: "",
+                      password: "",
+                      address: "",
+                      licenseNumber: "",
+                      phoneNumber: "",
+                      emergencyContact: "",
                       emergencyPhoneNumber: null,
-                      isAdmin: '',
+                      isAdmin: "",
                       dropzoneId: null,
                     });
 
@@ -442,41 +427,8 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    editJumpRecord: (jump, userId, jumpId) =>
-      dispatch(Thunk_updateJump(jump, userId, jumpId)), //WORKING//
-    getJumpRecords: (userId) => dispatch(Thunk_fetchAllJumpRecords(userId)), //WORKING//
-    deleteJumpRecord: (userId, jumpId) =>
-      dispatch(Thunk_deleteJump(userId, jumpId)), //WOKRING//
-    addJumpRecord: (jump, id) => dispatch(Thunk_createJump(jump, id)), //WORKING//
-    getSingleJumpRecord: (userId, jumpId) =>
-      dispatch(Thunk_fetchSingleJump(userId, jumpId)), //WORKING//
-
-    ////////ABOVE is for USER TABLE//////BELOW IS FOR DROPZONE//////////////////////////
-
-    editDropzone: (dropzoneId, dropzone) =>
-      dispatch(thunk_updateDropzone(dropzoneId, dropzone)), //WOKRING//
-    getDropzones: () => dispatch(thunk_fetchAllDropzones()), //WOKRING//
-    deleteDropzone: (dropzoneId) => dispatch(thunk_deleteDropzone(dropzoneId)), //WOKRING//
-    addDropzone: (DROPZONE) => dispatch(thunk_createDropzone(DROPZONE)), //WORKING//
-    getSingleDropzone: (dropzoneId) =>
-      dispatch(thunk_fetchSingleDropzone(dropzoneId)), //WORKING//
-
-    /////////ABOVE IS FOR DROPZONE////////BELOW IS FOR LOADS/////////////////////////////
-
-    editLoad: (dropzoneId, loadId, LOAD) =>
-      dispatch(thunk_updateLoad(dropzoneId, loadId, LOAD)), //WORKING//
-    getLoads: (dropzoneId) => dispatch(thunk_fetchAllLoads(dropzoneId)), //WORKING//
-    deleteLoad: (dropzoneId, loadId) =>
-      dispatch(thunk_deleteLoad(dropzoneId, loadId)), //WORKING//
-    addLoad: (LOAD, dropzoneId) => dispatch(thunk_createLoad(LOAD, dropzoneId)), //WORKING//
-    getSingleLoad: (dropzoneId, loadId) =>
-      dispatch(thunk_fetchSingleLoad(dropzoneId, loadId)), //WORKING//
-
-    ////////////////////ABOVE IS FOR LOADS///////////BELOW IS FOR USER/////////////
-
+    getDropzones: () => dispatch(thunk_fetchAllDropzones()),
     getSingleUser: (id) => dispatch(Thunk_fetchUser(id)),
-    editUser: (userId, userData) =>
-      dispatch(Thunk_updateUser(userId, userData)),
     createUser: (user) => dispatch(createUser(user)),
   };
 };
