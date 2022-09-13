@@ -233,6 +233,19 @@ import {
   thunk_fetchAllDropzones,
 } from '../store/dropzones.js';
 
+import {
+  thunk_fetchAllLoads,
+  thunk_createLoad,
+  thunk_deleteLoad,
+  thunk_fetchSingleLoad,
+  thunk_updateLoad,
+} from '../store/loads';
+import { Thunk_fetchUser } from '../store/allUsers';
+
+/**
+ * REACT COMPONENT
+ */
+
 class SingleUser extends React.Component {
   constructor(props) {
     super(props);

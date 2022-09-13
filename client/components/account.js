@@ -6,7 +6,7 @@
                 <p id="titleLog">Account</p>
                 <div className="view-all-past-skydiving-jump-logs">
                   Edit user account
-                </div>
+                </div> 
               </div>
               <div className="frame-527">
               <button id="cancel-btn">

@@ -298,8 +298,8 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import { Thunk_fetchUser, Thunk_updateUser } from '../store/allusers';
+
 
 export class UserProfile extends Component {
   constructor(props) {

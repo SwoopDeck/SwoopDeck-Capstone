@@ -387,6 +387,7 @@ import LineChart from './LineChart';
 import CountUp from 'react-countup';
 import { Thunk_fetchAllJumpRecords } from '../store/jumpRecords';
 
+
 export class UserDashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -599,6 +600,7 @@ export class UserDashboard extends React.Component {
               </div>
             </div>
           </div>
+
         </div>
       </>
     );
