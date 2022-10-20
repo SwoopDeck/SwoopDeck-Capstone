@@ -47,15 +47,13 @@ export const addJump = (JUMP) => {
   };
 };
 
-
 //ADD SINGLE JUMP RECORD MANUALLY
 export const addJumpManual = (JUMP) => {
   return {
     type: ADD_JUMP_MANUAL,
     JUMP,
   };
-}; 
-
+};
 
 //UPDATE A SINGLE JUMP RECORD
 export const reformJump = (JUMP) => {
@@ -134,19 +132,20 @@ export const Thunk_createJump = (JUMP, id) => {
   };
 };
 
-
-
 //THUNK: ADD A NEW JUMP RECORD MANUALLY
 export const Thunk_createJumpManually = (JUMP, id) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(`/api/jumprecords/${id}/create/manual`, JUMP);
+      const { data } = await axios.post(
+        `/api/jumprecords/${id}/create/manual`,
+        JUMP
+      );
       dispatch(addJumpManual(data));
     } catch (err) {
       console.log(err);
     }
   };
-}; 
+};
 //THUNK: UPDATE A SINGLE JUMP RECORD
 export const Thunk_updateJump = (JUMP, id, jumpId) => {
   return async (dispatch) => {
@@ -188,18 +187,16 @@ export default function jumpRecordsReducer(state = initialState, action) {
     case ADD_JUMP:
       return action.JUMP;
     case ADD_JUMP_MANUAL:
-      return action.JUMP;  
+      return action.JUMP;
     case UPDATE_JUMP:
       return action.JUMP;
-      case UPDATE_LOAD:
-        console.log(action.LOAD)
-        return state.filter((jumper)=> jumper.id !== action.LOAD)
-    // return state.map((record) =>
-    //   record.id === action.JUMP.id ? action.record : record
-    // );
+    case UPDATE_LOAD:
+      console.log(action.LOAD);
+      return state.filter((jumper) => jumper.id !== action.LOAD);
+
     case DELETE_JUMP:
       return action.JUMP;
-    // return state.filter((log) => log.id !== action.id);
+
     default:
       return state;
   }
